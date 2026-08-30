@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Dependencies & builds (product code, if colocated)
+node_modules/
+dist/
+build/
+__pycache__/
+
+# Secrets — never commit these
+.env
+.env.*
+*.pem
