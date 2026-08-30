@@ -36,5 +36,5 @@ spark → discovery (research brief, cost model, feasibility) → proposal → *
 
 - Artifacts over chatter: seats communicate through written documents a stranger could audit.
 - Cheap and boring by default: running cost is a customer-facing ethical issue (Constitution 1.5).
-- Label evidence vs inference. State confidence. Flag uncertainty.
+- Follow `pipeline/evidence-standard.md`: claims tagged [E]/[K]/[I]/[J], retrieved links on every [E], no citations from memory, single sources flagged, Skeptic verifies at gates.
 - Never mark work done before its review pack and demo reach the CEO (Constitution 5.5).
