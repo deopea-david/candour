@@ -1,6 +1,6 @@
 # The Candour Constitution
 
-**Version:** 0.2 (draft) · **Status:** Unincorporated brand — this document is a public pledge, not yet a legal instrument · **Change log:** all amendments are recorded per Article 11 in `CHANGELOG.md`
+**Version:** 1.0 · **Status:** Unincorporated brand — this document is a public pledge, not yet a legal instrument · **Change log:** all amendments are recorded per Article 11 in `CHANGELOG.md`
 
 ---
 
@@ -43,21 +43,22 @@ These terms mean the same thing everywhere in this constitution and in every Can
 ### 2.1 Transparent pricing
 
 - Every product publishes a **cost sheet**: hosting, tooling, support, third-party services, and a fair-market cost for labour (including the founder's, whether or not it is actually drawn).
-- Prices target a margin of approximately **20% over published costs**. This is a published target, not a rigid formula: deviations are permitted but must be justified in writing on the cost sheet (e.g. building a reserve, absorbing a cost spike).
+- Prices target a margin of approximately **20% over published costs**. This is a published target, not a rigid formula: deviations are permitted but must be justified in writing on the cost sheet (e.g. building a reserve, absorbing a cost spike). As a hard backstop, **no product's margin may exceed 30%**, regardless of justification.
+- Margins are per product, never averaged across the portfolio: each product's customers get that product's honest number, and no customer subsidises another product unknowingly.
 - Cost sheets are reviewed and republished at least **annually** and at every price change.
 - Labour is always costed at a stated market benchmark, so unpaid effort never fakes a low price and salary inflation never hides a high one.
 
 ### 2.2 Extraction rule
 
 - All founder/owner compensation (salary, distributions, benefits) is **published**, with the benchmark pay is set against (default: the median UK software developer salary, adjusted for hours actually worked). Being paid is legitimate; being paid opaquely is not.
-- Distributions may not exceed **[35]% of annual surplus** — deliberately mirroring the UK Community Interest Company cap, so conversion to a CIC later requires no weakening. Distributions are taken only at step 2 of the waterfall below, never outside it.
+- Distributions may not exceed **35% of annual surplus** — deliberately mirroring the UK Community Interest Company cap, so conversion to a CIC later requires no weakening. Distributions are taken only at step 2 of the waterfall below, never outside it.
 
 ### 2.3 The profit waterfall
 
 Each year, profit is applied strictly in this order, and the full allocation is published:
 
 1. **Reserve top-up** — until the reserve reaches its 6–12 month target.
-2. **Distributions** — optionally, up to [35]% of the surplus (2.2), always published.
+2. **Distributions** — optionally, up to 35% of the surplus (2.2), always published.
 3. **The remainder**, in this order of preference:
    1. Price reductions for existing customers
    2. Funding new products under this constitution
@@ -104,7 +105,7 @@ Ideas move through fixed stages: **spark → discovery (research brief, cost mod
 
 ### 5.2 The anti-drift rule
 
-Every idea entering the pipeline receives a **kill / proceed / park decision within [4] weeks** of its research brief. The clock cannot be stalled upstream: research briefs are **due [3] weeks from commissioning** (one extension allowed, with a written reason), and if a brief is overdue, the decision clock starts at its due date regardless. "Park" requires a written reason and a revisit date. This rule exists to force building over perpetual planning, and it binds the founder above all.
+Every idea entering the pipeline receives a **kill / proceed / park decision within 4 weeks** of its research brief. The clock cannot be stalled upstream: research briefs are **due 3 weeks from commissioning** (one extension allowed, with a written reason), and if a brief is overdue, the decision clock starts at its due date regardless. "Park" requires a written reason and a revisit date. This rule exists to force building over perpetual planning, and it binds the founder above all.
 
 ### 5.3 Mandatory dissent
 
@@ -161,10 +162,10 @@ A product's ending — sale, discontinuation, or the founder's departure — is 
 
 The company (or any product) may be sold — each transaction, however small, triggering all of the following:
 
-1. The buyer **publicly adopts this constitution** as a condition of sale, locked for the same **[3]-year** term as condition 2; during that term, amendments weakening rules facing acquired customers are prohibited.
-2. Existing customers' pricing rules (Article 2.1) are **contractually locked for [3] years** post-sale.
+1. The buyer **publicly adopts this constitution** as a condition of sale, locked for the same **3-year** term as condition 2; during that term, amendments weakening rules facing acquired customers are prohibited.
+2. Existing customers' pricing rules (Article 2.1) are **contractually locked for 3 years** post-sale.
 3. The transparency schedule (Article 3) continues post-sale for the same term.
-4. **[10–25]% of net proceeds** (as defined) go first to Candour's own non-profit initiatives (Article 8); if none exist, to an external asset-locked charity or non-profit signed off in a published decision record.
+4. **20% of net proceeds** (as defined) go first to Candour's own non-profit initiatives (Article 8); if none exist, to an external asset-locked charity or non-profit signed off in a published decision record.
 5. The sale agreement **names the condition-4 recipient as entitled to enforce conditions 2 and 3** against the buyer, under the Contracts (Rights of Third Parties) Act 1999 — so someone with standing and motive can collect on these promises after the founder has been paid and gone.
 6. The founder publishes, at the time of sale, an assessment of the buyer against these conditions — itemising all consideration received (see net proceeds) and stating the date of first contact (11.3). The judgment is made against this checklist, not against feelings.
 
@@ -172,8 +173,8 @@ The company (or any product) may be sold — each transaction, however small, tr
 
 Shutting a product down is an ending too, and triggers:
 
-- At least **[90] days' notice** to every customer.
-- Full data export (Article 4) available throughout the notice period and for **[90] days** after shutdown, free.
+- At least **90 days' notice** to every customer.
+- Full data export (Article 4) available throughout the notice period and for **90 days** after shutdown, free.
 - The product's code is **open-sourced where third-party rights allow**; where they don't, that is stated publicly with the reason.
 - A published closing cost sheet for the product's final period.
 
@@ -223,7 +224,6 @@ If a reader finds a gaming vector not listed here, we commit to adding it rather
 - Where we have not yet done a thing (published a cost sheet, drawn a salary), the relevant rules are commitments about the future, and are marked as such by context.
 - The Article 11.3 freeze relies on the founder truthfully reporting when ending conversations began. The trigger is defined objectively (any written expression of interest, sent or received) and the date must be published in the sale assessment — but a determined liar could misstate it. We admit this residual gap rather than pretend the clause is watertight; what the rule guarantees is that dodging it requires an affirmative false statement on the public record, not a definitional shrug.
 - Candour is operated by its founder together with **AI agents** holding the seats in Article 6, working under written charters. We disclose this because transparency includes how we work — and because it sets honest expectations: agent output is reviewed under this constitution's gates, and agent reviews prepare rather than certify (6.1).
-- Placeholder values in **[brackets]** are decisions still open; they will be fixed before version 1.0.
 
 ---
 
@@ -232,7 +232,7 @@ If a reader finds a gaming vector not listed here, we commit to adding it rather
 1. Any change to this document is recorded in a public change log with date, diff, and rationale.
 2. Amendments that **weaken** a customer-facing or transparency rule must be explicitly labelled "WEAKENING" in the change log and include the reason.
 3. No amendment to Article 7 (endings) is permitted from the moment any written expression of interest in a sale — sent or received — exists, until the matter concludes. The date of first contact is published in the sale assessment (7.1.6).
-4. Version 1.0 is declared when all bracketed placeholders are resolved; until then this is a working draft.
+4. Version 1.0 was declared when all bracketed placeholders were resolved (see CHANGELOG, v1.0). Amendments continue under this article.
 
 ---
 

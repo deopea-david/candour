@@ -2,6 +2,14 @@
 
 Maintained per Article 11: every amendment recorded with date, change, and rationale. Amendments that weaken a customer-facing or transparency rule are labelled **WEAKENING** (11.2).
 
+## v1.0 — 2026-08-30
+
+All placeholders resolved by the CEO; the constitution leaves draft status. Amendments continue under Article 11.
+
+1. **Numbers fixed:** distribution cap **35%** of annual surplus (strictly annual — no CIC-style carry-forward, deliberately stricter than the CIC regime); decision window **4 weeks**; research briefs due **3 weeks** from commissioning; post-sale locks (pricing and the buyer's constitution adoption) **3 years**; sale-proceeds slice **20%** of net proceeds; discontinuation notice **90 days** with free data export for **90 days** after shutdown.
+2. **Article 2.1 strengthened:** a hard per-product margin ceiling of **30%** added — no justification permits exceeding it — plus an explicit no-portfolio-averaging rule: margins are per product, so no customer unknowingly subsidises another product. _Rationale: a portfolio average would license cross-subsidy and be gameable with a token low-margin product; the CEO chose the stricter per-product regime._
+3. Article 10's "placeholders still open" admission removed (resolved); Article 11.4 reworded from a condition into a record.
+
 ## v0.2 — 2026-08-30
 
 Source: the boardroom's own Article 7 dissent (raised by the Project's Skeptic seat, reviewed and approved by the CEO), plus the CEO's decision to generalise the NHS annex as well as a full-document review (all findings reviewed and approved by the CEO before application).
