@@ -1,6 +1,6 @@
 # The Candour Constitution
 
-**Version:** 1.0 · **Status:** Unincorporated brand — this document is a public pledge, not yet a legal instrument · **Change log:** all amendments are recorded per Article 11 in `CHANGELOG.md`
+**Version:** 1.2 · **Status:** Unincorporated brand — this document is a public pledge, not yet a legal instrument · **Change log:** all amendments are recorded per Article 11 in `CHANGELOG.md`
 
 ---
 
@@ -18,7 +18,7 @@ The company is currently a brand operated by its founder, not a registered legal
 
 These terms mean the same thing everywhere in this constitution and in every Candour document. Per Article 9, they may only change by public amendment.
 
-- **Cost:** everything it takes to run a product or the company, itemised — hosting, tooling, support, third-party services, and labour valued at a published market benchmark whether or not it is actually paid.
+- **Cost:** everything it takes to run a product or the company, itemised — hosting, tooling, support, third-party services, and labour valued at a published market benchmark whether or not it is actually paid. **One-off build labour is capital, amortised straight-line over the product's declared supported life**, rather than charged wholly to its first year; maintenance and support are operating costs. Three conditions bind that treatment: the amortisation period must equal a **published** support commitment to customers; any unamortised remainder is written off publicly on discontinuation (7.2); and the period may be shortened, never lengthened. Absent a published support commitment, build labour is a first-year operating cost.
 - **Profit:** income minus cost over a period.
 - **Reserve:** funds held back to keep the company running without income — the target is 6–12 months of operating costs.
 - **Surplus:** profit remaining after the reserve has been topped up to target.
@@ -43,7 +43,8 @@ These terms mean the same thing everywhere in this constitution and in every Can
 ### 2.1 Transparent pricing
 
 - Every product publishes a **cost sheet**: hosting, tooling, support, third-party services, and a fair-market cost for labour (including the founder's, whether or not it is actually drawn).
-- Prices target a margin of approximately **20% over published costs**. This is a published target, not a rigid formula: deviations are permitted but must be justified in writing on the cost sheet (e.g. building a reserve, absorbing a cost spike). As a hard backstop, **no product's margin may exceed 30%**, regardless of justification.
+- Prices target a margin of approximately **20% over published costs**. This is a published target, not a rigid formula: deviations are permitted but must be justified in writing on the cost sheet (e.g. building a reserve, absorbing a cost spike). **A deviation in either direction is a deviation** — a margin below target is recorded and justified like any other, never labelled as no deviation. As a hard backstop, **no product's margin may exceed 30%**, regardless of justification.
+- Margin is measured **per product, per financial year**. For products sold on a recurring basis it is additionally tested **cumulatively over the customer's lifetime**: a subscriber must not, merely by staying, pay materially more than the 30% ceiling would permit against the cost of serving them. A recurring price whose every individual year is compliant can still breach this document over a decade, and the cumulative test is what catches it.
 - Margins are per product, never averaged across the portfolio: each product's customers get that product's honest number, and no customer subsidises another product unknowingly.
 - Cost sheets are reviewed and republished at least **annually** and at every price change.
 - Labour is always costed at a stated market benchmark, so unpaid effort never fakes a low price and salary inflation never hides a high one.
@@ -91,8 +92,8 @@ Every product must, without exception:
 - Make cancellation as easy as signup.
 - Employ **no dark patterns**: no false urgency, no confirm-shaming, no pre-ticked boxes, no deliberately buried settings, no engagement mechanics designed to exploit compulsion.
 - Collect the minimum data necessary, state why, and delete it when no longer needed.
-- Let customers leave with their data: export in a usable, machine-readable format, available at any time, at no charge and with no penalty.
-- Meet accessibility standards (WCAG 2.1 AA as the working baseline).
+- Let customers leave with their data: export in a usable, machine-readable format, available at any time, at no charge, and **with no penalty or disadvantage imposed for having exported**. This clause governs exit — that the export is complete, free, immediate and without consequence. It is **not** a requirement that an export reproduce the product's own experience, and it says nothing about what a product may or may not gate inside itself.
+- Meet accessibility standards (**WCAG 2.2 AA** as the working baseline, read through **WCAG2ICT** where the product is native software rather than a web page, since WCAG is written for the web).
 - Remain honest in marketing: claims we cannot substantiate are claims we do not make.
 
 ---
@@ -105,7 +106,7 @@ Ideas move through fixed stages: **spark → discovery (research brief, cost mod
 
 ### 5.2 The anti-drift rule
 
-Every idea entering the pipeline receives a **kill / proceed / park decision within 4 weeks** of its research brief. The clock cannot be stalled upstream: research briefs are **due 3 weeks from commissioning** (one extension allowed, with a written reason), and if a brief is overdue, the decision clock starts at its due date regardless. "Park" requires a written reason and a revisit date. This rule exists to force building over perpetual planning, and it binds the founder above all.
+Every idea entering the pipeline receives a **kill / proceed / park decision within 4 weeks** of its research brief — measured from the brief's **delivery**, or from its due date if the brief is late, **whichever is earlier**. Delivering a brief early shortens the decision window; it never buys slack. The clock cannot be stalled upstream: research briefs are **due 3 weeks from commissioning** (one extension allowed, with a written reason), and if a brief is overdue, the decision clock starts at its due date regardless. "Park" requires a written reason and a revisit date. This rule exists to force building over perpetual planning, and it binds the founder above all.
 
 ### 5.3 Mandatory dissent
 
@@ -150,7 +151,7 @@ The company is operated by its founder (CEO, and part of the CVO function) toget
 
 ### 6.1 Limits of agent authority
 
-Agent reviews **prepare and flag; they do not certify**. Before launch, anything involving personal data at scale, payments, health information, or regulated domains receives review by qualified human professionals. The company never represents an AI compliance opinion as assurance.
+Agent reviews **prepare and flag; they do not certify**. Before launch, anything involving personal data at scale, payments, health information, regulated domains, or **third-party licence terms whose interpretation determines a product's architecture or cost**, receives review by qualified human professionals. The company never represents an AI compliance opinion as assurance.
 
 ---
 
@@ -223,6 +224,7 @@ If a reader finds a gaming vector not listed here, we commit to adding it rather
 - This constitution currently binds through publicity, not law. We say so plainly rather than implying legal force we don't have.
 - Where we have not yet done a thing (published a cost sheet, drawn a salary), the relevant rules are commitments about the future, and are marked as such by context.
 - The Article 11.3 freeze relies on the founder truthfully reporting when ending conversations began. The trigger is defined objectively (any written expression of interest, sent or received) and the date must be published in the sale assessment — but a determined liar could misstate it. We admit this residual gap rather than pretend the clause is watertight; what the rule guarantees is that dodging it requires an affirmative false statement on the public record, not a definitional shrug.
+- **This document does not cover everything, and one gap is named here deliberately rather than left to be discovered.** It says nothing about a product limiting a customer's access to content that customer authored and holds on their own device. In September 2026, three seats asked whether such a limit was permitted filled that silence by over-reading the export clause in Article 4, and reported a prohibition that does not exist; the error was caught by the founder, not by any agent, and is recorded in full in `decisions/2026-09-16-haunt-gate.md`. **The gap is left open deliberately** — legislating it in haste, around a single product's pricing question, is how a constitution acquires rules it cannot defend. What binds meanwhile is everything that already does: pricing stated plainly and in advance (1.3, Article 4), no profiting from lock-in or confusion (1.2), no dark patterns, and the export clause read for what it says. Naming a gap is a commitment to argue about it in the open when it next matters.
 - Candour is operated by its founder together with **AI agents** holding the seats in Article 6, working under written charters. We disclose this because transparency includes how we work — and because it sets honest expectations: agent output is reviewed under this constitution's gates, and agent reviews prepare rather than certify (6.1).
 
 ---
