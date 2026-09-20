@@ -121,6 +121,10 @@ Overture's Places theme carries CDLA Permissive 2.0 and is fed by Meta, Microsof
 
 ### 2.3 UK coverage — measured, not assumed
 
+> **CORRECTION, 2026-09-19 (CTO), applying `products/haunt/venue-index-spike.md` §2.** The **346,184** food-and-drink figure below **does not reproduce** and **is not re-derivable from this note**, because this note never states the category predicate behind it. Rebuilt from the same release on the release's own taxonomy (`taxonomy.hierarchy[1] = 'food_and_drink'`, named, confidence ≥ 0.5), the figure is **302,820** [E, Engineer, measured 2026-09-18]. The five other counts in the table below — 3,325,607, 2,900,349, 42,407, 33,215, 22,886, 19,875 — **reproduce exactly, to the unit.** Nothing downstream moves: size, coverage and the offline-versus-API conclusion are unaffected. **The defect is that the method was not on the page, which is the same failure class as the missing week-to-hour conversion the Skeptic found at O2 — twice, from this seat.** See `products/haunt/subscription-sizing-note.md` §2.1.
+>
+> **Also corrected by the same spike:** the concluding sentence *"Neither open dataset looks materially deficient for UK 'going out'"* is **right about coverage and does not transfer to correctness.** Overture holds roughly twice as many rows as there are UK licensed premises and still fails to surface the right venue in 42% of cases [E, Engineer, §8]. The right worry was never coverage; it was disambiguation, and this note did not raise it.
+
 I retrieved counts rather than reasoning about them.
 
 **OpenStreetMap, United Kingdom, via Overpass API, 2026-09-09** [E, measured this session; source data © OpenStreetMap contributors, ODbL; endpoint `https://overpass-api.de/api/interpreter`, data timestamp `2026-09-09T21:05:56Z`]:
@@ -154,6 +158,8 @@ OSM's pub + bar + nightclub + restaurant total is 84,326 against a licensed-prem
 **The honest caveat, in Overture's own words:** *"Places is known to contain duplicates, a high junk rate, and low property completeness"* [E, verbatim — [Overture Places guide](https://docs.overturemaps.org/guides/places/)]. Overture ships a 0–1 `confidence` score as the intended filter. Data-quality work — dedupe, confidence thresholding, category mapping to labels a UK user recognises — is real build cost and is priced in §6. It is also *bounded and one-off*, unlike an API bill.
 
 ### 2.4 Bundle size — measured, not assumed
+
+> **CORRECTION, 2026-09-19 (CTO).** The row count below is 302,820, not 346,184 (§2.3). The Engineer rebuilt the artefact independently and measured **23.3 MB on disk / 11.3 MB gzipped** against the 21.3 MB / 10.8 MB below [E, `venue-index-spike.md` §2]. **Same order, same conclusion: size is settled and is not the question.**
 
 I built the candidate artefact and weighed it [E, measured this session]:
 
@@ -327,6 +333,8 @@ Plus the pre-build spike (§1.3): **2 weeks**, which may return the answer "don'
 
 ### 6.4 Ongoing, post-launch
 
+> **SUPERSEDED, 2026-09-19 (CTO).** This table is iOS-only and pre-subscription. It is replaced by `products/haunt/subscription-sizing-note.md` §9.2: **288–441 h/yr, point estimate 360**, against the 220 h/yr point estimate in `android-and-stack-note.md` §3.4. In particular the *"venue dataset refresh… ~0.5 day/month"* row below **no longer describes the work**: the Engineer's spike converts a refresh into a reconciliation (GERS identity diff, split/merge detection, a reviewable change set respecting user renames and merges), and the recommended cadence moves from monthly to quarterly.
+
 | Item | Cost |
 | --- | --- |
 | Venue dataset refresh (re-run pipeline, ship with app update) | ~0.5 day/month [J] |
@@ -358,7 +366,7 @@ Per my charter, a block cites a specific breach and states what lifts it. Neithe
 | 1 | Verify Foursquare's own Usage Guidelines and API License Agreement on caching (my §2.1 claim rests on a secondary source) | Skeptic, at gate | Only matters if any online-API route survives |
 | 2 | Verify Mapbox Permanent Geocoding pricing against Mapbox's own pricing page | CFO | The one paid route that permits permanent storage |
 | 3 | Measured battery cost of `startMonitoringVisits` over a real week | Engineer, during build | Apple publishes no figure; no marketing claim until measured |
-| 4 | Overture UK data quality *as a user experiences it* — how often is the right venue in the top three candidates? | Engineer, 2-day spike **before** the gate | Decides whether the offline index is shippable; a cheap, high-value spike |
+| 4 | Overture UK data quality *as a user experiences it* — how often is the right venue in the top three candidates? **ANSWERED 2026-09-19: 53.0% overall, 47.9% in a dense city centre, and the question was insufficient** — `products/haunt/venue-index-spike.md`. The decisive measurement is one nobody asked for: at σ = 25 m, **100% of dense-centre venues changed their rank-1 candidate across 20 simulated visits.** A single-shot metric was specified for a longitudinal feature. See `subscription-sizing-note.md` §2.2 and Block 4 at §11 | Engineer, 2-day spike **before** the gate | Decides whether the offline index is shippable; a cheap, high-value spike |
 | 5 | Realistic visits-per-user-per-month | Research Analyst | My §2.5 model uses 12/month as an assumption [J] |
 | 6 | Whether users read the offline architecture as *more* trustworthy (worth marketing) or merely as *fewer venues* | Research Analyst | Feeds the honesty-problem question the idea brief raised |
 | 7 | Whether an ODbL-licensed derived index (and Article 8 open-sourcing) is desirable rather than merely permitted | CEO, at gate | Constitution 8 encourages it; it is a decision, not a default |

@@ -220,6 +220,8 @@ Everything in this section is **[J]** — my estimate as CTO, not evidence. The 
 
 ### 3.1 The figure I want the CFO to use
 
+> **SUPERSEDED, 2026-09-19 (CTO), by `products/haunt/subscription-sizing-note.md` §10.2.** The 1,160–1,500 / point 1,330 figure below is correct for the scope it was decomposed against and **that scope has since grown four times, in four documents, none of them re-based against the others**: the subscription ladder, session segmentation and the venue page, the DMCCA requirements, and the venue-index remediation the Engineer's spike made necessary. **The current figure is 1,770–2,410 hours, point estimate 2,090**, plus **188 hours** of separately-carried pre-build spikes (the 75-hour Android capture spike below, plus a new 113-hour venue-index remediation spike). **Fixed annual maintenance moves from 220 to 360 h/yr (§3.4 below is superseded by that note's §9.2), and the fixed support floor from 78 to 115 h/yr.**
+
 > **Two-platform React Native / Expo build: 1,160–1,500 hours. Point estimate 1,330 hours.**
 >
 > **Plus 75 hours (2 focused weeks) for the Android capture-reliability spike required by Block 2 — carried as a separate pre-build line, because it may return "don't build."**
