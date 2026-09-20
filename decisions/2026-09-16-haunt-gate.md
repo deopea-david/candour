@@ -217,6 +217,19 @@ No seat's block was overruled. Recorded precisely, because "no overrules" can hi
 **Still open after C2, and not fixable by text** — C1-O5: no conversion model exists for the visibility window. Nobody has stated what the window is *for*, or what share of users it is expected to convert. Until someone does, 8.1–8.6 govern a mechanism whose commercial purpose is unstated. **Owner: CEO and CFO, at the pricing decision that Condition 9 already reserves.**
 
 
+
+---
+
+# CEO decisions log — post-gate
+
+Decisions taken after the gate, recorded as they are made rather than reconstructed later.
+
+**D1 — Platform: both iOS and Android at launch.** *CEO, 2026-09-20.* Reaffirmed after the CTO surfaced iOS-only as the single largest lever on cost, carrying roughly half the build and half of five years' maintenance. The CEO's original reasoning — that a privacy timeline should not be locked to one platform, and that Google Maps demonstrates Android capability — is unchanged by the cost movement. **What this commits Candour to, recorded so it is not rediscovered later:** the CTO's 2,090-hour build and 360 h/yr maintenance both stand at their two-platform figures; launch is correspondingly further out; and the five-year support commitment at D2 runs on both platforms from launch. The CTO's **Block 2** (no Android MVP resting on undocumented OEM behaviour) remains live and is lifted only by the published device-matrix spike.
+
+**D2 — Support commitment: five years from launch, on both platforms.** *CEO, 2026-09-20.* **What is promised:** for five years from launch the app continues to run on then-current iOS and Android, security and defect fixes are made, and the bundled venue index is refreshed. **What is not promised: new features.** The definition is deliberately matched to what the CTO's 360 h/yr actually funds, so the public promise and the cost model describe the same thing rather than diverging at the first OS release.
+
+**Consequences, recorded because they are easy to forget and impossible to undo.** Constitution v1.2 permits build labour to be amortised only against a *published* commitment, so this unlocks the amortised treatment the CFO's models assume; absent it the £45,957.55 build is a first-year expense and every price roughly triples. The period may be **shortened, never lengthened** (v1.2, Definitions), and any unamortised remainder is written off publicly on discontinuation (Article 7.2). It is **contractual, not marketing** — CRA 2015 s.36(3) makes pre-contract information about characteristics and functionality a term of the contract. The clock starts at **launch**, not today, which with D1's two-platform scope places it further out.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
