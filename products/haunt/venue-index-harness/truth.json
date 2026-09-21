@@ -1,0 +1,2813 @@
+{
+ "manchester:1818823": {
+  "area": "manchester",
+  "name": "O'Sheas",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.475223,
+  "lon": -2.238552,
+  "matches": [
+   {
+    "id": "28020c58-9dcd-45ba-beb0-def1742a3982",
+    "name": "O'Sheas Irish Bar",
+    "d": 40.8,
+    "sim": 0.95,
+    "cat": "bar",
+    "conf": 0.9979360038042069,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817706": {
+  "area": "manchester",
+  "name": "The Fitzgerald",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4825759,
+  "lon": -2.2330454,
+  "matches": [
+   {
+    "id": "b88997d5-b233-40b8-850a-7d20e011697d",
+    "name": "The Fitzgerald",
+    "d": 9.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9983030366897583,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1821187": {
+  "area": "manchester",
+  "name": "Victoria Tap",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.48591813,
+  "lon": -2.24164887,
+  "matches": [
+   {
+    "id": "81cc2167-1cbe-421c-bbe0-6767d7f298d2",
+    "name": "Victoria Tap",
+    "d": 104.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9544520974159241,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d1549451-6dbf-4508-a8c4-e257ab62a841",
+    "name": "Manchester Victoria",
+    "d": 186.1,
+    "sim": 0.95,
+    "cat": "train_station",
+    "conf": 0.9921031297445297,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "manchester:1816588": {
+  "area": "manchester",
+  "name": "NQ64",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4821906,
+  "lon": -2.2369762,
+  "matches": []
+ },
+ "manchester:1820983": {
+  "area": "manchester",
+  "name": "Area",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.476261,
+  "lon": -2.236554,
+  "matches": []
+ },
+ "manchester:1819635": {
+  "area": "manchester",
+  "name": "Iconic Bar",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.47730925,
+  "lon": -2.23692083,
+  "matches": [
+   {
+    "id": "80f71bf4-6617-4773-b1fb-5e230e2a539d",
+    "name": "Iconic Bar",
+    "d": 12.7,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9968095707893372,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819010": {
+  "area": "manchester",
+  "name": "The Salisbury",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4740122,
+  "lon": -2.2411042,
+  "matches": [
+   {
+    "id": "13649669-958a-4cef-94de-a3157fb7422a",
+    "name": "The Salisbury",
+    "d": 10.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9980013275146484,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1821249": {
+  "area": "manchester",
+  "name": "Lion's Den",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4775661,
+  "lon": -2.2497444,
+  "matches": [
+   {
+    "id": "3c140262-d6a3-4be4-8348-627645abbd3b",
+    "name": "Lions Den Manchester",
+    "d": 56.0,
+    "sim": 1.0,
+    "cat": "music_venue",
+    "conf": 0.9988339751958847,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1818967": {
+  "area": "manchester",
+  "name": "The Seven Stars",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4851875305176,
+  "lon": -2.24076294898987,
+  "matches": [
+   {
+    "id": "71be3703-3a34-442d-a8b6-1c03f037e68a",
+    "name": "The Seven Stars",
+    "d": 51.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9996189893484115,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1821389": {
+  "area": "manchester",
+  "name": "Gas Lamp",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4808976,
+  "lon": -2.2496567,
+  "matches": [
+   {
+    "id": "5c1de31e-35ea-4f7c-83af-d060dff347b0",
+    "name": "The Gas Lamp",
+    "d": 15.3,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.998279539346695,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817745": {
+  "area": "manchester",
+  "name": "Twenty Twenty Two",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.481756,
+  "lon": -2.23464,
+  "matches": [
+   {
+    "id": "5c6c4cbe-71bf-456b-92f6-f877e30141dd",
+    "name": "Twenty Twenty Two",
+    "d": 22.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9983635622262955,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819036": {
+  "area": "manchester",
+  "name": "Browns",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4810853,
+  "lon": -2.2413398,
+  "matches": [
+   {
+    "id": "62cba173-5231-4e3c-80e1-e2ed6871b5aa",
+    "name": "Browns Manchester",
+    "d": 18.1,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9999072326540946,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1894308": {
+  "area": "manchester",
+  "name": "Cruz 101",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.476938,
+  "lon": -2.239149,
+  "matches": [
+   {
+    "id": "ec7c4245-9dbb-483f-b6c1-4fbf65189fa7",
+    "name": "Cruz 101",
+    "d": 39.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9997253874838352,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817412": {
+  "area": "manchester",
+  "name": "Afflecks & Brown",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.483184,
+  "lon": -2.235417,
+  "matches": [
+   {
+    "id": "0bc4000d-1bb5-46c2-94c7-85eae5e49bd6",
+    "name": "Affleck & Brown",
+    "d": 10.5,
+    "sim": 0.971,
+    "cat": "bar",
+    "conf": 0.9983740770816802,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "106acaca-6e9c-4abc-b520-b3ddbdef25ee",
+    "name": "Afflecks",
+    "d": 79.4,
+    "sim": 0.95,
+    "cat": "shopping",
+    "conf": 0.9992028684020042,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "manchester:1820393": {
+  "area": "manchester",
+  "name": "Trof Cafe",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4848785400391,
+  "lon": -2.23813891410828,
+  "matches": [
+   {
+    "id": "8b8d7241-eacf-48f0-ba50-b6b2dba0ea39",
+    "name": "The Trof",
+    "d": 15.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9977411019802094,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1820723": {
+  "area": "manchester",
+  "name": "The Wheatsheaf",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.484469,
+  "lon": -2.2347586,
+  "matches": [
+   {
+    "id": "186dda15-04ec-4747-8883-4e6bce375ab7",
+    "name": "The Wheatsheaf",
+    "d": 4.5,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.98087477684021,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819093": {
+  "area": "manchester",
+  "name": "Gullivers",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.483626,
+  "lon": -2.234621,
+  "matches": [
+   {
+    "id": "e1d8f6ca-8532-4c88-b7a5-907f94413263",
+    "name": "Gullivers",
+    "d": 55.5,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9997958754003048,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817517": {
+  "area": "manchester",
+  "name": "The Waldorf",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.479134,
+  "lon": -2.233375,
+  "matches": [
+   {
+    "id": "a47f66f9-09b4-4c5b-b295-a5a77dab28ad",
+    "name": "Waldorf Manchester",
+    "d": 63.3,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.999944799888134,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817359": {
+  "area": "manchester",
+  "name": "Bar Pop",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.477294,
+  "lon": -2.236771,
+  "matches": [
+   {
+    "id": "f03f24ef-ba53-4718-899a-1416fc43cac5",
+    "name": "Bar Pop",
+    "d": 35.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9968190848827362,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1818190": {
+  "area": "manchester",
+  "name": "The Beeswing Wine Bar & Kitchen",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4777546,
+  "lon": -2.2345538,
+  "matches": [
+   {
+    "id": "cc0772b5-860a-40d9-80dc-8112d60fe733",
+    "name": "The Beeswing",
+    "d": 19.1,
+    "sim": 0.95,
+    "cat": "bar",
+    "conf": 0.9937657117843628,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817925": {
+  "area": "manchester",
+  "name": "Junior Jacksons",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4836348,
+  "lon": -2.2339101,
+  "matches": [
+   {
+    "id": "c1fa6954-7347-4747-8dc9-e8776a9b1a03",
+    "name": "Junior Jackson's",
+    "d": 8.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.991077184677124,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1816551": {
+  "area": "manchester",
+  "name": "The Blues Kitchen",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.478478,
+  "lon": -2.251122,
+  "matches": [
+   {
+    "id": "31de0b01-16ec-4359-baf3-9b01d7bdeb73",
+    "name": "The Blues Kitchen - Manchester",
+    "d": 25.8,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9997418856620789,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1818981": {
+  "area": "manchester",
+  "name": "Corbiere's Wine Bar",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.481898,
+  "lon": -2.244783,
+  "matches": [
+   {
+    "id": "550deda1-6b50-4018-b7d3-7f7b4647ac27",
+    "name": "Corbieres",
+    "d": 7.1,
+    "sim": 0.95,
+    "cat": "bar",
+    "conf": 0.9984127777814865,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817865": {
+  "area": "manchester",
+  "name": "Blockbusters NQ",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.483403,
+  "lon": -2.234017,
+  "matches": []
+ },
+ "manchester:1821401": {
+  "area": "manchester",
+  "name": "Port Street Beer House",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.48187,
+  "lon": -2.231854,
+  "matches": [
+   {
+    "id": "4131f254-096d-4c02-88d5-19097cfeaac1",
+    "name": "Port Street Beer House",
+    "d": 19.5,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9997478223741054,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1968993": {
+  "area": "manchester",
+  "name": "Luna",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4851998,
+  "lon": -2.2333913,
+  "matches": [
+   {
+    "id": "c725e579-014e-4b28-9438-e6986bafc127",
+    "name": "Luna Manchester",
+    "d": 366.0,
+    "sim": 1.0,
+    "cat": "fashion_and_apparel_store",
+    "conf": 0.9623627066612244,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "manchester:1819739": {
+  "area": "manchester",
+  "name": "Addleshaw Goddard",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4774414,
+  "lon": -2.2431694,
+  "matches": [
+   {
+    "id": "a92e4c85-92e7-4b4f-879c-1525ac9fdf18",
+    "name": "Addleshaw Goddard LLP",
+    "d": 216.0,
+    "sim": 1.0,
+    "cat": "b2b_office_and_professional_service",
+    "conf": 0.9900536240339279,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "manchester:1819141": {
+  "area": "manchester",
+  "name": "San Carlo Gran Cafe",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.483715,
+  "lon": -2.243965,
+  "matches": [
+   {
+    "id": "a9de4ce5-d1d1-481d-bc88-327f47cec1c7",
+    "name": "San Carlo - Manchester",
+    "d": 397.6,
+    "sim": 0.95,
+    "cat": "restaurant",
+    "conf": 0.9997041925787926,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1969049": {
+  "area": "manchester",
+  "name": "Eat Italian Ltd",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4799421,
+  "lon": -2.237702,
+  "matches": [
+   {
+    "id": "8f96c19c-ceb4-4522-b010-b01f688050d2",
+    "name": "Eat Italian Manchester",
+    "d": 9.0,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9418538641929627,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1839280": {
+  "area": "manchester",
+  "name": "Street star",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.481439,
+  "lon": -2.249542,
+  "matches": []
+ },
+ "manchester:1819659": {
+  "area": "manchester",
+  "name": "Manchester Civil Justice Centre also T/as S & J Catering",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4808194,
+  "lon": -2.252685,
+  "matches": [
+   {
+    "id": "ef0cc833-3d0e-4111-8b2b-c22a95349966",
+    "name": "Mervs Catering",
+    "d": 413.7,
+    "sim": 0.95,
+    "cat": "event_or_party_service",
+    "conf": 0.77,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "9883220d-9b14-4af5-be9b-1a65bba6af1a",
+    "name": "Office Catering",
+    "d": 469.1,
+    "sim": 0.95,
+    "cat": null,
+    "conf": 0.85,
+    "in_a": false,
+    "in_b": false,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1906887": {
+  "area": "manchester",
+  "name": "Capri's Cucina Italiana",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.48143,
+  "lon": -2.24826,
+  "matches": [
+   {
+    "id": "eadd5327-a7c6-4c73-a9e9-469b8c6b2fb5",
+    "name": "Capri's Cucina Italiana",
+    "d": 4.0,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9823911786079407,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1818978": {
+  "area": "manchester",
+  "name": "Grosvenor Casino",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.478381,
+  "lon": -2.2407821,
+  "matches": [
+   {
+    "id": "bc6266cb-ec24-4623-846e-25edbc2f46ac",
+    "name": "Grosvenor Casino",
+    "d": 12.0,
+    "sim": 1.0,
+    "cat": "casino",
+    "conf": 1.0,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d7a6f313-1f9b-434f-88df-f45e8db6d115",
+    "name": "Grosvenor Casino Whitworth Street",
+    "d": 407.8,
+    "sim": 0.95,
+    "cat": "casino",
+    "conf": 0.77,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1906784": {
+  "area": "manchester",
+  "name": "Gulf Tea House",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4762043,
+  "lon": -2.2505534,
+  "matches": []
+ },
+ "manchester:1831161": {
+  "area": "manchester",
+  "name": "The Coffee House",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4801075,
+  "lon": -2.2389421,
+  "matches": []
+ },
+ "manchester:1839389": {
+  "area": "manchester",
+  "name": "EL PILOTO",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4757314,
+  "lon": -2.2443532,
+  "matches": []
+ },
+ "manchester:1816859": {
+  "area": "manchester",
+  "name": "Costa Coffee",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.481156,
+  "lon": -2.2507582,
+  "matches": [
+   {
+    "id": "dcd6744c-4a1b-44e1-a32a-0004c26a28a4",
+    "name": "Costa Coffee",
+    "d": 16.0,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.9999651878774166,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "cf66caee-4feb-4a22-9447-68742061c67b",
+    "name": "Costa Coffee",
+    "d": 233.5,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "6bd5f4be-da59-4923-9caa-2320c1d0e212",
+    "name": "Costa Coffee",
+    "d": 459.7,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817857": {
+  "area": "manchester",
+  "name": "Wingstop",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4818215,
+  "lon": -2.2372906,
+  "matches": [
+   {
+    "id": "e538bb37-7712-4502-a447-65e77849e375",
+    "name": "Wingstop",
+    "d": 29.3,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9999725471794605,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "1a883656-3654-4fd7-8262-1811cde22208",
+    "name": "Wingstop Manchester Arndale",
+    "d": 389.9,
+    "sim": 0.95,
+    "cat": "fast_food_restaurant",
+    "conf": 0.8,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1818531": {
+  "area": "manchester",
+  "name": "Bold Street Coffee",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.480388,
+  "lon": -2.244699,
+  "matches": [
+   {
+    "id": "769c6998-a01e-4b9c-b6b5-7f009e142c60",
+    "name": "Bold Street Coffee",
+    "d": 18.5,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.9560593926906585,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "6939fe8f-f034-4b35-a3ee-bf83753a0d0e",
+    "name": "Blank Street Coffee",
+    "d": 76.9,
+    "sim": 0.865,
+    "cat": "coffee_shop",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d2893a09-2d54-495d-8572-37a2a0280d0a",
+    "name": "Bold Street Coffee",
+    "d": 423.4,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817561": {
+  "area": "manchester",
+  "name": "Chaat Cart",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4757308959961,
+  "lon": -2.2443540096283,
+  "matches": [
+   {
+    "id": "3fe0a033-1b25-4615-84d8-31659e132508",
+    "name": "Chaat Cart",
+    "d": 43.4,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.5433294773101807,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819280": {
+  "area": "manchester",
+  "name": "Tops Restaurant",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.478845,
+  "lon": -2.234907,
+  "matches": []
+ },
+ "manchester:1968911": {
+  "area": "manchester",
+  "name": "Lane 7",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4775629,
+  "lon": -2.2497428,
+  "matches": [
+   {
+    "id": "953fc227-3b73-4e12-850b-c2bf133bafa8",
+    "name": "Lane7",
+    "d": 14.9,
+    "sim": 0.909,
+    "cat": "bar",
+    "conf": 0.9992137239277363,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1817868": {
+  "area": "manchester",
+  "name": "Do Eat",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4803973,
+  "lon": -2.239319,
+  "matches": []
+ },
+ "manchester:1817415": {
+  "area": "manchester",
+  "name": "Bagel Factory",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4798618,
+  "lon": -2.2522343,
+  "matches": []
+ },
+ "manchester:1820752": {
+  "area": "manchester",
+  "name": "Wolf at the Door",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.48408,
+  "lon": -2.237125,
+  "matches": [
+   {
+    "id": "612b887f-bcd3-40dc-b60e-d01632aee6f4",
+    "name": "Wolf at the Door",
+    "d": 26.0,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9957680243253708,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819498": {
+  "area": "manchester",
+  "name": "Public",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4826202,
+  "lon": -2.2333319,
+  "matches": [
+   {
+    "id": "f0e8eb1f-0835-42e6-a576-08f366379022",
+    "name": "Public",
+    "d": 1.7,
+    "sim": 1.0,
+    "cat": "music_venue",
+    "conf": 0.9810113090276719,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1821189": {
+  "area": "manchester",
+  "name": "Archies",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.483154,
+  "lon": -2.241377,
+  "matches": [
+   {
+    "id": "3e519c6d-26fc-49dc-86f6-67dc424bf99d",
+    "name": "Archie's",
+    "d": 29.5,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.995185786485672,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819496": {
+  "area": "manchester",
+  "name": "Rudy's Pizza Limited also T/as Rudy's Home Bake Kitchen",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4791591,
+  "lon": -2.2382099,
+  "matches": []
+ },
+ "manchester:1816779": {
+  "area": "manchester",
+  "name": "Bandibul",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4788902,
+  "lon": -2.242337,
+  "matches": [
+   {
+    "id": "fcdf4050-8200-4512-8ee2-53d751a0607a",
+    "name": "Bandibul korean restaurant",
+    "d": 12.1,
+    "sim": 0.95,
+    "cat": "restaurant",
+    "conf": 0.9985744076967239,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "manchester:1819630": {
+  "area": "manchester",
+  "name": "Wagamama",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.47804,
+  "lon": -2.24348,
+  "matches": [
+   {
+    "id": "c9ed2da7-15f3-4f1c-914b-dc2f5976b3bc",
+    "name": "Wagamama Manchester St Peters Square",
+    "d": 61.9,
+    "sim": 0.95,
+    "cat": "restaurant",
+    "conf": 0.9999807331383228,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820791": {
+  "area": "chorlton",
+  "name": "Bar San Juan",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438755,
+  "lon": -2.280572,
+  "matches": [
+   {
+    "id": "006a70aa-9212-493e-9784-5975a64b0201",
+    "name": "Bar San Juan",
+    "d": 38.4,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9997363293766975,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820925": {
+  "area": "chorlton",
+  "name": "The Jane Eyre",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438728,
+  "lon": -2.280798,
+  "matches": [
+   {
+    "id": "ec388bb1-b17b-435d-967d-9f5b2f34c437",
+    "name": "The Jane Eyre",
+    "d": 31.3,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9900214159488678,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819318": {
+  "area": "chorlton",
+  "name": "Whalley Range Amateur Football Club",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.44162945,
+  "lon": -2.26240315,
+  "matches": [
+   {
+    "id": "df55c174-2850-4a2f-967d-a6cd11efd72b",
+    "name": "Whalley Range Football Club",
+    "d": 115.7,
+    "sim": 0.95,
+    "cat": "sport_field",
+    "conf": 0.8486689329147339,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "chorlton:1819006": {
+  "area": "chorlton",
+  "name": "Bar 4 Eighty",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.442759,
+  "lon": -2.278883,
+  "matches": [
+   {
+    "id": "1aa67ae2-3509-4e52-bc79-202a24e282e3",
+    "name": "Bar 4 Eighty",
+    "d": 12.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9759095311164856,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819340": {
+  "area": "chorlton",
+  "name": "Royal Oak",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.443463,
+  "lon": -2.277668,
+  "matches": [
+   {
+    "id": "df0cacc0-fdd6-48b4-bc78-b1fb015589fa",
+    "name": "Royal Oak",
+    "d": 74.5,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9999683945655823,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "cbb86947-e865-4bf0-bb37-f01312b38f4d",
+    "name": "Royal Cod",
+    "d": 95.6,
+    "sim": 0.778,
+    "cat": "restaurant",
+    "conf": 0.9910876154899597,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1817046": {
+  "area": "chorlton",
+  "name": "Lux Lounge",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438114,
+  "lon": -2.27408,
+  "matches": [
+   {
+    "id": "718c7734-c9e9-4ab9-852f-aeb38b5f16b3",
+    "name": "Lux Lounge",
+    "d": 53.1,
+    "sim": 1.0,
+    "cat": "lounge",
+    "conf": 0.9922317266464233,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1821212": {
+  "area": "chorlton",
+  "name": "Fell Bar",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4427629,
+  "lon": -2.2807496,
+  "matches": [
+   {
+    "id": "4d72060d-21ad-4bef-9d44-f92e59f9ee0c",
+    "name": "Fell Bar Chorlton",
+    "d": 3.8,
+    "sim": 1.0,
+    "cat": "brewery",
+    "conf": 0.9968207710981369,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1816978": {
+  "area": "chorlton",
+  "name": "Strange Brew",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438114,
+  "lon": -2.27408,
+  "matches": [
+   {
+    "id": "e74eaf3c-5617-4f2a-b8b0-8bfa8bb93521",
+    "name": "Strange Brew",
+    "d": 24.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9982608538866043,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1817507": {
+  "area": "chorlton",
+  "name": "Beech Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438755,
+  "lon": -2.280572,
+  "matches": [
+   {
+    "id": "1624b233-d215-44f5-876d-f1f8df6c4196",
+    "name": "Beech Road Cafe",
+    "d": 31.2,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "483f6ce3-bd8e-4a04-b9f2-8499fa0c2f72",
+    "name": "Beech Inn",
+    "d": 96.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.999948404687643,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820244": {
+  "area": "chorlton",
+  "name": "The Trevor Arms",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438413,
+  "lon": -2.280856,
+  "matches": [
+   {
+    "id": "58711351-34e9-4a8e-bacb-153d7e5691a5",
+    "name": "Trevor Arms",
+    "d": 64.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9999645812511444,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819861": {
+  "area": "chorlton",
+  "name": "South West Manchester Cricket Club",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4443161,
+  "lon": -2.26978955,
+  "matches": [
+   {
+    "id": "bf051544-7445-439a-827a-fa08f8fea23d",
+    "name": "South West Manchester Cricket Club",
+    "d": 4.3,
+    "sim": 1.0,
+    "cat": "sport_league",
+    "conf": 0.9993339058458806,
+    "in_a": false,
+    "in_b": false,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820092": {
+  "area": "chorlton",
+  "name": "The Chorlton Green",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438413,
+  "lon": -2.280856,
+  "matches": [
+   {
+    "id": "8bb9fc80-f52a-4721-82b8-d54c4464915a",
+    "name": "Chorlton Green Brasserie",
+    "d": 78.5,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1821112": {
+  "area": "chorlton",
+  "name": "The Beer House Chorlton (Ltd)",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4454824,
+  "lon": -2.2786145,
+  "matches": [
+   {
+    "id": "02d85759-2805-4a0b-8c6c-f84a8da40fcf",
+    "name": "The Beer House",
+    "d": 16.9,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9983753794431687,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819856": {
+  "area": "chorlton",
+  "name": "Dulcimer",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4423413,
+  "lon": -2.2765013,
+  "matches": [
+   {
+    "id": "f238a0cc-ae23-4549-a33b-9ed127bf2ed2",
+    "name": "Dulcimer",
+    "d": 9.3,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9985494709014893,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819399": {
+  "area": "chorlton",
+  "name": "The Sedge Lynn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4442859,
+  "lon": -2.2790433,
+  "matches": [
+   {
+    "id": "142156f7-65d8-40ef-a45e-601e8720aabf",
+    "name": "The Sedgelynn",
+    "d": 11.4,
+    "sim": 0.963,
+    "cat": "bar",
+    "conf": 0.999034807562828,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819284": {
+  "area": "chorlton",
+  "name": "The Chorlton Tap",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.442259,
+  "lon": -2.273671,
+  "matches": [
+   {
+    "id": "a33724ec-293b-478f-800e-cb7444eae8d8",
+    "name": "Chorlton Tap",
+    "d": 16.8,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9975055116415024,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819609": {
+  "area": "chorlton",
+  "name": "The Spread Eagle",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.442832,
+  "lon": -2.282165,
+  "matches": [
+   {
+    "id": "04577056-6a2e-4d33-8362-74e6f401fbd0",
+    "name": "The Spread Eagle",
+    "d": 47.4,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.998466654419899,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "7d639303-a62d-462e-8815-c783131bb110",
+    "name": "Wash.ME - The Spread Eagle",
+    "d": 49.7,
+    "sim": 0.95,
+    "cat": "laundry_service",
+    "conf": 0.8,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "chorlton:1818714": {
+  "area": "chorlton",
+  "name": "The Bowling Green Hotel",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.436181,
+  "lon": -2.281669,
+  "matches": [
+   {
+    "id": "20f4731e-66e7-48ea-9006-3d81760deb30",
+    "name": "Bowling Green Chorlton",
+    "d": 138.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9981218302249908,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819783": {
+  "area": "chorlton",
+  "name": "Benito Lounge",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4422204,
+  "lon": -2.2782469,
+  "matches": [
+   {
+    "id": "60e7ec0e-ea5c-4859-913a-28465ae47135",
+    "name": "Benito Lounge",
+    "d": 22.7,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9998126429617404,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1894569": {
+  "area": "chorlton",
+  "name": "The Horse and Jockey",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.438587,
+  "lon": -2.283311,
+  "matches": [
+   {
+    "id": "90b3d66a-8d4b-4626-badb-2080196e7b7a",
+    "name": "Horse and Jockey",
+    "d": 56.9,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9982346284389496,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1870669": {
+  "area": "chorlton",
+  "name": "West Disbury & Chorlton AFC",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.4348220825195,
+  "lon": -2.28218698501587,
+  "matches": [
+   {
+    "id": "bf1dc327-d03c-4cf7-aabb-d4ac962826c6",
+    "name": "West Didsbury & Chorlton AFC",
+    "d": 162.0,
+    "sim": 0.983,
+    "cat": "sport_league",
+    "conf": 0.9952801761627197,
+    "in_a": false,
+    "in_b": false,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1821284": {
+  "area": "chorlton",
+  "name": "Electrik",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.442325,
+  "lon": -2.27605,
+  "matches": [
+   {
+    "id": "dd1c5f8c-62f1-4c34-9602-b05d55c5cbf3",
+    "name": "Electrik",
+    "d": 15.8,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9983991372585297,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1818390": {
+  "area": "chorlton",
+  "name": "The Hillary Step",
+  "btype": "Pub/bar/nightclub",
+  "lat": 53.451517,
+  "lon": -2.269634,
+  "matches": [
+   {
+    "id": "ab29b0b7-e354-4a02-bbfb-e7388338c0ff",
+    "name": "The Hillary Step",
+    "d": 34.8,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9986314237117767,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1969031": {
+  "area": "chorlton",
+  "name": "Burger King UK",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4357317,
+  "lon": -2.2738846,
+  "matches": []
+ },
+ "chorlton:1820465": {
+  "area": "chorlton",
+  "name": "The Water Lily",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4423612,
+  "lon": -2.2795426,
+  "matches": [
+   {
+    "id": "a991796f-9808-4275-ae88-b146254c168d",
+    "name": "Water Lily Restaurant",
+    "d": 26.3,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9960170769691468,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819081": {
+  "area": "chorlton",
+  "name": "Chorlton Metro Cafe",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4423554,
+  "lon": -2.2742883,
+  "matches": [
+   {
+    "id": "06924446-6bde-4b81-be94-6a2cb77f4e54",
+    "name": "Chorlton Metro Cafe",
+    "d": 6.1,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9994739357531071,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1969119": {
+  "area": "chorlton",
+  "name": "Pepe's Piri Piri",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442276,
+  "lon": -2.2775397,
+  "matches": []
+ },
+ "chorlton:1820644": {
+  "area": "chorlton",
+  "name": "The Little Yeti",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4384613037109,
+  "lon": -2.275151014328,
+  "matches": [
+   {
+    "id": "a3b1e7ad-799d-41e6-8276-a2e37252c60e",
+    "name": "The Little Yeti",
+    "d": 25.1,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9982367396354676,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1816270": {
+  "area": "chorlton",
+  "name": "Barok",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4386702,
+  "lon": -2.2819873,
+  "matches": []
+ },
+ "chorlton:1818447": {
+  "area": "chorlton",
+  "name": "Sushi Pod",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442759,
+  "lon": -2.278883,
+  "matches": [
+   {
+    "id": "9ed5bae0-2300-4fe6-a5e7-595d848daeef",
+    "name": "Sushi Pod",
+    "d": 4.0,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.5369125604629517,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1969079": {
+  "area": "chorlton",
+  "name": "The Creameries",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4427393,
+  "lon": -2.2715055,
+  "matches": [
+   {
+    "id": "8fe12ec4-e008-41cb-ad7b-d43e9b9a3a92",
+    "name": "The Creameries",
+    "d": 38.0,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820691": {
+  "area": "chorlton",
+  "name": "North Star Delicatessen",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442703,
+  "lon": -2.271927,
+  "matches": [
+   {
+    "id": "3a57d9ee-9df5-47ce-9c9c-13c4cb0eaadb",
+    "name": "North Star Delicatessen",
+    "d": 11.7,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9986805981397628,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1820184": {
+  "area": "chorlton",
+  "name": "The Oystercatcher",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.447472,
+  "lon": -2.277543,
+  "matches": [
+   {
+    "id": "c78325c2-83cf-4143-ae55-ddcefe1a0165",
+    "name": "The Oystercatcher",
+    "d": 19.4,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9979328095912934,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1906935": {
+  "area": "chorlton",
+  "name": "Nicolo",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4453652,
+  "lon": -2.2787944,
+  "matches": [
+   {
+    "id": "1b51b967-666d-4e5e-98f4-07cb1b3d0735",
+    "name": "Nicolo Italian Pizzeria",
+    "d": 16.9,
+    "sim": 0.95,
+    "cat": "restaurant",
+    "conf": 0.5974192023277283,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1816217": {
+  "area": "chorlton",
+  "name": "Chocoberry manchester",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4422979,
+  "lon": -2.2758386,
+  "matches": []
+ },
+ "chorlton:1818043": {
+  "area": "chorlton",
+  "name": "My Karak Chai Chorlton",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4426581,
+  "lon": -2.2755699,
+  "matches": []
+ },
+ "chorlton:1819579": {
+  "area": "chorlton",
+  "name": "Rudy's Pizza",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.441815,
+  "lon": -2.2768254,
+  "matches": [
+   {
+    "id": "d7eba0c9-0a44-41bf-b4d0-daedef0dce82",
+    "name": "Rudy's Pizza Napoletana - Chorlton",
+    "d": 5.0,
+    "sim": 0.95,
+    "cat": "restaurant",
+    "conf": 0.9997076986730099,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1906951": {
+  "area": "chorlton",
+  "name": "Momo Shop",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4384613037109,
+  "lon": -2.275151014328,
+  "matches": [
+   {
+    "id": "7c021333-df7e-47aa-9cc5-8f3c2fb2c942",
+    "name": "Momo Shop",
+    "d": 34.6,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.8717933893203735,
+    "in_a": false,
+    "in_b": false,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:626342": {
+  "area": "chorlton",
+  "name": "Blanchflower Coffee and Bakery",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.447437286377,
+  "lon": -2.29257011413574,
+  "matches": []
+ },
+ "chorlton:1820301": {
+  "area": "chorlton",
+  "name": "Domino's Pizza",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442371,
+  "lon": -2.279723,
+  "matches": [
+   {
+    "id": "2269b724-5d84-43c6-ac1c-c0fe9724033c",
+    "name": "Domino's Pizza",
+    "d": 20.8,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9998991963982582,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1923247": {
+  "area": "chorlton",
+  "name": "Subway - Chorlton",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4351115,
+  "lon": -2.2738806,
+  "matches": [
+   {
+    "id": "a3761f7d-8e0a-48c1-aa5f-a44193fda24c",
+    "name": "Subway",
+    "d": 4.5,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9931,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1819625": {
+  "area": "chorlton",
+  "name": "Brewski",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442258,
+  "lon": -2.27367,
+  "matches": [
+   {
+    "id": "f7d9a491-d65e-497c-b2eb-d02f07665524",
+    "name": "Brewski Bar",
+    "d": 22.5,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9481114232540131,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1894394": {
+  "area": "chorlton",
+  "name": "Aahaa indian kitchen & Bar",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4475525,
+  "lon": -2.2774686,
+  "matches": []
+ },
+ "chorlton:1821681": {
+  "area": "chorlton",
+  "name": "Hosa",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4382161,
+  "lon": -2.2801477,
+  "matches": []
+ },
+ "chorlton:1821583": {
+  "area": "chorlton",
+  "name": "Yara Restaurant",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4427587,
+  "lon": -2.278672,
+  "matches": [
+   {
+    "id": "e7dbd004-cd2f-4767-a9d5-d04b26d84fe8",
+    "name": "YARA Restaurant",
+    "d": 10.1,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9905147552490234,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d5310278-c571-445a-8b5d-9fac4b59f0d9",
+    "name": "Baba Restaurant",
+    "d": 138.6,
+    "sim": 0.867,
+    "cat": "restaurant",
+    "conf": 0.28128689527511597,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "chorlton:1821532": {
+  "area": "chorlton",
+  "name": "Casa Burritos",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.442703,
+  "lon": -2.271927,
+  "matches": [
+   {
+    "id": "79a78864-b9a2-4620-bf9d-6a47f5509a6a",
+    "name": "Casa Burritos Chorlton",
+    "d": 25.6,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9460187476873398,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1816695": {
+  "area": "chorlton",
+  "name": "Casa de Moor Chorlton",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.4385453,
+  "lon": -2.281565,
+  "matches": [
+   {
+    "id": "a6eac5db-2537-4a96-a85f-72e6b4a66779",
+    "name": "Casa De Moor Chorlton",
+    "d": 0.9,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9947205781936646,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "chorlton:1816321": {
+  "area": "chorlton",
+  "name": "Sipp",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 53.438413,
+  "lon": -2.280856,
+  "matches": []
+ },
+ "ludlow:100598": {
+  "area": "ludlow",
+  "name": "Church Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3678827,
+  "lon": -2.7191417,
+  "matches": [
+   {
+    "id": "a0cd9155-439d-4ec0-88c0-55896dc9b0cb",
+    "name": "The Church Inn",
+    "d": 7.8,
+    "sim": 1.0,
+    "cat": "inn",
+    "conf": 0.9996843713223934,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d9e8d99c-6e79-4c8d-b00d-fb828ba86023",
+    "name": "St Laurence's Parish Church, Ludlow",
+    "d": 54.9,
+    "sim": 0.95,
+    "cat": "christian_place_of_worship",
+    "conf": 0.954,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "94b7357f-ddcf-4a7d-9757-098fe4f10fbc",
+    "name": "Ludlow Methodist Church",
+    "d": 130.7,
+    "sim": 0.95,
+    "cat": "christian_place_of_worship",
+    "conf": 0.9966170954704284,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "a1893d6d-18e6-48e6-b1c7-a5708b7bdf0c",
+    "name": "Saint Laurence Church of England School",
+    "d": 395.9,
+    "sim": 0.95,
+    "cat": "elementary_school",
+    "conf": 0.9297395944595337,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1557387": {
+  "area": "ludlow",
+  "name": "The Ludlow Club",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3681233,
+  "lon": -2.716578,
+  "matches": [
+   {
+    "id": "152388ff-564d-4c6c-af70-262c91262451",
+    "name": "The Ludlow Club",
+    "d": 21.8,
+    "sim": 1.0,
+    "cat": "sport_league",
+    "conf": 0.9529434859752655,
+    "in_a": false,
+    "in_b": false,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1590220": {
+  "area": "ludlow",
+  "name": "The Nelson Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3772004,
+  "lon": -2.7002196,
+  "matches": [
+   {
+    "id": "db4c6ee8-ebaa-42b8-9902-93cded0b2a13",
+    "name": "The Nelson Inn",
+    "d": 9.0,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9873958230018616,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "921fae14-b432-40df-8b9d-470dedf68b38",
+    "name": "Nelson Cottage",
+    "d": 49.8,
+    "sim": 0.95,
+    "cat": "hotel",
+    "conf": 0.77,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1908054": {
+  "area": "ludlow",
+  "name": "The Blue Boar",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3667656,
+  "lon": -2.7210035,
+  "matches": [
+   {
+    "id": "cc8838f2-c29c-4446-bf9e-10899f0370ce",
+    "name": "The Blue Boar",
+    "d": 3.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9873386061191559,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "9e646e84-ae79-4bef-85f0-ebc3e1c4936e",
+    "name": "The Wine Bar",
+    "d": 133.8,
+    "sim": 0.72,
+    "cat": "bar",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1595155": {
+  "area": "ludlow",
+  "name": "Wheatsheaf Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3652723,
+  "lon": -2.7178065,
+  "matches": [
+   {
+    "id": "2bf0d4c3-ddb7-4809-96eb-615e0683aed9",
+    "name": "The Wheatsheaf Inn",
+    "d": 9.6,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9982852423191071,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1929095": {
+  "area": "ludlow",
+  "name": "Ye Olde Bull Ring Tavern",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3679006,
+  "lon": -2.717688,
+  "matches": [
+   {
+    "id": "9dbeceb8-41c8-414d-97e8-e23fcc1b5324",
+    "name": "Ye Olde Bull Ring Tavern",
+    "d": 4.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9738745051622391,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1316999": {
+  "area": "ludlow",
+  "name": "The Bridge Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3742356,
+  "lon": -2.719834,
+  "matches": [
+   {
+    "id": "683fd8c1-01e2-40e7-9cba-4774dfacb1ed",
+    "name": "The Bridge Pub Ludlow",
+    "d": 2.8,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9979337692260742,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "01bcb843-f67b-4115-9dbf-81d159bacbac",
+    "name": "Corve Bridge Garage",
+    "d": 114.8,
+    "sim": 0.95,
+    "cat": "automotive_service",
+    "conf": 0.9953678292036057,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "d74438ab-74b5-4d89-b32d-2f27fade3fe1",
+    "name": "Burway Bridge",
+    "d": 163.3,
+    "sim": 0.95,
+    "cat": "bridge",
+    "conf": 0.7862840890884399,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1896448": {
+  "area": "ludlow",
+  "name": "Natalie White - The Compasses",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3689769,
+  "lon": -2.718175,
+  "matches": [
+   {
+    "id": "acedd498-ce0d-42e1-9771-fda6da8d0a3e",
+    "name": "The Compasses",
+    "d": 6.3,
+    "sim": 0.95,
+    "cat": "bar",
+    "conf": 0.9956199938058853,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1577359": {
+  "area": "ludlow",
+  "name": "The Blood Bay",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3675036,
+  "lon": -2.7193999,
+  "matches": []
+ },
+ "ludlow:100702": {
+  "area": "ludlow",
+  "name": "The Queens",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3681657,
+  "lon": -2.7160796,
+  "matches": [
+   {
+    "id": "868933b7-04b8-4cc6-af3f-1b4590151262",
+    "name": "The Queens",
+    "d": 10.9,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.998663694858551,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1739315": {
+  "area": "ludlow",
+  "name": "The Bull Hotel",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3686277,
+  "lon": -2.7178613,
+  "matches": [
+   {
+    "id": "e993080e-cde1-4fa4-941c-4fd4d561935a",
+    "name": "Bull Hotel",
+    "d": 9.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9799728553295135,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1535614": {
+  "area": "ludlow",
+  "name": "Old Street Tavern",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3678525,
+  "lon": -2.7173943,
+  "matches": [
+   {
+    "id": "f7378afa-cd75-4424-81b5-c706e14b75d2",
+    "name": "Old Street Tavern",
+    "d": 5.7,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.9930875313282013,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "a9a7b1e4-f5d7-4331-aead-b20535ca76ba",
+    "name": "Old Street Ludlow",
+    "d": 131.2,
+    "sim": 1.0,
+    "cat": "travel_service",
+    "conf": 0.7080214619636536,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1854322": {
+  "area": "ludlow",
+  "name": "Vine & Juniper",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.36777994,
+  "lon": -2.71858066,
+  "matches": [
+   {
+    "id": "c31e70c5-825c-4202-a0f5-9da1416ed475",
+    "name": "Vine and Juniper",
+    "d": 1.9,
+    "sim": 1.0,
+    "cat": "food_and_beverage_store",
+    "conf": 0.9579488635063171,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:769639": {
+  "area": "ludlow",
+  "name": "The Charlton Arms",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.362676,
+  "lon": -2.717016,
+  "matches": [
+   {
+    "id": "b866c523-259b-44da-80d9-d0ddfa222a80",
+    "name": "Charlton Arms Hotel",
+    "d": 97.0,
+    "sim": 1.0,
+    "cat": "inn",
+    "conf": 0.9958840304613114,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1834096": {
+  "area": "ludlow",
+  "name": "The Unicorn Inn",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.373222,
+  "lon": -2.7199587,
+  "matches": [
+   {
+    "id": "c86717ed-5c00-4dc2-995a-16f08fc11302",
+    "name": "The Unicorn Inn",
+    "d": 4.3,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.9887158054113389,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1933087": {
+  "area": "ludlow",
+  "name": "Rose & Crown",
+  "btype": "Pub/bar/nightclub",
+  "lat": 52.3679075,
+  "lon": -2.7197631,
+  "matches": [
+   {
+    "id": "7d2c7faf-0143-4dfe-9dc9-2aa82eb9178e",
+    "name": "Rose & Crown",
+    "d": 7.2,
+    "sim": 1.0,
+    "cat": "bar",
+    "conf": 0.998479198217392,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:733846": {
+  "area": "ludlow",
+  "name": "Monkey Mania",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3686658,
+  "lon": -2.6965862,
+  "matches": [
+   {
+    "id": "0172489f-e7e7-41ef-a250-6b66bd4036ab",
+    "name": "Monkey Mania Ludlow",
+    "d": 29.0,
+    "sim": 1.0,
+    "cat": "park",
+    "conf": 0.9966476768255234,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:371372": {
+  "area": "ludlow",
+  "name": "Aragons",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3677051,
+  "lon": -2.7199211,
+  "matches": [
+   {
+    "id": "1cb83273-6178-40fa-b49d-a8be6494cb70",
+    "name": "Aragons",
+    "d": 12.2,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9981729239225388,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1264876": {
+  "area": "ludlow",
+  "name": "Chapter 66 Restaurant",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3671006,
+  "lon": -2.7220811,
+  "matches": [
+   {
+    "id": "79aa019c-d18c-4ef4-8dae-1ee73b2c4414",
+    "name": "Chapter 66",
+    "d": 21.8,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.993638813495636,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1944496": {
+  "area": "ludlow",
+  "name": "Athena Greek Taverna",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3673118,
+  "lon": -2.7186535,
+  "matches": [
+   {
+    "id": "d1e1c335-efdc-4bd7-b16a-da3331eeb356",
+    "name": "Athena Greek Taverna and Cafe",
+    "d": 12.0,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9921804982423782,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "bfb0f69c-0535-46ec-8af9-6c1c3c028ea2",
+    "name": "Athena",
+    "d": 369.4,
+    "sim": 0.95,
+    "cat": "professional_service",
+    "conf": 0.6928421258926392,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1919802": {
+  "area": "ludlow",
+  "name": "Suelo",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.36811,
+  "lon": -2.7172508,
+  "matches": [
+   {
+    "id": "51b54ff6-8415-4a23-9f61-8de1a8ae46e2",
+    "name": "Suelo",
+    "d": 6.2,
+    "sim": 1.0,
+    "cat": "casual_eatery",
+    "conf": 0.28810644149780273,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1158169": {
+  "area": "ludlow",
+  "name": "Working Together (Ludlow) Ltd Cafe",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3699559,
+  "lon": -2.7046007,
+  "matches": [
+   {
+    "id": "b96a0e89-db7f-44ce-a753-ebb7c99ee7ab",
+    "name": "Working Together",
+    "d": 14.7,
+    "sim": 1.0,
+    "cat": "social_or_community_service",
+    "conf": 0.9387873512506485,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1429715": {
+  "area": "ludlow",
+  "name": "Sourced Pizza",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3678938,
+  "lon": -2.7202728,
+  "matches": [
+   {
+    "id": "1cd217fb-5ff1-4e4a-8290-2c6633182064",
+    "name": "sourCed pizza",
+    "d": 8.2,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9862307906150818,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1873131": {
+  "area": "ludlow",
+  "name": "3 Church Street",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3676638,
+  "lon": -2.7196669,
+  "matches": [
+   {
+    "id": "a0cd9155-439d-4ec0-88c0-55896dc9b0cb",
+    "name": "The Church Inn",
+    "d": 48.2,
+    "sim": 1.0,
+    "cat": "inn",
+    "conf": 0.9996843713223934,
+    "in_a": false,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "d9e8d99c-6e79-4c8d-b00d-fb828ba86023",
+    "name": "St Laurence's Parish Church, Ludlow",
+    "d": 75.4,
+    "sim": 0.95,
+    "cat": "christian_place_of_worship",
+    "conf": 0.954,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "94b7357f-ddcf-4a7d-9757-098fe4f10fbc",
+    "name": "Ludlow Methodist Church",
+    "d": 122.5,
+    "sim": 0.95,
+    "cat": "christian_place_of_worship",
+    "conf": 0.9966170954704284,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   },
+   {
+    "id": "a1893d6d-18e6-48e6-b1c7-a5708b7bdf0c",
+    "name": "Saint Laurence Church of England School",
+    "d": 420.1,
+    "sim": 0.95,
+    "cat": "elementary_school",
+    "conf": 0.9297395944595337,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1912012": {
+  "area": "ludlow",
+  "name": "Pietro Lounge",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3676504,
+  "lon": -2.72051,
+  "matches": []
+ },
+ "ludlow:212620": {
+  "area": "ludlow",
+  "name": "Shapla",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3672054,
+  "lon": -2.7190427,
+  "matches": [
+   {
+    "id": "5db85ee0-4324-47c3-bc8e-e2de3d3c1cdf",
+    "name": "Shapla",
+    "d": 8.4,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9983369255065918,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1781531": {
+  "area": "ludlow",
+  "name": "Golden Moments",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.36928,
+  "lon": -2.7185182,
+  "matches": [
+   {
+    "id": "be47c34b-c073-49d2-890c-47a05426980b",
+    "name": "Golden Moments Restaurant",
+    "d": 13.5,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.6539667248725891,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "40cd13dd-7040-4442-9069-0d1631777531",
+    "name": "Golden Moments",
+    "d": 186.9,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.77,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:894731": {
+  "area": "ludlow",
+  "name": "Carvells The Art Of Tea",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3678308,
+  "lon": -2.7182306,
+  "matches": [
+   {
+    "id": "0c4e377c-063a-49bd-98fa-19f03872f6c5",
+    "name": "Carvell's The Art Of Tea",
+    "d": 2.5,
+    "sim": 1.0,
+    "cat": "non_alcoholic_beverage_venue",
+    "conf": 0.9983125233650207,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1841053": {
+  "area": "ludlow",
+  "name": "Subway @ EG On The Move",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3741578,
+  "lon": -2.7220307,
+  "matches": [
+   {
+    "id": "099309a0-f241-4617-a060-3673a7968ac8",
+    "name": "Subway",
+    "d": 4.9,
+    "sim": 0.95,
+    "cat": "casual_eatery",
+    "conf": 0.9931,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "7faae69f-4430-4f4f-83aa-c466edfe0cc6",
+    "name": "EG On the Move",
+    "d": 135.3,
+    "sim": 0.95,
+    "cat": "gas_station",
+    "conf": 0.8,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1934942": {
+  "area": "ludlow",
+  "name": "Taste at No.1 LTD",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3676407,
+  "lon": -2.7194224,
+  "matches": [
+   {
+    "id": "ec80b0a4-5ee8-4df0-9a45-435518a6a7b7",
+    "name": "Taste At No 1",
+    "d": 15.9,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.9763218069076538,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1940420": {
+  "area": "ludlow",
+  "name": "Epic Coffee House",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3683323,
+  "lon": -2.7168042,
+  "matches": [
+   {
+    "id": "e02df6d5-3715-4fa3-8fe2-3b857c45d0c6",
+    "name": "Epic Coffee House",
+    "d": 1.2,
+    "sim": 1.0,
+    "cat": "coffee_shop",
+    "conf": 0.21549750864505768,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:698885": {
+  "area": "ludlow",
+  "name": "Castle Lodge Buttery",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3671085,
+  "lon": -2.7213127,
+  "matches": [
+   {
+    "id": "081e69f2-c899-4084-9c13-6a746c828f2c",
+    "name": "Castle Lodge Buttery",
+    "d": 19.4,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.997985589504242,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "8611ec7c-5364-487e-a4e7-adbb1b09e78a",
+    "name": "Ludlow Castle",
+    "d": 114.5,
+    "sim": 0.95,
+    "cat": "castle",
+    "conf": 0.9997434587776661,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:1896446": {
+  "area": "ludlow",
+  "name": "The Cottage Cafe",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3685423,
+  "lon": -2.7171256,
+  "matches": [
+   {
+    "id": "58975e55-3403-46ff-9c57-ee4a4d8b429e",
+    "name": "The Cottage Cafe",
+    "d": 14.0,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9892863631248474,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   },
+   {
+    "id": "e4852d9e-6dcf-442b-828a-627f45b95dc7",
+    "name": "Horseshoe Cottage",
+    "d": 365.8,
+    "sim": 0.95,
+    "cat": "private_lodging",
+    "conf": 0.8841714262962341,
+    "in_a": false,
+    "in_b": false,
+    "in_c": false
+   }
+  ]
+ },
+ "ludlow:125923": {
+  "area": "ludlow",
+  "name": "Oriental City",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3673791,
+  "lon": -2.6969199,
+  "matches": [
+   {
+    "id": "e22c0845-c4ae-46b7-893b-5c3cc6dd7ee5",
+    "name": "Oriental City",
+    "d": 1.7,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9896883815526962,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1354436": {
+  "area": "ludlow",
+  "name": "Bill's Kitchen",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3670612,
+  "lon": -2.7206662,
+  "matches": [
+   {
+    "id": "5f4b0a43-e3ce-4ca9-bd79-47784b72f19e",
+    "name": "Bill's Kitchen Ludlow",
+    "d": 7.5,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9922242164611816,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1246756": {
+  "area": "ludlow",
+  "name": "Ludlow Street Cafe",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3725035,
+  "lon": -2.719264,
+  "matches": []
+ },
+ "ludlow:1387279": {
+  "area": "ludlow",
+  "name": "Kin Kitchen",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3679131,
+  "lon": -2.7171007,
+  "matches": [
+   {
+    "id": "5b8be961-5a95-454d-837a-ea37ab9b01c5",
+    "name": "Kin kitchen",
+    "d": 5.6,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9850947856903076,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:1949857": {
+  "area": "ludlow",
+  "name": "Mahar Thai",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.368299,
+  "lon": -2.7168912,
+  "matches": []
+ },
+ "ludlow:1332798": {
+  "area": "ludlow",
+  "name": "The Corner House",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3678609,
+  "lon": -2.7174817,
+  "matches": [
+   {
+    "id": "d97dd7f2-a2e2-4425-8dd0-bce7a57e4d76",
+    "name": "The Corner House -Ludlow",
+    "d": 8.9,
+    "sim": 1.0,
+    "cat": "cafe",
+    "conf": 0.9825785160064697,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:125915": {
+  "area": "ludlow",
+  "name": "Codfather",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3694485,
+  "lon": -2.7069911,
+  "matches": [
+   {
+    "id": "b021ea40-274e-41df-862f-231fe385cd0a",
+    "name": "The Codfather",
+    "d": 0.8,
+    "sim": 1.0,
+    "cat": "fast_food_restaurant",
+    "conf": 0.942881070971489,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ },
+ "ludlow:100640": {
+  "area": "ludlow",
+  "name": "The China Garden",
+  "btype": "Restaurant/Cafe/Canteen",
+  "lat": 52.3743711,
+  "lon": -2.7133365,
+  "matches": [
+   {
+    "id": "ca3e6cc9-b509-41c5-bebc-c7a6bc24a837",
+    "name": "China Garden",
+    "d": 7.7,
+    "sim": 1.0,
+    "cat": "restaurant",
+    "conf": 0.9552679407596588,
+    "in_a": true,
+    "in_b": true,
+    "in_c": true
+   }
+  ]
+ }
+}
