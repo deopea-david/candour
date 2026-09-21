@@ -1,0 +1,2667 @@
+{
+ "manchester": {
+  "1818823": {
+   "fsa_name": "O'Sheas",
+   "queries": [
+    [
+     "T1_full",
+     "osheas"
+    ],
+    [
+     "T7_prefix4",
+     "oshe"
+    ]
+   ]
+  },
+  "1817706": {
+   "fsa_name": "The Fitzgerald",
+   "queries": [
+    [
+     "T1_full",
+     "the fitzgerald"
+    ],
+    [
+     "T2_no_article",
+     "fitzgerald"
+    ],
+    [
+     "T7_prefix4",
+     "fitz"
+    ]
+   ]
+  },
+  "1821187": {
+   "fsa_name": "Victoria Tap",
+   "queries": [
+    [
+     "T1_full",
+     "victoria tap"
+    ],
+    [
+     "T4_head1",
+     "victoria"
+    ],
+    [
+     "T7_prefix4",
+     "vict"
+    ]
+   ]
+  },
+  "1816588": {
+   "fsa_name": "NQ64",
+   "queries": [
+    [
+     "T1_full",
+     "nq64"
+    ]
+   ]
+  },
+  "1820983": {
+   "fsa_name": "Area",
+   "queries": [
+    [
+     "T1_full",
+     "area"
+    ]
+   ]
+  },
+  "1819635": {
+   "fsa_name": "Iconic Bar",
+   "queries": [
+    [
+     "T1_full",
+     "iconic bar"
+    ],
+    [
+     "T4_head1",
+     "iconic"
+    ],
+    [
+     "T7_prefix4",
+     "icon"
+    ]
+   ]
+  },
+  "1819010": {
+   "fsa_name": "The Salisbury",
+   "queries": [
+    [
+     "T1_full",
+     "the salisbury"
+    ],
+    [
+     "T2_no_article",
+     "salisbury"
+    ],
+    [
+     "T7_prefix4",
+     "sali"
+    ]
+   ]
+  },
+  "1821249": {
+   "fsa_name": "Lion's Den",
+   "queries": [
+    [
+     "T1_full",
+     "lions den"
+    ],
+    [
+     "T4_head1",
+     "lions"
+    ],
+    [
+     "T7_prefix4",
+     "lion"
+    ]
+   ]
+  },
+  "1818967": {
+   "fsa_name": "The Seven Stars",
+   "queries": [
+    [
+     "T1_full",
+     "the seven stars"
+    ],
+    [
+     "T2_no_article",
+     "seven stars"
+    ],
+    [
+     "T4_head1",
+     "seven"
+    ],
+    [
+     "T7_prefix4",
+     "seve"
+    ]
+   ]
+  },
+  "1821389": {
+   "fsa_name": "Gas Lamp",
+   "queries": [
+    [
+     "T1_full",
+     "gas lamp"
+    ],
+    [
+     "T4_head1",
+     "gas"
+    ],
+    [
+     "T5_longest",
+     "lamp"
+    ]
+   ]
+  },
+  "1817745": {
+   "fsa_name": "Twenty Twenty Two",
+   "queries": [
+    [
+     "T1_full",
+     "twenty twenty two"
+    ],
+    [
+     "T3_head2",
+     "twenty twenty"
+    ],
+    [
+     "T4_head1",
+     "twenty"
+    ],
+    [
+     "T7_prefix4",
+     "twen"
+    ]
+   ]
+  },
+  "1819036": {
+   "fsa_name": "Browns",
+   "queries": [
+    [
+     "T1_full",
+     "browns"
+    ],
+    [
+     "T7_prefix4",
+     "brow"
+    ]
+   ]
+  },
+  "1894308": {
+   "fsa_name": "Cruz 101",
+   "queries": [
+    [
+     "T1_full",
+     "cruz 101"
+    ],
+    [
+     "T4_head1",
+     "cruz"
+    ]
+   ]
+  },
+  "1817412": {
+   "fsa_name": "Afflecks & Brown",
+   "queries": [
+    [
+     "T1_full",
+     "afflecks and brown"
+    ],
+    [
+     "T3_head2",
+     "afflecks and"
+    ],
+    [
+     "T4_head1",
+     "afflecks"
+    ],
+    [
+     "T7_prefix4",
+     "affl"
+    ]
+   ]
+  },
+  "1820393": {
+   "fsa_name": "Trof Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "trof cafe"
+    ],
+    [
+     "T4_head1",
+     "trof"
+    ]
+   ]
+  },
+  "1820723": {
+   "fsa_name": "The Wheatsheaf",
+   "queries": [
+    [
+     "T1_full",
+     "the wheatsheaf"
+    ],
+    [
+     "T2_no_article",
+     "wheatsheaf"
+    ],
+    [
+     "T7_prefix4",
+     "whea"
+    ]
+   ]
+  },
+  "1819093": {
+   "fsa_name": "Gullivers",
+   "queries": [
+    [
+     "T1_full",
+     "gullivers"
+    ],
+    [
+     "T7_prefix4",
+     "gull"
+    ]
+   ]
+  },
+  "1817517": {
+   "fsa_name": "The Waldorf",
+   "queries": [
+    [
+     "T1_full",
+     "the waldorf"
+    ],
+    [
+     "T2_no_article",
+     "waldorf"
+    ],
+    [
+     "T7_prefix4",
+     "wald"
+    ]
+   ]
+  },
+  "1817359": {
+   "fsa_name": "Bar Pop",
+   "queries": [
+    [
+     "T1_full",
+     "bar pop"
+    ],
+    [
+     "T4_head1",
+     "bar"
+    ],
+    [
+     "T6_no_generic",
+     "pop"
+    ]
+   ]
+  },
+  "1818190": {
+   "fsa_name": "The Beeswing Wine Bar & Kitchen",
+   "queries": [
+    [
+     "T1_full",
+     "the beeswing wine bar and kitchen"
+    ],
+    [
+     "T2_no_article",
+     "beeswing wine bar and kitchen"
+    ],
+    [
+     "T3_head2",
+     "beeswing wine"
+    ],
+    [
+     "T4_head1",
+     "beeswing"
+    ],
+    [
+     "T7_prefix4",
+     "bees"
+    ],
+    [
+     "T6_no_generic",
+     "beeswing wine and"
+    ]
+   ]
+  },
+  "1817925": {
+   "fsa_name": "Junior Jacksons",
+   "queries": [
+    [
+     "T1_full",
+     "junior jacksons"
+    ],
+    [
+     "T4_head1",
+     "junior"
+    ],
+    [
+     "T5_longest",
+     "jacksons"
+    ],
+    [
+     "T7_prefix4",
+     "juni"
+    ]
+   ]
+  },
+  "1816551": {
+   "fsa_name": "The Blues Kitchen",
+   "queries": [
+    [
+     "T1_full",
+     "the blues kitchen"
+    ],
+    [
+     "T2_no_article",
+     "blues kitchen"
+    ],
+    [
+     "T4_head1",
+     "blues"
+    ],
+    [
+     "T7_prefix4",
+     "blue"
+    ]
+   ]
+  },
+  "1818981": {
+   "fsa_name": "Corbiere's Wine Bar",
+   "queries": [
+    [
+     "T1_full",
+     "corbieres wine bar"
+    ],
+    [
+     "T3_head2",
+     "corbieres wine"
+    ],
+    [
+     "T4_head1",
+     "corbieres"
+    ],
+    [
+     "T7_prefix4",
+     "corb"
+    ]
+   ]
+  },
+  "1817865": {
+   "fsa_name": "Blockbusters NQ",
+   "queries": [
+    [
+     "T1_full",
+     "blockbusters nq"
+    ],
+    [
+     "T4_head1",
+     "blockbusters"
+    ],
+    [
+     "T7_prefix4",
+     "bloc"
+    ]
+   ]
+  },
+  "1821401": {
+   "fsa_name": "Port Street Beer House",
+   "queries": [
+    [
+     "T1_full",
+     "port street beer house"
+    ],
+    [
+     "T3_head2",
+     "port street"
+    ],
+    [
+     "T4_head1",
+     "port"
+    ],
+    [
+     "T6_no_generic",
+     "port beer"
+    ]
+   ]
+  },
+  "1968993": {
+   "fsa_name": "Luna",
+   "queries": [
+    [
+     "T1_full",
+     "luna"
+    ]
+   ]
+  },
+  "1819739": {
+   "fsa_name": "Addleshaw Goddard",
+   "queries": [
+    [
+     "T1_full",
+     "addleshaw goddard"
+    ],
+    [
+     "T4_head1",
+     "addleshaw"
+    ],
+    [
+     "T7_prefix4",
+     "addl"
+    ]
+   ]
+  },
+  "1819141": {
+   "fsa_name": "San Carlo Gran Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "san carlo gran cafe"
+    ],
+    [
+     "T3_head2",
+     "san carlo"
+    ],
+    [
+     "T4_head1",
+     "san"
+    ],
+    [
+     "T5_longest",
+     "carlo"
+    ],
+    [
+     "T6_no_generic",
+     "san carlo gran"
+    ]
+   ]
+  },
+  "1969049": {
+   "fsa_name": "Eat Italian Ltd",
+   "queries": [
+    [
+     "T1_full",
+     "eat italian ltd"
+    ],
+    [
+     "T3_head2",
+     "eat italian"
+    ],
+    [
+     "T4_head1",
+     "eat"
+    ],
+    [
+     "T5_longest",
+     "italian"
+    ]
+   ]
+  },
+  "1839280": {
+   "fsa_name": "Street star",
+   "queries": [
+    [
+     "T1_full",
+     "street star"
+    ],
+    [
+     "T4_head1",
+     "street"
+    ],
+    [
+     "T5_longest",
+     "star"
+    ],
+    [
+     "T7_prefix4",
+     "stre"
+    ]
+   ]
+  },
+  "1819659": {
+   "fsa_name": "Manchester Civil Justice Centre also T/as S & J Catering",
+   "queries": [
+    [
+     "T1_full",
+     "manchester civil justice centre also t as s and j catering"
+    ],
+    [
+     "T3_head2",
+     "manchester civil"
+    ],
+    [
+     "T4_head1",
+     "manchester"
+    ],
+    [
+     "T5_longest",
+     "catering"
+    ],
+    [
+     "T7_prefix4",
+     "manc"
+    ],
+    [
+     "T6_no_generic",
+     "civil justice centre also t as s and j catering"
+    ],
+    [
+     "T1_full",
+     "manchester civil justice centre"
+    ],
+    [
+     "T5_longest",
+     "justice"
+    ],
+    [
+     "T6_no_generic",
+     "civil justice centre"
+    ],
+    [
+     "T1_full",
+     "s and j catering"
+    ],
+    [
+     "T3_head2",
+     "s and"
+    ]
+   ]
+  },
+  "1906887": {
+   "fsa_name": "Capri's Cucina Italiana",
+   "queries": [
+    [
+     "T1_full",
+     "capris cucina italiana"
+    ],
+    [
+     "T3_head2",
+     "capris cucina"
+    ],
+    [
+     "T4_head1",
+     "capris"
+    ],
+    [
+     "T5_longest",
+     "italiana"
+    ],
+    [
+     "T7_prefix4",
+     "capr"
+    ]
+   ]
+  },
+  "1818978": {
+   "fsa_name": "Grosvenor Casino",
+   "queries": [
+    [
+     "T1_full",
+     "grosvenor casino"
+    ],
+    [
+     "T4_head1",
+     "grosvenor"
+    ],
+    [
+     "T7_prefix4",
+     "gros"
+    ]
+   ]
+  },
+  "1906784": {
+   "fsa_name": "Gulf Tea House",
+   "queries": [
+    [
+     "T1_full",
+     "gulf tea house"
+    ],
+    [
+     "T3_head2",
+     "gulf tea"
+    ],
+    [
+     "T4_head1",
+     "gulf"
+    ]
+   ]
+  },
+  "1831161": {
+   "fsa_name": "The Coffee House",
+   "queries": [
+    [
+     "T1_full",
+     "the coffee house"
+    ],
+    [
+     "T2_no_article",
+     "coffee house"
+    ],
+    [
+     "T4_head1",
+     "coffee"
+    ],
+    [
+     "T7_prefix4",
+     "coff"
+    ]
+   ]
+  },
+  "1839389": {
+   "fsa_name": "EL PILOTO",
+   "queries": [
+    [
+     "T1_full",
+     "el piloto"
+    ],
+    [
+     "T4_head1",
+     "el"
+    ],
+    [
+     "T5_longest",
+     "piloto"
+    ]
+   ]
+  },
+  "1816859": {
+   "fsa_name": "Costa Coffee",
+   "queries": [
+    [
+     "T1_full",
+     "costa coffee"
+    ],
+    [
+     "T4_head1",
+     "costa"
+    ],
+    [
+     "T7_prefix4",
+     "cost"
+    ]
+   ]
+  },
+  "1817857": {
+   "fsa_name": "Wingstop",
+   "queries": [
+    [
+     "T1_full",
+     "wingstop"
+    ],
+    [
+     "T7_prefix4",
+     "wing"
+    ]
+   ]
+  },
+  "1818531": {
+   "fsa_name": "Bold Street Coffee",
+   "queries": [
+    [
+     "T1_full",
+     "bold street coffee"
+    ],
+    [
+     "T3_head2",
+     "bold street"
+    ],
+    [
+     "T4_head1",
+     "bold"
+    ]
+   ]
+  },
+  "1817561": {
+   "fsa_name": "Chaat Cart",
+   "queries": [
+    [
+     "T1_full",
+     "chaat cart"
+    ],
+    [
+     "T4_head1",
+     "chaat"
+    ],
+    [
+     "T7_prefix4",
+     "chaa"
+    ]
+   ]
+  },
+  "1819280": {
+   "fsa_name": "Tops Restaurant",
+   "queries": [
+    [
+     "T1_full",
+     "tops restaurant"
+    ],
+    [
+     "T4_head1",
+     "tops"
+    ]
+   ]
+  },
+  "1968911": {
+   "fsa_name": "Lane 7",
+   "queries": [
+    [
+     "T1_full",
+     "lane 7"
+    ],
+    [
+     "T4_head1",
+     "lane"
+    ]
+   ]
+  },
+  "1817868": {
+   "fsa_name": "Do Eat",
+   "queries": [
+    [
+     "T1_full",
+     "do eat"
+    ],
+    [
+     "T4_head1",
+     "do"
+    ]
+   ]
+  },
+  "1817415": {
+   "fsa_name": "Bagel Factory",
+   "queries": [
+    [
+     "T1_full",
+     "bagel factory"
+    ],
+    [
+     "T4_head1",
+     "bagel"
+    ],
+    [
+     "T5_longest",
+     "factory"
+    ],
+    [
+     "T7_prefix4",
+     "bage"
+    ]
+   ]
+  },
+  "1820752": {
+   "fsa_name": "Wolf at the Door",
+   "queries": [
+    [
+     "T1_full",
+     "wolf at the door"
+    ],
+    [
+     "T3_head2",
+     "wolf at"
+    ],
+    [
+     "T4_head1",
+     "wolf"
+    ]
+   ]
+  },
+  "1819498": {
+   "fsa_name": "Public",
+   "queries": [
+    [
+     "T1_full",
+     "public"
+    ],
+    [
+     "T7_prefix4",
+     "publ"
+    ]
+   ]
+  },
+  "1821189": {
+   "fsa_name": "Archies",
+   "queries": [
+    [
+     "T1_full",
+     "archies"
+    ],
+    [
+     "T7_prefix4",
+     "arch"
+    ]
+   ]
+  },
+  "1819496": {
+   "fsa_name": "Rudy's Pizza Limited also T/as Rudy's Home Bake Kitchen",
+   "queries": [
+    [
+     "T1_full",
+     "rudys pizza limited also t as rudys home bake kitchen"
+    ],
+    [
+     "T3_head2",
+     "rudys pizza"
+    ],
+    [
+     "T4_head1",
+     "rudys"
+    ],
+    [
+     "T5_longest",
+     "limited"
+    ],
+    [
+     "T7_prefix4",
+     "rudy"
+    ],
+    [
+     "T6_no_generic",
+     "rudys limited also t as rudys home bake"
+    ],
+    [
+     "T1_full",
+     "rudys pizza limited"
+    ],
+    [
+     "T6_no_generic",
+     "rudys limited"
+    ],
+    [
+     "T1_full",
+     "rudys home bake kitchen"
+    ],
+    [
+     "T3_head2",
+     "rudys home"
+    ],
+    [
+     "T6_no_generic",
+     "rudys home bake"
+    ],
+    [
+     "T1_full",
+     "rudys pizza also t as rudys home bake kitchen"
+    ],
+    [
+     "T6_no_generic",
+     "rudys also t as rudys home bake"
+    ]
+   ]
+  },
+  "1816779": {
+   "fsa_name": "Bandibul",
+   "queries": [
+    [
+     "T1_full",
+     "bandibul"
+    ],
+    [
+     "T7_prefix4",
+     "band"
+    ]
+   ]
+  },
+  "1819630": {
+   "fsa_name": "Wagamama",
+   "queries": [
+    [
+     "T1_full",
+     "wagamama"
+    ],
+    [
+     "T7_prefix4",
+     "waga"
+    ]
+   ]
+  }
+ },
+ "chorlton": {
+  "1820791": {
+   "fsa_name": "Bar San Juan",
+   "queries": [
+    [
+     "T1_full",
+     "bar san juan"
+    ],
+    [
+     "T3_head2",
+     "bar san"
+    ],
+    [
+     "T4_head1",
+     "bar"
+    ],
+    [
+     "T5_longest",
+     "juan"
+    ],
+    [
+     "T6_no_generic",
+     "san juan"
+    ]
+   ]
+  },
+  "1820925": {
+   "fsa_name": "The Jane Eyre",
+   "queries": [
+    [
+     "T1_full",
+     "the jane eyre"
+    ],
+    [
+     "T2_no_article",
+     "jane eyre"
+    ],
+    [
+     "T4_head1",
+     "jane"
+    ]
+   ]
+  },
+  "1819318": {
+   "fsa_name": "Whalley Range Amateur Football Club",
+   "queries": [
+    [
+     "T1_full",
+     "whalley range amateur football club"
+    ],
+    [
+     "T3_head2",
+     "whalley range"
+    ],
+    [
+     "T4_head1",
+     "whalley"
+    ],
+    [
+     "T5_longest",
+     "football"
+    ],
+    [
+     "T7_prefix4",
+     "whal"
+    ],
+    [
+     "T6_no_generic",
+     "whalley range amateur football"
+    ]
+   ]
+  },
+  "1819006": {
+   "fsa_name": "Bar 4 Eighty",
+   "queries": [
+    [
+     "T1_full",
+     "bar 4 eighty"
+    ],
+    [
+     "T3_head2",
+     "bar 4"
+    ],
+    [
+     "T4_head1",
+     "bar"
+    ],
+    [
+     "T5_longest",
+     "eighty"
+    ],
+    [
+     "T6_no_generic",
+     "4 eighty"
+    ]
+   ]
+  },
+  "1819340": {
+   "fsa_name": "Royal Oak",
+   "queries": [
+    [
+     "T1_full",
+     "royal oak"
+    ],
+    [
+     "T4_head1",
+     "royal"
+    ],
+    [
+     "T7_prefix4",
+     "roya"
+    ]
+   ]
+  },
+  "1817046": {
+   "fsa_name": "Lux Lounge",
+   "queries": [
+    [
+     "T1_full",
+     "lux lounge"
+    ],
+    [
+     "T4_head1",
+     "lux"
+    ]
+   ]
+  },
+  "1821212": {
+   "fsa_name": "Fell Bar",
+   "queries": [
+    [
+     "T1_full",
+     "fell bar"
+    ],
+    [
+     "T4_head1",
+     "fell"
+    ]
+   ]
+  },
+  "1816978": {
+   "fsa_name": "Strange Brew",
+   "queries": [
+    [
+     "T1_full",
+     "strange brew"
+    ],
+    [
+     "T4_head1",
+     "strange"
+    ],
+    [
+     "T7_prefix4",
+     "stra"
+    ]
+   ]
+  },
+  "1817507": {
+   "fsa_name": "Beech Inn",
+   "queries": [
+    [
+     "T1_full",
+     "beech inn"
+    ],
+    [
+     "T4_head1",
+     "beech"
+    ],
+    [
+     "T7_prefix4",
+     "beec"
+    ]
+   ]
+  },
+  "1820244": {
+   "fsa_name": "The Trevor Arms",
+   "queries": [
+    [
+     "T1_full",
+     "the trevor arms"
+    ],
+    [
+     "T2_no_article",
+     "trevor arms"
+    ],
+    [
+     "T4_head1",
+     "trevor"
+    ],
+    [
+     "T7_prefix4",
+     "trev"
+    ]
+   ]
+  },
+  "1819861": {
+   "fsa_name": "South West Manchester Cricket Club",
+   "queries": [
+    [
+     "T1_full",
+     "south west manchester cricket club"
+    ],
+    [
+     "T3_head2",
+     "south west"
+    ],
+    [
+     "T4_head1",
+     "south"
+    ],
+    [
+     "T5_longest",
+     "cricket"
+    ],
+    [
+     "T7_prefix4",
+     "sout"
+    ],
+    [
+     "T6_no_generic",
+     "south west cricket"
+    ]
+   ]
+  },
+  "1820092": {
+   "fsa_name": "The Chorlton Green",
+   "queries": [
+    [
+     "T1_full",
+     "the chorlton green"
+    ],
+    [
+     "T2_no_article",
+     "chorlton green"
+    ],
+    [
+     "T4_head1",
+     "chorlton"
+    ],
+    [
+     "T5_longest",
+     "green"
+    ],
+    [
+     "T7_prefix4",
+     "chor"
+    ]
+   ]
+  },
+  "1821112": {
+   "fsa_name": "The Beer House Chorlton (Ltd)",
+   "queries": [
+    [
+     "T1_full",
+     "the beer house chorlton ltd"
+    ],
+    [
+     "T2_no_article",
+     "beer house chorlton ltd"
+    ],
+    [
+     "T3_head2",
+     "beer house"
+    ],
+    [
+     "T4_head1",
+     "beer"
+    ],
+    [
+     "T6_no_generic",
+     "beer ltd"
+    ],
+    [
+     "T1_full",
+     "the beer house chorlton"
+    ],
+    [
+     "T2_no_article",
+     "beer house chorlton"
+    ]
+   ]
+  },
+  "1819856": {
+   "fsa_name": "Dulcimer",
+   "queries": [
+    [
+     "T1_full",
+     "dulcimer"
+    ],
+    [
+     "T7_prefix4",
+     "dulc"
+    ]
+   ]
+  },
+  "1819399": {
+   "fsa_name": "The Sedge Lynn",
+   "queries": [
+    [
+     "T1_full",
+     "the sedge lynn"
+    ],
+    [
+     "T2_no_article",
+     "sedge lynn"
+    ],
+    [
+     "T4_head1",
+     "sedge"
+    ],
+    [
+     "T7_prefix4",
+     "sedg"
+    ]
+   ]
+  },
+  "1819284": {
+   "fsa_name": "The Chorlton Tap",
+   "queries": [
+    [
+     "T1_full",
+     "the chorlton tap"
+    ],
+    [
+     "T2_no_article",
+     "chorlton tap"
+    ],
+    [
+     "T4_head1",
+     "chorlton"
+    ],
+    [
+     "T7_prefix4",
+     "chor"
+    ],
+    [
+     "T6_no_generic",
+     "tap"
+    ]
+   ]
+  },
+  "1819609": {
+   "fsa_name": "The Spread Eagle",
+   "queries": [
+    [
+     "T1_full",
+     "the spread eagle"
+    ],
+    [
+     "T2_no_article",
+     "spread eagle"
+    ],
+    [
+     "T4_head1",
+     "spread"
+    ],
+    [
+     "T7_prefix4",
+     "spre"
+    ]
+   ]
+  },
+  "1818714": {
+   "fsa_name": "The Bowling Green Hotel",
+   "queries": [
+    [
+     "T1_full",
+     "the bowling green hotel"
+    ],
+    [
+     "T2_no_article",
+     "bowling green hotel"
+    ],
+    [
+     "T3_head2",
+     "bowling green"
+    ],
+    [
+     "T4_head1",
+     "bowling"
+    ],
+    [
+     "T7_prefix4",
+     "bowl"
+    ]
+   ]
+  },
+  "1819783": {
+   "fsa_name": "Benito Lounge",
+   "queries": [
+    [
+     "T1_full",
+     "benito lounge"
+    ],
+    [
+     "T4_head1",
+     "benito"
+    ],
+    [
+     "T7_prefix4",
+     "beni"
+    ]
+   ]
+  },
+  "1894569": {
+   "fsa_name": "The Horse and Jockey",
+   "queries": [
+    [
+     "T1_full",
+     "the horse and jockey"
+    ],
+    [
+     "T2_no_article",
+     "horse and jockey"
+    ],
+    [
+     "T3_head2",
+     "horse and"
+    ],
+    [
+     "T4_head1",
+     "horse"
+    ],
+    [
+     "T5_longest",
+     "jockey"
+    ],
+    [
+     "T7_prefix4",
+     "hors"
+    ]
+   ]
+  },
+  "1870669": {
+   "fsa_name": "West Disbury & Chorlton AFC",
+   "queries": [
+    [
+     "T1_full",
+     "west disbury and chorlton afc"
+    ],
+    [
+     "T3_head2",
+     "west disbury"
+    ],
+    [
+     "T4_head1",
+     "west"
+    ],
+    [
+     "T5_longest",
+     "disbury"
+    ],
+    [
+     "T6_no_generic",
+     "west disbury and afc"
+    ]
+   ]
+  },
+  "1821284": {
+   "fsa_name": "Electrik",
+   "queries": [
+    [
+     "T1_full",
+     "electrik"
+    ],
+    [
+     "T7_prefix4",
+     "elec"
+    ]
+   ]
+  },
+  "1818390": {
+   "fsa_name": "The Hillary Step",
+   "queries": [
+    [
+     "T1_full",
+     "the hillary step"
+    ],
+    [
+     "T2_no_article",
+     "hillary step"
+    ],
+    [
+     "T4_head1",
+     "hillary"
+    ],
+    [
+     "T7_prefix4",
+     "hill"
+    ]
+   ]
+  },
+  "1969031": {
+   "fsa_name": "Burger King UK",
+   "queries": [
+    [
+     "T1_full",
+     "burger king uk"
+    ],
+    [
+     "T3_head2",
+     "burger king"
+    ],
+    [
+     "T4_head1",
+     "burger"
+    ],
+    [
+     "T7_prefix4",
+     "burg"
+    ]
+   ]
+  },
+  "1820465": {
+   "fsa_name": "The Water Lily",
+   "queries": [
+    [
+     "T1_full",
+     "the water lily"
+    ],
+    [
+     "T2_no_article",
+     "water lily"
+    ],
+    [
+     "T4_head1",
+     "water"
+    ],
+    [
+     "T7_prefix4",
+     "wate"
+    ]
+   ]
+  },
+  "1819081": {
+   "fsa_name": "Chorlton Metro Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "chorlton metro cafe"
+    ],
+    [
+     "T3_head2",
+     "chorlton metro"
+    ],
+    [
+     "T4_head1",
+     "chorlton"
+    ],
+    [
+     "T5_longest",
+     "metro"
+    ],
+    [
+     "T7_prefix4",
+     "chor"
+    ]
+   ]
+  },
+  "1969119": {
+   "fsa_name": "Pepe's Piri Piri",
+   "queries": [
+    [
+     "T1_full",
+     "pepes piri piri"
+    ],
+    [
+     "T3_head2",
+     "pepes piri"
+    ],
+    [
+     "T4_head1",
+     "pepes"
+    ],
+    [
+     "T7_prefix4",
+     "pepe"
+    ]
+   ]
+  },
+  "1820644": {
+   "fsa_name": "The Little Yeti",
+   "queries": [
+    [
+     "T1_full",
+     "the little yeti"
+    ],
+    [
+     "T2_no_article",
+     "little yeti"
+    ],
+    [
+     "T4_head1",
+     "little"
+    ],
+    [
+     "T7_prefix4",
+     "litt"
+    ]
+   ]
+  },
+  "1816270": {
+   "fsa_name": "Barok",
+   "queries": [
+    [
+     "T1_full",
+     "barok"
+    ],
+    [
+     "T7_prefix4",
+     "baro"
+    ]
+   ]
+  },
+  "1818447": {
+   "fsa_name": "Sushi Pod",
+   "queries": [
+    [
+     "T1_full",
+     "sushi pod"
+    ],
+    [
+     "T4_head1",
+     "sushi"
+    ],
+    [
+     "T7_prefix4",
+     "sush"
+    ]
+   ]
+  },
+  "1969079": {
+   "fsa_name": "The Creameries",
+   "queries": [
+    [
+     "T1_full",
+     "the creameries"
+    ],
+    [
+     "T2_no_article",
+     "creameries"
+    ],
+    [
+     "T7_prefix4",
+     "crea"
+    ]
+   ]
+  },
+  "1820691": {
+   "fsa_name": "North Star Delicatessen",
+   "queries": [
+    [
+     "T1_full",
+     "north star delicatessen"
+    ],
+    [
+     "T3_head2",
+     "north star"
+    ],
+    [
+     "T4_head1",
+     "north"
+    ],
+    [
+     "T7_prefix4",
+     "nort"
+    ]
+   ]
+  },
+  "1820184": {
+   "fsa_name": "The Oystercatcher",
+   "queries": [
+    [
+     "T1_full",
+     "the oystercatcher"
+    ],
+    [
+     "T2_no_article",
+     "oystercatcher"
+    ],
+    [
+     "T7_prefix4",
+     "oyst"
+    ]
+   ]
+  },
+  "1906935": {
+   "fsa_name": "Nicolo",
+   "queries": [
+    [
+     "T1_full",
+     "nicolo"
+    ],
+    [
+     "T7_prefix4",
+     "nico"
+    ]
+   ]
+  },
+  "1816217": {
+   "fsa_name": "Chocoberry manchester",
+   "queries": [
+    [
+     "T1_full",
+     "chocoberry manchester"
+    ],
+    [
+     "T4_head1",
+     "chocoberry"
+    ],
+    [
+     "T7_prefix4",
+     "choc"
+    ]
+   ]
+  },
+  "1818043": {
+   "fsa_name": "My Karak Chai Chorlton",
+   "queries": [
+    [
+     "T1_full",
+     "my karak chai chorlton"
+    ],
+    [
+     "T3_head2",
+     "my karak"
+    ],
+    [
+     "T4_head1",
+     "my"
+    ],
+    [
+     "T5_longest",
+     "karak"
+    ],
+    [
+     "T6_no_generic",
+     "my karak chai"
+    ]
+   ]
+  },
+  "1819579": {
+   "fsa_name": "Rudy's Pizza",
+   "queries": [
+    [
+     "T1_full",
+     "rudys pizza"
+    ],
+    [
+     "T4_head1",
+     "rudys"
+    ],
+    [
+     "T7_prefix4",
+     "rudy"
+    ]
+   ]
+  },
+  "1906951": {
+   "fsa_name": "Momo Shop",
+   "queries": [
+    [
+     "T1_full",
+     "momo shop"
+    ],
+    [
+     "T4_head1",
+     "momo"
+    ]
+   ]
+  },
+  "626342": {
+   "fsa_name": "Blanchflower Coffee and Bakery",
+   "queries": [
+    [
+     "T1_full",
+     "blanchflower coffee and bakery"
+    ],
+    [
+     "T3_head2",
+     "blanchflower coffee"
+    ],
+    [
+     "T4_head1",
+     "blanchflower"
+    ],
+    [
+     "T7_prefix4",
+     "blan"
+    ],
+    [
+     "T6_no_generic",
+     "blanchflower and bakery"
+    ]
+   ]
+  },
+  "1820301": {
+   "fsa_name": "Domino's Pizza",
+   "queries": [
+    [
+     "T1_full",
+     "dominos pizza"
+    ],
+    [
+     "T4_head1",
+     "dominos"
+    ],
+    [
+     "T7_prefix4",
+     "domi"
+    ]
+   ]
+  },
+  "1923247": {
+   "fsa_name": "Subway - Chorlton",
+   "queries": [
+    [
+     "T1_full",
+     "subway chorlton"
+    ],
+    [
+     "T4_head1",
+     "subway"
+    ],
+    [
+     "T7_prefix4",
+     "subw"
+    ]
+   ]
+  },
+  "1819625": {
+   "fsa_name": "Brewski",
+   "queries": [
+    [
+     "T1_full",
+     "brewski"
+    ],
+    [
+     "T7_prefix4",
+     "brew"
+    ]
+   ]
+  },
+  "1894394": {
+   "fsa_name": "Aahaa indian kitchen & Bar",
+   "queries": [
+    [
+     "T1_full",
+     "aahaa indian kitchen and bar"
+    ],
+    [
+     "T3_head2",
+     "aahaa indian"
+    ],
+    [
+     "T4_head1",
+     "aahaa"
+    ],
+    [
+     "T5_longest",
+     "indian"
+    ],
+    [
+     "T7_prefix4",
+     "aaha"
+    ],
+    [
+     "T6_no_generic",
+     "aahaa indian and"
+    ]
+   ]
+  },
+  "1821681": {
+   "fsa_name": "Hosa",
+   "queries": [
+    [
+     "T1_full",
+     "hosa"
+    ]
+   ]
+  },
+  "1821583": {
+   "fsa_name": "Yara Restaurant",
+   "queries": [
+    [
+     "T1_full",
+     "yara restaurant"
+    ],
+    [
+     "T4_head1",
+     "yara"
+    ]
+   ]
+  },
+  "1821532": {
+   "fsa_name": "Casa Burritos",
+   "queries": [
+    [
+     "T1_full",
+     "casa burritos"
+    ],
+    [
+     "T4_head1",
+     "casa"
+    ],
+    [
+     "T5_longest",
+     "burritos"
+    ]
+   ]
+  },
+  "1816695": {
+   "fsa_name": "Casa de Moor Chorlton",
+   "queries": [
+    [
+     "T1_full",
+     "casa de moor chorlton"
+    ],
+    [
+     "T3_head2",
+     "casa de"
+    ],
+    [
+     "T4_head1",
+     "casa"
+    ],
+    [
+     "T6_no_generic",
+     "casa de moor"
+    ]
+   ]
+  },
+  "1816321": {
+   "fsa_name": "Sipp",
+   "queries": [
+    [
+     "T1_full",
+     "sipp"
+    ]
+   ]
+  }
+ },
+ "ludlow": {
+  "100598": {
+   "fsa_name": "Church Inn",
+   "queries": [
+    [
+     "T1_full",
+     "church inn"
+    ],
+    [
+     "T4_head1",
+     "church"
+    ],
+    [
+     "T7_prefix4",
+     "chur"
+    ]
+   ]
+  },
+  "1557387": {
+   "fsa_name": "The Ludlow Club",
+   "queries": [
+    [
+     "T1_full",
+     "the ludlow club"
+    ],
+    [
+     "T2_no_article",
+     "ludlow club"
+    ],
+    [
+     "T4_head1",
+     "ludlow"
+    ],
+    [
+     "T7_prefix4",
+     "ludl"
+    ]
+   ]
+  },
+  "1590220": {
+   "fsa_name": "The Nelson Inn",
+   "queries": [
+    [
+     "T1_full",
+     "the nelson inn"
+    ],
+    [
+     "T2_no_article",
+     "nelson inn"
+    ],
+    [
+     "T4_head1",
+     "nelson"
+    ],
+    [
+     "T7_prefix4",
+     "nels"
+    ]
+   ]
+  },
+  "1908054": {
+   "fsa_name": "The Blue Boar",
+   "queries": [
+    [
+     "T1_full",
+     "the blue boar"
+    ],
+    [
+     "T2_no_article",
+     "blue boar"
+    ],
+    [
+     "T4_head1",
+     "blue"
+    ]
+   ]
+  },
+  "1595155": {
+   "fsa_name": "Wheatsheaf Inn",
+   "queries": [
+    [
+     "T1_full",
+     "wheatsheaf inn"
+    ],
+    [
+     "T4_head1",
+     "wheatsheaf"
+    ],
+    [
+     "T7_prefix4",
+     "whea"
+    ]
+   ]
+  },
+  "1929095": {
+   "fsa_name": "Ye Olde Bull Ring Tavern",
+   "queries": [
+    [
+     "T1_full",
+     "ye olde bull ring tavern"
+    ],
+    [
+     "T2_no_article",
+     "bull ring tavern"
+    ],
+    [
+     "T3_head2",
+     "bull ring"
+    ],
+    [
+     "T4_head1",
+     "bull"
+    ]
+   ]
+  },
+  "1316999": {
+   "fsa_name": "The Bridge Inn",
+   "queries": [
+    [
+     "T1_full",
+     "the bridge inn"
+    ],
+    [
+     "T2_no_article",
+     "bridge inn"
+    ],
+    [
+     "T4_head1",
+     "bridge"
+    ],
+    [
+     "T7_prefix4",
+     "brid"
+    ]
+   ]
+  },
+  "1896448": {
+   "fsa_name": "Natalie White - The Compasses",
+   "queries": [
+    [
+     "T1_full",
+     "natalie white the compasses"
+    ],
+    [
+     "T3_head2",
+     "natalie white"
+    ],
+    [
+     "T4_head1",
+     "natalie"
+    ],
+    [
+     "T5_longest",
+     "compasses"
+    ],
+    [
+     "T7_prefix4",
+     "nata"
+    ],
+    [
+     "T1_full",
+     "the compasses"
+    ],
+    [
+     "T7_prefix4",
+     "comp"
+    ]
+   ]
+  },
+  "1577359": {
+   "fsa_name": "The Blood Bay",
+   "queries": [
+    [
+     "T1_full",
+     "the blood bay"
+    ],
+    [
+     "T2_no_article",
+     "blood bay"
+    ],
+    [
+     "T4_head1",
+     "blood"
+    ],
+    [
+     "T7_prefix4",
+     "bloo"
+    ]
+   ]
+  },
+  "100702": {
+   "fsa_name": "The Queens",
+   "queries": [
+    [
+     "T1_full",
+     "the queens"
+    ],
+    [
+     "T2_no_article",
+     "queens"
+    ],
+    [
+     "T7_prefix4",
+     "quee"
+    ]
+   ]
+  },
+  "1739315": {
+   "fsa_name": "The Bull Hotel",
+   "queries": [
+    [
+     "T1_full",
+     "the bull hotel"
+    ],
+    [
+     "T2_no_article",
+     "bull hotel"
+    ],
+    [
+     "T4_head1",
+     "bull"
+    ]
+   ]
+  },
+  "1535614": {
+   "fsa_name": "Old Street Tavern",
+   "queries": [
+    [
+     "T1_full",
+     "old street tavern"
+    ],
+    [
+     "T3_head2",
+     "old street"
+    ],
+    [
+     "T4_head1",
+     "old"
+    ]
+   ]
+  },
+  "1854322": {
+   "fsa_name": "Vine & Juniper",
+   "queries": [
+    [
+     "T1_full",
+     "vine and juniper"
+    ],
+    [
+     "T3_head2",
+     "vine and"
+    ],
+    [
+     "T4_head1",
+     "vine"
+    ],
+    [
+     "T5_longest",
+     "juniper"
+    ]
+   ]
+  },
+  "769639": {
+   "fsa_name": "The Charlton Arms",
+   "queries": [
+    [
+     "T1_full",
+     "the charlton arms"
+    ],
+    [
+     "T2_no_article",
+     "charlton arms"
+    ],
+    [
+     "T4_head1",
+     "charlton"
+    ],
+    [
+     "T7_prefix4",
+     "char"
+    ]
+   ]
+  },
+  "1834096": {
+   "fsa_name": "The Unicorn Inn",
+   "queries": [
+    [
+     "T1_full",
+     "the unicorn inn"
+    ],
+    [
+     "T2_no_article",
+     "unicorn inn"
+    ],
+    [
+     "T4_head1",
+     "unicorn"
+    ],
+    [
+     "T7_prefix4",
+     "unic"
+    ]
+   ]
+  },
+  "1933087": {
+   "fsa_name": "Rose & Crown",
+   "queries": [
+    [
+     "T1_full",
+     "rose and crown"
+    ],
+    [
+     "T3_head2",
+     "rose and"
+    ],
+    [
+     "T4_head1",
+     "rose"
+    ],
+    [
+     "T5_longest",
+     "crown"
+    ]
+   ]
+  },
+  "733846": {
+   "fsa_name": "Monkey Mania",
+   "queries": [
+    [
+     "T1_full",
+     "monkey mania"
+    ],
+    [
+     "T4_head1",
+     "monkey"
+    ],
+    [
+     "T7_prefix4",
+     "monk"
+    ]
+   ]
+  },
+  "371372": {
+   "fsa_name": "Aragons",
+   "queries": [
+    [
+     "T1_full",
+     "aragons"
+    ],
+    [
+     "T7_prefix4",
+     "arag"
+    ]
+   ]
+  },
+  "1264876": {
+   "fsa_name": "Chapter 66 Restaurant",
+   "queries": [
+    [
+     "T1_full",
+     "chapter 66 restaurant"
+    ],
+    [
+     "T3_head2",
+     "chapter 66"
+    ],
+    [
+     "T4_head1",
+     "chapter"
+    ],
+    [
+     "T7_prefix4",
+     "chap"
+    ]
+   ]
+  },
+  "1944496": {
+   "fsa_name": "Athena Greek Taverna",
+   "queries": [
+    [
+     "T1_full",
+     "athena greek taverna"
+    ],
+    [
+     "T3_head2",
+     "athena greek"
+    ],
+    [
+     "T4_head1",
+     "athena"
+    ],
+    [
+     "T5_longest",
+     "taverna"
+    ],
+    [
+     "T7_prefix4",
+     "athe"
+    ]
+   ]
+  },
+  "1919802": {
+   "fsa_name": "Suelo",
+   "queries": [
+    [
+     "T1_full",
+     "suelo"
+    ],
+    [
+     "T7_prefix4",
+     "suel"
+    ]
+   ]
+  },
+  "1158169": {
+   "fsa_name": "Working Together (Ludlow) Ltd Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "working together ludlow ltd cafe"
+    ],
+    [
+     "T3_head2",
+     "working together"
+    ],
+    [
+     "T4_head1",
+     "working"
+    ],
+    [
+     "T5_longest",
+     "together"
+    ],
+    [
+     "T7_prefix4",
+     "work"
+    ],
+    [
+     "T6_no_generic",
+     "working together ltd"
+    ],
+    [
+     "T1_full",
+     "working together ludlow cafe"
+    ]
+   ]
+  },
+  "1429715": {
+   "fsa_name": "Sourced Pizza",
+   "queries": [
+    [
+     "T1_full",
+     "sourced pizza"
+    ],
+    [
+     "T4_head1",
+     "sourced"
+    ],
+    [
+     "T7_prefix4",
+     "sour"
+    ]
+   ]
+  },
+  "1873131": {
+   "fsa_name": "3 Church Street",
+   "queries": [
+    [
+     "T1_full",
+     "3 church street"
+    ],
+    [
+     "T3_head2",
+     "3 church"
+    ],
+    [
+     "T5_longest",
+     "church"
+    ]
+   ]
+  },
+  "1912012": {
+   "fsa_name": "Pietro Lounge",
+   "queries": [
+    [
+     "T1_full",
+     "pietro lounge"
+    ],
+    [
+     "T4_head1",
+     "pietro"
+    ],
+    [
+     "T7_prefix4",
+     "piet"
+    ]
+   ]
+  },
+  "212620": {
+   "fsa_name": "Shapla",
+   "queries": [
+    [
+     "T1_full",
+     "shapla"
+    ],
+    [
+     "T7_prefix4",
+     "shap"
+    ]
+   ]
+  },
+  "1781531": {
+   "fsa_name": "Golden Moments",
+   "queries": [
+    [
+     "T1_full",
+     "golden moments"
+    ],
+    [
+     "T4_head1",
+     "golden"
+    ],
+    [
+     "T5_longest",
+     "moments"
+    ],
+    [
+     "T7_prefix4",
+     "gold"
+    ]
+   ]
+  },
+  "894731": {
+   "fsa_name": "Carvells The Art Of Tea",
+   "queries": [
+    [
+     "T1_full",
+     "carvells the art of tea"
+    ],
+    [
+     "T3_head2",
+     "carvells the"
+    ],
+    [
+     "T4_head1",
+     "carvells"
+    ],
+    [
+     "T7_prefix4",
+     "carv"
+    ]
+   ]
+  },
+  "1841053": {
+   "fsa_name": "Subway @ EG On The Move",
+   "queries": [
+    [
+     "T1_full",
+     "subway eg on the move"
+    ],
+    [
+     "T3_head2",
+     "subway eg"
+    ],
+    [
+     "T4_head1",
+     "subway"
+    ],
+    [
+     "T7_prefix4",
+     "subw"
+    ]
+   ]
+  },
+  "1934942": {
+   "fsa_name": "Taste at No.1 LTD",
+   "queries": [
+    [
+     "T1_full",
+     "taste at no 1 ltd"
+    ],
+    [
+     "T3_head2",
+     "taste at"
+    ],
+    [
+     "T4_head1",
+     "taste"
+    ],
+    [
+     "T7_prefix4",
+     "tast"
+    ],
+    [
+     "T1_full",
+     "taste at no 1"
+    ]
+   ]
+  },
+  "1940420": {
+   "fsa_name": "Epic Coffee House",
+   "queries": [
+    [
+     "T1_full",
+     "epic coffee house"
+    ],
+    [
+     "T3_head2",
+     "epic coffee"
+    ],
+    [
+     "T4_head1",
+     "epic"
+    ]
+   ]
+  },
+  "698885": {
+   "fsa_name": "Castle Lodge Buttery",
+   "queries": [
+    [
+     "T1_full",
+     "castle lodge buttery"
+    ],
+    [
+     "T3_head2",
+     "castle lodge"
+    ],
+    [
+     "T4_head1",
+     "castle"
+    ],
+    [
+     "T7_prefix4",
+     "cast"
+    ]
+   ]
+  },
+  "1896446": {
+   "fsa_name": "The Cottage Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "the cottage cafe"
+    ],
+    [
+     "T2_no_article",
+     "cottage cafe"
+    ],
+    [
+     "T4_head1",
+     "cottage"
+    ],
+    [
+     "T7_prefix4",
+     "cott"
+    ]
+   ]
+  },
+  "125923": {
+   "fsa_name": "Oriental City",
+   "queries": [
+    [
+     "T1_full",
+     "oriental city"
+    ],
+    [
+     "T4_head1",
+     "oriental"
+    ],
+    [
+     "T7_prefix4",
+     "orie"
+    ]
+   ]
+  },
+  "1354436": {
+   "fsa_name": "Bill's Kitchen",
+   "queries": [
+    [
+     "T1_full",
+     "bills kitchen"
+    ],
+    [
+     "T4_head1",
+     "bills"
+    ],
+    [
+     "T7_prefix4",
+     "bill"
+    ]
+   ]
+  },
+  "1246756": {
+   "fsa_name": "Ludlow Street Cafe",
+   "queries": [
+    [
+     "T1_full",
+     "ludlow street cafe"
+    ],
+    [
+     "T3_head2",
+     "ludlow street"
+    ],
+    [
+     "T4_head1",
+     "ludlow"
+    ],
+    [
+     "T7_prefix4",
+     "ludl"
+    ]
+   ]
+  },
+  "1387279": {
+   "fsa_name": "Kin Kitchen",
+   "queries": [
+    [
+     "T1_full",
+     "kin kitchen"
+    ],
+    [
+     "T4_head1",
+     "kin"
+    ]
+   ]
+  },
+  "1949857": {
+   "fsa_name": "Mahar Thai",
+   "queries": [
+    [
+     "T1_full",
+     "mahar thai"
+    ],
+    [
+     "T4_head1",
+     "mahar"
+    ],
+    [
+     "T7_prefix4",
+     "maha"
+    ]
+   ]
+  },
+  "1332798": {
+   "fsa_name": "The Corner House",
+   "queries": [
+    [
+     "T1_full",
+     "the corner house"
+    ],
+    [
+     "T2_no_article",
+     "corner house"
+    ],
+    [
+     "T4_head1",
+     "corner"
+    ],
+    [
+     "T7_prefix4",
+     "corn"
+    ]
+   ]
+  },
+  "125915": {
+   "fsa_name": "Codfather",
+   "queries": [
+    [
+     "T1_full",
+     "codfather"
+    ],
+    [
+     "T7_prefix4",
+     "codf"
+    ]
+   ]
+  },
+  "100640": {
+   "fsa_name": "The China Garden",
+   "queries": [
+    [
+     "T1_full",
+     "the china garden"
+    ],
+    [
+     "T2_no_article",
+     "china garden"
+    ],
+    [
+     "T4_head1",
+     "china"
+    ],
+    [
+     "T5_longest",
+     "garden"
+    ],
+    [
+     "T7_prefix4",
+     "chin"
+    ]
+   ]
+  }
+ }
+}

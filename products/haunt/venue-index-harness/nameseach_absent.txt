@@ -1,0 +1,118 @@
+D1  33 scored venues with NO scope-B row in the truth set.
+    FTS5 hits within 250 m of the FSA geocode, for hand reading.
+
+  [manchester] 'NQ64'
+      (no FTS5 hit from any variant)
+  [manchester] 'Area'
+        25.9 m  'Areamanchester'                             music_venue            via 'area'
+  [manchester] 'Blockbusters NQ'
+      (no FTS5 hit from any variant)
+  [manchester] 'Luna'
+      (no FTS5 hit from any variant)
+  [manchester] 'Street star'
+        32.7 m  "Crazy Pedro's Bridge Street"                restaurant             via 'street'
+       223.0 m  'Bold Street Coffee'                         coffee_shop            via 'street'
+  [manchester] 'Manchester Civil Justice Centre also T/as S & J Catering'
+        61.9 m  'Habbibi Restaurant and Shisha Terrace - Manchester' restaurant             via 'manchester'
+        75.3 m  'Habbibi - Manchester'                       lounge                 via 'manchester'
+       105.5 m  'Springfields Manchester'                    restaurant             via 'manchester'
+       128.7 m  'BLVD Manchester'                            restaurant             via 'manchester'
+       140.1 m  'Manchester House'                           bar                    via 'manchester'
+  [manchester] 'Gulf Tea House'
+      (no FTS5 hit from any variant)
+  [manchester] 'The Coffee House'
+        53.8 m  'Starbucks Coffee'                           coffee_shop            via 'coffee'
+        75.3 m  'Coffee Lab Manchester Piccadilly'           coffee_shop            via 'coffee'
+        75.3 m  'Department of Coffee and Social Affairs'    coffee_shop            via 'coffee'
+       114.9 m  'Blank Street Coffee'                        coffee_shop            via 'coffee'
+       122.9 m  'Moose Coffee'                               coffee_shop            via 'coffee'
+  [manchester] 'EL PILOTO'
+      (no FTS5 hit from any variant)
+  [manchester] 'Tops Restaurant'
+       171.0 m  'Tops Buffet City'                           restaurant             via 'tops'
+  [manchester] 'Do Eat'
+       137.9 m  'BrewDog Doghouse Manchester'                bar                    via 'do'
+       193.2 m  'Don Tacos'                                  restaurant             via 'do'
+  [manchester] 'Bagel Factory'
+        61.8 m  'Bagel Nash'                                 casual_eatery          via 'bagel'
+       248.0 m  'Factory Coffee MCR'                         coffee_shop            via 'factory'
+  [manchester] "Rudy's Pizza Limited also T/as Rudy's Home Bake Kitchen"
+        13.6 m  "Rudy's Pizza Napoletana"                    restaurant             via 'rudys pizza'
+  [chorlton] 'Whalley Range Amateur Football Club'
+       125.9 m  'Kings Road - Whalley Range AFC'             sport_or_recreation_cl via 'whalley range'
+  [chorlton] 'South West Manchester Cricket Club'
+      (no FTS5 hit from any variant)
+  [chorlton] 'West Disbury & Chorlton AFC'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Burger King UK'
+      (no FTS5 hit from any variant)
+  [chorlton] "Pepe's Piri Piri"
+      (no FTS5 hit from any variant)
+  [chorlton] 'Barok'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Chocoberry manchester'
+       231.5 m  'Simon Dunn Chocolatier Chorlton'            casual_eatery          via 'choc'
+  [chorlton] 'My Karak Chai Chorlton'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Momo Shop'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Blanchflower Coffee and Bakery'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Aahaa indian kitchen & Bar'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Hosa'
+      (no FTS5 hit from any variant)
+  [chorlton] 'Sipp'
+      (no FTS5 hit from any variant)
+  [ludlow] 'The Ludlow Club'
+        61.0 m  'The Corner House -Ludlow'                   cafe                   via 'ludlow'
+        71.6 m  'Movement Therapy Clinics - Ludlow'          performing_arts_venue  via 'ludlow'
+       105.0 m  'Ludlow Fishbar and Restaurant'              restaurant             via 'ludlow'
+       207.7 m  'Ludlow Kebab House'                         restaurant             via 'ludlow'
+       216.8 m  'Globe Inn Ludlow'                           bar                    via 'ludlow'
+  [ludlow] 'The Blood Bay'
+      (no FTS5 hit from any variant)
+  [ludlow] 'Suelo'
+      (no FTS5 hit from any variant)
+  [ludlow] 'Pietro Lounge'
+      (no FTS5 hit from any variant)
+  [ludlow] 'Epic Coffee House'
+      (no FTS5 hit from any variant)
+  [ludlow] 'Ludlow Street Cafe'
+       127.5 m  'Ludlow Brewing Co'                          brewery                via 'ludlow'
+       196.8 m  'The Bridge Pub Ludlow'                      bar                    via 'ludlow'
+  [ludlow] 'Mahar Thai'
+      (no FTS5 hit from any variant)
+
+D2  False-pick exposure. Of 304 typed queries that returned anything, the nearest returned row is NOT a true row in 11 (3.6%).
+    The simulation assumes the user never picks one of these. Examples:
+      'Victoria Tap'                     typed 'victoria'             -> 'Hipster Burgers MCR Victoria' at 72 m
+      'Victoria Tap'                     typed 'vict'                 -> 'Hipster Burgers MCR Victoria' at 72 m
+      'Afflecks & Brown'                 typed 'afflecks'             -> 'Definitely Maybe Bar Afflecks' at 117 m
+      'Bar Pop'                          typed 'bar'                  -> 'Iconic Bar' at 21 m
+      'San Carlo Gran Cafe'              typed 'san carlo'            -> 'San Carlo Bottega' at 34 m
+      'San Carlo Gran Cafe'              typed 'san'                  -> 'San Carlo Bottega' at 34 m
+      'San Carlo Gran Cafe'              typed 'carlo'                -> 'San Carlo Bottega' at 34 m
+      'Chorlton Metro Cafe'              typed 'chorlton'             -> "Wilbraham Bierhaus - Chorlton's Pop up Christmas Bar" at 4 m
+      'Chorlton Metro Cafe'              typed 'chor'                 -> "Wilbraham Bierhaus - Chorlton's Pop up Christmas Bar" at 4 m
+      'Castle Lodge Buttery'             typed 'castle'               -> 'Castle Tea Room' at 5 m
+      'Castle Lodge Buttery'             typed 'cast'                 -> 'Castle Tea Room' at 5 m
+
+D3  floor (no name search): 10 venues fail single-identity at sigma = 25 m
+      [manchester] 'Victoria Tap' -> 2 identities
+      [manchester] "Lion's Den" -> 2 identities
+      [manchester] 'The Seven Stars' -> 2 identities
+      [manchester] 'Cruz 101' -> 2 identities
+      [manchester] 'Gullivers' -> 2 identities
+      [manchester] 'The Waldorf' -> 2 identities
+      [manchester] 'Bar Pop' -> 2 identities
+      [manchester] 'Wolf at the Door' -> 2 identities
+      [manchester] 'Wagamama' -> 2 identities
+      [chorlton] 'Beech Inn' -> 2 identities
+
+D3  FTS5 random [HEADLINE]: 1 venues fail single-identity at sigma = 25 m
+      [chorlton] 'Beech Inn' -> 2 identities
+
+D3  FTS5 t1: 2 venues fail single-identity at sigma = 25 m
+      [manchester] 'The Waldorf' -> 2 identities
+      [chorlton] 'Beech Inn' -> 2 identities

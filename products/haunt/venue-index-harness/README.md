@@ -60,3 +60,46 @@ large, and `extract.py` rebuilds them.
 
 Data: Overture Maps Places `2026-08-19.0` (CDLA-Permissive-2.0 / Apache-2.0); Food Standards
 Agency FHRS API (Crown copyright, Open Government Licence).
+
+---
+
+## Added 2026-09-21 — the typed-name experiment
+
+`products/haunt/venue-index-nameseach.md` runs the experiment that item 1 of the
+remediation note's §14.2 names: the **non-circular** measurement of name search.
+Nothing above this line was modified; everything below is an addition.
+
+| Script | Measures | Note section |
+| --- | --- | --- |
+| `namegen.py` | **the query generator** — reads only the `name` field of `sample.json`, never Overture, never `truth.json`, never `harness.name_sim`. Frozen and hashed | §2.2, §2.4 |
+| `fts.py` | a real SQLite **FTS5** prefix index over scope B, and the AND/OR retrieval policies | §2.3 |
+| `nameseach.py` | **the experiment**: Part A per-variant retrieval, Part B identity split with the oracle replaced | §4, §6 |
+| `nameseach_checks.py` | selectivity, the contamination check that came back degenerate, name-blind truth, the hard subset, policy and list-length sensitivity, the P2 curve | §5.1, §5.2, §6, §7 |
+| `nameseach_absent.py` | the class the ground truth declares empty, hand-read; false-pick exposure; which venues fail | §5.4, §8.1 |
+| `nameseach_divergence.py` | raw FSA-vs-Overture string divergence, retrieval stratified by it, and the adverse bound | §5.3, §5.5 |
+| `fsa_check.py` | live FSA re-retrieval. Writes `fsa_recheck.json`, so it does not overwrite `fsa.json` | §2.1 |
+| `falsestick_fixed.py` | **`falsestick.py` with a reproducibility defect corrected** — see below | §9 |
+
+`queries.json` holds all 491 generated query strings.
+
+### A third thing a re-runner must know
+
+3. **`falsestick.py` is not reproducible and `falsestick_fixed.py` is.** Line 45 of the
+   original selects from a Python `set` via `sorted(..., key=lambda c: 0)`, which
+   preserves set-iteration order — salted per process. The false-stick column moves by
+   up to 2 points between runs in Chorlton and Ludlow; Manchester and the `recall@L`
+   column are unaffected. **The published figures in `venue-index-remediation.md` §7 are
+   the correct ones**: the fixed script reproduces `falsestick.txt` byte-for-byte under
+   every hash seed. The original is left untouched for the CTO to take as part of S1.
+   `nameseach.py` was checked the same way and is identical under `PYTHONHASHSEED`
+   0, 1 and 7.
+
+### Re-run order for the experiment
+
+```sh
+.venv/bin/python extract.py && .venv/bin/python build_work.py && .venv/bin/python match.py
+.venv/bin/python nameseach.py            # Part A and Part B
+.venv/bin/python nameseach_checks.py     # C1-C6
+.venv/bin/python nameseach_absent.py     # D1-D3
+.venv/bin/python nameseach_divergence.py # E1-E4
+```

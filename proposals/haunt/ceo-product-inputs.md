@@ -53,6 +53,23 @@
 
 ---
 
+## 4. FSA hygiene ratings on the venue page — candidate, not yet scoped
+
+**CEO, 2026-09-21:** *"It might genuinely be quite useful to display the FSA rating if people want it, could be a nice little feature."*
+
+**Why it is attractive.** The Food Standards Agency's Food Hygiene Rating Scheme is a free, statutory, Open Government Licence dataset already in the Engineer's harness (`venue-index-harness/fsa.py`), and it is genuinely useful information at the moment someone is choosing where to eat. It fits the venue page, which §1 records as probably the product rather than a feature. Bundled offline it carries **no running cost**, consistent with the architecture.
+
+**Two problems that must be solved first, in this order.**
+
+1. **It is downstream of the identity problem currently blocking the build.** FSA registers the **legal trading entity**, not the sign above the door — the Engineer's own sample contains `"Natalie White - The Compasses"` and `"Pong & Puck also T/as Bar Hutte and The Beach Club"`. Attaching an FSA record to the wrong venue means **displaying a hygiene rating that belongs to a different business**, which is a real-world harm to a third party who is not a Candour customer and has no way to object. **This feature cannot ship before Block 4 is lifted and venue identity is stable**, and even then it needs a match-confidence threshold of its own, above the one used for naming.
+2. **Ratings go stale and this product does not phone home.** A bundled snapshot will misstate a venue whose rating has changed since the release. Showing "5" for a venue now rated 2 is worse than showing nothing, and engages Article 1.3. Minimum bar: the rating carries a visible **"as of [date]"** on its face, and there is a user-initiated way to refresh — which is a deliberate, disclosed network call and therefore interacts with the product's central claim and with the marketing wording settled at the third correction in `proposals/haunt/proposal.md`.
+
+**Also owed:** OGL attribution on the in-app licences screen already required by Condition 7; and a decision on whether an unmatched or low-confidence venue shows nothing rather than a guess — the answer should be nothing.
+
+**Status: candidate for requirements, not scope.** Owner: PM/BA to schedule behind Block 4; CGO to confirm the OGL attribution form and whether displaying a third party's statutory rating carries any duty beyond attribution.
+
+---
+
 ## Commissions these imply, for the CVO to place
 
 - **PM/BA** — items 1 and 2 enter requirements as first-class scope, with the three schema decisions in item 2 settled before any data model is signed off.
