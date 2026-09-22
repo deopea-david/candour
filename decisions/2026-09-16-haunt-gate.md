@@ -358,6 +358,16 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Housekeeping that travels with it, adopted as the CFO recommended:** a **quarterly margin check** (about an hour each, the CFO's estimate) that brings the annual review forward if projected margin passes **25%**, since a mid-year surge caught only at year end cannot be undone; and a **defined financial year** for Haunts, since that is the year the cap is tested over.
 
+**D19 — The last four PM/BA suggestions, all taken.** *CEO, 2026-09-22.* Closes `requirements.md` §23: all fourteen suggestions are now decided.
+
+**(a) Ratings: show the stars and the number of visits; rank by a weighted average.** Amends the PM/BA's B1 (*"do not print 5.0 from one visit"*, written in as VPAGE-6). The CEO's position: stars are shown, **alongside the number of visits**, but *"if one venue has one rating of five stars while another has 100 ratings, 99 being five and 1 being four, I would still consider the venue with 100 ratings higher."* **Ordering uses a weighted (Bayesian) average**: each venue's mean is pulled towards a baseline — the user's own overall mean — until it has enough visits to stand alone. On the CEO's example, with a baseline near 3.8, one five-star visit ranks at about 4.1 and ninety-nine fives with one four at about 4.98. **The displayed stars remain the true mean; the weighting affects order only**, and the screen says so if it could otherwise mislead. The PM/BA proposes the default weight.
+
+**(b) Offer to merge probable duplicates** (B2, VEN-16): taken as written.
+
+**(c) Search includes the user's own notes**, offline, from day one (A3): taken. The search engine is already in the app.
+
+**(d) A local self-portrait** — *"You rate pubs 4.1 and cafés 3.2; your most-visited place is X"* — (B4): taken, **as its own summary reachable outside the recap**, not only within it. Computed on the device. It carries the same constraints as the recap: pulled, never pushed, no badges or comparisons.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
