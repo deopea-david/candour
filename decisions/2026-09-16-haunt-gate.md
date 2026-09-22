@@ -318,6 +318,24 @@ Decisions taken after the gate, recorded as they are made rather than reconstruc
 
 **Rating trend on the venue page:** taken. **Ranked list and heatmap:** both, as two views of the same data that the user switches between — the ranked list is the base and does not depend on a map. **A separate session recap for v1** and **any "export before photos disappear" reminder**: dropped, the second because it would be a nudge.
 
+**D14 — Price ladder, notice period, privacy wording and thumbnail backup.** *CEO, 2026-09-22.*
+
+**(a) The ladder, as the CFO recommended in `cost-sheet-v3.md`:** **pay-once at £28.99 leads**, yearly at **£9.89**, monthly at **99p**, and **quarterly is dropped**. The reason is reach: pay-once needs about 11,500 buyers over three years against about 62,000 subscribers. Pay-once is £6.65 (18.6%) below 36 monthly payments, the saving arising from real costs avoided rather than a markdown, which is what lets a savings statement be made honestly where UX's block B11 had barred one at £59.40.
+
+**(b) Notice before any price rise for an existing customer: 90 days — the constitutional minimum — not the CFO's recommended 180.** Recorded with the written reason Article 4 as amended in v1.3 requires, since the CGO's own judgment (Correction C6.6) put 180 on products whose export no alternative can load, and Haunts' is such an export:
+
+1. **The constitutional test is time to move, and this product has no workflow to migrate.** The CEO's own example when he set the rule (D7) was *a complex or deeply integrated application*. Haunts is a personal journal. A customer facing a price rise has a complete, free export and can stop; they are not rebuilding a process somewhere else.
+2. **90 can be raised later; 180 can never be lowered.** The period *"may be lengthened, never shortened"*, so 90 is the reversible choice. The CFO read the option 90 preserves as an option to shorten; it is an option **not yet to have committed** to the longer figure.
+3. **Rises are expected to be rare** — the CFO models Haunts' prices as mostly falling, at the cliff and at each recompute — and **90 days is already 3.3× Apple's 27-day minimum**, given in advance.
+
+The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is not answered by pretending it was weak: it is declined on the grounds above.
+
+**(c) The privacy wording is approved** as the PM/BA drafted it at `requirements.md` §12.2.8: *"Haunts sends your data nowhere else. If a photo you attached is kept in iCloud Photos or Google Photos, your phone may fetch it from there to show it to you."* It replaces D12's example sentence, which was false whenever backup is on. **The CGO must still confirm it as a contract term** under CRA 2015 s.36(3) before it ships.
+
+**(d) Backup includes photo thumbnails**, so restoring to a new phone does not show a journal with no photos. The CTO sizes it.
+
+**Still open, to be taken one at a time:** the pay-once price stepping down each year as the build is recovered (£25.49, £22.49, £18.95); the Article 9 shared-fee allocation rule, which the CFO has now raised twice and asks the CEO to adopt or decline in writing; and whether Candour openly absorbs pay-once buyers' ~£2.31 a year support cost after year three.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication

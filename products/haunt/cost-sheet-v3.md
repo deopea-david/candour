@@ -562,6 +562,8 @@ Article 9 requires *"The counterfactual price at every republication: what the p
 
 ## 10. The notice period — 180 days recommended, and what each option costs
 
+> **CEO decision, 2026-09-22 (D14(b)): 90 days, not the 180 recommended below.** Declined on the written grounds in the decision record: Haunts is a personal journal with no workflow to migrate, 90 can be lengthened later while 180 can never be lowered, and rises are expected to be rare. This section's analysis is preserved as written; the PRICE-12 copy string in §12.3 has been changed to 90 per this sheet's own instruction to change the number and nothing else.
+
 **The duty.** Article 4: *"Where a price rises for a customer who has already bought, give at least 90 days' notice before the new price applies — and longer where a customer would need longer to move to an alternative, **judged from the export the product actually ships**… Each product publishes the notice period it guarantees, in its first cost sheet and on its pricing page, before its first sale; that period may be lengthened, never shortened."*
 
 **The platform's own period is much shorter.** Apple: *"Subscribers receive notice of a price change 27 days before the renewal date."* Consent is needed only if a rise is *"more than 50% of the current price"* **and** above roughly US$5 a period (US$50 a year for annual plans), or if there was another rise within 12 months. [E, same Apple page, retrieved 2026-09-22.] **Candour's period has to be delivered by Candour's own means** (Correction C5.6; PRICE-12; NOT-6).
@@ -670,7 +672,7 @@ Notice costs money only when Candour **raises** a price. Its cost is the revenue
 
 ### 12.3 S4 — price reviews and the notice guarantee, on the plans screen (PRICE-9, PRICE-12)
 
-> *"How our prices change: we work them out again every year from Haunts' published cost sheet and cut them when the numbers allow — the biggest cut is due after [month year], an accounting date, not a statement about how long Haunts will be supported. Any cut reaches subscribers automatically. If we ever raise a price you already pay, we'll tell you in the app at least 180 days before the new price applies, and you can cancel, or export everything free, before then."*
+> *"How our prices change: we work them out again every year from Haunts' published cost sheet and cut them when the numbers allow — the biggest cut is due after [month year], an accounting date, not a statement about how long Haunts will be supported. Any cut reaches subscribers automatically. If we ever raise a price you already pay, we'll tell you in the app at least 90 days before the new price applies, and you can cancel, or export everything free, before then."*
 
 **PRICE-9** puts the cadence and the step-down on the plans screen. S2 can only do that on the pay-once screen, so this needs a separate string. **PRICE-12** asks for the guaranteed notice period on the pricing page. This string carries **180 days on my recommendation (§10). If the CEO chooses 90, change the number and nothing else.** *"Tell you in the app"* is the persistent in-app notice of NOT-6 and PRICE-12, not a push notification (**B1**).
 
