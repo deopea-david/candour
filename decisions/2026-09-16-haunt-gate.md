@@ -276,6 +276,24 @@ Decisions taken after the gate, recorded as they are made rather than reconstruc
 
 **The reservation does have an answer, but it is a different one.** A coordinate-made error is invisible to everyone. A user-made error is invisible to Candour but **visible to the user** — which is why the residual must be *repairable on the device*, and why the CTO added **P5** to the governing bar rather than accepting the Engineer's substitution as a pure relaxation. That answer costs requirement **R-5**, and it carries a tension the PM/BA must resolve: D8's "one easy action" and D3's confirmation prompt must make selection a low-friction **choice**, never low-friction **assent**. **Block 4 is the CTO's and is not lifted by this decision** — it either lifts on the measurement plus D8, or the CEO overrules it under 5.6, which is recorded publicly with reasons.
 
+**D9 — The product is named "Haunts". The slug and codename stay `haunt`.** *CEO, 2026-09-21.* The CVO chose "Haunt" at spark and the CEO's objection was the better reasoning: *"Haunt seems a bit dark."* **Singular reads as a ghost following you; plural reads as the places you frequent** — and for a location-history product, being invisibly followed is precisely the association the product exists to refuse. Shortlisted against **Snug** and **Rounds**; both were rejected on the same ground, that every tagline they support is about a night out, while the product covers 346,184 venues rather than 42,407 pubs. **Haunts is the only one of the three that does not quietly narrow the product to drinking.** Reversible later at no cost; the repository slug, branch names and six commits stay `haunt`.
+
+**Three checks are owed before the name is used publicly**, none of them done: an App Store name collision check, a UK trademark search (**CGO owns this**), and a domain. Until they pass, "Haunts" is a working name.
+
+**D10 — Three requirements accepted, with the CEO's additions.** *CEO, 2026-09-21.*
+
+**(a) Companions on a visit** — accepted as free text. The CEO asks whether selecting from the contacts book should also be offered. **Possible, and it must be optional and secondary**: typing must always work on its own, because App Store guideline 5.1.2(i) forbids requiring a system permission to access functionality, and because a contacts prompt on a product whose claim is that it collects nothing is a trust cost in itself. **The substantive question is not technical.** Contact names are the personal data of people who are not Candour customers and have never consented, and linking a named third party to places they were at is a materially more sensitive record than a list of the user's own venues. It stays on the device and Candour never sees it, but **the CGO must confirm the household-activity exemption still holds** before this ships. Free text is MVP; contacts selection is conditional on that ruling.
+
+**(b) Import from a competitor's export** — accepted. Recorded because it is more than a feature: the research brief found Google's Timeline migration **destroyed real users' history**, and migration is arguably the only acquisition channel a product with no sharing layer and no advertising budget can have. It addresses the binding constraint, which is reach.
+
+**(c) "What Haunts has worked out about you"** — accepted: one screen listing every inference the app has made, visible and editable.
+
+**The CEO's additions to (c), and one carries a real hazard.**
+
+**A heatmap** of most-visited places: accepted. Derived wholly from local data, no new collection. One design note — a heatmap of a person's own life is the single most revealing artifact this product can render, so it belongs behind the same care as the rest of the journal, not on a launch screen.
+
+**A monthly or yearly "wrapped" recap:** accepted **as a pull, never a push**, and **with no share affordance**. Condition 8.4 as clarified forbids interruption and urgency, not static in-context content, so a recap the user opens is clean. **The hazard is the genre, not the feature.** Wrapped exists, elsewhere, to be shared — and **D5 gated the sharing layer behind a fresh proposal and a full gate**, on the Research Analyst's written warning that sharing is the only growth mechanism this product could have and would therefore *"be exercised for company reasons and then justified with user reasons."* **A "share your wrapped" button is that door reopening without the gate.** Recorded now, while nothing depends on it: any share affordance on a recap is sharing, and goes through D5's route. No streaks, no badges, no comparisons, no notifications.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
