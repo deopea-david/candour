@@ -1,6 +1,7 @@
 # Cost sheet — Haunt — v3 (pre-requirements, publishable)
 
-**Seat:** Chief Financial Officer · **Date:** 2026-09-21
+**Seat:** Chief Financial Officer · **Date:** 2026-09-21 (§§0–6.2) · **completed 2026-09-22** (§§6.2 close–19, and three marked insertions: this line, the §0 addendum and §4.6)
+**Name:** the product is **Haunts** (CEO decision **D9**, 2026-09-21), a working name until the three checks at `requirements.md` PLAT-6 pass. §§0–6.2 were drafted before D9 reached this seat and say "Haunt"; they are left as written rather than silently edited. **The customer-facing copy at §12 uses "Haunts".** The slug and file paths stay `haunt`.
 **Status: intended for publication under Constitution 2.1 and Article 3.** Written for a sceptical customer first and the CEO second. **It is not a price.** Pricing is a Constitution 5.4 decision — *"The following are never automated: kill/proceed decisions, spending real money, **pricing changes**… Agents prepare; the founder decides"* — and belongs to the CEO alone.
 
 **Supersedes** `products/haunt/cost-sheet-v2.md` in full, and with it `cost-sheet.md`, `pricing-ladder-model.md` §§2–9 and `window-conversion-model.md` §3. Where this sheet corrects one of my own earlier findings it names the error in place rather than quietly restating it (§18).
@@ -38,6 +39,18 @@
 **K. My recommendation is one answer, not a menu: lead with pay-once at £28.99, keep yearly at £9.89, keep monthly at 99p as the try-it tier, and cut the quarterly tier.** Reason: the binding constraint is reach, pay-once is the only tier that does not lose to it, and cutting quarterly removes a rung that costs store configuration, a column and a set of DMCCA renewal-notice cases while changing the compliant band by nothing at all. §15.
 
 **L. The Article 9 shared-fee question is closed with a proposed rule, and it is no longer trivial.** In v2 the shared company fees were £125.91, or 0.42% of the cost base, and I called it *"a governance fix, not a money fix."* With the AI workforce costed, shared fees are **£1,029.77 — 2.4% of the cost base** — and the day a second product ships, Haunt's price is reviewed down. §13.
+
+### Addendum to §0 — written 2026-09-22 with §§7–19, because finishing the arithmetic sharpened four of the answers above
+
+*Inserted, not substituted. Nothing above is withdrawn; where an answer is sharpened, the sharpening is here and in §18.*
+
+**M. The scope has now grown a fifth way (§4.6).** Since §4 counted 139 requirements, `requirements.md` has reached **163**. Sixteen of the new ones — companions, competitor import, the inference screen, the heatmap, the recap and its image, three onboarding items and seven photo items — **are sized by no seat.** On my judgment, for sensitivity only, they move the volume 99p needs by roughly **6–8%**; with everything else still unsized, by about **17%**. **Photos-as-references change no cost line**: storage, backup and hosting stay at £0.00 because Candour holds none of them.
+
+**N. The 30.3% cut (answer E) comes from Candour's own pricing rule. The Constitution on its own requires less (§8.3).** Article 2.1's 30% cap would force a cut only to **79p (20.2%)** at the same volume. Getting to **69p** depends on the CEO adopting the rule I recommend: **work out every price again at each yearly review, and cut it whenever the rule gives a lower figure.** The customer copy at §12 is written on that rule.
+
+**O. The pay-once price should step down each year as the build is paid off (§11.2).** At the reference volume that means **£28.99 → £25.49 → £22.49 → £18.95**. A buyer in year three would otherwise pay for 24 months of build cost that has already left the cost base. That would also push the product's year-four margin toward the cap, if most customers pay once and then stop using the app (§11.3).
+
+**P. The copy for PRICE-7, PRICE-8 and PRICE-9 is at §12.** It contains no support date, labels the only date as an accounting date in the same sentence, and says the cut depends on subscriber numbers. **One conflict in `requirements.md` needs resolving:** PRICE-1 asks for a per-month figure for every tier. For pay-once that figure only exists if you assume a period, and PRICE-13 forbids implying one. §12.4.
 
 ---
 
@@ -268,6 +281,43 @@ Every row is the point cost base of §3.6 with additional **capitalised** hours 
 
 > **The honest summary: the scope has grown since v2, and I have carried everything anyone has sized. What remains uncarried moves the volume the price needs by somewhere between 2% and 11%. That is material and it is not fatal, and it is knowable for the price of a text file.**
 
+### 4.6 A fifth gap, found on 2026-09-22: the scope grew again after this section was drafted *(inserted)*
+
+**What moved.** §4 was written against `requirements.md` at **139 requirements**. The copy on disk on 2026-09-22 carries **163**. I counted numbered rows in the requirement tables and excluded the Block 4 ruling's R-number map (R-1 to R-8) and the standing conditions S-1 to S-3, which are not requirements. That document's own change log still says 139. **The file changed while this sheet was being written**: line numbers moved between two reads in this session. So **163 is a snapshot**, and the PM/BA owns the real count. [E, `products/haunt/requirements.md`, read from disk 2026-09-22.]
+
+| New since §4 | Count | Sized by anyone? | Carried in this sheet? |
+|---|---|---|---|
+| **VEN-20 … VEN-24** — the Block 4 ruling's criteria | 5 | The ruling sizes **R-5 only**, at *"2–4 days on top"*. I read it as placing the rest inside the CTO's existing rows | **Yes.** R-5 is in §3.2 at 22.5 h; the rest is carried on the CTO's word |
+| **PRICE-13, PRICE-14** — the enumerated pricing-string check in CI and the accounting-date qualifier | 2 | No | No. Small [J] |
+| **PLAT-6** — name checks before "Haunts" is used in public | 1 | No | No. An App Store search and a UK IPO search. The CGO owns the trademark search. **A domain is already in §3.4 at £10** |
+| **CONF-19** — companions, free text, suggestions drawn only from the user's own history | 1 | No | **No** |
+| **DATA-15** — import from a competitor's export | 1 | No | **No** |
+| **LOOK-1 … LOOK-4** — the inference screen, heatmap, recap, and recap-to-image | 4 | No | **No** |
+| **ONB-1 … ONB-3** — onboarding rules, seeding, "find your local" | 3 | ONB-3 at **2–4 days** by the PM/BA [J]. **Not a CTO figure** | **No** |
+| **PHOTO-1 … PHOTO-7** — photos held as references to the user's library | 7 | No | **No** |
+| **Total** | **24** | | |
+
+**Photos, the question I was asked directly. No cost line in §3 changes.** PHOTO-1 stores *"the platform's stable local library reference, as text"*, and the app *"never copies image bytes into its own container"*. That leaves hosting, database and storage at £0.00. They were £0.00 already, because Candour holds none of the journal; the photos stay in the customer's own library. The backup ends up in one of two places, and the requirements have not yet chosen between them (`requirements.md` §12.1): an encrypted file the user saves, or the user's own cloud account. **Neither is Candour's storage, so there is no Candour line for backup to grow.** **What photos do change is labour, in two places:**
+
+- **Build**: library-reference APIs on two platforms, an export that resolves references and streams a multi-gigabyte archive, and handling of broken references. The PM/BA asked the CTO for *"the marginal build hours"* at §12.2.5. **They have not been given.**
+- **Support**: three new kinds of contact that did not exist before — *"my photos didn't come back"* after a restore (PHOTO-4 names this trap), broken references (PHOTO-7), and large exports (PHOTO-6). **I have not moved the variable support rate in §3.5 for them** [J]. The rate is unmeasured anyway (§16.2), and moving a guess by a guess adds noise, not information. This is recorded so that nobody later assumes photos were costed at zero on purpose.
+
+**Two items carry a recurring cost as well as a one-off one, and that is what matters most here.**
+
+1. **DATA-15, competitor import.** It parses a file format Candour does not control. **When a third party changes its export format, Candour's parser breaks and someone has to fix it, whether or not anyone promised.** That is maintenance, not build — the same reasoning as §5. [J] **10–20 h/yr** until the CTO names a figure. It is also a new untrusted-input surface, which the PM/BA has already routed to the CSO.
+2. **LOOK-2, the heatmap, depends on a map, and I can find no cost for any map in this repository.** A11Y-3 requires contrast over *"map tiles"*. The compliance note lists MapKit as an *"architectural tripwire"*. **I found no artifact that names where the tiles come from.** If they are fetched over a network, the product's "no outbound traffic" claim changes. If the provider meters them, that is the **first per-user variable cost this product would have outside support labour.** Requirements §20.2 lists *"the map entirely"* as the largest cut available. **Flagged to the CTO (§17.3). I am not asserting any provider's price, because I retrieved none.**
+
+**Priced as sensitivity, on my judgment [J], so the decision is not held up waiting for it:**
+
+| Scenario | Additional capital hours | Additional h/yr | **Annual cost base `A`** | **`N*` at 99p** | Move |
+|---|---|---|---|---|---|
+| This sheet as published | 0 | 0 | £43,132.09 | 12,692 | — |
+| The 16 unsized items, central [J] | +250 | 0 | £45,857.92 | 13,494 | +6.3% |
+| … plus DATA-15 and photo upkeep | +250 | +20 | £46,512.12 | 13,686 | +7.8% |
+| **Everything still unsized: §4.2's five, §4.4's non-engineering labour, and these** | **+625** | **+20** | **£50,600.87** | **14,889** | **+17.3%** |
+
+> **Answer to "does the scope in `requirements.md` now exceed what you costed?": yes. It is larger by 24 requirements, 16 of them unsized by any seat. On my judgment that means roughly 6–8% more volume before 99p is honest, and about 17% with everything else still unsized. I cannot tighten that. Only the CTO's sizing pass can, and it should cover all 21 unsized items (§4.2's five and these sixteen) in one go, before requirements sign-off.**
+
 ---
 
 ## 5. D2's missing hours — do they survive the supersession? **Yes, and they are now carried**
@@ -356,3 +406,498 @@ V = C(N) × 1.20 × 1.20 ÷ 0.85 = C(N) × 1.694118
 |---|---|---|---|---|---|---|---|---|
 | **Honest monthly price** | £6.60 | £3.55 | £2.54 | £2.03 | £1.52 | £1.27 | £1.12 | **£0.99** |
 
+
+*(Honest monthly price = `(A/N + £3.614) × 1.694118 ÷ 12`, at the point cost base. Re-derivable with a calculator from §3.6 and §6.)*
+
+**Read the table from right to left.** 99p is the right-hand column. It is honest at 12,692 subscribers, and it is a deliberate below-cost price (Deviation 2) at every count to its left. At 4,000 subscribers the honest monthly price is **£2.03**. At 2,000 it is **£3.55**. **Candour does not choose which column is true. The market does. This sheet chooses only to show every column.**
+
+---
+
+## 7. The ladder on the three-year period
+
+### 7.1 How each tier is priced — one rule, one volume
+
+Every tier is priced by the **same rule** — `(A/N + s) × 1.694118` — at the **same subscriber count**. That is what *"discounted on the same curve as the others"* (Correction C3.0) means arithmetically. The reference count is `N*` = **12,692**, the volume at which 99p a month is exactly honest.
+
+**A property of that reference point, stated because it explains why three of the four prices did not move from v2.** At `N*` the fixed-cost share per subscriber, `A/N*`, is always **£3.3985**, whatever `A` is, because `N*` is defined as the count at which 99p covers `A/N + £3.614` at the pricing rule. **A bigger cost base moves `N*`, not the prices at `N*`.** That is why the build growing from 2,090 to 2,300.5 hours, and the AI tooling, and the security line, changed the volume Haunt needs (12,692, up from v2's 11,922) and **changed no price**.
+
+| Tier | `s` | Cost of service / yr | Honest price / yr | **Honest price per billing period** |
+|---|---|---|---|---|
+| Monthly | £3.6140 | £7.0125 | £11.880 | **£0.9900 a month** |
+| Quarterly | £2.7420 | £6.1405 | £10.403 | **£2.6006 a quarter** |
+| Yearly | £2.4150 | £5.8135 | £9.849 | **£9.8485 a year** |
+| Pay once | £2.3060 | £5.7045 | £9.664 | **£28.9916 once** — three years of the pay-once tier's own cost of service; §11 |
+
+### 7.2 Rounding — the third deviation, recorded per tier
+
+**The store's price grid, retrieved at primary this session.** Apple, *App Store Pricing Update*, "United Kingdom (GBP)". **Price steps:** £0.10 from £0.29 to £9.99 · £0.50 from £0.49 to £49.99 · £1 from £0.99 to £199.99 · … **Supported conventions:** X.99 (£0.99–£11,999.99) · X.00 (£1–£10,000) · X.90 (£0.90–£99.90) · X.95 (£0.95–£49.95). [E, [apple.com/newsroom/pdfs/App-Store-Pricing-Update.pdf](https://www.apple.com/newsroom/pdfs/App-Store-Pricing-Update.pdf), downloaded and text-extracted 2026-09-22. **Single source by nature**: Apple is the only publisher of Apple's grid.]
+
+**The rule is unchanged from `cost-sheet-v2.md` §7.2.** Charge the nearest conventional point in either direction. Where two are equally near, take the lower. Never take a point that carries the margin above 30%. Record every rounding.
+
+| Tier | Honest | **Charged** | Displacement | Margin at `N*` | **Deviation from ~20%** | Why |
+|---|---|---|---|---|---|---|
+| Monthly | £0.9900 | **£0.99** | 0.00% | **16.51%** | **−3.49 pp** | Commission passed through at no markup (Deviation 1) |
+| Quarterly | £2.6006 | **£2.59** | −0.41% | **16.11%** | **−3.89 pp** | Pass-through, plus rounding down |
+| Yearly | £9.8485 | **£9.89** | +0.42% | **16.91%** | **−3.09 pp** | Pass-through, plus rounding up |
+| Pay once | £28.9916 | **£28.99** | −0.01% | **16.50%** | **−3.50 pp** | Pass-through; revenue recognised over 36 months (§7.3) |
+
+**What the grid cannot do, carried forward from v2 and still true.** At a 99p price point one 10p step is worth about **ten margin points**. At this price, **Apple's grid is coarser than Candour's constitution.** The quarterly and yearly tiers are the only ones that can be priced to the penny.
+
+**Not yet confirmed, and owed before any price publishes:** (1) the exact points as App Store Connect shows them. Apple does not publish the complete list outside the tool, and the conventions above suggest points (£18.95, for example) that should be checked there. (2) **Google Play's GBP grid.** I tried again this session. [Google's help page](https://support.google.com/googleplay/android-developer/answer/10532353) says the price ranges are in tables and links out to *"play.google.com/supported-locations"*. The table did not come back through retrieval. **Two stores may not offer the same nearest point.** Owner: CFO, at store configuration.
+
+### 7.3 Annual margin on every tier, including pay-once — as Article 9 requires
+
+**Article 9** names *"A one-off or pay-once tier escaping the cumulative lifetime margin test"*. The number it gives to expose that is *"The **annual** margin on every tier including one-off tiers, at every republication, with one-off revenue recognised over the amortisation period rather than in the year of receipt."*
+
+**So £28.99 is recognised as £9.66 a year for 36 months.** Recognised any other way, the margin in the year of purchase would be about +250% and would describe nothing real. With the revenue spread, the pay-once tier's annual margin at `N*` is **16.50%** in each of the three years, the same as the monthly tier.
+
+**The recognition method, stated because a method chosen after the fact is a gaming vector: straight-line, 1/36 of the price in each month from the month of purchase.** Not matched to cost, not front-loaded, and never re-selected per year. §11.3 shows the one place where straight-line recognition creates a problem, and deals with it through price rather than by changing the method.
+
+### 7.4 The table the plans screen must carry (PRICE-1, PRICE-4), at launch
+
+| Tier | Charged | Per month | Per year | Saving against monthly — rounded **down** |
+|---|---|---|---|---|
+| Monthly | £0.99 each month | **£0.99** | £11.88 | — |
+| Quarterly *(recommended for cutting, §15)* | £2.59 every 3 months | **£0.86** | £10.36 | £1.52 a year — **12.7%** |
+| Yearly | £9.89 each year | **£0.82** | £9.89 | £1.99 a year — **16.7%** |
+| Pay once | £28.99, once | **see §12.4** | — | **Stated as the crossover, not as a percentage — §12.4** |
+
+*(2.59 ÷ 3 = 0.8633; 9.89 ÷ 12 = 0.8242; 11.88 − 10.36 = 1.52, and 1.52 ÷ 11.88 = 12.79%, rounded down to 12.7%; 11.88 − 9.89 = 1.99, and 1.99 ÷ 11.88 = 16.75%, rounded down to 16.7%.)*
+
+**The pay-once discount is real, and this cost sheet can show it.** £28.99 against 36 monthly payments of 99p (£35.64) is **£6.65, or 18.6%** (18.66%, rounded down). That clears the condition UX's **B11** set: there must be a real saving before any saving is claimed. **But the plans screen should not print "18.6% over three years".** Three years is the amortisation period. A saving quoted "over three years" beside a price is exactly the implied horizon that PRICE-11 and PRICE-13 forbid. §12.4 explains what the screen says instead.
+
+### 7.5 The compliant band
+
+| Tier | Recovers its cost at | Reaches the 30% cap at | Width |
+|---|---|---|---|
+| Monthly 99p | 8,984 | 17,140 | 1.908× |
+| Quarterly £2.59 | 9,384 | 16,564 | 1.765× |
+| Yearly £9.89 | 9,396 | 16,043 | 1.707× |
+| Pay once £28.99 | 9,503 | 16,091 | 1.693× |
+| **Every tier compliant at once** | **9,503** | **16,043** | **1.688×** |
+
+**Cutting the quarterly tier changes that band by nothing.** Its floor (9,384) and ceiling (16,564) both sit inside the band that pay-once and yearly set. That is one of the two reasons §15 recommends cutting it.
+
+---
+
+## 8. The amortisation cliff — the figure the PM/BA is waiting on
+
+### 8.1 The date
+
+**Launch + 36 months.** More precisely, the clock starts on **the earlier of Haunts' first sale and its public release** (Definitions), and the build has been fully amortised at the end of month 36. **The price change takes effect at the first price review after that date.** Nobody can put a calendar date on it today, because launch is not set. The build is 61.3 focused solo weeks, and `requirements.md` PLAT-4 owns the calendar.
+
+> **The date is published on the first cost sheet issued after launch, and on the plans screen, as an accounting date labelled as one in the same sentence (PRICE-14). It is not a support date. Haunts has no support date (D4).**
+
+### 8.2 The size, at the reference volume
+
+When the build leaves the cost base, `A` falls from **£43,132.09** to **£18,042.74** — a fall of 58%. Nothing about the product changes.
+
+| At `N*` = 12,692 | Months 1–36 | **From month 37** |
+|---|---|---|
+| Cost of serving one monthly subscriber for a year | £7.0125 | **£5.0356** |
+| Honest monthly price | £0.990 | **£0.711** |
+| **Charged, after rounding** | **£0.99** | **£0.69** |
+| Margin if the price is **not** changed | 16.51% | **+51.8%** — above the hard cap |
+| **Cut** | | **30.3%** |
+
+**The whole ladder at the same volume:**
+
+| Tier | Months 1–36 | **From month 37** | Cut | Margin after | Margin if not cut |
+|---|---|---|---|---|---|
+| Monthly | £0.99 | **£0.69** | 30.3% | 13.66% | +51.8% |
+| Quarterly | £2.59 | **£1.79** | 30.9% | 17.95% | +58.2% |
+| Yearly | £9.89 | **£6.49** | 34.4% | 16.36% | +62.5% |
+| Pay once (for new buyers) | £28.99 at launch; see §11.2 | **£18.95** | 34.6% from £28.99; 15.7% from year three's £22.49 | 16.53% | — |
+
+**Re-derivation.** The v2 cost base gave 30.3% and 69p at three years (`cost-sheet-v2.md` §5.1, Correction C5.4). **The v3 base gives the same charged price.** The honest post-cliff price rises from 69.6p to 71.1p, and the nearest price point is still 69p. **So the figure the PM/BA asked for is the same number C5.4 recorded, now re-derived on the current base.** It is not a carried-over number.
+
+### 8.3 The cut depends on how many subscribers Haunts has — and on which rule Candour commits to
+
+**§0-F said the cut is not automatic. This is the arithmetic behind that.** Two different rules could decide it, and they give different answers.
+
+- **What the Constitution requires on its own: the 30% cap.** Article 2.1: *"no product's margin may exceed 30%, regardless of justification."* After the cliff, 99p breaches the cap only above **7,170 subscribers**. Below that count, **the Constitution requires no cut at all.** Above it, the price must come down only far enough to get back under 30%. At `N*` that is **79p**, a 20.2% cut, with a margin of 27.0%.
+- **What Candour's own pricing rule gives: the honest price, worked out again.** Article 2.1: *"Prices target a margin of approximately **20% over published costs**… **A deviation in either direction is a deviation**"*, and a deviation needs a written justification. Suppose Candour kept 99p after the cliff while the honest price was 71p. That would be a deviation above target, and **I can find no honest justification to write for it.** "We charged below cost earlier" is not a cost. Running a deliberate below-cost price was the CEO's choice (Deviation 2), and it creates no debt that later customers owe. **So under this rule the price falls to wherever the rounding rule puts the honest price. At `N*` that is 69p.**
+
+| Subscribers at the first review after month 36 | 2,000 | 4,000 | 5,000 | 6,000 | 7,170 | 8,000 | 10,000 | **12,692** | 15,000 |
+|---|---|---|---|---|---|---|---|---|---|
+| Honest monthly price after the cliff | £1.78 | £1.15 | £1.02 | 95p | 87p | 83p | 76p | **71p** | 68p |
+| Margin at an unchanged 99p | −29.9% | +3.0% | +13.7% | +22.1% | **+30.0%** | +34.6% | +43.4% | **+51.8%** | +57.1% |
+| **Cap only — the cut the Constitution requires** | none | none | none | none | none (at the cap) | to 90p | to 79p | **to 79p** | to 69p |
+| **Honest-price rule — the cut I recommend committing to** | none | none | none | to 95p | to 89p | to 79p | to 79p | **to 69p** | to 69p |
+
+*(Under the cap-only row, the price is the highest grid point that keeps the margin at or below 30%, per clause 3 of the rounding rule. Under the honest-price row, it is the nearest grid point to the honest price, and never higher than 99p. The first cut under the honest-price rule comes at about **5,540 subscribers**, where the honest price falls below 97p. The full 69p is reached from about **11,100 subscribers**.)*
+
+> **My recommendation, and the copy at §12 is written on it: at every yearly price review, every tier's price is worked out again from the published cost sheet and the actual customer count, and cut whenever the rule gives a lower price.** The cap is the floor under that commitment, not the commitment itself. **Adopting it is a pricing decision under Constitution 5.4 and belongs to the CEO.** If he adopts only the cap, the copy at §12 changes in two numbers: "about 12,700" becomes "more than about 7,200", and "69p" becomes "79p". I recommend against that, because it keeps a price the cost sheet shows to be above the honest one, with no justification to publish.
+
+**What the rule does not do: it never raises a price automatically.** Below about 5,300 subscribers the honest price after the cliff is **above** 99p. At 2,000 subscribers it is £1.78. Any rise is a separate decision by the CEO under 5.4, with Article 4's notice (§10). That is also true before the cliff.
+
+### 8.4 The counterfactual price Article 9 asks for
+
+Article 9 requires *"The counterfactual price at every republication: what the price would be if no layer had opened since the last expired."* **At launch it is identical to the actual price**, because only one layer exists and none has expired. **From the first review after month 36, it is the §8.3 honest-price row, computed without any later increment.** If a v1.1 increment has been capitalised by then, the gap between the actual price and this counterfactual is exactly what that increment costs customers, and the sheet prints both prices side by side.
+
+---
+
+## 9. D7's cumulative test, modelled — the limb that costs nothing
+
+**The clause, as v1.3 settled it.** Article 2.1: *"a subscriber must not, merely by staying, pay materially more than the 30% ceiling would permit against the cost of serving them… **This test is one-directional: it forbids a long-standing customer's position drifting above a newer customer's.**"* `CHANGELOG.md` v1.3 item 6 gives the reading: *"that subscriber's own cost — their single share of the build, charged once, plus their own years of running cost."*
+
+**A monthly subscriber at `N*`, cumulative margin by years subscribed, on that reading:**
+
+| Years subscribed | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 20 |
+|---|---|---|---|---|---|---|---|---|
+| **No cut at the cliff** (99p for ever) | −20.5% | +4.4% | +16.5% | +23.7% | +28.5% | **+31.8%** | +39.2% | +45.2% |
+| **Cut to 69p at the cliff** | −20.5% | +4.4% | +16.5% | +16.0% | +15.6% | +15.3% | +14.7% | +14.2% |
+| *Annual margin in that year, no cut* | | | 16.5% | **51.8%** | 51.8% | 51.8% | | |
+
+*(Build share per subscriber: £75,268.05 ÷ 12,692 = £5.93, charged once. Running cost: £1.42 + £3.61 a year. Net proceeds: £8.415 a year at 99p, or £5.865 at 69p.)*
+
+**Why it costs nothing. Two reasons, both arithmetic.**
+
+1. **The annual test always breaks first.** The cumulative margin approaches the post-cliff annual margin over time and never overtakes it, because the one-off build share only ever adds cost. So any price that passes the annual cap every year also passes the cumulative test. In the table, the annual cap is breached in **year 4** and the cumulative one in **year 6**. **The cumulative limb forbids nothing the annual limb has not already forbidden.**
+2. **The lever it takes away is one the App Store already denies.** D7 records that Candour gives up *"Grandfathering and legacy tiers as retention levers."* Apple's page on subscription pricing, retrieved this session: *"If you decrease the price of your auto-renewable subscription, existing subscriptions will automatically renew at the lower price. **You don't have the option to preserve the higher price for existing subscribers.**"* [E, [App Store Connect Help, *Manage pricing for auto-renewable subscriptions*](https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-pricing-for-auto-renewable-subscriptions), retrieved 2026-09-22. **Single source by nature.**] **Google Play's equivalent was not retrieved.** If Play *does* allow an old, higher price to be kept, then the cumulative limb has real force for Android subscribers. **Owner: CFO, at store configuration.**
+
+> **Finding: on Apple, D7's cumulative limb costs Candour £0. The cost of D7 is entirely in its notice limb.**
+
+---
+
+## 10. The notice period — 180 days recommended, and what each option costs
+
+**The duty.** Article 4: *"Where a price rises for a customer who has already bought, give at least 90 days' notice before the new price applies — and longer where a customer would need longer to move to an alternative, **judged from the export the product actually ships**… Each product publishes the notice period it guarantees, in its first cost sheet and on its pricing page, before its first sale; that period may be lengthened, never shortened."*
+
+**The platform's own period is much shorter.** Apple: *"Subscribers receive notice of a price change 27 days before the renewal date."* Consent is needed only if a rise is *"more than 50% of the current price"* **and** above roughly US$5 a period (US$50 a year for annual plans), or if there was another rise within 12 months. [E, same Apple page, retrieved 2026-09-22.] **Candour's period has to be delivered by Candour's own means** (Correction C5.6; PRICE-12; NOT-6).
+
+### 10.1 What notice costs, modelled
+
+Notice costs money only when Candour **raises** a price. Its cost is the revenue given up while existing customers stay on the old price during the notice period.
+
+**The reference case: one 10p step on the monthly tier (99p → £1.09), across 12,692 subscribers.** Each monthly renewal at the old price gives up 10p ÷ 1.2 × 0.85 = **7.08p**. Across `N*` that is **£899 a renewal cycle**.
+
+| Notice | Renewals at the old price | **Revenue given up** | At 4,000 subscribers |
+|---|---|---|---|
+| Apple's own 27 days | ~1 | £899 | £283 |
+| **90 days** (the Article 4 floor) | ~3 | **£2,697** | £850 |
+| **180 days** (recommended) | ~6 | **£5,394** | £1,700 |
+
+*(Assumes every subscriber is monthly. Yearly subscribers give up either nothing or a whole year at the old price, depending on where their renewal date falls against the notice window. That is left out rather than guessed.)*
+
+**Where Haunts' prices are likely to go.** Down: the cliff (§8) and the recompute rule (§8.3) both push prices down, and neither involves notice. **A rise happens only if the CEO decides to shrink the below-cost deviation at low volume.** Suppose he did that at 4,000 subscribers, taking 99p to £1.99, the grid point below its honest £2.03. At 180 days' notice that single rise would cost about **£17,000** (£1.00 ÷ 1.2 × 0.85 × 4,000 × 6), or about £8,500 at 90 days. On Apple's thresholds it would need no customer consent: it is more than 50%, but well under US$5. That is the price of giving customers six months to leave with their data, charged against a price that was already below cost. **Stated because it is the real exposure, not the 10p case.**
+
+### 10.2 Why 180 days
+
+1. **The Constitution's test points above 90 for this product.** The test is whether a customer *"would need longer to move to an alternative, judged from the export the product actually ships."* Haunts' export (DATA-3) is a zip of JSON, CSV and a README. **No alternative I am aware of loads it directly, and nobody in this pipeline has checked whether any does.** The CGO's judgment for exactly this case (Correction C6.6): *"Where a product's export is not directly loadable by any alternative Candour is aware of… 180 days rather than 90."* **That is the CGO's judgment, not constitutional text, and I am adopting it as mine.**
+2. **The honest argument for 90, recorded against my own recommendation.** The period *"may be lengthened, never shortened."* So 90 keeps an option open and 180 closes it. **I do not think that option is worth keeping.** Its only use would be to shorten the notice later, and the clause exists to stop that.
+3. **It costs little at the volumes Haunts is likely to have.** About £1,700 more per 10p step at 4,000 subscribers.
+
+> **Recommendation: Haunts guarantees 180 days' notice of any price rise for an existing customer, published in this sheet and on the plans screen before the first sale.** This is the CEO's decision (5.4). The CGO should confirm the export test.
+
+---
+
+## 11. The pay-once tier
+
+### 11.1 The price, the discount and the crossover
+
+| | |
+|---|---|
+| **Price at launch** | **£28.99** — three years of the pay-once tier's own cost of service at `N*`, priced by the same rule as every other tier (£28.9916, rounded to £28.99) |
+| **Against paying monthly** | 36 × 99p = £35.64. **Difference £6.65, or 18.6%** (18.66%, rounded down) |
+| **Why the discount is real and not decoration** | It is the same cost saving the other tiers get: **billing events avoided.** A monthly subscriber creates 12 billing events a year, and each is priced at a 1% chance of a 20-minute support contact (§3.5). A pay-once buyer creates none after purchase. £59.40 at five years was exactly 60 × 99p and saved nothing, which is why UX blocked **B11**. **£28.99 is below 36 × 99p because it costs less to serve.** |
+| **Crossover** | A monthly subscriber passes £28.99 on their **30th payment** (29 × 99p = £28.71; 30 × 99p = £29.70). That payment falls **29 months after the first**, which is the PM/BA's "2 years 5 months", re-derived and confirmed under gate Condition 6. **Both describe the same event.** A yearly subscriber passes it on their **3rd** payment (£29.67), two years after the first. A quarterly subscriber passes it on their **12th** (£31.08) |
+| **Name** | **"Pay once"** (PRICE-6) |
+
+**One judgment of mine is withdrawn, because D4 changed what it was about.** `cost-sheet-v2.md` §5.6 said that at a three-year life *"it is borderline and I would still name the period"* — something like *"Three years, paid up front"*. **That was right while the pay-once tier bought a supported period. Under D4 it buys no period at all.** A pay-once buyer keeps the app for as long as it exists and runs, with no end date on Candour's side. So *"Pay once"* now describes the tier exactly, and **"three years, paid up front" would now be false.** It would also present the amortisation period as something the customer is buying, which PRICE-11 forbids. **Withdrawn.**
+
+### 11.2 The pay-once price should step down each year while the build is being paid off
+
+**The problem with a flat £28.99.** A subscriber pays towards the build only in the months the build is in the cost base. A pay-once buyer at launch prepays three years, all of them inside the amortisation period. **A pay-once buyer in month 30 also prepays three years at £28.99, but only 7 of those 36 months have any build cost left in them.** A new buyer at the first review after month 36 would pay £18.95 for the same product. **So a flat price charges late buyers for build cost that has already been recovered from other customers.** v2 treated this as something to disclose (Correction C3.2). **It can be fixed, and the fix is cheap.**
+
+**The fix: the honest pay-once price in year k counts only the build that remains to be amortised.**
+
+`pay-once price, year k = [ 3 × (F/N + s_P) + (years of build remaining) × (build per year ÷ N) ] × 1.694118`
+
+| Bought in | Build years left | Honest | **Charged** | Margin, recognised over 36 months | Monthly crossover |
+|---|---|---|---|---|---|
+| **Year 1** | 3 | £28.992 | **£28.99** | 16.50% | 30th payment |
+| **Year 2** | 2 | £25.643 | **£25.49** | 15.93% | 26th payment |
+| **Year 3** | 1 | £22.294 | **£22.49** | 17.35% | 23rd payment |
+| **From the first review after month 36** | 0 | £18.945 | **£18.95** | 16.53% | 20th payment |
+
+*(At `N*`. Build per year £25,089.35 ÷ 12,692 = £1.9768 a head; `F/N` = £1.4216; `s_P` = £2.306.)*
+
+**Like every other price, this schedule only applies at the reference volume, and the §8.3 rule governs it.** Each year's pay-once price is worked out again from the actual customer count and cut if the rule gives a lower figure. At low volume, where the honest pay-once price is above £28.99, it does not fall. **I am not recommending a fixed, pre-announced ladder of future prices.** I am recommending that the pay-once price follow the same rule as the rest of the ladder, which, done correctly, counts only the build that is left. §12's copy says the pay-once price may be lower for later buyers. It does not print a schedule that would be conditional on volume.
+
+**What it costs.** Two extra store price changes, each a republication under Article 2.1, at the yearly review that already happens. And at the reference volume, about 17% less revenue per pay-once buyer across the three years, averaged: £22.49 and £25.49 against £28.99 twice. §14 shows what that does to reach.
+
+### 11.3 Two consequences of spreading the revenue that nobody had modelled
+
+**(a) A flat pay-once price can push the product through the cap in year four.** Pay-once revenue is recognised over 36 months (§7.3). So buyers from years two and three are still being recognised in year four, **at a price that included build cost the year-four cost base no longer contains.** Take the year-four product margin at `N*`, with subscribers already cut to 69p, and assume old pay-once buyers stop using the app:
+
+| Share of customers who paid once | 0% | 25% | 50% | 75% | 100% |
+|---|---|---|---|---|---|
+| **Year-four product margin, flat £28.99** | 13.7% | 20.9% | 29.0% | **38.2%** | **48.5%** |
+| **Year-four product margin, stepped (§11.2)** | 13.7% | 17.6% | 22.1% | 27.2% | **33.1%** |
+| Stepped, if every old buyer is still using it (the §11.3(b) cost) | 13.7% | 13.8% | 13.9% | 14.1% | 14.2% |
+
+**Article 2.1's cap applies per product, per financial year, *"regardless of justification."*** With a flat price, a product that sells mostly pay-once — **which is what §15 recommends** — breaches the cap in year four if its early buyers drift away. Stepping the price keeps it under the cap up to about 85–90% pay-once. Above that, the remaining lever is a cut in the price new pay-once buyers pay in year four. **I recommend stepping, and testing the product margin at every review with pay-once revenue recognised as §7.3 states.** Changing the recognition method to make the margin come out right would be a gaming vector, so the method stays fixed.
+
+**(b) The tail: a pay-once buyer's cost does not stop at month 36, but their revenue does.** Support for an active pay-once user is modelled at **£2.31 a year** (§3.5), for as long as they use the app. **Haunts has no telemetry, so Candour will never know how many are still using it.** There are two ways to carry that cost after month 36:
+
+- **Load it onto the subscription price.** Then subscribers pay for the support of customers on another tier. If surviving pay-once users numbered a quarter of the subscriber base, the post-cliff honest monthly price at `N*` would be **79p rather than 69p**. At half, 89p.
+- **Absorb it, as a published deviation below target on the product margin.** At `N*` with a quarter surviving, that is about **£7,300 a year**.
+
+> **Recommendation [J]: absorb it, publish it, and never load it onto the subscription price.** Article 2.1 forbids *"no customer subsidises another product unknowingly"*. That clause is about products, not tiers, **so this is my judgment and not a requirement of it.** Its reasoning still applies inside one product: a subscriber should not pay for a choice another customer made. This deviation also falls *below* target, which is the direction of Deviation 2, the one the CEO has already accepted. **It is a pricing decision under 5.4 and belongs to the CEO.** Either way it is published: the tail is a named line on every cost sheet after month 36.
+
+**This is the real cost of combining D4 (no support date) with a pay-once tier, and it is recorded here so nobody discovers it in year four.** It is also a reason Haunts cannot honestly promise a support date. Every year of support given to pay-once buyers after month 36 is funded by someone other than them.
+
+---
+
+## 12. The customer-facing copy — PRICE-7, PRICE-8, PRICE-9 (and PRICE-12)
+
+**What follows are drafts for `requirements.md` §10.1, where the canonical strings live. That document belongs to the PM/BA, and it was being edited while this sheet was written, so I have not edited it.** The PM/BA should transcribe these drafts. **UX must confirm the wording, and the CGO must confirm Article 4 is met, before sign-off** (as §10.1 already sets out). Brackets mark things only launch can fill. Each figure is at launch prices, and each is re-derived at every yearly review.
+
+**The rules I drafted against:** PRICE-13(b) — no *"supported until"*, no *"lifetime"*, *"forever"* or *"for life"*, no tier said to *cover*, *include* or *last* a period. PRICE-14 — any amortisation date is labelled an accounting date **in the same sentence**. PRICE-10 — the no-support-date statement sits on every screen that shows a price. **B1** — nothing is pushed.
+
+### 12.1 S1 — the crossover, on the plans screen (PRICE-7)
+
+> *"Paying monthly costs £11.88 a year. Paying once costs £28.99. If you pay monthly, your 30th payment — 29 months after your first — takes you past £28.99, and from then on you'll have paid more than paying once would have cost, for the same app. If you pay yearly, your third payment does the same. Which is cheaper for you depends on how long you keep using Haunts, and we don't publish a date until which Haunts will be supported — see below."*
+
+**Fills:** £[M] = **£11.88**; £[P] = **£28.99**; [T] = **30th payment, 29 months after the first** (§11.1). **I added the yearly clause** because §15 keeps the yearly tier and its crossover comes sooner. If the quarterly tier survives, add: *"If you pay every three months, your 12th payment does."*
+
+### 12.2 S2 — later price cuts, on the pay-once screen (PRICE-8, PRICE-14)
+
+> *"If you pay once, you won't share in later price cuts — there's no ongoing price for us to reduce. We work out Haunts' prices again every year from its published costs, and cut them when the numbers allow. The biggest cut is due after [month year] — an accounting date, when the cost of building Haunts has been fully counted, not a statement about how long Haunts will be supported. If Haunts has about 12,700 subscribers by then, the monthly price will fall from 99p to 69p, about 30% less; with fewer subscribers it will fall by less or not at all, and our published cost sheet will show why. The pay-once price is worked out again too, so it may be lower for people who buy later. If you subscribe, any cut reaches you automatically at your next renewal — the App Store doesn't let us keep anyone on the old price."*
+
+**Fills:** [C]% = **about 30%**, 99p → 69p, at about 12,700 subscribers (§8.2). **[month year]** = the start date plus 36 months, set at launch (§8.1). **The PM/BA's draft said *"falls by about [C]%"* with no condition. It is changed on purpose**, because a cut promised without its condition is a promise Candour might not owe (§0-F, §8.3). *"Cut them when the numbers allow"* is the §8.3 recompute rule. **If the CEO does not adopt that rule, this sentence is false and must change** — see §8.3 for the two numbers that change.
+
+### 12.3 S4 — price reviews and the notice guarantee, on the plans screen (PRICE-9, PRICE-12)
+
+> *"How our prices change: we work them out again every year from Haunts' published cost sheet and cut them when the numbers allow — the biggest cut is due after [month year], an accounting date, not a statement about how long Haunts will be supported. Any cut reaches subscribers automatically. If we ever raise a price you already pay, we'll tell you in the app at least 180 days before the new price applies, and you can cancel, or export everything free, before then."*
+
+**PRICE-9** puts the cadence and the step-down on the plans screen. S2 can only do that on the pay-once screen, so this needs a separate string. **PRICE-12** asks for the guaranteed notice period on the pricing page. This string carries **180 days on my recommendation (§10). If the CEO chooses 90, change the number and nothing else.** *"Tell you in the app"* is the persistent in-app notice of NOT-6 and PRICE-12, not a push notification (**B1**).
+
+### 12.4 One conflict in `requirements.md`, and how I would resolve it
+
+**PRICE-1** requires a *"per-month equivalent **to the penny**"* for **every** tier. **For pay-once, that figure only exists if you assume a period.** The only period available is the three-year amortisation period, and **PRICE-11 and PRICE-13 forbid presenting it as a duration.** "£0.81 a month" beside "Pay once" invites the reader to ask *over how long?*, and the only honest answer is *"we don't know, and we don't promise"*. The same applies to printing *"saves 18.6% over three years"*.
+
+> **Proposed resolution [J]: the pay-once row shows "£28.99, once" in the per-month column, and its saving is expressed by S1's crossover sentence instead of a percentage.** A per-month figure for pay-once would be arithmetic on a period Haunts does not have. The crossover is a fact about the customer's own spending that they can check. **The 18.6% is still published here, in the cost sheet, so B11's condition — that a real saving exists before one is claimed — is met.** PRICE-1 should be amended in the open by the PM/BA with UX, not quietly worked around in the build. **Flagged, not blocked. It is outside my blocking scope.**
+
+### 12.5 S3 — the Article 4 statement (PRICE-10). Not redrafted; one flag
+
+The PM/BA's S3 stands as drafted, and it is UX's and the CGO's to confirm. **One flag, because it promises more than the Constitution does, and someone should decide that on purpose rather than by default.** S3 says *"If we ever stop **supporting** Haunts you'll get at least 90 days' notice…"*. Article 7.2 guarantees notice on **discontinuation**, meaning *"Shutting a product down"*. `CHANGELOG.md` v1.3 records that *"7.2 governs how a product **ends** and does not reach a product merely allowed to rot."* **So S3 promises notice in a case the Constitution does not cover: the app stays on sale but is no longer maintained.** I think that is the right promise, and cheap to keep: Candour stops selling when it stops maintaining. **But it is a promise, and it will read as part of the customer's contract.** Owners: **CGO** (whether it discharges Article 4 and what it commits Candour to) and **CEO** (whether to make it).
+
+---
+
+## 13. The Article 9 shared-fee allocation rule
+
+**The problem, restated with the new number.** Some of Haunt's cost lines are company costs that would be incurred in the same amount if Haunt did not exist:
+
+| Shared cost | £/yr |
+|---|---|
+| AI tooling — the agent seats (§3.4.1) | £897.50 |
+| Apple Developer Program | £74.04 |
+| ICO data protection fee | £52.00 |
+| Google Play registration, amortised (£18.70 ÷ 3) | £6.23 |
+| **Total** | **£1,029.77 — 2.39% of `A`** |
+
+The domain (£10) is Haunt's own and is not shared. **Haunt carries 100% because it is the only product.** The Definitions require this: Cost is *"everything it takes to run a product **or the company**"*, and a company with one product has nowhere else to put its costs. **The loophole is not that Haunt carries them today. It is that nothing brings Haunt's share down tomorrow.** A price set on 100% does not fall by itself when a second product arrives, and Article 2.1 says *"no customer subsidises another product unknowingly."*
+
+**Proposed rule, carried from `cost-sheet-v2.md` §13 and unchanged except in size:**
+
+> **Shared-cost allocation.** A cost is **shared** if it would be incurred in the same amount were any one Candour product not to exist. Shared costs are divided **equally across live products** at each annual republication. A product that is live for only part of a year carries a pro-rated share. Every cost sheet states **how many products the allocation was made across, and the per-product amount**. Reallocation happens at the **next annual republication** after a launch, so allocation is never a reason to bring a launch forward or push it back. Any resulting price cut for an existing product goes to existing customers first (Article 2.3.3.1).
+>
+> **Applied today: one live product. Haunt carries £1,029.77. On the day a second product ships, Haunt's share falls to £514.89 and its prices are worked out again at the next review.**
+
+**Why an equal split and not something cleverer.** An allocation by usage, revenue or hours needs a measurement Candour does not take (no telemetry; hours not recorded, §3.3), and whoever chooses the key can tune it. **An equal split cannot be tuned.** Its weakness is that it is crude when products differ greatly in size. That is a problem for when a second product exists, and it is settled in public when it arises.
+
+**Status.** v2 called this *"a governance fix, not a money fix"* at 0.42% of the cost base. **At 2.39% it is still small, but it is now worth about 300 subscribers on `N*`**, and its largest component is a cost that grows as Candour does more work with agents. **Recommended Article 9 row, flagged again:** *"Charging one product 100% of a shared company cost — exposed by every cost sheet stating the number of live products the shared-cost allocation was made across."* This is the second time I have raised it. **Under *"Twice-flagged is escalated"* I am not flagging it a third time: I am asking the CEO to adopt or decline it in writing.** Article 11 amendments are his, on the CGO's advice.
+
+---
+
+## 14. How many customers Haunts needs — a negative finding
+
+**Three-year published cost: £129,396.27.**
+
+| Tier | Contribution per customer | **Break-even needs** |
+|---|---|---|
+| **Monthly 99p** | £0.4001 per subscriber-month | **323,423 subscriber-months** = 8,984 held continuously for 36 months |
+| **Pay once £28.99** | £13.617 per buyer | **9,503 distinct buyers** |
+| Pay once, stepped (§11.2), sales spread evenly | £11.255 per buyer on average | **about 11,500 distinct buyers** [I] |
+
+**With churn, which is what actually decides it.** The tenure figures are the category benchmarks carried forward from `pricing-ladder-model.md` §4.2. **They are single-origin (RevenueCat)**, and that has now been flagged in five artifacts. §16.4.
+
+| Average subscriber tenure | **Distinct subscribers needed** | **New subscribers every month, for 36 months** |
+|---|---|---|
+| 4.5 months | 71,872 | 1,996 |
+| **5.2 months (central)** | **62,197** | **1,728** |
+| 6.3 months | 51,337 | 1,426 |
+| 7.6 months | 42,556 | 1,182 |
+| 13.2 months | 24,502 | 681 |
+| **Pay once, flat** | **9,503** | **264** |
+| **Pay once, stepped** | **~11,500** | **~319** |
+
+**The subscription needs 6.5 times as many people as pay-once at a flat price, and 5.4 times as many with the step-down.** For the subscription to need fewer people than pay-once, the average subscriber would have to stay **about 34 months**. The retrieved category medians are 5 to 8.
+
+> **Negative finding, at the strength the evidence supports: Haunts is not unviable at a compliant price. It is unviable at 99p on any reach this company has evidence for.** At the volumes anyone can describe, the honest monthly price is **£2.03 at 4,000 subscribers and £3.55 at 2,000**. Both are ordinary app prices, both would be compliant, and neither is 99p. **What the arithmetic rules out is not the product. It is 99p combined with a subscriber base in the low thousands.** The CEO has already accepted that combination as a deliberate deviation below cost (§6.1, Deviation 2), and this sheet publishes its size.
+
+**What would overturn it** (my charter: *"a negative finding… must state (a) what evidence or change would overturn it, and (b) where you looked"*):
+
+1. **A measured average tenure above about 34 months.** It can be measured free in App Store Connect within 90 days of launch.
+2. **An acquisition channel.** **D10(b)'s competitor import is the first one anyone has written down**, and it is the right kind: it goes after people who have lost their location history and have nowhere to put it. **It has no number attached.** Nobody has estimated how many UK users hold a Google Timeline or Arc export, or what share would move. **Until someone does, it is a channel without a reach figure, and it overturns nothing.** Owner: Research Analyst.
+3. **Pay-once converting nearly as well as monthly.** §15's recommendation depends on the reach advantage *per buyer* holding up *per viewer*. **Nobody has measured how much worse a £28.99 up-front price converts than 99p a month.** If it converts 5.4 to 6.5 times worse, the advantage is gone. It can be tested in the Play 12-tester closed test.
+4. **A CEO decision to keep the deviation below cost**, which is the decision already recorded. It does not change the arithmetic. It changes what the arithmetic is for.
+
+**Where I looked:** every cost input in §3, re-derived from the CTO's tables; `research/haunt-brief.md`, `proposals/haunt/*`, both UX notes, both compliance notes, `requirements.md` in full (including §23 and D10(b)'s reasoning), for a reach multiple or an acquisition estimate. **The competitor-import channel is new since v2. No reach figure exists anywhere.**
+
+---
+
+## 15. Recommendation
+
+My charter asks for a recommendation with a reason, not a menu.
+
+> ### Launch at: **Pay once £28.99 · Yearly £9.89 · Monthly 99p** — with the two-week full-feature trial, **no quarterly tier**, **180 days' guaranteed notice** of any price rise, and every price **worked out again at each yearly review and cut whenever the rule gives a lower figure**, pay-once included (§8.3, §11.2).
+>
+> ### Lead with pay-once. Keep monthly as the way to try it.
+
+**The reason, in one sentence: reach is the constraint that decides this product, and pay-once is the only tier that does not lose to it.** It needs roughly 11,500 buyers over three years, against about 62,000 subscribers. No lever in this sheet is larger — not the build estimate, not the platforms, not the price.
+
+**The supporting reasons, briefly.**
+
+- **Pay-once is the tier with the fewest ways to go wrong.** Nothing to cancel, no renewal to be surprised by, no DMCCA renewal-notice cases, and no charge made by inaction. With D4 it also describes exactly what the customer gets (§11.1).
+- **Yearly stays** because it is the best-resolved price on the grid (§7.2), and its compliant band (9,396–16,043) sits almost exactly on pay-once's (9,503–16,091), so keeping it costs the band nothing (§7.5).
+- **Monthly stays** because it is the CEO's price, and because it is how someone tries Haunts without paying £28.99 up front. A trial in front of it keeps it honest.
+- **Quarterly goes.** It changes the compliant band by nothing (§7.5). It adds a store product on two platforms, a column in PRICE-1's table, a crossover clause in S1, and its own set of DMCCA renewal-notice cases. **And it is the rung nobody has argued for**: the PM/BA already lists it as a cut at §20.2. **It costs something and buys nothing.** Cutting a tier is a pricing-shape decision (Condition 9, 5.4), so this is the CEO's call.
+
+**What I record against my own recommendation**, as in the last two sheets, because it is still true: **the CEO's decision to build Haunts was not a commercial one** (*"if I can release it and it makes a bit of money then I am happy with that"*). Leading with pay-once is the commercially efficient choice. **What still holds under his actual aim** — that Haunts exists and is sold honestly — **is the honesty case:** pay-once is the tier a customer can check against this sheet with one division, and the one with no renewal to be caught out by. **And §11.3 is the price of leading with it:** stepping the price, and absorbing the tail cost, only matter because most customers would pay once.
+
+---
+
+## 16. What moves these numbers, and what would overturn them
+
+### 16.1 The build estimate
+
+The estimate has grown 450 → 1,330 → 2,090 → 2,300.5 hours in four weeks, always upward. §4.5 and §4.6 price what is still unsized: **+6% to +17% on the volume 99p needs.** **Build hours do not move any launch price** (§7.1), **but they move the volume at which those prices are honest**, and so how large Deviation 2 is.
+
+### 16.2 The variable cost — the platform mix and the billing-event cost
+
+| Case | Monthly `s` | **`N*` at 99p** | Post-cliff honest monthly price at that `N` |
+|---|---|---|---|
+| 100% iOS | £2.5346 | 9,632 | 62p |
+| **60/40, as carried** [J] | **£3.6140** | **12,692** | **71p** |
+| 100% Android | £5.2332 | 24,241 | 84p |
+| Billing-event cost `e` = £0 | £2.3060 | 9,164 | — |
+
+**The platform mix is a guess, and it moves `N*` 2.5-fold.** It can be tested free in the mandatory Play 12-tester closed test. **The billing-event cost is what anchors the whole discount curve.** At `e` = £0, the honest pay-once price at `N*` is **exactly £35.64 = 36 × 99p**. The discount disappears and UX's **B11** bites again, which is the §3.5 warning in numbers. **Both can be measured within 90 days of launch** from store reporting and the support inbox. Until then, every discount on the ladder rests on one seat's judgment about a support pattern nobody has observed.
+
+### 16.3 The largest unresolved question about the cost base: who does the build?
+
+**§4.4 found labour this sheet leaves out**: the non-engineering work. That error runs in the customer's favour. **This is the mirror-image question, and it runs against the customer.** The CTO's 2,090 hours are *"focused solo hours"*, the effort of one human developer (`subscription-sizing-note.md`, unit statement). **Candour's build pipeline includes Engineer agent seats** (`CLAUDE.md`, `/build`; Constitution Article 10). If agents write a material share of the code and the founder reviews it, the founder's actual hours will be fewer than 2,300.5. In that case, **pricing at 2,300.5 hours × £32.71 while also carrying the agents' subscription (§3.4.1) counts the same work twice.** That is Article 9's first loophole: *"Inflating costs to raise the allowable price."*
+
+**How large, I cannot say, and I will not guess.** Nobody has built anything, and nobody records hours. **The two errors point in opposite directions and may partly cancel. Neither is known.**
+
+> **Same remedy as §3.3, and it now does two jobs: record the hours actually worked on Haunts from the first day of build, by category and by who did them.** At the first yearly review, **capitalised hours are restated from the recorded hours, not from the estimate**, which Article 9 already requires: *"Capitalised hours per product against the gate estimate **and** hours actually recorded, restated annually."* Agent time is carried in the tooling line, not in the labour line. **Until then, the launch price rests on an estimate that could be wrong in either direction, and this sheet says so.** Owner: CEO.
+
+### 16.4 Single-origin benchmarks — escalated, not flagged again
+
+Both the tenure figures (§14) and the conversion benchmarks come from one publisher, RevenueCat. `pipeline/evidence-standard.md`: *"A load-bearing claim flagged as unverified on two separate occasions must be resolved, or formally accepted in writing by the CEO, before it may anchor a third artifact."* **They anchor §14 here, which makes this at least the fifth artifact.** **I am asking the CEO to accept them in writing as single-origin, or to commission a second source.** Either answer is fine; staying silent is not. They move no price. They move the reach finding.
+
+### 16.5 What would not overturn anything
+
+- **The labour benchmark.** Every figure scales linearly with £32.71. A different benchmark moves `N*`, not the launch prices.
+- **The FX rate.** Dollar-priced lines are about 2.3% of `A` (£977.77 of £43,132.09).
+- **The shared-fee rule** (2.4%), and the ICO tier (0.1%).
+
+### 16.6 Where I looked
+
+**Read from disk, 2026-09-21 and 2026-09-22:** `constitution.md` v1.3 in full; `CHANGELOG.md` v1.3; `roles/cfo.md`; `pipeline/evidence-standard.md` v1.1; `pipeline/templates/cost-sheet.md`; `decisions/2026-09-16-haunt-gate.md` — Conditions 1–10, **D1–D10**, Corrections C3–C6 and §17.3; `products/haunt/requirements.md` §§0–2, 8.1, 9, 10, 12, 12.2, 19–20, 24–26 and every requirement row; `products/haunt/cost-sheet-v2.md` §§0, 5, 7–10, 12–17; `products/haunt/subscription-sizing-note.md`, `feasibility-note.md` and `android-and-stack-note.md`, for the unit of the build estimate and any map or tile source; `products/haunt/compliance-note.md` C1–C11.
+
+**Retrieved externally this session (2026-09-22), at primary:** Apple's UK GBP price grid (PDF, text-extracted); App Store Connect Help on subscription price changes — decreases, the 27-day notice and the consent thresholds. **Carried from §§1–6 (2026-09-21, or 2026-09-18 for ONS)** and not re-retrieved: ONS ASHE, Claude pricing, Apple Developer Program, the ICO fee, Google Play registration, GBP/USD.
+
+**Attempted and failed:** Google Play's GBP price grid (the help page links to a table that did not come back through retrieval); Google Play's policy on keeping existing subscribers on an old price (§9). **Not attempted, and not asserted:** any map-tile provider's pricing (§4.6).
+
+**Looked for and did not find:** a reach estimate for competitor import; any seat's sizing of the 16 new requirements; any source for map tiles; any recorded hours.
+
+---
+
+## 17. Blocks and flags
+
+**My blocking power, quoted:** *"Launch of any pricing not backed by a published cost sheet; any proposal without a credible cost model."* It covers the price level and the cost model, and nothing else.
+
+### 17.1 The block — **LIFTED**
+
+> **LIFTED, 2026-09-22.** The block as narrowed at `cost-sheet-v2.md` §16.1 read: *"No Haunt price may be published under Article 3… until the supported life is published… **The block is about the existence of a published period, not about which one.**"* Constitution **v1.3** has published one: *"**Standard amortisation period:** three years (36 months), straight-line, in equal monthly amounts. It is the same for every Candour product"* (Definitions; CEO decision **D6**; `CHANGELOG.md` v1.3). **The checklist item that was failing now passes. The block lifts in full, and I am not replacing it with another.**
+>
+> **Checked, so the lift is not a formality.** (1) This sheet re-derives every price on the three-year period and carries the Article 2.1 schedule and statement (§2, §3.3). (2) The cost model is credible in the charter's sense: every sized item is carried, and every unsized item is named, bounded and priced as sensitivity (§4.5, §4.6). **A model that states its gaps is credible. One that hides them is not.** (3) The labour benchmark is at primary (Condition 5, discharged).
+
+**What the lift does not do.** It does not set a price: pricing is the CEO's alone (5.4). It does not clear release. And it does not waive the checks that must happen **before a price appears in a store**. Those are pre-publication tasks, not blocks:
+
+| Before the first price publishes | Owner |
+|---|---|
+| Confirm each charged point in App Store Connect and in Play Console (§7.2) | CFO |
+| The CEO's decisions on §15's recommendation, §8.3's recompute rule, §10's notice period and §11.3's tail | CEO (5.4) |
+| The §12 strings transcribed into `requirements.md` §10.1 and confirmed by UX and the CGO | PM/BA, UX, CGO |
+| The start date and the date of the first pound of revenue, on the first cost sheet after launch (§3.3) | CFO |
+
+**One stale statement to correct elsewhere.** `requirements.md` §0 still says the CFO's sheet *"is priced on a **five-year** life"*, and lists the CFO block as live. **Both are now out of date.** Owner: PM/BA.
+
+### 17.2 Blocks I do not hold
+
+I hold **no block** over: the shape of the ladder; cutting the quarterly tier; stepping the pay-once price; the notice period; the treatment of the tail; the naming of any tier; any wording at §12; or any Article 9 or 11 proposal. **I have argued strongly for several of them. Arguing is not blocking.**
+
+### 17.3 Flags — each with the seat that holds it
+
+| # | Flag | Holder |
+|---|---|---|
+| F1 | **Size the 21 unsized requirements in one pass** (§4.2's five and §4.6's sixteen). Say whether VEN-17 sits inside the venue rows. Name a security-and-defect row to replace my provisional 45 h/yr (§5) | **CTO** |
+| F2 | **No artifact names a map-tile source.** Network tiles change the offline claim; metered tiles would be the first per-user variable cost (§4.6). LOOK-2 depends on it | **CTO**; **CGO** if MapKit's Schedule 6 is triggered |
+| F3 | **DATA-15 carries recurring maintenance** whenever a third party changes its export format (§4.6) | **CTO** to size |
+| F4 | **PRICE-1 conflicts with PRICE-11 and PRICE-13 for the pay-once tier** (§12.4) | **PM/BA** with **UX** |
+| F5 | **S3 promises notice on ceasing *support*, which is wider than 7.2's *discontinuation*** (§12.5) | **CGO**, then **CEO** |
+| F6 | **Record hours from day one of build, by category and by who did them.** This closes §3.3's missing ratio, §4.4's missing labour and §16.3's possible double count together | **CEO** |
+| F7 | **Accept the RevenueCat-only benchmarks in writing, or commission a second source** (§16.4) | **CEO** |
+| F8 | **Adopt or decline the shared-cost rule and its Article 9 row, in writing** (§13) | **CEO** on the **CGO**'s advice |
+| F9 | **The Play-side facts** behind §9's "costs nothing": whether Play lets an old, higher price be kept for existing subscribers | **CFO**, at store configuration |
+| F10 | **A reach estimate for competitor import**, the first acquisition channel anyone has written down (§14) | **Research Analyst** |
+| F11 | **"Haunts" is a working name until PLAT-6's three checks pass.** This sheet uses it in its §12 copy, and that copy must not be published before those checks | **CGO** (trademark), **PM/BA** |
+
+---
+
+## 18. Corrections — mine and others', visibly and in place
+
+| Where | What was said | What is true | Classification |
+|---|---|---|---|
+| **Decision record, Condition 9.4, 9.5 and C5.4; `cost-sheet-v2.md` §10** | The cliff cut is presented as automatic: *"Price must fall to ~68p"*; *"at three years the cut is 30.3%, 99p → 69p"* | **The cut depends on subscriber count.** The Constitution requires it only above ~7,170 subscribers, and then only to 79p at `N*`. **69p is the result of Candour's own recompute rule at ~12,700** (§8.3). The figure is right; calling it automatic is not | **CORRECTION** — a statement of what the rules require. **Mine**: v2 §10 and my figures behind C5.4 |
+| **`cost-sheet-v2.md` §5.1, §5.6** | Crossover at three years: *"29 months"* | **The 30th payment**, which falls 29 months after the first. v2 used payment count at five years (*"49 months"*) and elapsed time at three, **so one of its two figures was inconsistent with the other.** The PM/BA's "2 years 5 months" is correct as elapsed time | **Arithmetic convention, mine.** §0-G's *"not month 29"* is right on the payment-count convention, and §11.1 now gives both |
+| **`cost-sheet-v2.md` §5.6** | At three years, name the tier for its period, not "Pay once" | **Withdrawn.** Under D4 the tier buys no period, and a period in its name would now be false (§11.1) | **Superseded by D4** |
+| **`cost-sheet-v2.md` §9, S1 and S2 drafts** | *"covers the whole period we've committed to supporting"*; *"when the build cost finishes being paid off in [month year]"* | **Replaced by §12.** The first named a support date D4 withdrew. The second printed an unlabelled date and an unconditional cut | Superseded by D4; the unconditional cut is the CORRECTION above |
+| **This sheet, §0-E** | *"the cut is 30.3%, the monthly price falls from 99p to 69p"* | True **at `N*`, under the recompute rule**, which the CEO has not yet adopted. §0-N and §8.3 give the condition | **Clarification.** Nothing false; a condition was left implicit |
+| **`requirements.md` §0 and §21.3** | The CFO's sheet is priced on a five-year life; the CFO block is live | Priced on three years; **the block is lifted** (§17.1) | Stale, owed by the PM/BA |
+| **Decision record, §17.3 (Condition 9.3)** | Discounts deeper than ~10% collapse the band | Already filed by this seat as a CORRECTION. **Still owed before the record publishes on 2026-10-16** | CORRECTION, filed |
+
+**A process note, because gate Condition 6 is working and should be seen working.** Three of the seven rows are corrections to my own earlier work. Two of them — the automatic cut and the crossover convention — were found only by re-deriving an earlier figure on a new base, rather than carrying it forward.
+
+---
+
+## 19. Disclosures
+
+### 19.1 Related-party disclosures
+
+**None.** No payment to the founder, his family, or any affiliated entity is contemplated. **All founder labour — £75,249.35 of build and £17,009.20 a year of fixed labour at the ONS benchmark — is unpaid and not drawn.** It appears as cost because Constitution 2.1 requires *"a fair-market cost for labour (including the founder's, whether or not it is actually drawn)."* The AI tooling (§3.4.1) is paid to a third-party supplier and is not a related party.
+
+### 19.2 What a sceptical customer should take from this document
+
+1. **Haunts costs one person's time, plus the software tools that help him.** There is no server, no data collection and no advertising. **About 97% of the cost is labour, valued at a published national median, and none of it has been paid.**
+2. **The price depends on how many people buy it.** 99p a month is the honest price at about 12,700 subscribers. **At the numbers Haunts is likely to reach, 99p is below cost, deliberately, and this sheet says by how much.**
+3. **Haunts promises no support date.** The three years in this sheet is how the build cost is spread for accounting. It is not how long Haunts will last.
+4. **Prices are worked out again every year and cut when the numbers allow.** The largest cut is due after month 36 and depends on how many subscribers there are. A cut reaches subscribers automatically. **A pay-once buyer does not share in later cuts, and the screen tells you so before you buy.**
+5. **Any rise in a price you already pay comes with at least 180 days' notice (if the CEO adopts the recommendation), and you can leave with all your data first.**
+6. **Nothing here has been built.** The largest figure is an estimate that has grown five-fold in a month, and may still turn out too high if Candour's own agents do part of the work. **Actual hours will replace it at the first yearly review.**
+
+---
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-09-21 | **§§0–6.2 drafted** on Constitution v1.3, D1–D8, the Block 4 ruling and `requirements.md` at 139 requirements. Supersedes `cost-sheet-v2.md` in full. **The draft stopped at §6.2 when the seat hit a rate limit.** |
+| 2026-09-22 | **Completed, §6.2's close to §19.** Continued from §6.2 without rewriting §§0–6.2. **Three marked insertions:** the header line on the name (D9); an **addendum to §0** (items M–P); and **§4.6**, the scope added since §4 (24 requirements, 16 unsized, photos adding no cost line). Delivers: the ladder and per-tier margins on three years (§7); **the cliff — 30.3%, 99p → 69p at `N*`, launch + 36 months, depending on subscriber count** (§8); D7's cumulative limb at £0 and the notice limb priced, **180 days recommended** (§§9–10); **pay-once at £28.99 with a real 18.6% discount, stepping down yearly** (§11); **the copy for PRICE-7, 8, 9 and 12** (§12); the shared-cost rule at 2.39% (§13); the reach finding (§14); **one recommendation** (§15); **the CFO block lifted** (§17.1); seven corrections (§18). Retrieved at primary this session: Apple's GBP grid and Apple's subscription price-change page. **Not a price: Constitution 5.4 reserves pricing to the CEO.** |
+
+*Prepared by the Chief Financial Officer under `roles/cfo.md`. It prepares and flags; it does not certify (Constitution 6.1). Arithmetic in §§6–16 is owed re-derivation by a seat other than this one under gate Condition 6 before publication.*
