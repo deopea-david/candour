@@ -334,7 +334,17 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **(d) Backup includes photo thumbnails**, so restoring to a new phone does not show a journal with no photos. The CTO sizes it.
 
-**Still open, to be taken one at a time:** the pay-once price stepping down each year as the build is recovered (£25.49, £22.49, £18.95); the Article 9 shared-fee allocation rule, which the CFO has now raised twice and asks the CEO to adopt or decline in writing; and whether Candour openly absorbs pay-once buyers' ~£2.31 a year support cost after year three.
+**Still open, to be taken one at a time:** ~~the pay-once price stepping down each year as the build is recovered (£25.49, £22.49, £18.95)~~ *(decided at D15)*; the Article 9 shared-fee allocation rule, which the CFO has now raised twice and asks the CEO to adopt or decline in writing; and whether Candour openly absorbs pay-once buyers' ~£2.31 a year support cost after year three.
+
+**D15 — The pay-once price steps down on results, not on the calendar.** *CEO, 2026-09-22.* Declines the CFO's time-based schedule (£28.99 → £25.49 → £22.49 → £18.95 by year): *"it should be based on data, i.e. if we hit ~1/3 target in year one, then step down and so on."*
+
+**The rule, as proposed by the CVO for the CFO to confirm:** the pay-once price steps down **each time a further third of the capitalised build has been recovered from customers**, assessed at each annual cost-sheet review. "Recovered from customers to date" is already a published figure under Constitution v1.3 (Article 7.2 as amended; Article 2.1's amortisation schedule), so the trigger rests on a number anyone can check.
+
+**Two guardrails, binding:**
+1. **Article 2.1's 30% cap operates independently of any milestone.** If volume runs ahead and margin exceeds the cap, a cut is compulsory whether or not a third has been recovered. The milestone rule can only make prices fall sooner, never later than the cap requires.
+2. **The milestones and the step sizes are published before first sale** and follow the Article 9 row on prices that never fall: a trigger defined after the fact is a price held high by moving the threshold.
+
+**Why it is better than the calendar, recorded because it is the CEO's reasoning and it is sound:** per-unit cost is annual cost divided by units sold, so the honest price is driven by volume; a date is a proxy for volume that is right only if sales track the plan. **What it does not change:** amortisation remains time-based under v1.3, so at month 36 the build leaves the cost base regardless of sales, and the price must reflect that at the next review whether or not the final third has been recovered.
 
 ---
 
