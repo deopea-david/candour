@@ -48,7 +48,7 @@
 
 **N. The 30.3% cut (answer E) comes from Candour's own pricing rule. The Constitution on its own requires less (§8.3).** Article 2.1's 30% cap would force a cut only to **79p (20.2%)** at the same volume. Getting to **69p** depends on the CEO adopting the rule I recommend: **work out every price again at each yearly review, and cut it whenever the rule gives a lower figure.** The customer copy at §12 is written on that rule.
 
-**O. The pay-once price should step down each year as the build is paid off (§11.2).** At the reference volume that means **£28.99 → £25.49 → £22.49 → £18.95**. A buyer in year three would otherwise pay for 24 months of build cost that has already left the cost base. That would also push the product's year-four margin toward the cap, if most customers pay once and then stop using the app (§11.3).
+**O. The pay-once price should step down each year as the build is paid off (§11.2).** *[Decided at D15, 2026-09-22: the same steps, triggered by recovery milestones rather than the calendar — §20.]* At the reference volume that means **£28.99 → £25.49 → £22.49 → £18.95**. A buyer in year three would otherwise pay for 24 months of build cost that has already left the cost base. That would also push the product's year-four margin toward the cap, if most customers pay once and then stop using the app (§11.3).
 
 **P. The copy for PRICE-7, PRICE-8 and PRICE-9 is at §12.** It contains no support date, labels the only date as an accounting date in the same sentence, and says the cut depends on subscriber numbers. **One conflict in `requirements.md` needs resolving:** PRICE-1 asks for a per-month figure for every tier. For pay-once that figure only exists if you assume a period, and PRICE-13 forbids implying one. §12.4.
 
@@ -610,6 +610,8 @@ Notice costs money only when Candour **raises** a price. Its cost is the revenue
 
 ### 11.2 The pay-once price should step down each year while the build is being paid off
 
+> **CEO decision, 2026-09-22 (D15): the calendar trigger below is declined. The same step prices now apply on results — each third of the build recovered — with the cap and the cliff unchanged. See §20.**
+
 **The problem with a flat £28.99.** A subscriber pays towards the build only in the months the build is in the cost base. A pay-once buyer at launch prepays three years, all of them inside the amortisation period. **A pay-once buyer in month 30 also prepays three years at £28.99, but only 7 of those 36 months have any build cost left in them.** A new buyer at the first review after month 36 would pay £18.95 for the same product. **So a flat price charges late buyers for build cost that has already been recovered from other customers.** v2 treated this as something to disclose (Correction C3.2). **It can be fixed, and the fix is cheap.**
 
 **The fix: the honest pay-once price in year k counts only the build that remains to be amortised.**
@@ -666,11 +668,15 @@ Notice costs money only when Candour **raises** a price. Its cost is the revenue
 
 ### 12.2 S2 — later price cuts, on the pay-once screen (PRICE-8, PRICE-14)
 
+> **Superseded by §20.5 (D15): the pay-once price now steps on recovery milestones, not dates.**
+
 > *"If you pay once, you won't share in later price cuts — there's no ongoing price for us to reduce. We work out Haunts' prices again every year from its published costs, and cut them when the numbers allow. The biggest cut is due after [month year] — an accounting date, when the cost of building Haunts has been fully counted, not a statement about how long Haunts will be supported. If Haunts has about 12,700 subscribers by then, the monthly price will fall from 99p to 69p, about 30% less; with fewer subscribers it will fall by less or not at all, and our published cost sheet will show why. The pay-once price is worked out again too, so it may be lower for people who buy later. If you subscribe, any cut reaches you automatically at your next renewal — the App Store doesn't let us keep anyone on the old price."*
 
 **Fills:** [C]% = **about 30%**, 99p → 69p, at about 12,700 subscribers (§8.2). **[month year]** = the start date plus 36 months, set at launch (§8.1). **The PM/BA's draft said *"falls by about [C]%"* with no condition. It is changed on purpose**, because a cut promised without its condition is a promise Candour might not owe (§0-F, §8.3). *"Cut them when the numbers allow"* is the §8.3 recompute rule. **If the CEO does not adopt that rule, this sentence is false and must change** — see §8.3 for the two numbers that change.
 
 ### 12.3 S4 — price reviews and the notice guarantee, on the plans screen (PRICE-9, PRICE-12)
+
+> **Superseded by §20.5 (D14, D15): 90 days' notice; pay-once steps on milestones, not dates.**
 
 > *"How our prices change: we work them out again every year from Haunts' published cost sheet and cut them when the numbers allow — the biggest cut is due after [month year], an accounting date, not a statement about how long Haunts will be supported. Any cut reaches subscribers automatically. If we ever raise a price you already pay, we'll tell you in the app at least 90 days before the new price applies, and you can cancel, or export everything free, before then."*
 
@@ -752,6 +758,8 @@ The domain (£10) is Haunt's own and is not shared. **Haunt carries 100% because
 ---
 
 ## 15. Recommendation
+
+> **CEO decision, 2026-09-22 (D14, D15): the ladder is adopted as recommended. Notice is 90 days, not 180. Pay-once steps on recovery milestones, not yearly. See §20.**
 
 My charter asks for a recommendation with a reason, not a menu.
 
@@ -895,11 +903,84 @@ I hold **no block** over: the shape of the ladder; cutting the quarterly tier; s
 
 ---
 
+## 20. Addendum, 2026-09-22 — the pay-once step-down on results (D15), and D14
+
+*A short addendum. Earlier sections are not rewritten; each of §§0-O, 11.2, 12.2, 12.3 and 15 carries a one-line banner pointing here.*
+
+**What was decided.** **D14:** the ladder in §15 is adopted — **pay-once £28.99 leads, yearly £9.89, monthly 99p, quarterly dropped**. **Notice is 90 days, not the 180 I recommended**, and the CEO recorded his reasons, as Article 4 requires. I have no further objection: my case is on the record at §10, and his second reason — 90 can be lengthened, 180 can never be shortened — is fair. **D15:** the pay-once price steps down **on results, not the calendar**. The CEO's words: *"if we hit ~1/3 target in year one, then step down and so on."* The CVO's proposed anchor: step **each time a further third of the capitalised build has been recovered from customers**, assessed at the annual review. Two binding guardrails: **the 30% cap fires independently**, and **milestones and step sizes are published before first sale**.
+
+### 20.1 The anchor — confirmed, with one correction to what "recovered" means
+
+**Confirmed: recovery is the right trigger.** **Corrected: "recovered" has to be capped at the amount amortised to date.** Without the cap, the rule cuts pay-once too early and makes subscribers pay for it.
+
+**Why a definition is needed at all.** Article 7.2 requires a closing sheet stating *"the build labour capitalised, **the amount recovered from customers to date**, and the unamortised remainder written off."* **Nothing in the Constitution defines "recovered."** Here are the two readings, at the reference volume of 12,692 subscribers:
+
+| | **Uncapped** — all surplus over operating costs counts as recovery | **Capped** — only amortisation that revenue actually covered counts (**recommended**) |
+|---|---|---|
+| At `N*`, first third recovered by | ~month 7 | month 12 |
+| At `N*`, whole build "recovered" by | ~month 21, so pay-once goes to its post-cliff £18.95 at the **month-24** review | never before month 36 |
+| Consequence | From month 24, pay-once is priced **as if the build were gone, while a year of build is still in the cost base.** Pay-once is sold below its own cost, and subscribers' margin pays the difference | Pay-once steps down in line with the cost base, never ahead of it |
+
+**The reason for the cap is constitutional, not taste.** The Definitions say *"**Profit:** income minus cost over a period"*, and amortisation is a cost. **So surplus above the full cost is profit, not build recovery.** Profit goes through the Article 2.3 waterfall: reserve first, price cuts for existing customers third. Counting it as "recovery" would relabel profit as cost recovery. It would also move a price cut out of the waterfall and hand it to one tier only. **Above-plan gains belong to the cap and to the recompute rule (§8.3), which apply to every tier alike.**
+
+> **Proposed definition, to be published on the launch cost sheet: *Recovered to date* = the smaller of (a) the build amortised to date and (b) cumulative net proceeds since the start date — ex-VAT, after store commission, with pay-once revenue recognised straight-line over 36 months (§7.3) — minus cumulative operating costs (fixed operating plus variable).** This is a definition of a term the Constitution uses without defining. **CGO to confirm, and ideally to add it to the Definitions by public amendment**, because Article 9 names redefining a term as a loophole in its own right.
+
+**A sales-count trigger would be worse [J].** Costs are about 97% fixed, so a sales count and a recovery figure agree **only while costs match the plan.** They will not: the build estimate has already grown five-fold, and the maintenance figure has never been tested against a real year. **When costs overrun, a sales count cuts the price while the build is not actually being paid back.** When they come in under, it holds the price up. A count across mixed tiers also needs weights — one pay-once sale is not one subscriber-month — and those weights rebuild the recovery calculation, less transparently. **The recovery trigger's own weakness is that inflating operating costs delays a milestone** (Article 9, row 1). That is exposed by the itemised sheet, and every review should publish the recovery calculation line by line.
+
+### 20.2 The steps
+
+| Milestone, assessed at a yearly review | Earliest possible (capped) | **Pay-once price** | Step |
+|---|---|---|---|
+| Launch | — | **£28.99** | — |
+| **M1 — one third recovered** (£25,089.35 at today's build figure) | month-12 review | **£25.49** | −£3.50 (12.1%) |
+| **M2 — two thirds recovered** (£50,178.70) | month-24 review | **£22.49** | −£3.00 (11.8%) |
+| **The cliff — first review after month 36**, whatever has been recovered | month-36 review | **The post-cliff honest price at actual volume, if lower**: £18.95 at `N*`, £21.95 at 8,984, £27.00 at 6,000; **no change** at 4,000, where it would be £34.64 | Set by volume, not by the schedule |
+
+**The step prices are §11.2's, unchanged. Only the trigger has moved.** They are computed at `N*` and fixed before first sale. The pound thresholds are thirds of the capitalised figure on the **launch** cost sheet. That figure should be built from recorded hours (§16.3). Once published, it is never restated, just like the start date, so the threshold cannot be moved later. **No third milestone is needed:** full recovery cannot come before month 36 under the capped definition, and at month 36 the cliff governs.
+
+**When each step lands, by volume (all-monthly equivalent, 99p):**
+
+| Subscribers | 4,000 | 6,000 | 8,000 | **8,984** (break-even) | 12,692 (`N*`) | 15,000+ |
+|---|---|---|---|---|---|---|
+| M1 → £25.49 | never before the cliff | month 36 (the cliff governs) | month 24 | **month 12** | month 12 | month 12 |
+| M2 → £22.49 | never | never | month 36 (the cliff governs) | **month 24** | month 24 | month 24 |
+
+**In one sentence:** D15's rule matches the calendar schedule at break-even volume or above, comes later below break-even, and below about 6,000 subscribers never fires at all. **That is the CEO's intent, and the arithmetic backs it.** Below break-even the honest pay-once price is well *above* £28.99 (£66.52 at 4,000), so stepping on the calendar would have deepened a loss.
+
+**One thing a reader should know.** At break-even volume, stepping to the `N*` prices widens the pay-once tier's shortfall below target. The honest year-two pay-once price at 8,984 is £31.39, against a charged £25.49. **That shortfall is in the customer's favour, and it is published.** It is the price of fixing the steps in advance, which guardrail 2 requires.
+
+### 20.3 Can margin breach the cap between reviews? Not through the milestones. Through volume, yes — and a yearly check is too slow on its own
+
+**The milestones cannot cause a breach.** They only ever lower prices, and straight-line recognition stops a burst of pay-once sales from spiking recognised margin. **The risk comes from volume.** Article 2.1 measures margin *"per product, per financial year"* and allows no justification above 30%. **If volume surges mid-year and nobody looks until the yearly review, the breach is complete before anyone sees it.** It cannot be undone either: Candour has no refund mechanism, and refunds are paid by the stores. For the monthly tier, the cap is reached at **17,140** subscribers, 1.35 times `N*`. Given §14 that is unlikely, but one press mention could do it.
+
+> **Recommendation: a quarterly run-rate check** — store revenue reports against the fixed cost base, about an hour a quarter [J]. **If the projected full-year margin exceeds 25%, bring the price review forward.** Cuts need no notice and reach monthly subscribers at their next renewal. **Owner: CFO. Any cut is still the CEO's decision (5.4).** Also, **Haunts needs a defined financial year.** The cap is tested per financial year and Candour has not set one. I recommend each financial year run from an anniversary of the start date, so the yearly review and the cap test line up.
+
+**The §11.3 exposure remains.** If nearly all customers pay once, the year-four margin can still reach **33%** even with the steps. The quarterly check is what catches it, and the lever is the price new pay-once buyers pay.
+
+### 20.4 The cliff — the calendar still wins at month 36
+
+D15 records it correctly: amortisation is time-based under v1.3. **At the first review after month 36:** the milestones retire; every tier, pay-once included, is set again from the post-cliff cost base at actual volume if that gives a lower price; and the cap applies as always. **Any build not recovered by month 36 stays unrecovered.** It is never charged again, because nothing in the Definitions lets an amortised cost back into the cost base. It shows on the published schedule as amortised but not recovered, and it is the size of Deviation 2 made concrete. **So no buyer after month 36 pays for build cost that earlier customers failed to cover.** If a milestone and the cliff fall due at the same review, the lower price applies.
+
+### 20.5 The copy, revised — these supersede §12.2 and §12.3
+
+> **S2 — pay-once screen (PRICE-8, PRICE-14).** *"If you pay once, you won't share in later price cuts — there's no ongoing price for us to reduce. The pay-once price itself comes down as customers pay back what it cost to build Haunts: to £25.49 once a third has been paid back, and to £22.49 at two-thirds. We check at each yearly review and publish the figures. Separately, after [month year] — an accounting date, when the cost of building Haunts has been fully counted, not a statement about how long Haunts will be supported — our prices are worked out again without that cost. If Haunts has about 12,700 subscribers by then, the monthly price falls from 99p to 69p, about 30% less; with fewer subscribers it falls by less or not at all. If you subscribe, any cut reaches you automatically at your next renewal — the App Store doesn't let us keep anyone on the old price."*
+
+> **S4 — plans screen (PRICE-9, PRICE-12).** *"How our prices change: we review them every year against Haunts' published cost sheet. The pay-once price comes down in steps as customers pay back the cost of building Haunts — to £25.49 at a third and £22.49 at two-thirds. After [month year] — an accounting date, not a statement about how long Haunts will be supported — the build cost stops counting and our prices are worked out again without it. If Haunts sells faster than planned, our rules can require cuts sooner. Any cut reaches subscribers automatically. If we ever raise a price you already pay, we'll tell you in the app at least 90 days before the new price applies, and you can cancel, or export everything free, before then."*
+
+**Checked against PRICE-13 and PRICE-14:** no support date; no tier said to cover or last a period; the one date is labelled an accounting date in the same sentence; the milestones are results, not dates. *"Our rules can require cuts sooner"* is guardrail 1. **For the PM/BA to transcribe into `requirements.md` §10.1, and for UX and the CGO to confirm.**
+
+### 20.6 One decision the copy depends on that is not on the CEO's open list
+
+D14 lists three items still open: the pay-once step (now D15), the shared-fee rule, and the tail. **It does not list §8.3's recompute rule** — work every price out again at each yearly review and cut whenever the rule gives a lower figure. **Both S2's *"falls by less or not at all"* and the 69p figure depend on it.** Under the cap alone, the monthly price after the cliff falls only to **79p** at `N*`, and only above about **7,170 subscribers.** **The CEO needs to decide it before the copy ships.** If he declines it, S2 changes in two numbers (§8.3).
+
+---
+
 ## Change log
 
 | Date | Change |
 |---|---|
 | 2026-09-21 | **§§0–6.2 drafted** on Constitution v1.3, D1–D8, the Block 4 ruling and `requirements.md` at 139 requirements. Supersedes `cost-sheet-v2.md` in full. **The draft stopped at §6.2 when the seat hit a rate limit.** |
 | 2026-09-22 | **Completed, §6.2's close to §19.** Continued from §6.2 without rewriting §§0–6.2. **Three marked insertions:** the header line on the name (D9); an **addendum to §0** (items M–P); and **§4.6**, the scope added since §4 (24 requirements, 16 unsized, photos adding no cost line). Delivers: the ladder and per-tier margins on three years (§7); **the cliff — 30.3%, 99p → 69p at `N*`, launch + 36 months, depending on subscriber count** (§8); D7's cumulative limb at £0 and the notice limb priced, **180 days recommended** (§§9–10); **pay-once at £28.99 with a real 18.6% discount, stepping down yearly** (§11); **the copy for PRICE-7, 8, 9 and 12** (§12); the shared-cost rule at 2.39% (§13); the reach finding (§14); **one recommendation** (§15); **the CFO block lifted** (§17.1); seven corrections (§18). Retrieved at primary this session: Apple's GBP grid and Apple's subscription price-change page. **Not a price: Constitution 5.4 reserves pricing to the CEO.** |
+| 2026-09-22 | **Addendum §20, after CEO decisions D14 and D15.** Confirms the CVO's recovery trigger for pay-once step-downs, **with a correction: "recovered" is capped at the amount amortised to date**, because surplus above full cost is profit under the Definitions. Step prices are unchanged (£28.99 → £25.49 → £22.49, then the cliff at actual volume). Recommends recovery over a sales count, adds a **quarterly run-rate check** because a yearly review cannot stop a cap breach from a mid-year surge, and asks for a defined financial year. Confirms the cliff overrides the milestones at month 36. Revises S2 and S4 for milestone steps and 90 days' notice. **Flags that §8.3's recompute rule is not on the CEO's open list**, although the copy depends on it. Banners added at §§0-O, 11.2, 12.2, 12.3 and 15; nothing earlier rewritten. |
 
 *Prepared by the Chief Financial Officer under `roles/cfo.md`. It prepares and flags; it does not certify (Constitution 6.1). Arithmetic in §§6–16 is owed re-derivation by a seat other than this one under gate Condition 6 before publication.*
