@@ -1,0 +1,2 @@
+rows 336103
+clusters 329321  absorbed 6782 (2.02% of rows)  pairs tested 866633  in 15s

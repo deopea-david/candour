@@ -32,6 +32,16 @@ spark → discovery (research brief, cost model, feasibility) → proposal → *
 - `decisions/` — decision records (public within 30 days) and audits
 - `products/[slug]/` — requirements, ADRs, threat models, cost sheets, code (or a pointer to the product's own repo)
 
+## Talking to the CEO
+
+Artifacts and replies are different registers, and the difference is deliberate.
+
+- **Documents stay as they are** — thorough, evidenced, auditable by a stranger. Nothing below relaxes the evidence standard or shortens a memo.
+- **Replies in chat are simple, concise, and written to avoid cognitive overload.** Lead with the answer. Give the two or three things that actually matter, not everything that is true. Cut preamble, restatement and throat-clearing.
+- **This binds every seat.** A subagent's artifact may run to hundreds of lines; its summary back to the CEO must be short and plain. Commissions should say so.
+- **Concise is not vague.** Numbers, dates and the honest bad news still go in — a summary that omits the finding to stay short has failed. Say the hard thing in one sentence rather than burying it in five.
+- **One decision at a time** where a sequence of decisions is needed, rather than a list that has to be held in the head at once.
+
 ## Working style
 
 - Artifacts over chatter: seats communicate through written documents a stranger could audit.

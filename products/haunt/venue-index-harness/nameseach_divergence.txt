@@ -1,0 +1,72 @@
+E1  Raw token-Jaccard, FSA string vs nearest true Overture string (n = 101)
+    identical token sets: 57 (56.4%)
+    median 1.00   p25 0.60   min 0.00   J < 1.0: 44 (43.6%)
+
+E2  Every venue whose two strings are not token-identical:
+    J=0.00  FSA 'Lane 7'                                       OVT 'Lane7'                                         14.9 m
+    J=0.20  FSA 'Subway @ EG On The Move'                      OVT 'Subway'                                         4.9 m
+    J=0.20  FSA 'Wagamama'                                     OVT 'Wagamama Manchester St Peters Square'          61.9 m
+    J=0.25  FSA 'Beech Inn'                                    OVT 'Beech Road Cafe'                               31.2 m
+    J=0.25  FSA 'The Sedge Lynn'                               OVT 'The Sedgelynn'                                 11.4 m
+    J=0.33  FSA 'Bandibul'                                     OVT 'Bandibul korean restaurant'                    12.1 m
+    J=0.33  FSA "Corbiere's Wine Bar"                          OVT 'Corbieres'                                      7.1 m
+    J=0.33  FSA 'Nicolo'                                       OVT 'Nicolo Italian Pizzeria'                       16.9 m
+    J=0.33  FSA "O'Sheas"                                      OVT "O'Sheas Irish Bar"                             40.8 m
+    J=0.33  FSA 'The Beeswing Wine Bar & Kitchen'              OVT 'The Beeswing'                                  19.1 m
+    J=0.33  FSA 'The Waldorf'                                  OVT 'Waldorf Manchester'                            63.3 m
+    J=0.33  FSA 'Trof Cafe'                                    OVT 'The Trof'                                      15.0 m
+    J=0.40  FSA 'San Carlo Gran Cafe'                          OVT 'San Carlo - Manchester'                       397.6 m
+    J=0.40  FSA 'The Bowling Green Hotel'                      OVT 'Bowling Green Chorlton'                       138.0 m
+    J=0.40  FSA 'The Bridge Inn'                               OVT 'The Bridge Pub Ludlow'                          2.8 m
+    J=0.50  FSA 'Afflecks & Brown'                             OVT 'Affleck & Brown'                               10.5 m
+    J=0.50  FSA 'Brewski'                                      OVT 'Brewski Bar'                                   22.5 m
+    J=0.50  FSA 'Browns'                                       OVT 'Browns Manchester'                             18.1 m
+    J=0.50  FSA 'Codfather'                                    OVT 'The Codfather'                                  0.8 m
+    J=0.50  FSA 'Eat Italian Ltd'                              OVT 'Eat Italian Manchester'                         9.0 m
+    J=0.50  FSA 'Natalie White - The Compasses'                OVT 'The Compasses'                                  6.3 m
+    J=0.50  FSA "Rudy's Pizza"                                 OVT "Rudy's Pizza Napoletana - Chorlton"             5.0 m
+    J=0.50  FSA 'Subway - Chorlton'                            OVT 'Subway'                                         4.5 m
+    J=0.50  FSA 'The Charlton Arms'                            OVT 'Charlton Arms Hotel'                           97.0 m
+    J=0.50  FSA 'The Water Lily'                               OVT 'Water Lily Restaurant'                         26.3 m
+    J=0.60  FSA 'Athena Greek Taverna'                         OVT 'Athena Greek Taverna and Cafe'                 12.0 m
+    J=0.60  FSA 'The Beer House Chorlton (Ltd)'                OVT 'The Beer House'                                16.9 m
+    J=0.67  FSA "Bill's Kitchen"                               OVT "Bill's Kitchen Ludlow"                          7.5 m
+    J=0.67  FSA 'Casa Burritos'                                OVT 'Casa Burritos Chorlton'                        25.6 m
+    J=0.67  FSA 'Chapter 66 Restaurant'                        OVT 'Chapter 66'                                    21.8 m
+    J=0.67  FSA 'Church Inn'                                   OVT 'The Church Inn'                                 7.8 m
+    J=0.67  FSA 'Fell Bar'                                     OVT 'Fell Bar Chorlton'                              3.8 m
+    J=0.67  FSA 'Gas Lamp'                                     OVT 'The Gas Lamp'                                  15.3 m
+    J=0.67  FSA 'Golden Moments'                               OVT 'Golden Moments Restaurant'                     13.5 m
+    J=0.67  FSA "Lion's Den"                                   OVT 'Lions Den Manchester'                          56.0 m
+    J=0.67  FSA 'The Bull Hotel'                               OVT 'Bull Hotel'                                     9.2 m
+    J=0.67  FSA 'The China Garden'                             OVT 'China Garden'                                   7.7 m
+    J=0.67  FSA 'The Chorlton Tap'                             OVT 'Chorlton Tap'                                  16.8 m
+    J=0.67  FSA 'The Trevor Arms'                              OVT 'Trevor Arms'                                   64.2 m
+    J=0.67  FSA 'Wheatsheaf Inn'                               OVT 'The Wheatsheaf Inn'                             9.6 m
+    J=0.75  FSA 'The Blues Kitchen'                            OVT 'The Blues Kitchen - Manchester'                25.8 m
+    J=0.75  FSA 'The Corner House'                             OVT 'The Corner House -Ludlow'                       8.9 m
+    J=0.75  FSA 'The Horse and Jockey'                         OVT 'Horse and Jockey'                              56.9 m
+    J=0.80  FSA 'Taste at No.1 LTD'                            OVT 'Taste At No 1'                                 15.9 m
+
+E3  Adverse reclassification bound.
+    Manchester scored venues: 49
+    Hand-adjudicated D1 rescues that are probably the venue: 2 (both Manchester)
+    If BOTH are really present under a name the user never types, and both therefore split,
+    the Manchester single-identity rate falls by at most 4.1 pp.
+    Headline 100.0% -> floor 95.9% in the worst case.
+    Venues where NO variant returned anything within 250 m (consistent with genuine absence): see nameseach_absent.txt.
+
+E4  ANY-variant retrieval by RAW string divergence
+    band                      venues   retrieved
+    J = 1.00 (identical)          57      100.0%
+    0.50 <= J < 1.00              29      100.0%
+    J < 0.50                      15       93.3%
+
+    per variant, divergent strings only (J < 1.00):
+      T1_full             44     50.0%
+      T2_no_article       15     66.7%
+      T3_head2            13     53.8%
+      T4_head1            36     91.7%
+      T5_longest           9     88.9%
+      T6_no_generic        4     25.0%
+      T7_prefix4          35    100.0%

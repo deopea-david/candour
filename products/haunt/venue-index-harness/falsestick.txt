@@ -1,0 +1,46 @@
+
+=== sigma = 25 m, neighbours within 100 m, user primed with 10 confirmations of V, then 20 visits to W ===
+beta    L    area           W-visits   false-stick@1   recall@L of W
+0       5    manchester          280            2.5%           30.7%
+0       5    chorlton           1600            4.7%           64.8%
+0       5    ludlow             2760            3.0%           71.4%
+4       5    manchester          280           57.5%           30.0%
+4       5    chorlton           1600           65.6%           59.1%
+4       5    ludlow             2760           53.0%           67.7%
+20      5    manchester          280           67.1%           30.0%
+20      5    chorlton           1600           77.2%           57.6%
+20      5    ludlow             2760           68.7%           66.7%
+
+0       20   manchester          280            2.5%           75.0%
+0       20   chorlton           1600            4.7%           98.9%
+0       20   ludlow             2760            3.0%           99.5%
+4       20   manchester          280           57.5%           75.0%
+4       20   chorlton           1600           65.6%           98.7%
+4       20   ludlow             2760           53.0%           99.4%
+20      20   manchester          280           67.1%           75.0%
+20      20   chorlton           1600           77.2%           98.6%
+20      20   ludlow             2760           68.7%           99.4%
+
+
+=== sigma = 50 m, neighbours within 100 m, user primed with 10 confirmations of V, then 20 visits to W ===
+beta    L    area           W-visits   false-stick@1   recall@L of W
+0       5    manchester          280            1.1%           20.0%
+0       5    chorlton           1600            5.1%           44.4%
+0       5    ludlow             2760            3.8%           40.5%
+4       5    manchester          280           38.6%           18.2%
+4       5    chorlton           1600           52.6%           41.7%
+4       5    ludlow             2760           41.7%           38.8%
+20      5    manchester          280           50.4%           18.2%
+20      5    chorlton           1600           62.4%           40.8%
+20      5    ludlow             2760           53.0%           38.1%
+
+0       20   manchester          280            1.1%           53.2%
+0       20   chorlton           1600            5.1%           92.9%
+0       20   ludlow             2760            3.8%           90.4%
+4       20   manchester          280           38.6%           53.2%
+4       20   chorlton           1600           52.6%           92.8%
+4       20   ludlow             2760           41.7%           90.1%
+20      20   manchester          280           50.4%           52.9%
+20      20   chorlton           1600           62.4%           92.8%
+20      20   ludlow             2760           53.0%           90.0%
+

@@ -1,0 +1,41 @@
+### FTS5 retrieval policy: AND
+
+=== Part A — per-variant retrieval of a TRUE row, list of 20, radius 250 m, scope B ===
+query variant       venues  retrieved     rate
+T1_full                104         79    76.0%
+T2_no_article           32         26    81.2%
+T3_head2                29         23    79.3%
+T4_head1                79         76    96.2%
+T5_longest              16         15    93.8%
+T6_no_generic            9          6    66.7%
+T7_prefix4              76         75    98.7%
+ANY variant            101        100    99.0%
+   manchester           36         35    97.2%
+   chorlton             34         34   100.0%
+   ludlow               31         31   100.0%
+
+=== Part B — identity split, full stack, name search REAL ===
+
+--- sigma = 10 m ---          Manchester           Chorlton             Ludlow
+                                            median  %single    median  %single    median  %single
+full stack, NO name search (floor)               1     93.9%         1    100.0%         1    100.0%
++ name search, ORACLE (circular)                 1    100.0%         1    100.0%         1    100.0%
++ name search, FTS5 t1 (registered)              1    100.0%         1    100.0%         1    100.0%
++ name search, FTS5 random  [HEADLINE]           1    100.0%         1    100.0%         1    100.0%
++ name search, FTS5 best-of (ceiling)            1    100.0%         1    100.0%         1    100.0%
+
+--- sigma = 25 m ---          Manchester           Chorlton             Ludlow
+                                            median  %single    median  %single    median  %single
+full stack, NO name search (floor)               1     81.6%         1     97.9%         1    100.0%
++ name search, ORACLE (circular)                 1    100.0%         1     97.9%         1    100.0%
++ name search, FTS5 t1 (registered)              1     98.0%         1     97.9%         1    100.0%
++ name search, FTS5 random  [HEADLINE]           1    100.0%         1     97.9%         1    100.0%
++ name search, FTS5 best-of (ceiling)            1    100.0%         1     97.9%         1    100.0%
+
+--- sigma = 50 m ---          Manchester           Chorlton             Ludlow
+                                            median  %single    median  %single    median  %single
+full stack, NO name search (floor)               2     34.7%         1     83.0%         1     76.3%
++ name search, ORACLE (circular)                 1     98.0%         1     97.9%         1    100.0%
++ name search, FTS5 t1 (registered)              1     89.8%         1     97.9%         1     94.7%
++ name search, FTS5 random  [HEADLINE]           1     93.9%         1     97.9%         1     94.7%
++ name search, FTS5 best-of (ceiling)            1    100.0%         1     97.9%         1    100.0%

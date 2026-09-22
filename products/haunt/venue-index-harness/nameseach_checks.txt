@@ -1,0 +1,42 @@
+C1  FTS5 hits within 250 m per typed query (scope B = 2,824 rows in the three areas)
+    n queries 470   median 1   p90 1   max 24   zero-hit 29.8%
+      T1_full          median     1   p90    1   max    2
+      T2_no_article    median     1   p90    1   max    2
+      T3_head2         median     1   p90    1   max    2
+      T4_head1         median     1   p90    3   max   24
+      T5_longest       median     1   p90    1   max    2
+      T6_no_generic    median     0   p90    1   max    2
+      T7_prefix4       median     1   p90    2   max   20
+    For comparison, the ORACLE's effective list is every candidate in radius:
+      distance-only candidates  median 61   p90 215   max 264
+
+C2  Retrieval by the name-similarity that PUT the row in the truth set (the residual contamination)
+    band          venues   ANY-variant retrieval
+    0.85-0.95          1                  100.0%
+    0.95-1.00        100                   99.0%
+    similarity distribution: median 1.000  p25 1.000  min 0.909
+
+C3  Name-blind truth (any scope-B row within 30 m of the FSA geocode; name plays NO part in the truth definition)
+    venues with such a row: 117;  ANY-variant retrieval 69.2%  (81/117)
+
+C4  Single-identity rate at sigma = 25 m, restricted to venues that HAVE a scope-B row (101 of 134)
+    design                                      Manchester    Chorlton    Ludlow
+    floor: no name search                            75.0%         97.1%        100.0%
+    oracle (circular)                               100.0%         97.1%        100.0%
+    FTS5 t1                                          97.2%         97.1%        100.0%
+    FTS5 random [HEADLINE]                          100.0%         97.1%        100.0%
+    FTS5 best-of                                    100.0%         97.1%        100.0%
+
+C5  Sensitivity at sigma = 25 m (single-identity %, Manchester / Chorlton / Ludlow)
+    AND, L=20 [HEADLINE]         100.0%      97.9%     100.0%
+    OR,  L=20                    100.0%      97.9%     100.0%
+    AND, L=5                      93.9%      95.7%      97.4%
+    OR,  L=5                      91.8%      97.9%      94.7%
+
+C6  P2 non-degradation: single-identity % by visits per venue, sigma = 25 m, FTS5 random
+    visits        Manchester    Chorlton    Ludlow
+    3                 100.0%         97.9%        100.0%
+    6                 100.0%         97.9%        100.0%
+    12                100.0%         97.9%        100.0%
+    20                100.0%         97.9%        100.0%
+    40                100.0%         97.9%        100.0%
