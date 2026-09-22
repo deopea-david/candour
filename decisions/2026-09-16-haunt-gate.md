@@ -304,6 +304,20 @@ Decisions taken after the gate, recorded as they are made rather than reconstruc
 
 **(d) The mark is owed and it is a launch dependency.** Both stores require an app icon at submission. **UX / Design Lead owns the brief and usage constraints** — Article 6 names the seat that way, so no new seat or amendment is needed. Producing the artwork is a human or tooling task and is a spending decision for the CEO. The brief excludes ghost, eye and tracking imagery, for the reason D9 records.
 
+**D12 — Photos may be fetched from the user's own cloud; the claim is reworded, not the product blocked.** *CEO, 2026-09-22.* Supersedes D11(b)'s "on this phone only" blocking rule and its open download-button question.
+
+**The CEO's argument, adopted:** fetching a photo the user attached, from the user's own iCloud or Google Photos, in order to display it back to them is *"not a blocker as it is up to the user whether they want to upload photos and we are not sending them anywhere, just fetching them."* **The privacy substance holds:** the request runs from the user's device to the user's own storage through the platform photo framework; Candour receives nothing and sends nothing new. **What it breaks is only a sentence.** The marketing statement settled at the proposal's third correction — *"The app makes no other network calls"* — would become false, and it is a contractual term under CRA 2015 s.36(3) and an Article 4 claim that must be substantiable. **So the statement is reworded rather than the feature blocked**, e.g.: *"Haunts never sends your data anywhere. If a photo you attached is stored in iCloud or Google Photos, your phone may download it to show it to you."* No manual download button is required; the fetch is automatic.
+
+**Thumbnail cache at attach time.** A small display-size thumbnail is stored when a photo is attached; the original stays referenced. Something always displays even after the original becomes cloud-only or is deleted, which substantially reduces the thinning-over-time problem D11(b) recorded. Storage impact stays small.
+
+**The distinction this draws, recorded because it governs the next case.** A photo fetch travels from the user to **the user's own** storage. **A map tile request sends the locations a user is viewing to a third-party tile server** — in effect their location history, to someone else. The first is acceptable on the CEO's argument; the second is not settled by it, and the heatmap's map is referred to the CTO on exactly that question.
+
+**D13 — Suggestions: take the rating trend; drop checksums and the browsable gaps list; ranked list and heatmap as two views.** *CEO, 2026-09-22.*
+
+**Export is a right-of-access tool, not a feature.** The CEO's framing, adopted because it should shape every future export decision: export exists so a user can obtain what the app holds about them, *"similar to GDPR requests"*, available as often as they like and **used rarely**. On that framing checksums in the export are low value and are dropped, and the readable HTML export stays low priority. **The browsable list of capture gaps is dropped as too present in the user's face**; the gaps continue to render **inline** on the timeline, because the CTO requires them for "automatic capture" to be a substantiable claim on Android.
+
+**Rating trend on the venue page:** taken. **Ranked list and heatmap:** both, as two views of the same data that the user switches between — the ranked list is the base and does not depend on a map. **A separate session recap for v1** and **any "export before photos disappear" reminder**: dropped, the second because it would be a nudge.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
