@@ -334,7 +334,7 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **(d) Backup includes photo thumbnails**, so restoring to a new phone does not show a journal with no photos. The CTO sizes it.
 
-**Still open, to be taken one at a time:** ~~the pay-once price stepping down each year as the build is recovered (£25.49, £22.49, £18.95)~~ *(decided at D15)*; ~~the Article 9 shared-fee allocation rule, which the CFO has now raised twice and asks the CEO to adopt or decline in writing~~ *(decided at D16)*; and whether Candour openly absorbs pay-once buyers' ~£2.31 a year support cost after year three.
+**Still open, to be taken one at a time:** ~~the pay-once price stepping down each year as the build is recovered (£25.49, £22.49, £18.95)~~ *(decided at D15)*; ~~the Article 9 shared-fee allocation rule, which the CFO has now raised twice and asks the CEO to adopt or decline in writing~~ *(decided at D16)*; and ~~whether Candour openly absorbs pay-once buyers' ~£2.31 a year support cost after year three~~ *(decided at D17)*.
 
 **D15 — The pay-once price steps down on results, not on the calendar.** *CEO, 2026-09-22.* Declines the CFO's time-based schedule (£28.99 → £25.49 → £22.49 → £18.95 by year): *"it should be based on data, i.e. if we hit ~1/3 target in year one, then step down and so on."*
 
@@ -351,6 +351,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 **The CEO's threshold, which makes the rule self-limiting:** equal split holds **while a product's share of shared costs moves its price by less than 10%**. **At 10% or more, the allocation must be weighted** — so that a small product is not priced up by costs a large one mostly drives. The weighting basis (revenue, usage or another measure) is **not chosen now**; the CFO proposes it when the threshold is first approached, **and publishes it before it is applied** — an allocation basis chosen after the numbers are known is the same vector Article 9 names for amortisation periods.
 
 **Recorded because it binds every future product, not Haunts alone:** this is a company-wide rule sitting in a product's decision record. It should move into the Constitution or the CFO's standing method at the next amendment, where the next product will find it.
+
+**D17 — Candour absorbs pay-once buyers' support after their payment is used up.** *CEO, 2026-09-22.* A pay-once buyer's £28.99 is recovered over roughly three years; they continue to cost about **£2.31 a year each** in support thereafter. **Candour carries that cost openly**, stated on the cost sheet as a known loss met from Candour's margin. The alternatives were declined because neither is honest: loading it onto subscribers' prices is a hidden cross-subsidy between customers of the kind Article 2.1 exists to prevent, and charging pay-once buyers again would break the premise of the tier they chose.
 
 ---
 
