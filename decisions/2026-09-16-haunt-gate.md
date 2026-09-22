@@ -368,6 +368,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **(d) A local self-portrait** — *"You rate pubs 4.1 and cafés 3.2; your most-visited place is X"* — (B4): taken, **as its own summary reachable outside the recap**, not only within it. Computed on the device. It carries the same constraints as the recap: pulled, never pushed, no badges or comparisons.
 
+**D20 — The self-portrait may appear as headlines at the top of the home screen, for UX to design.** *CEO, 2026-09-22:* facts from the local self-portrait shown *"like headlines/marquee at the top of the homescreen, bit like news channels"*, **toggleable, with its appearance changeable** for anyone who does not want a marquee. Accepted in principle and referred to UX / Design Lead. **Three constraints go with it:** (1) the home screen is the most overlooked surface in the product, so location-revealing facts must not appear there without the user's choice, and the element never appears in the app-switcher preview, as with the heatmap; (2) moving content must be pausable and must respect the platform's reduce-motion setting (WCAG 2.2 AA via WCAG2ICT, Constitution Article 4); (3) the content stays factual, never celebratory, streak-like or comparative, which would breach Article 4's bar on compulsion mechanics. **Defaults are UX's to propose**: on or off, scrolling or static, which facts are eligible.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
