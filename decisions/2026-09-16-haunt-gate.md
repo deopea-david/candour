@@ -354,6 +354,10 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D17 — Candour absorbs pay-once buyers' support after their payment is used up.** *CEO, 2026-09-22.* A pay-once buyer's £28.99 is recovered over roughly three years; they continue to cost about **£2.31 a year each** in support thereafter. **Candour carries that cost openly**, stated on the cost sheet as a known loss met from Candour's margin. The alternatives were declined because neither is honest: loading it onto subscribers' prices is a hidden cross-subsidy between customers of the kind Article 2.1 exists to prevent, and charging pay-once buyers again would break the premise of the tier they chose.
 
+**D18 — Every price is recomputed at each annual review and cut whenever the numbers allow.** *CEO, 2026-09-22.* Adopts the CFO's recompute rule (`cost-sheet-v3.md` §8.3), which the D15 addendum surfaced as an open decision the customer-facing copy depended on. At each annual cost-sheet review every tier is worked out again from actual costs and volume, and **cut whenever the numbers allow**, not only when Article 2.1's 30% cap forces it. **Consequence:** after month 36 the monthly price can fall to **69p** at the reference volume; without the rule it would fall only to 79p, and only above roughly 7,170 subscribers. It applies the principle the CEO has held throughout — costs fall, prices fall — as a standing obligation rather than a discretion.
+
+**Housekeeping that travels with it, adopted as the CFO recommended:** a **quarterly margin check** (about an hour each, the CFO's estimate) that brings the annual review forward if projected margin passes **25%**, since a mid-year surge caught only at year end cannot be undone; and a **defined financial year** for Haunts, since that is the year the cap is tested over.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
