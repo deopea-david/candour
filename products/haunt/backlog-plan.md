@@ -247,6 +247,7 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 | FT-PLAN-2 | Platform and device questions | SPK-03, SPK-05, SPK-07, SPK-10, SPK-14 |
 | FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13 |
 | FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09 |
+| FT-PLAN-5 | Repository conventions and agent scaffolding | SPK-15, SPK-16 |
 
 ---
 
@@ -299,6 +300,8 @@ Each is a task with an owner, a priority inherited from the most severe requirem
 | **SPK-12** | Backup architecture branch: the user-saved encrypted file as the only backup, or a cloud module as well | CTO | DATA-12's shape (§12.1 records both branches); FT-DATA-3 | §12.1; §24 reserved row |
 | **SPK-13** | Name the competitor export formats DATA-15 imports, with retrieved format documentation | CTO | DATA-15; its untrusted-input review by the CSO | §22 item 17 |
 | **SPK-14** | Does any API let an app relinquish its own location authorization? | Engineer, about one hour | ENT-8 — *"honest by construction rather than by instruction"* if yes | §22 item 5 |
+| **SPK-15** | Traceable commits, branches and PRs: the Conventional Commits standard with the backlog key as scope, branch and PR naming, `Refs #n` linking, and enforcement by a `commit-msg` hook and a CI check that the key is a real ticket | CTO | Every later change in `haunts`: the traceability D37 requires | D37 (CEO, 2026-09-26) |
+| **SPK-16** | Agent scaffolding in `haunts`: the full `CLAUDE.md`, the implementation-story and PR templates, and `docs/delivery-log.md`, from `agentic-agile-adoption.md` Appendices A–D, following SPK-15's convention. The first PR through the CTO review record | CTO, drafting from the PM/BA's appendices | Every agent session in `haunts`; wave planning | D34; `agentic-agile-adoption.md` §6 |
 
 **Not added as spikes, and why.** §22 item 1 (usability testing) needs the CEO's authorisation and a spend decision under Constitution 5.4 — it is recorded in §12, not put on a build board where it would sit un-actionable. §22 item 12 (closed venues are undetectable) has no requirement attached and no seat has been asked to do work on it; putting it on the board would create unowned work. §22 items 3, 13, 14, 16 and 18 are CGO or CEO rulings, not technical work. §22 item 11 (thirty shopfront names) waits on the CEO's authorisation.
 
