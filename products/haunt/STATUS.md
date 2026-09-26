@@ -54,6 +54,7 @@ A private, on-device journal of places visited. The phone detects visits; the us
 | D26 | Strip clubs, casinos, off-licences also out of headlines by default |
 | D27 | Code, tickets and board in a separate repo named **`haunts`**; backlog split into **epics → features → tasks**; tickets link to requirement IDs, never copy them |
 | D28 | `haunts` repo **private now, public later** under a personal-use, non-commercial licence; licence text with the CGO; written reason owed (`LICENSE.md` presumes open source) |
+| D29 | **Secret scanning (gitleaks and/or similar) on pre-commit before any code** in `haunts`; CSO specifies the baseline |
 
 ## Blocks and gates
 
@@ -84,7 +85,8 @@ A private, on-device journal of places visited. The phone detects visits; the us
 1. **The CEO merges the PR** carrying `haunt/requirements` into `main`, so ticket links can point at a stable commit.
 2. ~~Repo visibility~~ — **decided at D28: private now.** Before it goes public: the CGO's licence note and the CEO's written reason for a non-open-source licence.
 3. ~~`gh` needs the `project` scope~~ — **done 2026-09-26.** The `deopea-david` token now has `project`. The GitHub MCP connector still shows as needing authorisation in this session; `gh` covers everything needed.
-4. **The PM/BA proposes the backlog mapping** — which requirement IDs sit under which feature and epic — plus the written standup routine. The CEO sees it before any ticket exists.
+4. **The CSO's security baseline is the repo's first commit** (D29): pre-commit secret scanning, the same scan in CI, `.gitignore` for signing keys and credentials. No product code before it.
+5. **The PM/BA proposes the backlog mapping** — which requirement IDs sit under which feature and epic — plus the written standup routine. The CEO sees it before any ticket exists.
 
 **Standups are written, not a conversation.** Agents are stateless, so a standup is each seat (PM/BA, QA, Engineer) reading the board and recent commits and recording a short dated status. The PM/BA summarises for the CEO.
 

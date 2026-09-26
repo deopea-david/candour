@@ -402,6 +402,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Referred to the CGO:** which licence text delivers the CEO's intent; its compatibility with the bundled third-party terms (CDLA-Permissive-2.0, Apache-2.0, OGL) and dependencies; and the Article 7.2 question. The CGO's opinion prepares and flags and does not certify (Constitution 6.1).
 
+**D29 — Secret scanning comes before any code in `haunts`.** *CEO, 2026-09-26.* Because the repository is to become public (D28), **nothing secret may ever enter its git history** — making a repository public publishes every past commit, not only the current tree. Secret scanning on pre-commit (gitleaks and/or other security-focused hooks) is therefore **a first step of the build, in place before the first line of product code is committed.** Referred to the **CSO**, whose charter covers secret hygiene, to specify the baseline. The CVO's addition, for the CSO to confirm or reject: **a local hook can be skipped** (`--no-verify`, or a machine without the hook installed), so the same scan runs again in CI on every push and pull request as the backstop, and a **full-history scan is a condition of the switch to public**.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
