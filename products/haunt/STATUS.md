@@ -1,7 +1,7 @@
 # Haunts — status and hand-off
 
 **As of:** 2026-09-26 · **Branch:** `haunt/requirements` (based on the merge of PR #1) · **Phase:** requirements complete; build not started
-**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (D27, not yet created)
+**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (D27; created private 2026-09-26, empty until the CSO baseline lands)
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
 
