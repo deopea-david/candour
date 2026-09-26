@@ -1,7 +1,7 @@
 # Haunts — status and hand-off
 
-**As of:** 2026-09-26 · **Branch:** `haunt/requirements` (based on the merge of PR #1) · **Phase:** requirements complete; build not started
-**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (D27; created private 2026-09-26, empty until the CSO baseline lands)
+**As of:** 2026-09-26 (evening) · **Phase:** build set up — repo, board and 295 tickets exist; **M0 (planning) is next**
+**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (private; local clone `~/Documents/haunts`) · **Board:** https://github.com/users/deopea-david/projects/1
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
 
@@ -52,9 +52,16 @@ A private, on-device journal of places visited. The phone detects visits; the us
 | D24 | Health, religious, social-service places out of headlines by default; **protective defaults, user can change** (DFLT-1) |
 | D25 | Uncategorised places: per-entry headline toggle; typed-in on, imported off, bulk switch on import |
 | D26 | Strip clubs, casinos, off-licences also out of headlines by default |
-| D27 | Code, tickets and board in a separate repo named **`haunts`**; backlog split into **epics → features → tasks**; tickets link to requirement IDs, never copy them |
+| D27 | Code, tickets and board in a separate repo named **`haunts`**; backlog split into **epics → features → tasks**; tickets link to requirement IDs, never copy them (*copying superseded by D31*) |
 | D28 | `haunts` repo **private now, public later** under a personal-use, non-commercial licence; licence text with the CGO; written reason owed (`LICENSE.md` presumes open source) |
 | D29 | **Secret scanning (gitleaks and/or similar) on pre-commit before any code** in `haunts`; CSO specifies the baseline |
+| D30 | Backlog mapping approved (17 epics, 67 features, 211 tasks); **Kanban** board; **QA** column; only QA moves a requirement ticket to **Done** |
+| D31 | Tickets carry the requirement and acceptance criteria **in full**, stamped with the `requirements.md` commit; **the document wins** |
+| D32 | CSO security baseline approved — **live on `haunts`**, CI green |
+| D33 | Tickets have a files section, **TBD until the CTO designs the architecture** |
+| D34 | Ticket format from the agentic-agile adoption plan; implementation stories only when needed, **closed on merge**; waves inside Kanban |
+| D35 | **CEO logs his own hours** per phase, roughly, for the cost sheet |
+| D36 | Phases are **GitHub milestones** M0–M5; a milestone closes only with the CGO review pack and demo |
 
 ## Blocks and gates
 
@@ -77,20 +84,16 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ## Next step
 
-**Set up the build: repo, board and tickets.** Decided so far (D27): a separate repo, `deopea-david/haunts`; a backlog of epics → features → tasks; tickets link to requirement IDs and track state only.
+**The build is set up.** In `deopea-david/haunts`: the CSO security baseline (first commit; `secret-scan` CI green), **295 tickets** generated from `requirements.md` by `products/haunt/backlog-tickets.py` and created by `backlog-create.py` (key → issue map in `backlog-issues.csv`), a Kanban board with the D30 columns and fields, and milestones **M0–M5**. The 19 planning tickets (EP-PLAN and its spikes) are in **M0**; everything else waits for the CTO to confirm the phase order.
 
-> **Do not create the repo, board or any tickets without the CEO's explicit go-ahead.** He asked for this in writing. Ask first.
+**Next, in order (the main session orchestrates; the CEO decides):**
+1. **`haunts` scaffolding PR** — lean `CLAUDE.md` (the CSO rules are already in it), story template, PR template (`Refs #n` only), `docs/delivery-log.md`, from `agentic-agile-adoption.md` Appendices A–D. It is the first PR through the review process (CTO review record pinned to the head commit). **T15** (Claude Code deny rules in `haunts`) is checked in the first seat session there.
+2. **M0 begins:** `/build haunt` step 2 — **CTO** architecture ADR and **CSO** threat model; **SPK-01** (the CTO's written Block 4 lift), SPK-02 (Android device matrix, Block 2), and the rest of M0. The CTO confirms the phase order and assigns milestones.
+3. **Standups** start with M0 (`standup-routine.md`).
 
-**Before anything is created, in order:**
-1. **The CEO merges the PR** carrying `haunt/requirements` into `main`, so ticket links can point at a stable commit.
-2. ~~Repo visibility~~ — **decided at D28: private now.** Before it goes public: the CGO's licence note and the CEO's written reason for a non-open-source licence.
-3. ~~`gh` needs the `project` scope~~ — **done 2026-09-26.** The `deopea-david` token now has `project`. The GitHub MCP connector still shows as needing authorisation in this session; `gh` covers everything needed.
-4. **The CSO's security baseline is the repo's first commit** (D29): pre-commit secret scanning, the same scan in CI, `.gitignore` for signing keys and credentials. No product code before it.
-5. **The PM/BA proposes the backlog mapping** — which requirement IDs sit under which feature and epic — plus the written standup routine. The CEO sees it before any ticket exists.
+**Open CEO decisions, to bring one at a time:** the five licence decisions (`code-licence-note.md` §9 — none urgent until go-public); commissioning the icon brief (PLAT-7, critical path); the EU storefront (PLAT-5); the `SECURITY.md` contact address (before go-public). **Offered, not asked:** running the CTO's reviews on a different model for independence (see `pipeline/model-selection.md`).
 
-**Standups are written, not a conversation.** Agents are stateless, so a standup is each seat (PM/BA, QA, Engineer) reading the board and recent commits and recording a short dated status. The PM/BA summarises for the CEO.
-
-**Still owed at build planning:** the CTO's written confirmation that Block 4 limb (b) lifts against `requirements.md` §7.7.7.
+**Company-level:** `pipeline/agentic-agile.md` and `/agile-sync` (PR #4).
 
 ---
 

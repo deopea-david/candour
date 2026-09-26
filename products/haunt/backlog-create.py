@@ -39,8 +39,10 @@ def gh(*args, input=None, retries=6):
         if p.returncode == 0:
             return p.stdout
         err = p.stderr + p.stdout
-        if "rate limit" in err.lower() or "abuse" in err.lower() or "502" in err or "503" in err:
-            wait = 60 * (attempt + 1)
+        transient = ("something went wrong" in err.lower() or "timeout" in err.lower() or "timed out" in err.lower()
+                     or any(c in err for c in ("502", "503", "504")))
+        if "rate limit" in err.lower() or "abuse" in err.lower() or transient:
+            wait = 10 * (attempt + 1) if transient else 60 * (attempt + 1)
             print(f"  rate-limited; waiting {wait}s", file=sys.stderr)
             time.sleep(wait)
             continue
@@ -134,9 +136,29 @@ for i, t in enumerate(tickets, 1):
            "-F", f"sub_issue_id={row['id']}")
         row["linked"] = "1"; save_map(m)
     if not row.get("item_id"):
-        r = graphql("mutation($p:ID!,$c:ID!){addProjectV2ItemById(input:{projectId:$p,contentId:$c}){item{id}}}",
-                    p=PID, c=row["node_id"])
-        row["item_id"] = r["data"]["addProjectV2ItemById"]["item"]["id"]; save_map(m)
+        # The board's "Auto-add" workflows may already have added the issue; look it up before adding.
+        # The board's "Auto-add" workflows add issues asynchronously, so an add can race them.
+        def lookup():
+            r = graphql("query($c:ID!){node(id:$c){... on Issue{projectItems(first:20){nodes{id project{id}}}}}}", c=row["node_id"])
+            return [n["id"] for n in r["data"]["node"]["projectItems"]["nodes"] if n["project"]["id"] == PID]
+        found = lookup()
+        if not found:
+            try:
+                r = graphql("mutation($p:ID!,$c:ID!){addProjectV2ItemById(input:{projectId:$p,contentId:$c}){item{id}}}",
+                            p=PID, c=row["node_id"])
+                found = [r["data"]["addProjectV2ItemById"]["item"]["id"]]
+            except SystemExit as e:
+                if "already exists" not in str(e):
+                    raise
+                for _ in range(10):
+                    time.sleep(2)
+                    found = lookup()
+                    if found:
+                        break
+        if not found:
+            raise SystemExit(f"{k}: could not find or add board item")
+        row["item_id"] = found[0]
+        save_map(m)
     if not row.get("fields"):
         sets = [("Status", {"singleSelectOptionId": status_backlog})]
         for name, val in t["fields"].items():

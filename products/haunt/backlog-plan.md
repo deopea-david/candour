@@ -372,7 +372,7 @@ GitHub Projects supports text, number, date, single-select and iteration fields,
 | Priority | single select | BLOCKING, MUST, CUT-LINE, PENDING-ESTIMATE |
 | Platform | single select | ios, android, both, none |
 | Owner seat | single select | the nine seats in §6 |
-| Phase | single select | M0 … M5 (§10). **Left empty by the ticket script; filled after the CTO confirms §10** |
+| ~~Phase~~ | — | **Removed by D36 (CEO, 2026-09-26): phases are GitHub milestones M0–M5 in `haunts`.** Views below that group or sort by Phase use the milestone instead |
 | Estimate basis | single select | *In 2,090 h* · *Added after the estimate — unsized* · *Pending estimate* · *n/a*. **Filled by the CTO at SPK-08**, not by this seat |
 | CTO hours | number | the CTO's estimate, when there is one |
 | Blocked by | text | key(s) of the blocking ticket or decision |
