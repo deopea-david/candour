@@ -416,6 +416,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D35 — The CEO records his own hours on Haunts, roughly, per phase.** *CEO, 2026-09-26.* To the half-day, noted weekly, reported in each phase's review pack and passed to the CFO. The reason: `cost-sheet-v3.md` says actual hours replace the CTO's 2,090-hour estimate at the first yearly review, and only the CEO can record his own. Without a record kept as the work happens, those hours would have to be reconstructed afterwards. **Agent spend is not metered per ticket**; it is the subscription already on the cost sheet. This is one of five delivery measures recorded from day one (`agentic-agile-adoption.md` §7.2).
 
+**D36 — Phases are GitHub milestones.** *CEO, 2026-09-26.* The build phases M0–M5 (backlog plan §10) are recorded as **milestones in `haunts`**, not as a board field. Milestones show on every ticket and in the repository's issue list with their own progress, where the board field showed only on the board, and keeping both would record the same fact twice. **The Phase field is removed.** The 14 planning and spike tickets go into **M0** now; every other ticket is assigned once the **CTO confirms the phase order**, which remains the CTO's (Constitution 5.6). **A milestone closes only when the CGO's review pack and demo for that phase have reached the CEO** (Constitution 5.5), not when its last ticket closes.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
