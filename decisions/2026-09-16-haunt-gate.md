@@ -442,6 +442,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Constraints that still bind round 2.** (1) Glass must respect **Reduce Transparency** and **Increase Contrast**, and text on glass must meet the contrast requirements against the worst content beneath it. Android has no native equivalent, so a fallback must be designed; **React Native feasibility is the CTO's to confirm.** (2) A ticker in the modern themes remains **the user's choice of headline appearance (HEAD-2)**, never switched on by a theme, and meets HEAD-9 to HEAD-11 (one pass per open, visible pause, reduce-motion). Headlines are already generated on the device from the template catalogue, so "procedurally generated" means **more variety within MEM-1 and HEAD-6**, never novelty or counts. (3) Contour's touches may return as **texture or a later theme**, never as map pins or tracking imagery (D9).
 
+**D43 — Two changes to the CSO baseline approved.** *CEO, 2026-09-27.* As the baseline requires, with a CSO note and CEO approval: **(1)** the agent deny rules in `haunts/.claude/settings.json` are tightened to block force-pushing by refspec (`git push origin +main`), a gap the CSO found in its own file (**MAINT-1, `haunts` #302**); **(2)** Dependabot gains an `npm` entry (7-day cooldown, one grouped PR a week, security updates bypass the cooldown) to keep the commitlint dev dependencies current (**MAINT-2, #303**). **A new ticket series, `MAINT-n`**, carries maintenance work that belongs to no requirement, under the rule "no ticket, no work" (`docs/conventions.md`).
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
