@@ -388,6 +388,12 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D26 — Strip clubs, casinos and off-licences join the headline default exclusion.** *CEO, 2026-09-26.* Resolves `requirements.md` §22 item 27. Unlike D24's health, religious and social-service categories, these three **are** held by the venue index, so this is where the default does real work. They remain everywhere else in the journal; they are excluded only from home-screen headlines unless the user switches them on, under the same switch as D24. **Off-licences are also caught by D21** — surfacing a user's off-licence visits on the home screen would be the product rewarding drinking frequency.
 
+**D27 — Build setup: code and tickets in a separate repository named `haunts`, with a three-level backlog.** *CEO, 2026-09-26.* Code, tickets and the project board live in a new repository, **`deopea-david/haunts`**. `candour` remains the governance record: `requirements.md` stays the single source of every requirement and acceptance criterion, and **tickets track state only** — they link to requirement IDs rather than copying criteria, so the two cannot drift apart.
+
+**The name, recorded because it departs from the recommendation put to him.** The CVO recommended `haunt`, on two grounds: the rule that the slug and every identifier stay `haunt` (D9), and that "Haunts" is a **working name until the three PLAT-6 checks pass** (App Store collision, UK trademark, domain), so a repository called `haunts` is a use of the name before those checks. **The CEO chose `haunts` with both points before him.** What stays unchanged: the slug, branch names and paths inside `candour` remain `haunt`. The new repository is the only identifier that carries the product name, and if a PLAT-6 check fails it is renamed with the product. **Visibility (public or private) is not yet decided.**
+
+**The backlog is split into epics, features and tasks** so that progress can be tracked at each level (CEO direction). **The mapping of requirement IDs onto those levels is the PM/BA's to propose**, and it goes to the CEO before any ticket is created.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication

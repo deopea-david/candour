@@ -1,7 +1,7 @@
 # Haunts — status and hand-off
 
 **As of:** 2026-09-26 · **Branch:** `haunt/requirements` (based on the merge of PR #1) · **Phase:** requirements complete; build not started
-**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename
+**Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (D27, not yet created)
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
 
@@ -52,6 +52,7 @@ A private, on-device journal of places visited. The phone detects visits; the us
 | D24 | Health, religious, social-service places out of headlines by default; **protective defaults, user can change** (DFLT-1) |
 | D25 | Uncategorised places: per-entry headline toggle; typed-in on, imported off, bulk switch on import |
 | D26 | Strip clubs, casinos, off-licences also out of headlines by default |
+| D27 | Code, tickets and board in a separate repo named **`haunts`**; backlog split into **epics → features → tasks**; tickets link to requirement IDs, never copy them |
 
 ## Blocks and gates
 
@@ -74,20 +75,26 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ## Next step
 
-**Set up the build: a repo, a GitHub project board, and tickets from the requirements.**
+**Set up the build: repo, board and tickets.** Decided so far (D27): a separate repo, `deopea-david/haunts`; a backlog of epics → features → tasks; tickets link to requirement IDs and track state only.
 
-> **Do not create the repo, board or any tickets without the CEO's explicit go-ahead in that session.** He asked for this in writing. Ask first.
+> **Do not create the repo, board or any tickets without the CEO's explicit go-ahead.** He asked for this in writing. Ask first.
 
-The first question to put to him: **a separate `haunts` repo for code and tickets, or the board in `candour` until there is code?** The previous session recommended a separate repo — tickets belong where the work happens. `gh` is authenticated for `deopea-david`. The GitHub MCP connector is **not** authorised, so use `gh`.
+**Before anything is created, in order:**
+1. **The CEO merges the PR** carrying `haunt/requirements` into `main`, so ticket links can point at a stable commit.
+2. **Repo visibility — public or private** — is the CEO's to decide. Not yet asked.
+3. **`gh` needs the `project` scope** to create a board. The token for `deopea-david` has `repo`, `workflow`, `gist`, `read:org` only. The CEO runs `gh auth refresh -h github.com -s project` himself (it is interactive). The GitHub MCP connector is **not** authorised, so use `gh`.
+4. **The PM/BA proposes the backlog mapping** — which requirement IDs sit under which feature and epic — plus the written standup routine. The CEO sees it before any ticket exists.
 
-Tickets should derive from requirements IDs so the requirements document stays the source of truth and the board tracks state only. The CEO also wants **written standups** between PM/BA, QA and Engineers: agents are stateless, so this means each seat reading the board and recording status, not a conversation — say so.
+**Standups are written, not a conversation.** Agents are stateless, so a standup is each seat (PM/BA, QA, Engineer) reading the board and recent commits and recording a short dated status. The PM/BA summarises for the CEO.
+
+**Still owed at build planning:** the CTO's written confirmation that Block 4 limb (b) lifts against `requirements.md` §7.7.7.
 
 ---
 
 ## How this company works — things a new session should know
 
 - **Replies to the CEO are short and plain; documents stay thorough.** One decision at a time. This is in `CLAUDE.md` and binds every seat's summary.
-- **Seats are the agents in `.claude/agents/`**, each bound to its charter in `roles/`. The main session has acted as the **CVO** itself.
+- **Seats are the agents in `.claude/agents/`**, each bound to its charter in `roles/`. **The main session is the orchestrator** (CEO, 2026-09-26): it commissions the seats, routes their artifacts between them, and brings the CEO only questions and decisions. The CEO guides and decides. Where no seat owns a task, the main session has acted as the **CVO**.
 - **Record decisions as they are made**, in the decision record's CEO decisions log, then commit and push. Uncommitted work has been lost once in this cycle.
 - **Never `git add -A` blindly.** It once swept an in-progress requirements draft onto the wrong branch. Stage named paths.
 - **Agents hit rate limits.** When one fails, check disk for its partial file, then start a fresh agent told to *continue* from it rather than restart — old agents cannot be resumed across sessions.
