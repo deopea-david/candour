@@ -1,6 +1,6 @@
 # Backlog plan — Haunts v1: epics, features, tasks
 
-**Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.1 (proposal for CEO approval)
+**Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.2 (mapping approved at D30; ticket format per D31, D33, D34)
 **Governing decision:** `decisions/2026-09-16-haunt-gate.md`, **D27** (CEO, 2026-09-26) · **Source of every requirement:** `products/haunt/requirements.md` v1.1, read from disk 2026-09-26
 **Companion files:** `products/haunt/backlog.csv` (one row per epic, feature and task) · `products/haunt/backlog-build.py` (regenerates the CSV and re-runs the coverage check) · `products/haunt/standup-routine.md`
 
@@ -27,7 +27,7 @@ D27, verbatim where it binds: *"Code, tickets and the project board live in a ne
 What follows from that, as rules for every ticket:
 
 1. **A task is exactly one requirement ID** (or one planning item). Its title is a label, not a restatement.
-2. **No ticket body contains acceptance criteria.** It carries the ID, a link to `requirements.md` on `main`, and the section. QA verifies against the file, never against the ticket.
+2. ~~**No ticket body contains acceptance criteria.** It carries the ID, a link to `requirements.md` on `main`, and the section.~~ *Superseded by D31: the ticket carries a generated, SHA-stamped copy, and the document wins.* QA verifies against the file, never against the ticket.
 3. **A task reaches Done only when QA has verified it against every acceptance-criterion limb in `requirements.md`**, at a recorded commit of that file. Merged is not Done (§7).
 4. **The CSV is generated, not hand-edited.** `backlog-build.py` holds the mapping, reads `requirements.md`, writes the CSV and fails loudly if an ID is missing, duplicated or unknown. When `requirements.md` gains an ID, the mapping gains a line and the script is re-run.
 
@@ -247,6 +247,7 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 | FT-PLAN-2 | Platform and device questions | SPK-03, SPK-05, SPK-07, SPK-10, SPK-14 |
 | FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13 |
 | FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09 |
+| FT-PLAN-5 | Repository conventions and agent scaffolding | SPK-15, SPK-16 |
 
 ---
 
@@ -299,6 +300,8 @@ Each is a task with an owner, a priority inherited from the most severe requirem
 | **SPK-12** | Backup architecture branch: the user-saved encrypted file as the only backup, or a cloud module as well | CTO | DATA-12's shape (§12.1 records both branches); FT-DATA-3 | §12.1; §24 reserved row |
 | **SPK-13** | Name the competitor export formats DATA-15 imports, with retrieved format documentation | CTO | DATA-15; its untrusted-input review by the CSO | §22 item 17 |
 | **SPK-14** | Does any API let an app relinquish its own location authorization? | Engineer, about one hour | ENT-8 — *"honest by construction rather than by instruction"* if yes | §22 item 5 |
+| **SPK-15** | Traceable commits, branches and PRs: the Conventional Commits standard with the backlog key as scope, branch and PR naming, `Refs #n` linking, and enforcement by a `commit-msg` hook and a CI check that the key is a real ticket | CTO | Every later change in `haunts`: the traceability D37 requires | D37 (CEO, 2026-09-26) |
+| **SPK-16** | Agent scaffolding in `haunts`: the full `CLAUDE.md`, the implementation-story and PR templates, and `docs/delivery-log.md`, from `agentic-agile-adoption.md` Appendices A–D, following SPK-15's convention. The first PR through the CTO review record | CTO, drafting from the PM/BA's appendices | Every agent session in `haunts`; wave planning | D34; `agentic-agile-adoption.md` §6 |
 
 **Not added as spikes, and why.** §22 item 1 (usability testing) needs the CEO's authorisation and a spend decision under Constitution 5.4 — it is recorded in §12, not put on a build board where it would sit un-actionable. §22 item 12 (closed venues are undetectable) has no requirement attached and no seat has been asked to do work on it; putting it on the board would create unowned work. §22 items 3, 13, 14, 16 and 18 are CGO or CEO rulings, not technical work. §22 item 11 (thirty shopfront names) waits on the CEO's authorisation.
 
@@ -310,7 +313,7 @@ GitHub labels are flat, so each carries a prefix. **Board fields (§8) are the p
 
 | Label | Values | Set from |
 |---|---|---|
-| `level:` | `epic`, `feature`, `task`, `spike` | CSV `level`; `spike` for `SPK-` keys |
+| `level:` | `epic`, `feature`, `task`, `spike`, `story` | CSV `level`; `spike` for `SPK-` keys. **`story`** is set by hand on implementation stories created by the CTO at wave planning from the `haunts` story template (D34; `agentic-agile-adoption.md` §3.2, Appendix B); the script never creates one |
 | `prio:` | `blocking`, `must`, `cut-line`, `pending-estimate` | CSV `priority` |
 | `platform:` | `ios`, `android`, `both`, `none` | CSV `platform` |
 | `seat:` | `engineer`, `qa`, `cto`, `cso`, `cfo`, `cgo`, `ux-lead`, `pm-ba`, `ceo` | CSV `owner_seat` |
@@ -320,6 +323,8 @@ GitHub labels are flat, so each carries a prefix. **Board fields (§8) are the p
 | `mixed-priority` | — | HEAD-4, HEAD-5, HEAD-9, HEAD-13, HEAD-14, HEAD-15, PHOTO-9 (§11.1) |
 | `needs:cso-review` | — | security-relevant tasks: DATA-6 … DATA-13, DATA-15, ENT-11, PRIV-8, PHOTO-11, CAP-1, SPK-06. **Proposed by this seat [J]; the CSO should confirm or widen the list** |
 | `blocked` | — | set by hand, with the blocking key in the ticket's "Blocked by" field |
+| `spec-defect` | — | set by an Engineer or QA when a criterion is wrong, untestable or contradicts another (standup routine §7); removed by the PM/BA when `requirements.md` is fixed. Counted per phase as a delivery measure (`agentic-agile-adoption.md` §7.2) |
+| `escaped` | — | on a **new** issue raised for a defect in behaviour that a **Done** ticket covers. The body links the Done ticket and names who found it (QA, CTO/CSO, CEO at a demo, or a user after release). Counted per phase, CEO-found separately (§7.2) |
 | `needs:ceo` | — | a ticket that cannot move until the CEO decides something. Today: **PLAT-5** (EU storefront, §22 item 9), **PLAT-7** (icon brief, §22 item 19) |
 
 ---
@@ -331,10 +336,10 @@ GitHub labels are flat, so each carries a prefix. **Board fields (§8) are the p
 | Column | Entry rule | Who moves a ticket in |
 |---|---|---|
 | **Backlog** | Every ticket starts here | Ticket script |
-| **Ready** | Requirement ID linked; the spikes it depends on are Done; nothing in §11 blocks it; owner seat and platform set | PM/BA |
+| **Ready** | Requirement ID linked; the spikes it depends on are Done; nothing in §11 blocks it; owner seat and platform set; **Files to create or modify, Interfaces to implement and File ownership set by the CTO (no longer TBD) and the `Wave` field set** (D33, D34); for a wave, every limb of every requirement in it is claimed by the ticket or one of its stories (the PM/BA's limb-coverage check, `agentic-agile-adoption.md` §3.2) | PM/BA |
 | **In progress** | Someone is working on it; a branch exists | The owning seat |
-| **Review (CTO/CSO)** | PR open, referencing the ticket with `Refs #n`; tests for every acceptance-criterion limb exist. CSO reviews tickets labelled `needs:cso-review` as well | The owning seat |
-| **QA** | CTO (and CSO where labelled) approved the PR; merged to `main` of `haunts` | The reviewing seat |
+| **In review** *(proposed as "Review (CTO/CSO)"; named "In review" as built)* | PR open, referencing the ticket with `Refs #n`, its body following the `haunts` PR template; tests for every acceptance-criterion limb exist. CSO reviews tickets labelled `needs:cso-review` as well | The owning seat |
+| **QA** | CTO (and CSO where labelled) wrote the review record in the PR **at its head commit**, and the PR was merged at that head to `main` of `haunts`. Where the ticket has implementation stories, **all** of them are merged | The reviewing seat |
 | **Done (QA-verified)** | **QA has verified every acceptance-criterion limb in `requirements.md` for this ID, on a named build, and recorded the `requirements.md` commit SHA it verified against and the evidence link** | **QA only** |
 
 **Done means QA-verified against the acceptance criteria, not merged.** Two GitHub defaults work against this and must be changed when the board is created:
@@ -342,7 +347,9 @@ GitHub labels are flat, so each carries a prefix. **Board fields (§8) are the p
 1. **New projects set Status to Done automatically when an issue is closed and when a pull request is merged** — GitHub's documentation: *"When issues or pull requests in your project are closed, their status is set to Done"* [E, retrieved 2026-09-26, §13 item 3]. **Both default workflows are switched off.**
 2. **A PR whose description says `closes`, `fixes` or `resolves #n` closes that issue when merged into the default branch** [E, §13 item 4]. **PRs reference tickets with `Refs #n` only.** QA closes the issue when it moves it to Done.
 
-**QA fails a ticket back, it does not reopen a new one.** A failure moves the ticket to **In progress** with a comment naming the limb that failed, e.g. *"CAP-4(a) fails: service-kill gap not recorded, build 0.3.1 (a1b2c3d)"*. The failed limb is named by its letter from `requirements.md`; the criterion text is not copied (D27).
+**Implementation stories (D34).** Where the CTO splits a requirement, or one change serves several requirements, the work is an implementation story (`level:story`), a sub-issue of the requirement it mainly serves. **A story is closed by its reviewer when its PR is merged, with a comment naming the merge commit, and its Status is never set to Done.** D34 settles that D30's *"only QA moves a ticket to Done"* covers requirement tickets, which are QA's unit. Stories appear in the "Current wave" view, not in the Board view (§8).
+
+**QA fails a ticket back, it does not reopen a new one.** Each time QA starts a verification it increments the ticket's `QA attempts` field (§8). A failure moves the ticket to **In progress** with a comment naming the limb that failed, e.g. *"CAP-4(a) fails: service-kill gap not recorded, build 0.3.1 (a1b2c3d)"*. The failed limb is named by its letter from `requirements.md`; the criterion text is not copied (D27).
 
 **Features and epics.** A feature is Done when all its tasks are Done **and** it has been demonstrated end to end on both platforms it targets. An epic is Done when all its features are Done. **Neither is "done" in the Constitution's sense until it has been through a phase review** — Constitution 5.5: *"Every pipeline phase concludes with a review pack and demo presented to the CEO… Work is not 'done' until it has been reviewed."* The column is therefore labelled **"Done (QA-verified)"**, not "Done", so the board never claims more than it knows. A milestone closes only after the CGO's review pack and demo for that phase reach the CEO.
 
@@ -368,11 +375,13 @@ GitHub Projects supports text, number, date, single-select and iteration fields,
 | Priority | single select | BLOCKING, MUST, CUT-LINE, PENDING-ESTIMATE |
 | Platform | single select | ios, android, both, none |
 | Owner seat | single select | the nine seats in §6 |
-| Phase | single select | M0 … M5 (§10). **Left empty by the ticket script; filled after the CTO confirms §10** |
+| ~~Phase~~ | — | **Removed by D36 (CEO, 2026-09-26): phases are GitHub milestones M0–M5 in `haunts`.** Views below that group or sort by Phase use the milestone instead |
 | Estimate basis | single select | *In 2,090 h* · *Added after the estimate — unsized* · *Pending estimate* · *n/a*. **Filled by the CTO at SPK-08**, not by this seat |
 | CTO hours | number | the CTO's estimate, when there is one |
 | Blocked by | text | key(s) of the blocking ticket or decision |
 | Verified against | text | QA's record at Done: `requirements.md@<sha>` plus the evidence link |
+| **Wave** | text | `M<phase>.W<n>`, e.g. `M1.W2`. **Set by the CTO at wave planning** on whichever issue owns files (the requirement ticket or its stories); empty from the ticket script. A field, not a label, because wave values change as work is planned (D34; `agentic-agile-adoption.md` §4.2) |
+| **QA attempts** | number | 0 from the ticket script; **QA adds one each time it starts verifying the ticket**. The QA first-pass rate is the share of Done tickets with `QA attempts = 1` (`agentic-agile-adoption.md` §7.2) |
 
 **Candidates for "Added after the estimate", offered to the CTO for SPK-08 and not asserted [I].** From `requirements.md` §22 items 22 and 25 and `cost-sheet-v3.md` §4.2 and §4.6: HEAD-1 … HEAD-18; PHOTO-1 … PHOTO-11; LOOK-1 … LOOK-9; CONF-19; DATA-15; ONB-1 … ONB-3; PRICE-13, PRICE-14; PLAT-6; VEN-13, VEN-16; VPAGE-6, VPAGE-7; NOT-6. Added after the CFO's last count and so presumably also unsized: VPAGE-10, VPAGE-11, MEM-1, DFLT-1, LIC-6, PLAT-7, PLAT-8. **VEN-17 is unclear** — the CFO asked the CTO whether it sits inside the venue-remediation row (§4.2) and records no answer. The CTO decides every one of these; I have not sized anything.
 
@@ -384,11 +393,12 @@ GitHub Projects supports text, number, date, single-select and iteration fields,
 | **Epics** | table | Level = epic or feature; grouped by parent; sub-issue progress shown | CEO, PM/BA |
 | **Blocking path** | table | Priority = BLOCKING, Status ≠ Done; sorted by Phase then Key | PM/BA, CTO |
 | **By seat** | table | grouped by Owner seat; Status ≠ Done | each seat, at standup |
-| **Review queue** | table | Status = Review (CTO/CSO) | CTO, CSO |
+| **Review queue** | table | Status = In review | CTO, CSO |
 | **QA queue** | table | Status = QA | QA |
 | **Blocked** | table | label `blocked` or `needs:ceo` | PM/BA, orchestrator |
 | **Planning and spikes** | table | Level = spike | CTO |
 | **Phases** | table | grouped by Phase | CTO, CGO at phase review |
+| **Current wave** | board | `Wave` = the wave in flight, all levels including `story`; columns by Status | CTO at the wave gate, Engineers |
 
 A roadmap (timeline) view is possible but needs a date or iteration field; **I do not propose dates**, because the build calendar is the CTO's (PLAT-4 requires calendar to be modelled separately from effort) and a date set by this seat would be a guess wearing a plan's clothes.
 
@@ -397,6 +407,8 @@ A roadmap (timeline) view is possible but needs a date or iteration field; **I d
 ## 9. What a ticket contains
 
 > **Superseded in part by D31 (CEO, 2026-09-26):** tickets now carry the requirement, its acceptance criteria (lettered limbs as a checklist) and its source in full, stamped with the `requirements.md` commit they were copied from and generated by `backlog-tickets.py`. The document still wins where they differ, and QA still verifies against the document. The text below is the PM/BA's original proposal, kept for the record.
+>
+> **Superseded further by D33 and D34 (CEO, 2026-09-26):** the ticket body now follows `agentic-agile-adoption.md` §3.3. A **generated region** (summary, origin and context, requirement, acceptance criteria, invariants to preserve, negative constraints, dependencies, verification, stamp) is replaced whole on regeneration. A **CTO-maintained region** (files to create or modify, interfaces to implement, file ownership and wave) reads **TBD** until the CTO sets it at wave planning, and regeneration never touches it. `backlog-tickets.py` implements both, with `regenerate_body()` and a `--self-test`.
 
 Generated from one CSV row. **No acceptance criterion is ever copied into a ticket.**
 
@@ -418,7 +430,7 @@ Verify against the file, never against this ticket.
 
 ## 10. Phase order — a proposal for the CTO to confirm
 
-**This is a proposal, not a plan.** Build sequencing is the CTO's (the CTO holds the build-commencement block, Constitution 5.6). It is offered so the CTO has something concrete to correct rather than a blank. **Late in the order does not mean optional:** a MUST in M4 is exactly as required as a MUST in M1, and moving anything out of v1 is a §24 scope change. Each milestone closes with the CGO's review pack and demo to the CEO (Constitution 5.5).
+**This is a proposal, not a plan.** Build sequencing is the CTO's (the CTO holds the build-commencement block, Constitution 5.6). It is offered so the CTO has something concrete to correct rather than a blank. **Late in the order does not mean optional:** a MUST in M4 is exactly as required as a MUST in M1, and moving anything out of v1 is a §24 scope change. Each milestone closes with the CGO's review pack and demo to the CEO (Constitution 5.5). **Within a phase, the CTO runs the work as waves (D34):** batches with no shared files and no dependencies between them, each closed by a wave gate that writes one row to `docs/delivery-log.md` in `haunts`. A wave gate makes nothing "done"; the phase review does (`agentic-agile-adoption.md` §4.5).
 
 | Phase | What | Features | Why here [J, PM/BA] |
 |---|---|---|---|
@@ -466,7 +478,7 @@ Listed, not fixed. **I have not edited `requirements.md`**, as instructed. Each 
 | Launch bars: qualified human legal review (Constitution 6.1) including the refund duty; CGO confirmation of the privacy wording as a contract term | Not build work; no build creates them. They bar launch, not build | STATUS.md "Blocks and gates"; `requirements.md` §0, §19.2 |
 | Architecture decision records and the CSO threat model | Seat artifacts under `/build`'s CTO+CSO step, kept in `candour` under `products/haunt/`. **They are not requirements and do not get requirement tasks**; the spikes that feed them do | CLAUDE.md "Where things live" |
 | Deferred and out-of-scope items (§18, §19): FSA ratings, contacts selection (CONF-20), readable `haunt.html` export | Not v1 | `requirements.md` §18, §19 |
-| Implementation sub-tasks | Engineers add them under a task when they start it, as instructed. They never carry a requirement ID of their own | — |
+| Implementation sub-tasks *(superseded by D34)* | ~~Engineers add them under a task when they start it, as instructed.~~ **Now implementation stories (§7, D34):** created by the CTO at wave planning, only where a requirement is split or one change serves several; they name limbs by letter and never carry a requirement ID of their own | `haunts` story template (`agentic-agile-adoption.md` Appendix B) |
 
 ---
 
@@ -492,3 +504,4 @@ All four were read through a summarising fetch tool, not in the raw page; the qu
 | Date | Version | Change |
 |---|---|---|
 | 2026-09-26 | 0.1 | First proposal: 17 epics, 67 features, 211 tasks (197 requirement + 14 planning); coverage 197/197; board, fields, views, labels; phase proposal for the CTO; nine gaps at §11 |
+| 2026-09-26 | 0.2 | Ticket format per **D33** and **D34** (`agentic-agile-adoption.md` §3.3, §11): §6 labels gain `level:story`, `spec-defect`, `escaped`; §7 Ready rule requires the CTO-set files, interfaces, file ownership and wave; review recorded at the PR's head commit; implementation stories close on merge and never reach Done; column names as built ("In review"); §8 fields gain `Wave` and `QA attempts`, views gain "Current wave"; §9 and §12 superseded notes; §10 waves within phases. `backlog-tickets.py` regenerated to the §3.3 body. No mapping change: still 17 epics, 67 features, 211 tasks |

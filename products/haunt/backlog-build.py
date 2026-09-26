@@ -157,6 +157,7 @@ epic("EP-PLAN", "Build planning and spikes", "cto", "22", [
     ("FT-PLAN-2", "Platform and device questions", "cto", ["SPK-03", "SPK-05", "SPK-07", "SPK-10", "SPK-14"]),
     ("FT-PLAN-3", "Architecture and security choices", "cto", ["SPK-04", "SPK-06", "SPK-11", "SPK-12", "SPK-13"]),
     ("FT-PLAN-4", "Sizing and costing of scope outside the estimate", "cto", ["SPK-08", "SPK-09"]),
+    ("FT-PLAN-5", "Repository conventions and agent scaffolding", "cto", ["SPK-15", "SPK-16"]),
 ])
 
 # ---- task titles (<=70 chars) ------------------------------------------------
@@ -391,6 +392,8 @@ SPK = {
  "SPK-12": ("Backup architecture branch: user file only, or cloud module", "BLOCKING", "both", "cto", "12.1"),
  "SPK-13": ("Name the competitor export formats DATA-15 imports", "MUST", "none", "cto", "22"),
  "SPK-14": ("Can an app relinquish its own location authorization?", "BLOCKING", "both", "engineer", "22"),
+ "SPK-15": ("Traceable commits, branches and PRs: standard and enforcement (D37)", "MUST", "none", "cto", ""),
+ "SPK-16": ("Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)", "MUST", "none", "cto", ""),
 }
 
 # ---- write CSV ----------------------------------------------------------------

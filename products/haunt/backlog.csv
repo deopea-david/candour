@@ -294,3 +294,6 @@ task,SPK-13,Name the competitor export formats DATA-15 imports,FT-PLAN-3,,MUST,n
 feature,FT-PLAN-4,Sizing and costing of scope outside the estimate,EP-PLAN,,,,cto,22
 task,SPK-08,"Size scope outside the 2,090 h (HEAD, PHOTO, LOOK-8/9, heatmap)",FT-PLAN-4,,MUST,none,cto,22
 task,SPK-09,Re-cost the build once the CTO sizing lands,FT-PLAN-4,,MUST,none,cfo,22
+feature,FT-PLAN-5,Repository conventions and agent scaffolding,EP-PLAN,,,,cto,
+task,SPK-15,"Traceable commits, branches and PRs: standard and enforcement (D37)",FT-PLAN-5,,MUST,none,cto,
+task,SPK-16,"Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)",FT-PLAN-5,,MUST,none,cto,
