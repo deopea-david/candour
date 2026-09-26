@@ -386,6 +386,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D25 — Uncategorised places carry their own headline switch.** *CEO, 2026-09-26.* Resolves `requirements.md` §22 item 26. The venue index holds almost none of D24's sensitive categories, so the real exposure is places the index cannot categorise: those the user **types in** and those **imported** in bulk, e.g. from Google Timeline, which will include clinics and places of worship. **Each such entry has its own toggle for inclusion in headlines, and an import offers a bulk on/off switch.** Defaults, per the CVO's proposal and DFLT-1: **typed-in places start included**, since the user named them deliberately; **imported places start excluded**, since they arrive in bulk and unchosen. The PM/BA had recommended excluding all uncategorised places, which would also have hidden a user's own typed-in local.
 
+**D26 — Strip clubs, casinos and off-licences join the headline default exclusion.** *CEO, 2026-09-26.* Resolves `requirements.md` §22 item 27. Unlike D24's health, religious and social-service categories, these three **are** held by the venue index, so this is where the default does real work. They remain everywhere else in the journal; they are excluded only from home-screen headlines unless the user switches them on, under the same switch as D24. **Off-licences are also caught by D21** — surfacing a user's off-licence visits on the home screen would be the product rewarding drinking frequency.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
