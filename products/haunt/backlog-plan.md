@@ -346,6 +346,8 @@ GitHub labels are flat, so each carries a prefix. **Board fields (§8) are the p
 
 **Features and epics.** A feature is Done when all its tasks are Done **and** it has been demonstrated end to end on both platforms it targets. An epic is Done when all its features are Done. **Neither is "done" in the Constitution's sense until it has been through a phase review** — Constitution 5.5: *"Every pipeline phase concludes with a review pack and demo presented to the CEO… Work is not 'done' until it has been reviewed."* The column is therefore labelled **"Done (QA-verified)"**, not "Done", so the board never claims more than it knows. A milestone closes only after the CGO's review pack and demo for that phase reach the CEO.
 
+*Board as built, 2026-09-26 (CEO):* the column keeps the name **Done**, and its description reads *"QA-verified against the acceptance criteria"*. A **QA** column sits between In review and Done. The rule above is unchanged: only QA moves a ticket to Done. The built-in "Item closed" and "Pull request merged" workflows are off.
+
 **Cut-line and scope changes.** A CUT-LINE task that the CEO cuts is closed as *not planned* with a link to its `requirements.md` §24 scope-change row. **A cut with no §24 row is not a cut** — this seat's charter blocks *"scope changes mid-build without a written trade-off"*. A BLOCKING task is never closed as not planned without the CEO's written overrule or an amendment.
 
 ---
