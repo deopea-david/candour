@@ -380,6 +380,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **What travels with it:** the **ranked list works without the download** and is the base view (D13). **Northern Ireland is not covered** by Zoomstack; users there see the heatmap without a street map, stated on the map. The download size is **disclosed before it starts**. Zoomstack refreshes June and December and never expires; Candour refreshes it only by choice. **Outstanding:** a render-speed test on two phones (about a day, CTO), OGL attribution on the licences screen (Condition 7), and the heatmap's **55–95 hours**, for the CFO to carry.
 
+**D23 — Minimum iOS version: iOS 26.** *CEO, 2026-09-26.* Haunts supports **iOS 26 and later**. It settles open item 20's iOS half: Apple-hosted asset packs (`AssetPackManager`, Background Assets), the only delivery route for D22's offline basemap that needs no Candour-run server, are available from iOS 26.0. The CEO's reasons: *"the usage stats are high and are only likely to grow"*, and Apple's record of supporting older devices means an iOS 26 floor excludes few phones. **The Android minimum remains open** for the CTO, including its interaction with hiding the app from the recent-apps preview below Android 13.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
