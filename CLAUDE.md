@@ -20,6 +20,7 @@ spark → discovery (research brief, cost model, feasibility) → proposal → *
 - `/gate [slug]` — Skeptic dissent + seat reviews → decision pack → CEO decides
 - `/build [slug]` — PM/BA → CTO+CSO → Engineer(s) → QA/UX → CGO review pack + demo
 - `/audit` — annual Skeptic audit of the company against its own Constitution
+- `/agile-sync` — check `microsoft/agentic-agile-template` for new advice since our last review and propose updates by PR (`pipeline/agentic-agile.md`)
 
 **Anti-drift rule (Constitution 5.2):** every idea gets a kill/proceed/park decision within 4 weeks of its research brief. Track and surface these deadlines without being asked.
 
