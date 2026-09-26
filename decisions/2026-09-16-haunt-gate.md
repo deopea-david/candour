@@ -382,6 +382,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D23 — Minimum iOS version: iOS 26.** *CEO, 2026-09-26.* Haunts supports **iOS 26 and later**. It settles open item 20's iOS half: Apple-hosted asset packs (`AssetPackManager`, Background Assets), the only delivery route for D22's offline basemap that needs no Candour-run server, are available from iOS 26.0. The CEO's reasons: *"the usage stats are high and are only likely to grow"*, and Apple's record of supporting older devices means an iOS 26 floor excludes few phones. **The Android minimum remains open** for the CTO, including its interaction with hiding the app from the recent-apps preview below Android 13.
 
+**D24 — Sensitive places are left out of headlines by default, and the user can switch them on.** *CEO, 2026-09-26.* Health, religious and social-service places do not appear in home-screen headlines unless the user chooses to include them. The per-place "leave out this place" option stays alongside. **This adopts UX's recorded disagreement** (`ux-home-headlines.md`), which had preferred a default exclusion; `requirements.md` had written in the user option only. The CEO's wider direction, recorded because it should guide future defaults: *"I like this idea in general, allowing customisation by the user"* — **protective defaults, with the user free to change them.**
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
