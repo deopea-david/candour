@@ -123,7 +123,7 @@ Every commission states `model` and `effort`, and every artifact's provenance li
    - **(b) Fable within a monthly credit cap the CEO sets**, for the named uses in §5.3 only, logged in the decision record.
    - **(c) Fable per use, asked each time.**
 
-   **If Fable draws on included limits, not credits,** the question becomes one of headroom only, and §5.3 applies without a money decision.
+   **Checked by the CEO, 2026-09-26: on his plan the Fable row reads "Requires usage credits".** So every Fable run is real spending, and this is a 5.4 decision.
 
 ## 8. Review
 
