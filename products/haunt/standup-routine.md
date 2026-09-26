@@ -1,6 +1,6 @@
 # Standup routine — Haunts build
 
-**Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.1 (proposal, goes to the CEO with `backlog-plan.md`)
+**Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.2 (updated for D31, D33, D34 and D35 per `agentic-agile-adoption.md` §10)
 **Applies to:** the PM/BA, QA and Engineer seats, whenever any of them runs on Haunts work. **Board and columns:** `products/haunt/backlog-plan.md` §7.
 
 ---
@@ -29,14 +29,15 @@ The file is the memory. If it is not written down, it did not happen.
 2. **The board, "By seat" view** filtered to your seat, and the **"Blocked"** view.
 3. **Commits and PRs since the last entry by your seat:** `git log --since=<last entry>` on `main`, and open PRs referencing your tickets.
 4. **For QA only:** the **"QA queue"** view.
-5. **For every ticket you touch:** its row in `candour/products/haunt/requirements.md`, fetched fresh. Never work from memory of the criteria, and never from the ticket — tickets hold no criteria (D27).
+5. **For every ticket you touch:** its row in `candour/products/haunt/requirements.md`, fetched fresh. Never work from memory of the criteria. The ticket carries a stamped copy (D31), and **the document wins**: if the ticket's stamp is older than the document's latest commit touching that ID, work from the document and say so in your entry.
+6. **For Engineers:** the ticket's (or story's) **Commission** comment, the orchestrator's verbatim instructions for this run, and its **File ownership**. Touch no file outside it.
 
 ---
 
 ## 4. The entry format — exact
 
 ```markdown
-### <seat> · <HH:MM UK> · <session or agent id, if known>
+### <seat> · <HH:MM UK> · <session or agent id, if known> · wave <M1.W2, or –>
 
 **Done:** #<issue> <KEY> <what moved, one line> [, …]  — or "nothing moved"
 **Next:** #<issue> <KEY> <what I will do next, one line> [, …]
@@ -47,7 +48,7 @@ The file is the memory. If it is not written down, it did not happen.
 **Rules:**
 
 - **Every line names a ticket number and its key** (`#42 CAP-4`). A line with no ticket is not an entry; it is chatter.
-- **"Done" means a column move you made**, e.g. *"#42 CAP-4 → Review"* or, for QA, *"#42 CAP-4 → Done (QA-verified @ requirements.md a1b2c3d)"*. Code written but not moved is "Next".
+- **"Done" means a column move you made**, e.g. *"#42 CAP-4 → In review"* or, for QA, *"#42 CAP-4 → Done (QA-verified @ requirements.md a1b2c3d)"*. Code written but not moved is "Next".
 - **Name failed limbs by letter**, never by pasting criteria: *"#42 CAP-4 back to In progress — (a) service-kill gap not recorded"*.
 - **Five lines of content at most per entry.** Detail belongs in the ticket or the PR.
 - **No entry claims anything the board does not show.** If the board and the entry disagree, the board is fixed first.
@@ -55,10 +56,10 @@ The file is the memory. If it is not written down, it did not happen.
 **Example**
 
 ```markdown
-### engineer · 14:20 · run 7
+### engineer · 14:20 · run 7 · wave M2.W1
 
-**Done:** #42 CAP-4 → Review (PR #88); #45 CAP-6 → In progress
-**Next:** #45 CAP-6 location-denied manual entry path
+**Done:** #42 CAP-4 → In review (PR #88); #45 CAP-6 → In progress
+**Next:** #45 CAP-6 location-denied manual entry path (commission: #45 comment 1)
 **Blocked:** #51 NOT-3 — waiting on SPK-07 answer (#12) — needs engineer (SPK-07 owner)
 **Notes:** CAP-4 gap rendering reuses the SESS-8 surface, as the requirement says; no second query path.
 ```
@@ -69,8 +70,10 @@ The file is the memory. If it is not written down, it did not happen.
 
 | Seat | Writes an entry | And also |
 |---|---|---|
-| **Engineer** | At the **start** of every run (a *Next* and any *Blocked* from reading §3) and at the **end** (what moved). One entry per run if the run is short | Moves its own tickets Backlog/Ready → In progress → Review. Opens PRs with `Refs #n`, **never** `closes`/`fixes`/`resolves` (backlog plan §7) |
-| **QA** | At the **end** of every verification run, listing each ticket moved to Done or failed back | Is the **only** seat that moves a ticket to Done, and the only seat that closes an issue |
+| **Engineer** | At the **start** of every run (a *Next* and any *Blocked* from reading §3; the *Next* line links the **Commission** comment it is working from) and at the **end** (what moved). One entry per run if the run is short | Moves its own tickets Ready → In progress → In review. Opens PRs with `Refs #n`, **never** `closes`/`fixes`/`resolves` (backlog plan §7), body following the `haunts` PR template |
+| **QA** | At the **end** of every verification run, listing each ticket moved to Done or failed back | Is the **only** seat that moves a requirement ticket to Done, and the only seat that closes one (D30, D34). Adds one to `QA attempts` each time it starts verifying a ticket |
+| **CTO** | When a **wave is planned** (its tickets, any contested files, how many Engineers run in parallel) and at the **wave gate** (the `docs/delivery-log.md` row, in one line) | Plans waves and sets the CTO-maintained region and `Wave` field (D33, D34). Writes the review record in each PR at its head commit; closes implementation stories on merge with the merge commit (D34) |
+| **CSO** | When it reviews a `needs:cso-review` PR | Writes its review record in the PR at its head commit |
 | **PM/BA** | **Once per working day** Haunts work happens, after reading every other entry that day | Triage: moves tickets Backlog → Ready, chases blockers, keeps the "Blocked" view honest, writes the CEO summary (§6), records scope changes in `requirements.md` §24 |
 
 A day with no Haunts work has no file. **An empty day is not a missed standup.**
@@ -83,7 +86,7 @@ Sent in chat by the orchestrator, **after** the PM/BA's daily entry, on days som
 
 **At most five plain lines:**
 
-1. **Progress:** tasks Done (QA-verified) today / total, and against the current phase — e.g. *"3 tasks QA-verified today; 41 of 211 overall; M1 at 18 of 26."*
+1. **Progress:** tasks Done (QA-verified) today / total, and against the current phase — e.g. *"3 tasks QA-verified today; 41 of 211 overall; M1 at 18 of 26."* On a day a wave closes, one clause more: *"Wave M1.W2 closed: 0 conflicts, 5 of 6 passed QA first time."*
 2. **The one thing that matters most today** — good or bad, in one sentence.
 3. **Blocked:** how many, and the worst one by name.
 4. **Needs you:** a decision only the CEO can make — **one at a time**, or *"Nothing needs you."*
@@ -99,7 +102,8 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 |---|---|---|---|
 | **Another ticket or spike** | The seat that owns the blocking ticket | `Blocked` line naming it; the blocked ticket gets the `blocked` label and its "Blocked by" field set | Next PM/BA daily entry |
 | **A seat's ruling** (CTO, CSO, CFO, CGO, UX) | **The orchestrator**, which commissions that seat | PM/BA's entry says *"needs <seat>"*; the orchestrator reads the file and commissions the seat with the ticket and the question | The orchestrator commissions within one working day of the entry [J] |
-| **A spec defect** — a criterion that is wrong, untestable or contradicts another | **PM/BA** | The Engineer or QA writes it as a `Blocked` line naming the ID and limb; **nobody builds through it** (Engineer charter: *"raise spec defects… rather than building through them"*). The PM/BA answers in `requirements.md` and, if criteria change, a §24 row | Next PM/BA entry |
+| **A spec defect** — a criterion that is wrong, untestable or contradicts another | **PM/BA** | The Engineer or QA writes it as a `Blocked` line naming the ID and limb, and adds the `spec-defect` label; **nobody builds through it** (Engineer charter: *"raise spec defects… rather than building through them"*). The PM/BA answers in `requirements.md` and, if criteria change, a §24 row | Next PM/BA entry |
+| **An escaped defect**: wrong behaviour in something a **Done** ticket covers | **The owning seat of the Done ticket**; QA re-verifies | Whoever finds it files a **new** issue labelled `escaped`, linking the Done ticket and naming the finder (QA, CTO/CSO, CEO at a demo, a user after release), and writes a `Blocked` or `Notes` line. The Done ticket is not reopened | Next PM/BA entry; counted in the phase review pack |
 | **A CEO decision** (anything in Constitution 5.4 — money, pricing, user-data policy, kill/proceed, release) | **The CEO** | The ticket gets `needs:ceo`; the PM/BA's summary puts it on line 4, **one decision at a time** | Raised in the next summary; never decided by a seat |
 | **A seat's block** (Constitution 5.6) | The blocking seat, or the CEO to overrule | Recorded as a block, citing the seat's charter ground; only the CEO may overrule, and every overrule is recorded in the decision record | Straight to the orchestrator and the CEO |
 
@@ -111,8 +115,8 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 
 | Step | Who | What they do | What they write |
 |---|---|---|---|
-| **In progress → Review** | Engineer | Opens a PR with `Refs #n`; the PR lists, **by limb letter**, which test covers each acceptance-criterion limb of the requirement | Entry: *"#n KEY → Review (PR #p)"* |
-| **Review → QA** | CTO (and CSO for `needs:cso-review`) | Approves and merges to `main`. **Merging does not make anything Done** | PR approval; the reviewer moves the ticket to QA |
+| **In progress → In review** | Engineer | Opens a PR with `Refs #n`; the PR lists, **by limb letter**, which test covers each acceptance-criterion limb of the requirement | Entry: *"#n KEY → In review (PR #p)"* |
+| **In review → QA** | CTO (and CSO for `needs:cso-review`) | Writes the **review record in the PR at its head commit** (PR template); a push after the record needs a new review. Merges to `main` **only at the reviewed head**, never on a red check. Closes any implementation story with the merge commit (a story never reaches Done, D34). Moves the requirement ticket to QA **when all its work is merged**. **Merging does not make anything Done** | Review record in the PR; the reviewer moves the ticket to QA |
 | **QA → Done (QA-verified)** | QA | Verifies **every limb** in `requirements.md` for that ID on a named build, both platforms where the ticket says `both`; tries to break it (QA charter: *"try honestly to break it"*); records `requirements.md@<sha>`, the build, and the evidence link in the "Verified against" field; closes the issue | Entry: *"#n KEY → Done (QA-verified @ <sha>)"* |
 | **QA → In progress (fail)** | QA | Moves it back with a comment naming the failed limb(s) by letter and the build. For a `mixed-priority` ticket, says whether a BLOCKING limb failed | Entry: *"#n KEY back to In progress — (b) fails on build <x>"* |
 | **Untestable limb** | QA → PM/BA | If a limb cannot be executed as written, QA does **not** mark it passed or skipped. It writes a `Blocked` line *"needs PM/BA — KEY(c) not executable because …"* | Entry, as a blocker |
@@ -128,3 +132,4 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 | Date | Version | Change |
 |---|---|---|
 | 2026-09-26 | 0.1 | First proposal |
+| 2026-09-26 | 0.2 | Per `agentic-agile-adoption.md` §10, after D31, D33, D34: §3 item 5 updated for stamped ticket copies (the document wins), item 6 added (commission and file ownership); §4 header carries the wave; §5 adds CTO and CSO as writers, QA's `QA attempts`, Engineer links its commission; §6 line 1 may carry the wave result; §7 adds the `spec-defect` label and the escaped-defect row; §8 review recorded at the PR's head commit, stories closed on merge, column named "In review" as built |

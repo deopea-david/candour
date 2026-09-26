@@ -3,7 +3,7 @@
 **Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.1 (proposal; goes to the CEO through the orchestrator)
 **Commissioned by:** the orchestrator, on the CEO's instruction to take advice from `microsoft/agentic-agile-template` before any Haunts ticket is created.
 **Read against:** `constitution.md` v1.3 (Articles 1.5, 4, 5, 6); `decisions/2026-09-16-haunt-gate.md` **D27–D31**; `products/haunt/backlog-plan.md` v0.1; `backlog.csv`; `backlog-tickets.py`; `standup-routine.md` v0.1; `repo-security-baseline.md`; `code-licence-note.md`; `STATUS.md`; `requirements.md` at `7482241` (not edited). All read from disk on 2026-09-26, on branch `haunt/build-setup` at `31e23ed`.
-**Also reflects:** a **CEO decision of 2026-09-26, relayed by the orchestrator during this work** — *requirement tickets include the template's files sections ("Files to create or modify", "File ownership"), marked TBD until the CTO has designed the architecture.* It is written in at §3. It is not yet in the decision record; **it should be recorded there as D32** (or whatever number is next) before the generator changes.
+**Also reflects:** a **CEO decision of 2026-09-26, relayed by the orchestrator during this work** — *requirement tickets include the template's files sections ("Files to create or modify", "File ownership"), marked TBD until the CTO has designed the architecture.* It is written in at §3. **Recorded as D33.** Decisions 1 and 2 of §12 were approved as **D34** and **D35** (CEO, 2026-09-26), and the generator now implements §3.3.
 
 **Status: a proposal. Nothing has been created or changed** — no ticket, label, field, file in `haunts`, or edit to any existing Candour document. The changes this implies to our own documents are listed at §11 for the owning seats to make.
 
@@ -140,8 +140,8 @@ HTML comment markers make the split; GitHub does not render them [K, high confid
 
 | # | Heading | Content | Filled by | Honest today? |
 |---|---|---|---|---|
-| — | *(first line)* | `**CAP-4** · BLOCKING · platform: both · owner: engineer · [§4](link) · wave: TBD` | generator | Yes |
 | — | *(marker)* | `<!-- generated:begin requirements.md@<sha>: replaced on regeneration; do not edit by hand -->` | generator | — |
+| — | *(first line)* | `**CAP-4** · BLOCKING · platform: both · owner: engineer · [§4](link)`. *As implemented: inside the generated region, so a priority change regenerates it; the wave lives in the CTO-maintained File ownership section and the `Wave` field, not here* | generator | Yes |
 | 1 | `### Summary` | The requirement's first sentence (the generator's existing `first_sentence()`) | generator | Yes |
 | 2 | `### Origin and context` | The requirement's **Source** cell, verbatim, plus a link to the decision record, and one fixed line: *"The CEO's words are quoted in the decision entries named here; they are not copied into tickets."* (§5) | generator | Yes |
 | 3 | `### Requirement` | Full requirement text (D31) | generator | Yes |
