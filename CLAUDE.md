@@ -48,3 +48,4 @@ Artifacts and replies are different registers, and the difference is deliberate.
 - Cheap and boring by default: running cost is a customer-facing ethical issue (Constitution 1.5).
 - Follow `pipeline/evidence-standard.md`: claims tagged [E]/[K]/[I]/[J], retrieved links on every [E], no citations from memory, single sources flagged, Skeptic verifies at gates.
 - Never mark work done before its review pack and demo reach the CEO (Constitution 5.5).
+- Model and effort per seat follow `pipeline/model-selection.md`: defaults live in each agent's frontmatter; the main session overrides the **model** per task by that document's rules and states the choice in the commission. Fable bills paid usage credits, so it is used only after asking the CEO each time (Constitution 5.4).
