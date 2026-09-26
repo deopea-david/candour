@@ -2,6 +2,18 @@
 
 **Seat:** Chief Security Officer · **Date:** 2026-09-26 · **Status:** A specification and a set of findings. **It prepares and flags. It does not certify** (Constitution 6.1: *"Agent reviews **prepare and flag; they do not certify**"*). Nothing here has been installed, committed or changed on GitHub.
 
+> ### Correction 1 — 2026-09-26, after acceptance testing (CSO)
+>
+> **Classification: CORRECTION.** The CEO approved this baseline as **D32**. The Engineer then built it and ran §11's tests (`RESULTS.md`, Engineer, 2026-09-26; local commit `0f8bfa4` in `haunts`, not pushed). **Two statements in this spec were wrong, and one open question is now answered.** I checked both errors at source myself before accepting the fixes. The changes below are made in place and marked *(Correction 1)* where they occur.
+>
+> 1. **`check-merge-conflict` needs `args: ["--assume-in-merge"]`.** *Was:* the hook listed with no arguments (§3, §4.1). *Why it was wrong:* at the pinned SHA the hook exits early, with `if not is_in_merge() and not args.assume_in_merge: return 0`. It only checks while `MERGE_MSG` exists together with `MERGE_HEAD` or an in-progress rebase [E, [`check_merge_conflict.py` @3e8a870](https://github.com/pre-commit/pre-commit-hooks/blob/3e8a8703264a2f4a69428a0aa4dcb512790b2c8c/pre_commit_hooks/check_merge_conflict.py), read 2026-09-26]. So as specified, it would not have caught the case §3 names: a half-resolved file committed from a parallel worktree. T10 **failed** on the spec's config and passes with the fix [E, RESULTS.md T10]. **Fix confirmed.** Its cost: a line of exactly seven `=` characters (a Markdown setext underline of that length) now fails the hook [E, the patterns in the same file]. That is acceptable.
+> 2. **`--max-decode-depth` defaults to 5, not 0, and CI must use 5.** *Was:* §5.2 said decode and archive depth both *"default to 0"*, and that decoding was enabled "in CI only, not in the hook". *Why it was wrong:* I cited the README at the tag, which does say `default "0"`. **The code at the same tag says otherwise**: `rootCmd.PersistentFlags().Int("max-decode-depth", 5, …)`. The archive depth really is 0 [E, [`cmd/root.go` @83d9cd6, L91–92](https://github.com/gitleaks/gitleaks/blob/83d9cd684c87d95d656c1458ef04895a7f1cbd8e/cmd/root.go#L91), read 2026-09-26]. So the hook already decodes to depth 5, and a base64-encoded key inside JSON was blocked by the hook [E, RESULTS.md D-3]. My CI value of 2 would have made CI **weaker** than the hook, the opposite of what I intended. **Fix confirmed:** CI uses `--max-decode-depth=5`. *Lesson, adopted as practice:* for a pinned binary, flag defaults are read from the source at the pinned SHA, not from the README.
+> 3. **T2 answered: gitleaks' path rules never fire on binary files, whether staged (hook) or in history (CI)** [E, RESULTS.md §5, tested with gitleaks 8.30.1; the same rule fired on a text `.pem` as a control]. So for keystores, and for any other binary signing material such as `.p12` and `.mobileprovision`, **the local filename hook and CI's filename step are the only controls.** §3 and §5.2 called that design belt and braces. It is load-bearing. **New residual gap** [I, from this finding]: a binary keystore *inside an archive* (`.zip`, `.tar.gz`) is caught by neither control. The filename rules don't match archive names, and `--max-archive-depth` extracts into path rules that skip binaries. Flagged in §12. It is not a precondition for the first push.
+> 4. **Confirmed by testing, previously inferred:** gitleaks keywords are case-insensitive (T4) [E, RESULTS.md]. Hooks run from a git worktree (T13). Hook and CI output is redacted (T11: 46 outputs checked against every generated value, none present).
+> 5. **Accepted non-security departures:** the `SECURITY.md` placeholder reads *"TBD — CEO decision pending"*. `CLAUDE.md` carries a one-line heading above §8.3's text. `.claude/settings.json` is committed, as §8.3 allowed. Everything else in `haunts` commit `0f8bfa4` matches this spec's code blocks **line for line** [E, checked mechanically by me against the working tree of `/Users/davidparrish/Documents/haunts`, 2026-09-26].
+>
+> **Still open after testing:** T14 (first push: `secret-scan` green, including the checksum step, which was not run locally) and T15 (the Claude Code deny rules, which need an interactive session).
+
 **Slug:** `haunt` · **Product name:** Haunts (D9) · **Answers:** D29 (*"Referred to the **CSO**, whose charter covers secret hygiene, to specify the baseline"*) and the CVO's two additions recorded under it.
 **Decisions bearing on it:** D27 (separate repo `deopea-david/haunts`), D28 (private now, public later), D29 (secret scanning before any code), D12 and the product's "nothing leaves the device" promise (relevant to §8.4), and the stack in `android-and-stack-note.md` (React Native + Expo, Swift and Kotlin capture modules).
 
@@ -64,7 +76,7 @@ A short threat model, because the tool choices only make sense against it.
 **Why gitleaks.**
 - **It has an official pre-commit hook, and that hook redacts.** The hook in the gitleaks repo at v8.30.1 runs `gitleaks git --pre-commit --redact --staged --verbose` [E, [`.pre-commit-hooks.yaml` at v8.30.1](https://github.com/gitleaks/gitleaks/blob/v8.30.1/.pre-commit-hooks.yaml)]. `--redact` matters here more than usual, because an agent running `git commit` reads the hook's output (§1, channel 3).
 - **It covers this stack's formats out of the box.** Its default config at v8.30.1 has 222 rules [E, counted in [`config/gitleaks.toml` at v8.30.1](https://github.com/gitleaks/gitleaks/blob/v8.30.1/config/gitleaks.toml)]. They include `private-key`, which is what an App Store Connect `.p8` is, `pkcs12-file`, a **path** rule for `.p12`/`.pfx` files, `gcp-api-key`, which catches the `AIza…` key in a Firebase config, `github-pat` and `github-fine-grained-pat`, `npm-access-token`, `anthropic-api-key`, `openai-api-key`, `jwt`, and `generic-api-key` [E, same file].
-- **It has gaps, and §4.2 fills them.** There is **no Expo rule** and **no rule for Java keystores** (`.jks`/`.keystore`) or provisioning profiles [E, searched the same file]. The custom `.gitleaks.toml` adds these.
+- **It has gaps, and §4.2 fills them.** There is **no Expo rule** and **no rule for Java keystores** (`.jks`/`.keystore`) or provisioning profiles [E, searched the same file]. The custom `.gitleaks.toml` adds these. *(Correction 1: for binary files, gitleaks' path rules never fire, so keystores are caught only by the filename hook and CI's filename step. See §3.)*
 - **It is language-agnostic.** It scans `git log -p` patches [E, [README at v8.30.1](https://github.com/gitleaks/gitleaks/blob/v8.30.1/README.md): *"Under the hood, gitleaks uses the `git log -p` command to scan patches"*]. So JS, Swift, Kotlin, Gradle, plists and JSON are all just text to it.
 - **The same binary runs locally, in CI and at the go-public gate,** with the same config. One engine, one set of rules, one version to keep in step (§5.3).
 - **It needs no network.** It sends nothing anywhere.
@@ -104,9 +116,9 @@ The bar is: cheap (well under a second on a normal commit), deterministic, and *
 |---|---|---|
 | `gitleaks` (gitleaks v8.30.1) | **In** | The scanner (§2). |
 | `detect-private-key` (pre-commit-hooks v6.0.0) | **In** | *"Checks for the existence of private keys"* [E, [pre-commit-hooks README at v6.0.0](https://github.com/pre-commit/pre-commit-hooks/blob/v6.0.0/README.md)]. It duplicates gitleaks' `private-key` rule **deliberately**. The most damaging secret in this stack is a PEM private key (the `.p8`), and the gitleaks rule needs the whole block: header, at least 64 body characters, and footer [E, `private-key` regex in `config/gitleaks.toml` at v8.30.1]. A truncated or partly pasted key slips past that and is still a leak. A second, independent implementation costs nothing [J]. |
-| **`forbid-signing-and-credential-files`** (local, `language: fail`) | **In** | Blocks by **filename**: keystores, `.p8`/`.p12`/`.pfx`, provisioning profiles, `.pem`/`.key`/`.cer`, `credentials.json`, `google-services.json`, `GoogleService-Info.plist`, `.env*` except `.env.example`. **Why a filename check as well as gitleaks:** a keystore is **binary**. gitleaks scans patches, and a binary file appears in a patch only as "binary files differ". I could not establish from the documentation whether gitleaks' path-only rules fire on a staged binary file in `git --staged` mode [I; unverified, because gitleaks isn't installed]. The filename block doesn't depend on that. |
+| **`forbid-signing-and-credential-files`** (local, `language: fail`) | **In** | Blocks by **filename**: keystores, `.p8`/`.p12`/`.pfx`, provisioning profiles, `.pem`/`.key`/`.cer`, `credentials.json`, `google-services.json`, `GoogleService-Info.plist`, `.env*` except `.env.example`. **Why a filename check as well as gitleaks:** a keystore is **binary**. *(Correction 1: tested, and this check is not a spare. gitleaks' path rules **never fire on binary files**, staged or in history [E, RESULTS.md T2, gitleaks 8.30.1]. For `.jks`/`.keystore`/binary `.p12`/`.mobileprovision`, this hook is the **only** local control, and CI's filename step is the only server-side one.)* |
 | `check-added-large-files` (`--maxkb=1024`) | **In** | *"Prevents giant files from being committed"* [E, pre-commit-hooks README]. History-relevant: a binary committed once is in history for good. Haunts has a ~0.8 GB optional map store (D22) and a 2.85 GB source tile file (`map-tiles-note.md`). Neither must ever enter git. I set 1 MB rather than the 500 kB default so that app icons and splash images fit [J]. The CTO may tune it. |
-| `check-merge-conflict` | **In** | *"Check for files that contain merge conflict strings"* [E, same]. Cheap. With several agents on parallel worktrees, conflict markers are a realistic way for a broken file, or a half-resolved one that kept both sides of a config, to be committed [J]. |
+| `check-merge-conflict` **with `--assume-in-merge`** *(Correction 1)* | **In** | *"Check for files that contain merge conflict strings"* [E, same]. Without `--assume-in-merge` it checks only while a merge is in progress, so it would miss the case below [E, source at the pinned SHA; see Correction 1]. Cheap. With several agents on parallel worktrees, conflict markers are a realistic way for a broken file, or a half-resolved one that kept both sides of a config, to be committed [J]. |
 | `detect-aws-credentials` | Out | No AWS in this stack. |
 | `no-commit-to-branch` | Out, **flagged to CTO/PM** | It would stand in locally for branch protection, which a Free private repo can't have (§6). But it blocks the first commit on `main` unless skipped, and a baseline that starts by telling someone to use `SKIP=` teaches the wrong habit [J]. It is a workflow choice, not a secret control. |
 | `forbid-submodules` | Out, **flagged to CTO** | Submodules pull outside code in without review. That is a supply-chain point, but it is not about secrets. |
@@ -145,6 +157,9 @@ repos:
       - id: check-added-large-files
         args: ["--maxkb=1024"]
       - id: check-merge-conflict
+        # Without --assume-in-merge this hook checks only while a merge is in
+        # progress, so a staged file with conflict markers would pass.
+        args: ["--assume-in-merge"]
 
   - repo: local
     hooks:
@@ -160,7 +175,7 @@ repos:
 ```
 
 Notes on it:
-- The `gitleaks` hook uses `language: golang`. It builds gitleaks v8.30.1 from source the first time, so the first run takes a minute [I]. Go is installed on this machine (`/opt/homebrew/bin/go`) [E, `which go`], and pre-commit would bootstrap Go anyway [E, §2.2].
+- The `gitleaks` hook uses `language: golang`. It builds gitleaks v8.30.1 from source the first time. The first install took about 24 s [E, RESULTS.md §2]. Go is installed on this machine (`/opt/homebrew/bin/go`) [E, `which go`], and pre-commit would bootstrap Go anyway [E, §2.2].
 - The hook finds `.gitleaks.toml` by itself. gitleaks' config precedence ends with *"(target path)/.gitleaks.toml"* [E, [README at v8.30.1](https://github.com/gitleaks/gitleaks/blob/v8.30.1/README.md)]. **An environment variable (`GITLEAKS_CONFIG` or `GITLEAKS_CONFIG_TOML`) outranks the file** [E, same]. So an agent could point the hook at an empty config. That is why CI passes `--config` explicitly, and why §8.3 forbids setting those variables.
 
 ### 4.2 `.gitleaks.toml`
@@ -239,7 +254,9 @@ keywords = ["store_password", "key_password"]
 tags = ["haunts", "signing"]
 ```
 
-**Keywords.** gitleaks uses keywords as a quick pre-filter [E, README: *"Rules that contain keywords will perform a quick string compare check"*]. I have written them in lower case because the built-in rules do: `gcp-api-key` matches `AIza…` with the keyword `"aiza"` [E, `config/gitleaks.toml`]. From that I infer the comparison is case-insensitive [I]. §11 tests it.
+**Keywords.** gitleaks uses keywords as a quick pre-filter [E, README: *"Rules that contain keywords will perform a quick string compare check"*]. I have written them in lower case because the built-in rules do: `gcp-api-key` matches `AIza…` with the keyword `"aiza"` [E, `config/gitleaks.toml`]. From that I infer the comparison is case-insensitive [I]. *(Correction 1: confirmed by T4. The lower-case `expo_token` keyword matched upper-case text [E, RESULTS.md].)*
+
+*(Correction 1)* **The three path rules above fire only on text files.** gitleaks' path rules never fire on binary files [E, RESULTS.md T2]. They still earn their place: they catch `.pem` files, text-format `.p8` keys, `.env` files, `credentials.json` and `google-services.json`. The comment above `haunts-signing-material` says "content rules cannot see" keystores. In fact no gitleaks rule can. The committed file keeps that comment, because it is accurate as far as it goes, and this note is the record.
 
 ---
 
@@ -328,12 +345,14 @@ jobs:
 
       - name: Scan all history for secrets (redacted)
         run: |
+          # --max-decode-depth=5 is the v8.30.1 binary's real default (cmd/root.go;
+          # its README says 0), so the hook decodes to 5. Lower would make CI weaker.
           "$RUNNER_TEMP/gitleaks" git . \
             --config .gitleaks.toml \
             --log-opts="--all" \
             --redact \
             --ignore-gitleaks-allow \
-            --max-decode-depth=2 \
+            --max-decode-depth=5 \
             --max-archive-depth=2 \
             --no-banner \
             --verbose
@@ -341,9 +360,9 @@ jobs:
 
 **Design choices, each deliberate:**
 - **All history on every run, not just the new commits.** The repo is small and gitleaks reads `git log -p`, so this should take seconds [J; to be confirmed on the first run]. It means **the go-public scan is running continuously**, and a secret committed and then deleted on a branch is still caught. When the repo is large enough for this to cost real minutes, switch to a range scan plus a weekly full scan [J].
-- **The filename step is separate from gitleaks** because I could not confirm that gitleaks' path rules fire on binary files in `git` mode (§3). This step doesn't depend on it, and it prints filenames only, never contents.
+- **The filename step is separate from gitleaks, and it is the only CI control for binary signing material.** *(Correction 1: gitleaks' path rules never fire on binary files in history [E, RESULTS.md T2]. A `.jks` committed with `--no-verify` was caught by this step alone.)* It prints filenames only, never contents.
 - **`--ignore-gitleaks-allow` makes CI stricter than the hook.** It is a documented flag: *"ignore gitleaks:allow comments"* [E, README]. A `gitleaks:allow` comment passes locally and **fails in CI**. That is intended. The only legitimate way to accept a false positive is a reviewed allowlist entry in `.gitleaks.toml`, with CEO approval (§8.2).
-- **`--max-decode-depth=2` and `--max-archive-depth=2`** default to 0, *"no decoding is done"* and *"no archive traversal is done"* [E, README]. A `.p8` pasted base64-encoded into JSON, or a keystore inside a zip, is how signing material most plausibly slips past a filename rule [J]. I have enabled both in CI only, not in the hook, so commits stay fast.
+- **`--max-decode-depth=5` and `--max-archive-depth=2`.** *(Correction 1. This bullet originally said both default to 0, citing the README, and set decode depth to 2 "in CI only". That was wrong.)* In the pinned binary, decode depth **defaults to 5** and archive depth to 0 [E, [`cmd/root.go` @83d9cd6](https://github.com/gitleaks/gitleaks/blob/83d9cd684c87d95d656c1458ef04895a7f1cbd8e/cmd/root.go#L91)]. So the hook already decodes a base64-encoded `.p8` in JSON, and CI states 5 explicitly so the two stay equal. Archive traversal is on in CI only. It catches *text* secrets inside archives, but **not a binary keystore inside an archive**, because path rules skip binaries [I, from T2]. See §12.
 - **`permissions: contents: read`, no secrets and no `pull_request_target`.** The job needs nothing else. After go-public, a fork's PR runs with no access to secrets [K, high confidence], and this job has none to give.
 - **No scheduled run.** The rules are pinned, so re-scanning unchanged history finds nothing new. Scans happen on change.
 
@@ -627,8 +646,9 @@ git for-each-ref | wc -l        # record the ref count in the gate note
 
 # Engine 1: gitleaks, same pinned version and config as CI, report kept OUTSIDE the repo
 gitleaks git . --config .gitleaks.toml --log-opts="--all" --redact \
-  --ignore-gitleaks-allow --max-decode-depth=2 --max-archive-depth=2 \
+  --ignore-gitleaks-allow --max-decode-depth=5 --max-archive-depth=2 \
   --report-path "$TMPDIR/gate-gitleaks.json"
+# (Correction 1: decode depth 5, as in CI. Binary files are caught only by the filename check below.)
 
 # Engine 2: trufflehog, independent rules, no verification (nothing sent to issuers)
 trufflehog git file://. --no-verification --json > "$TMPDIR/gate-trufflehog.json"
@@ -730,6 +750,8 @@ Record a gate note: tool versions, the ref count, the HEAD SHA, zero findings fr
 | T14 | First push to `haunts` | `secret-scan` green; ref count and duration noted. If a run takes over ~2 minutes, reconsider §5.2's full-history choice. |
 | T15 | Load `.claude/settings.json`; check `/status`; try `cat .env` and `git commit --no-verify` in a Claude Code session | Both denied; `.env.example` readable. |
 
+**Results (Correction 1, 2026-09-26):** T1–T13 pass on the corrected config [E, RESULTS.md]. **T10 failed on this spec's original config** and passes with `--assume-in-merge`. T2 passes via the filename hook only, and gitleaks' path rule did **not** fire on the binary. T14 and T15 are still to run.
+
 **If any test fails, the first commit waits** until the config is fixed and re-tested. A baseline that has never been seen to block anything is a belief, not a control [J].
 
 ---
@@ -750,6 +772,8 @@ Record a gate note: tool versions, the ref count, the HEAD SHA, zero findings fr
 - GitHub Pro for private-repo rulesets → **CEO** (money). I recommend against for now (§6).
 - `SECURITY.md` contact address → **CEO** (personal data) (§8.2).
 - The gitleaks run and optional hook on `candour` → **orchestrator/CEO** (§10).
+- *(Correction 1)* **A binary keystore inside an archive is caught by nothing** [I, from T2]. The fix, if wanted, is to add archive extensions (`zip|tar|tgz|gz|7z|rar`) to both filename patterns, at the cost of blocking legitimate archives. Archives are unusual in a React Native repo [J]. → **CTO** to say whether any are expected. The change would then need a CSO note and CEO approval, like any guard-rail change. It is not a precondition for the first push.
+- *(Correction 1)* **Re-run T2 at every gitleaks bump.** If a release starts applying path rules to binaries, the filename controls become a second layer again, and should stay.
 - Go-public preconditions: §9 here, plus the CGO licence note and the CEO's written reason, both owed under D28.
 
 **Blocks exercised: none.** My charter's block is release-only, and nothing here is a release.
