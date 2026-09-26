@@ -1,0 +1,296 @@
+level,key,title,parent_key,requirement_id,priority,platform,owner_seat,section
+epic,EP-RULES,Product-wide rules: memories not volume; protective defaults,,,,,pm-ba,3.1;3.2
+feature,FT-RULES-1,"Celebrate memories, never volume, build-wide",EP-RULES,,,,ux-lead,3.1
+task,MEM-1,"Never encourage drinking or reward visit frequency, anywhere",FT-RULES-1,MEM-1,BLOCKING,both,ux-lead,3.1
+feature,FT-RULES-2,Protective defaults and the settings register,EP-RULES,,,,engineer,3.2
+task,DFLT-1,"Protective defaults, user-changeable, with a CI-checked register",FT-RULES-2,DFLT-1,MUST,both,engineer,3.2
+epic,EP-CAP,Automatic visit capture,,,,,cto,4
+feature,FT-CAP-1,Native capture pipeline and verifiable teardown,EP-CAP,,,,engineer,4
+task,CAP-1,No JavaScript in the visit-recording path,FT-CAP-1,CAP-1,BLOCKING,both,engineer,4
+task,CAP-7,Capture stops verifiably when not entitled; teardown idempotent,FT-CAP-1,CAP-7,BLOCKING,both,engineer,4
+feature,FT-CAP-2,iOS visit capture,EP-CAP,,,,engineer,4
+task,CAP-2,"iOS capture via startMonitoringVisits, with downgrade detection",FT-CAP-2,CAP-2,BLOCKING,ios,engineer,4
+feature,FT-CAP-3,Android visit capture,EP-CAP,,,,engineer,4
+task,CAP-3,Android capture via a declared location foreground service,FT-CAP-3,CAP-3,BLOCKING,android,engineer,4
+feature,FT-CAP-4,"Capture honesty: gaps, reduced accuracy, location denied",EP-CAP,,,,engineer,4
+task,CAP-4,"Capture gaps are first-class data, shown inline in plain words",FT-CAP-4,CAP-4,BLOCKING,both,engineer,4
+task,CAP-5,Capture works under reduced accuracy and says so,FT-CAP-4,CAP-5,MUST,both,engineer,4
+task,CAP-6,"Fully usable with location denied, in every tier",FT-CAP-4,CAP-6,BLOCKING,both,engineer,4
+feature,FT-CAP-5,"One capture-failure notification, nothing else",EP-CAP,,,,engineer,4
+task,CAP-8,"One notification type only, for capture failure",FT-CAP-5,CAP-8,BLOCKING,both,engineer,4
+task,CAP-9,Uncertain-match notification bounded by CAP-8; works if declined,FT-CAP-5,CAP-9,BLOCKING,both,engineer,4
+feature,FT-CAP-6,Battery measured on real devices before any claim,EP-CAP,,,,engineer,4
+task,CAP-10,Measure battery cost on real devices before any claim,FT-CAP-6,CAP-10,BLOCKING,both,engineer,4
+epic,EP-CONF,Confirming visits,,,,,pm-ba,5
+feature,FT-CONF-1,"Confirm queue as a pull, not a push",EP-CONF,,,,engineer,5.2
+task,CONF-1,"Confirm queue is a pull: no badge, count or completion meter",FT-CONF-1,CONF-1,BLOCKING,both,engineer,5.2
+task,CONF-12,Row carries enough context to recognise the visit,FT-CONF-1,CONF-12,MUST,both,engineer,5.2
+task,CONF-13,Session- and day-level bulk actions at equal weight,FT-CONF-1,CONF-13,BLOCKING,both,engineer,5.2
+task,CONF-14,Repeat same-day visits to one venue collapse to one row,FT-CONF-1,CONF-14,MUST,both,engineer,5.2
+task,CONF-15,Candidates expire silently on a published schedule,FT-CONF-1,CONF-15,BLOCKING,both,engineer,5.2
+task,CONF-16,"Setting: ""Do not ask me - I will add places myself""",FT-CONF-1,CONF-16,MUST,both,engineer,5.2
+feature,FT-CONF-2,"Candidate rows: nearest first, choice never assent",EP-CONF,,,,engineer,5.2;7.7.3
+task,CONF-2,Nearest offered by default; options shown when unclear,FT-CONF-2,CONF-2,BLOCKING,both,engineer,5.2
+task,CONF-3,Never auto-select a candidate,FT-CONF-2,CONF-3,BLOCKING,both,engineer,5.2
+task,CONF-7,"One row, three facts; no confidence number shown",FT-CONF-2,CONF-7,MUST,both,engineer,5.2
+task,CONF-10,Mark a previously-chosen venue in its row,FT-CONF-2,CONF-10,MUST,both,engineer,5.2
+task,CONF-11,"Sticky choice ranks, never selects (150 m gate)",FT-CONF-2,CONF-11,BLOCKING,both,engineer,5.2
+task,VEN-22,No confirmation from a surface without the alternatives,FT-CONF-2,VEN-22,BLOCKING,both,engineer,7.7.3
+feature,FT-CONF-3,Venue search in the confirm flow,EP-CONF,,,,engineer,5.2
+task,CONF-4,Twenty candidate rows reachable in one action by typing,FT-CONF-3,CONF-4,BLOCKING,both,engineer,5.2
+task,CONF-5,"Prefix, incremental name search from the first character",FT-CONF-3,CONF-5,BLOCKING,both,engineer,5.2
+task,CONF-6,"Filter, search and ""isn't listed"" always reachable",FT-CONF-3,CONF-6,BLOCKING,both,engineer,5.2
+task,CONF-8,Suppress the generic-token dragnet in search results,FT-CONF-3,CONF-8,MUST,both,engineer,5.2
+task,CONF-9,Near-miss confusability tested; false-pick rate reported,FT-CONF-3,CONF-9,BLOCKING,both,engineer,5.2
+feature,FT-CONF-4,"Note, rating and companions on the confirm row",EP-CONF,,,,engineer,5.2
+task,CONF-17,Note field open on the confirm row; venue + date is finished,FT-CONF-4,CONF-17,MUST,both,engineer,5.2
+task,CONF-18,"Voice dictation into the note field, on-device",FT-CONF-4,CONF-18,CUT-LINE,both,engineer,5.2
+task,CONF-19,Companions as free text with autocomplete from own history,FT-CONF-4,CONF-19,MUST,both,engineer,5.2
+epic,EP-SESS,Sessions,,,,,cto,6
+feature,FT-SESS-1,Derived sessions with durable overrides,EP-SESS,,,,engineer,6
+task,SESS-1,"Sessions derived and recomputable, never stored rows",FT-SESS-1,SESS-1,BLOCKING,both,engineer,6
+task,SESS-2,User overrides are durable constraints anchored to visits,FT-SESS-1,SESS-2,BLOCKING,both,engineer,6
+task,SESS-9,"Entitlement intervals and gaps are durable, natively readable",FT-SESS-1,SESS-9,BLOCKING,both,engineer,6
+feature,FT-SESS-2,"Session queue, split and merge",EP-SESS,,,,engineer,6
+task,SESS-3,"Queue groups by session, falling back to day",FT-SESS-2,SESS-3,MUST,both,engineer,6
+task,SESS-4,"Split and merge reachable, visible and reversible",FT-SESS-2,SESS-4,MUST,both,engineer,6
+task,SESS-5,"Low session confidence is stated, not guessed",FT-SESS-2,SESS-5,MUST,both,engineer,6
+feature,FT-SESS-3,Home inference the user can see and edit,EP-SESS,,,,engineer,6
+task,SESS-6,"Home inference visible, editable, removable, can be none",FT-SESS-3,SESS-6,BLOCKING,both,engineer,6
+feature,FT-SESS-4,Whole sessions across entitlement and gaps,EP-SESS,,,,engineer,6
+task,SESS-7,"Entitlement evaluated per session, never per visit",FT-SESS-4,SESS-7,BLOCKING,both,engineer,6
+task,SESS-8,Sessions straddling a gap or boundary state partiality,FT-SESS-4,SESS-8,BLOCKING,both,engineer,6
+epic,EP-VEN,Venue index and venue identity,,,,,cto,7
+feature,FT-VEN-1,Bundled offline venue index,EP-VEN,,,,engineer,7.1;7.7.4
+task,VEN-1,Venue index bundled and offline; no places API ever,FT-VEN-1,VEN-1,BLOCKING,both,engineer,7.1
+task,VEN-2,"Locality from the Places theme only, never Divisions",FT-VEN-1,VEN-2,BLOCKING,none,engineer,7.1
+task,VEN-3,Index scope B: food_and_drink plus committed allow-list,FT-VEN-1,VEN-3,MUST,none,engineer,7.1
+task,VEN-4,"FTS5 prefix index and grid-cell B-tree column, no R-Tree",FT-VEN-1,VEN-4,MUST,both,engineer,7.1
+task,VEN-5,Record the index bundle cost for CFO and CTO before build,FT-VEN-1,VEN-5,MUST,none,pm-ba,7.1
+task,VEN-6,"Conservative, auditable near-duplicate clustering",FT-VEN-1,VEN-6,MUST,none,engineer,7.1
+task,VEN-23,Grid-cell query unions the nine-cell neighbourhood,FT-VEN-1,VEN-23,BLOCKING,both,engineer,7.7.4
+feature,FT-VEN-2,Venue identity survives every refresh (schema rules),EP-VEN,,,,engineer,7.2
+task,VEN-7,Copy the venue row on first reference; page never reads index,FT-VEN-2,VEN-7,BLOCKING,both,engineer,7.2
+task,VEN-8,Refresh can never write to a referenced row (schema-enforced),FT-VEN-2,VEN-8,BLOCKING,both,engineer,7.2
+task,VEN-10,A user's rename outranks the dataset permanently,FT-VEN-2,VEN-10,BLOCKING,both,engineer,7.2
+task,VEN-11,"User merges survive refreshes, including upstream re-splits",FT-VEN-2,VEN-11,BLOCKING,both,engineer,7.2
+task,VEN-12,Reconciliation never joins on GERS ID alone,FT-VEN-2,VEN-12,BLOCKING,both,engineer,7.2
+feature,FT-VEN-3,Refresh proposals and quarterly cadence,EP-VEN,,,,engineer,7.2;7.6
+task,VEN-9,"Changes to referenced rows offered, never applied; decline default",FT-VEN-3,VEN-9,BLOCKING,both,engineer,7.2
+task,VEN-13,Refresh review surface is not a notification or pressure queue,FT-VEN-3,VEN-13,BLOCKING,both,engineer,7.2
+task,VEN-19,Refresh the bundled index quarterly inside app updates,FT-VEN-3,VEN-19,MUST,none,cto,7.6
+feature,FT-VEN-4,"Repair layer: merge, rename, reattach, undo",EP-VEN,,,,engineer,7.3;7.7.2
+task,VEN-14,"Merge is user-facing, reversible, reachable from any venue",FT-VEN-4,VEN-14,BLOCKING,both,engineer,7.3
+task,VEN-15,Rename in place keeps the venue identity,FT-VEN-4,VEN-15,BLOCKING,both,engineer,7.3
+task,VEN-16,"Offer merge for a probable duplicate, statically, once",FT-VEN-4,VEN-16,MUST,both,engineer,7.3
+task,VEN-21,Reattach a visit; whole repair path reversible and lossless,FT-VEN-4,VEN-21,BLOCKING,both,engineer,7.7.2
+feature,FT-VEN-5,Venue-identity regression fixture and release bar,EP-VEN,,,,qa,7.5;7.7.1;7.7.5
+task,VEN-17,"Venue-index harness as a committed, reproducible fixture",FT-VEN-5,VEN-17,BLOCKING,none,engineer,7.5
+task,VEN-18,"Index, ranking or search changes re-run fixture; publish P1-P4",FT-VEN-5,VEN-18,MUST,none,engineer,7.5
+task,VEN-20,P1-P5 venue-identity release criteria in every release pack,FT-VEN-5,VEN-20,BLOCKING,none,qa,7.7.1
+task,VEN-24,Measure real CLVisit accuracy on the field run (S-1),FT-VEN-5,VEN-24,BLOCKING,both,engineer,7.7.5
+epic,EP-VPAGE,The venue page,,,,,pm-ba,8
+feature,FT-VPAGE-1,"Venue page: every visit, rating, note and verdict",EP-VPAGE,,,,engineer,8
+task,VPAGE-1,Venue is a first-class entity with identity and history,FT-VPAGE-1,VPAGE-1,BLOCKING,both,engineer,8
+task,VPAGE-2,"Venue page shows every visit, rating, note and a verdict",FT-VPAGE-1,VPAGE-2,BLOCKING,both,engineer,8
+task,VPAGE-5,"Merge, rename and duplicate hint reachable from venue page",FT-VPAGE-1,VPAGE-5,BLOCKING,both,engineer,8
+task,VPAGE-7,Static line: what a venue page becomes over time,FT-VPAGE-1,VPAGE-7,MUST,both,engineer,8
+task,VPAGE-9,"Every venue-page function reachable from a list, not a map",FT-VPAGE-1,VPAGE-9,BLOCKING,both,engineer,8
+feature,FT-VPAGE-2,"Honest, entitlement-blind aggregates at scale",EP-VPAGE,,,,engineer,8
+task,VPAGE-3,Derived views complete or state partiality on their face,FT-VPAGE-2,VPAGE-3,BLOCKING,both,engineer,8
+task,VPAGE-4,Venue page read path is entitlement-blind (CI static check),FT-VPAGE-2,VPAGE-4,BLOCKING,both,engineer,8
+task,VPAGE-8,Query performance holds over five years of data,FT-VPAGE-2,VPAGE-8,MUST,both,engineer,8
+feature,FT-VPAGE-3,"Ratings: true mean, trend and weighted order",EP-VPAGE,,,,engineer,8
+task,VPAGE-6,Stars always shown with the visit count,FT-VPAGE-3,VPAGE-6,MUST,both,engineer,8
+task,VPAGE-10,Venue page shows the trend of the user's own ratings,FT-VPAGE-3,VPAGE-10,MUST,both,engineer,8
+task,VPAGE-11,Weighted (C = 3) rating order; displayed stars stay true mean,FT-VPAGE-3,VPAGE-11,MUST,both,engineer,8
+epic,EP-LOOK,Journal-wide views,,,,,pm-ba,8.1
+feature,FT-LOOK-1,What Haunts has worked out about you,EP-LOOK,,,,engineer,8.1
+task,LOOK-1,"""What Haunts has worked out about you"" inference screen",FT-LOOK-1,LOOK-1,MUST,both,engineer,8.1
+feature,FT-LOOK-2,Most-visited list and offline heatmap,EP-LOOK,,,,engineer,8.1
+task,LOOK-2,"Ranked list plus offline Zoomstack heatmap, list map-free",FT-LOOK-2,LOOK-2,MUST,both,engineer,8.1
+feature,FT-LOOK-3,Recap and self-portrait,EP-LOOK,,,,engineer,8.1
+task,LOOK-3,"Monthly or yearly recap, pulled never pushed",FT-LOOK-3,LOOK-3,MUST,both,engineer,8.1
+task,LOOK-8,"Local self-portrait, reachable in and outside the recap",FT-LOOK-3,LOOK-8,MUST,both,engineer,8.1
+feature,FT-LOOK-4,Save recap as image; no sharing prompts anywhere,EP-LOOK,,,,engineer,8.1
+task,LOOK-4,Save recap as image on explicit tap; the app never asks,FT-LOOK-4,LOOK-4,MUST,both,engineer,8.1
+task,LOOK-5,"Small hideable logo on the image, never a watermark or CTA",FT-LOOK-4,LOOK-5,MUST,both,engineer,8.1
+task,LOOK-6,"Nothing anywhere prompts, nudges or celebrates sharing",FT-LOOK-4,LOOK-6,BLOCKING,both,engineer,8.1
+task,LOOK-7,Limit what a generated recap image may contain,FT-LOOK-4,LOOK-7,MUST,both,engineer,8.1
+feature,FT-LOOK-5,Offline search including notes,EP-LOOK,,,,engineer,8.1
+task,LOOK-9,"Offline search across notes, venues and companion names",FT-LOOK-5,LOOK-9,MUST,both,engineer,8.1
+epic,EP-HEAD,Home-screen headlines,,,,,ux-lead,8.2
+feature,FT-HEAD-1,"Headline slot, appearances and options",EP-HEAD,,,,engineer,8.2
+task,HEAD-1,"Headlines at top of home screen, scrolling, never sticky",FT-HEAD-1,HEAD-1,MUST,both,engineer,8.2
+task,HEAD-2,"Four appearances: Line (default), Card, Ticker, Off",FT-HEAD-1,HEAD-2,MUST,both,engineer,8.2
+task,HEAD-3,"Line and Card change at most once per day, never while shown",FT-HEAD-1,HEAD-3,MUST,both,engineer,8.2
+task,HEAD-5,Headline options reachable from the headline and Settings,FT-HEAD-1,HEAD-5,BLOCKING,both,engineer,8.2
+task,HEAD-15,No headline slot until a fact qualifies; no teasers,FT-HEAD-1,HEAD-15,BLOCKING,both,engineer,8.2
+feature,FT-HEAD-2,Headline content rules and small-numbers honesty,EP-HEAD,,,,engineer,8.2
+task,HEAD-4,"Headlines only from the T1-T9 catalogue, computed on-device",FT-HEAD-2,HEAD-4,BLOCKING,both,engineer,8.2
+task,HEAD-6,"Headlines celebrate memories, never volume",FT-HEAD-2,HEAD-6,BLOCKING,both,engineer,8.2
+task,HEAD-7,"Slot carries self-portrait facts only, nothing commercial",FT-HEAD-2,HEAD-7,BLOCKING,both,engineer,8.2
+task,HEAD-8,No novelty or urgency treatment on headlines,FT-HEAD-2,HEAD-8,BLOCKING,both,engineer,8.2
+task,HEAD-14,Headline small-numbers honesty and entitlement-blindness,FT-HEAD-2,HEAD-14,BLOCKING,both,engineer,8.2
+feature,FT-HEAD-3,Ticker motion and screen-reader behaviour,EP-HEAD,,,,engineer,8.2
+task,HEAD-9,"Ticker pause control, persistent across launches",FT-HEAD-3,HEAD-9,BLOCKING,both,engineer,8.2
+task,HEAD-10,Reduce-motion detected; Ticker renders as Line,FT-HEAD-3,HEAD-10,BLOCKING,both,engineer,8.2
+task,HEAD-11,Ticker falls back to Line for screen readers and large text,FT-HEAD-3,HEAD-11,MUST,both,engineer,8.2
+task,HEAD-16,Headline screen-reader and layout behaviour,FT-HEAD-3,HEAD-16,BLOCKING,both,engineer,8.2
+feature,FT-HEAD-4,Headline privacy: surfaces and sensitive places,EP-HEAD,,,,engineer,8.2
+task,HEAD-12,Headlines never in the app-switcher snapshot,FT-HEAD-4,HEAD-12,BLOCKING,both,engineer,8.2
+task,HEAD-13,Headlines only on the in-app home screen,FT-HEAD-4,HEAD-13,BLOCKING,both,engineer,8.2
+task,HEAD-17,"Sensitive places out of headlines by default, one switch",FT-HEAD-4,HEAD-17,MUST,both,engineer,8.2
+task,HEAD-18,Per-place headline toggle for uncategorised places,FT-HEAD-4,HEAD-18,MUST,both,engineer,8.2
+epic,EP-ENT,"Entitlement, trial, lapse and first run",,,,,cto,9;9.1
+feature,FT-ENT-1,"Entitlement as intervals, unknown stated honestly",EP-ENT,,,,engineer,9
+task,ENT-1,"Entitlement stored as intervals, readable by capture modules",FT-ENT-1,ENT-1,BLOCKING,both,engineer,9
+task,ENT-2,Unknown entitlement state is conservative and stated,FT-ENT-1,ENT-2,BLOCKING,both,engineer,9
+feature,FT-ENT-2,"Trial and lapse: nothing hidden, nothing lost",EP-ENT,,,,engineer,9
+task,ENT-3,Two-week full trial; everything written stays usable free,FT-ENT-2,ENT-3,BLOCKING,both,engineer,9
+task,ENT-4,"Manual entry is a first-class composer, forever, unpaid",FT-ENT-2,ENT-4,BLOCKING,both,engineer,9
+task,ENT-5,Nothing is deleted on lapse,FT-ENT-2,ENT-5,BLOCKING,both,engineer,9
+task,ENT-9,Expiry moment: exactly the three specified states,FT-ENT-2,ENT-9,BLOCKING,both,engineer,9
+task,ENT-10,"Charge-date disclosure static, never a countdown",FT-ENT-2,ENT-10,BLOCKING,both,engineer,9
+feature,FT-ENT-3,"Location use stops at expiry, and says so",EP-ENT,,,,engineer,9
+task,ENT-6,No capture after entitlement ends; none withheld,FT-ENT-3,ENT-6,BLOCKING,both,engineer,9
+task,ENT-7,Unpaid state never requests Always location,FT-ENT-3,ENT-7,BLOCKING,both,engineer,9
+task,ENT-8,Location stops at expiry; app says how to revoke permission,FT-ENT-3,ENT-8,BLOCKING,both,engineer,9
+feature,FT-ENT-4,"Store lifecycle: cancel, restore, no covert identifier",EP-ENT,,,,engineer,9
+task,ENT-11,Trial state lost on uninstall; no covert persistent ID,FT-ENT-4,ENT-11,BLOCKING,both,engineer,9
+task,ENT-12,Nothing between the user and the platform cancel flow,FT-ENT-4,ENT-12,BLOCKING,both,engineer,9
+task,ENT-13,Restore Purchases only on explicit user action,FT-ENT-4,ENT-13,MUST,both,engineer,9
+feature,FT-ENT-5,Entitlement-boundary QA fixtures,EP-ENT,,,,qa,9
+task,ENT-14,QA fixtures for the whole entitlement boundary,FT-ENT-5,ENT-14,BLOCKING,both,qa,9
+feature,FT-ENT-6,First run and onboarding,EP-ENT,,,,engineer,9.1
+task,ONB-1,No onboarding or setup step is ever mandatory,FT-ENT-6,ONB-1,BLOCKING,both,engineer,9.1
+task,ONB-2,First run offers to seed the journal from memory,FT-ENT-6,ONB-2,MUST,both,engineer,9.1
+task,ONB-3,"First-run index proof: ""find your local""",FT-ENT-6,ONB-3,PENDING-ESTIMATE,both,engineer,9.1
+epic,EP-PRICE,Pricing presentation and consumer notices,,,,,cfo,10;11
+feature,FT-PRICE-1,Plans screen with honest per-unit prices,EP-PRICE,,,,engineer,10
+task,PRICE-1,Every tier's per-unit cost visible in one view,FT-PRICE-1,PRICE-1,BLOCKING,both,engineer,10
+task,PRICE-2,No tier pre-selected; two explicit taps to buy,FT-PRICE-1,PRICE-2,BLOCKING,both,engineer,10
+task,PRICE-3,"Badges arithmetic, never adjectival",FT-PRICE-1,PRICE-3,BLOCKING,both,engineer,10
+task,PRICE-4,"Savings only against monthly, rounded down",FT-PRICE-1,PRICE-4,BLOCKING,both,engineer,10
+task,PRICE-5,"No ""from GBP X"" headline price",FT-PRICE-1,PRICE-5,BLOCKING,both,engineer,10
+task,PRICE-6,"Pay-once tier named ""Pay once""; never lifetime or forever",FT-PRICE-1,PRICE-6,BLOCKING,both,engineer,10
+feature,FT-PRICE-2,Point-of-sale disclosures,EP-PRICE,,,,engineer,10
+task,PRICE-7,State the monthly/pay-once crossover at point of sale,FT-PRICE-2,PRICE-7,BLOCKING,both,engineer,10
+task,PRICE-8,Pay-once screen: no share in future price reductions,FT-PRICE-2,PRICE-8,BLOCKING,both,engineer,10
+task,PRICE-9,"State review cadence, step-downs and 90-day notice at sale",FT-PRICE-2,PRICE-9,BLOCKING,both,engineer,10
+task,PRICE-10,State before first sale that no support date is committed,FT-PRICE-2,PRICE-10,BLOCKING,both,engineer,10
+task,PRICE-13,No pricing sentence depends on a support date,FT-PRICE-2,PRICE-13,BLOCKING,both,engineer,10
+task,PRICE-14,Amortisation-derived dates labelled accounting dates,FT-PRICE-2,PRICE-14,BLOCKING,both,engineer,10
+feature,FT-PRICE-3,Published price commitments,EP-PRICE,,,,cfo,10
+task,PRICE-11,Amortisation period never published as a support statement,FT-PRICE-3,PRICE-11,BLOCKING,none,cfo,10
+task,PRICE-12,Publish the guaranteed price-rise notice period; deliver it,FT-PRICE-3,PRICE-12,BLOCKING,both,engineer,10
+feature,FT-PRICE-4,In-app notices surface and cancellation,EP-PRICE,,,,engineer,11
+task,NOT-1,Pre-contract information in store metadata and first run,FT-PRICE-4,NOT-1,BLOCKING,both,engineer,11
+task,NOT-2,"Persistent, append-only in-app notices surface",FT-PRICE-4,NOT-2,BLOCKING,both,engineer,11
+task,NOT-3,"Reminder and cooling-off notices, local only, no server",FT-PRICE-4,NOT-3,BLOCKING,both,engineer,11
+task,NOT-4,Plain in-app cancel control to Manage Subscriptions,FT-PRICE-4,NOT-4,BLOCKING,both,engineer,11
+task,NOT-5,Answer notification authorization before R2/R3 are built,FT-PRICE-4,NOT-5,BLOCKING,both,engineer,11
+task,NOT-6,Price-rise notice and notices surface are one surface,FT-PRICE-4,NOT-6,MUST,both,engineer,11
+epic,EP-DATA,"Store, export, import and backup",,,,,cto,12
+feature,FT-DATA-1,One SQLite store as a written contract,EP-DATA,,,,cto,12
+task,DATA-1,"One SQLite file, no opaque blobs",FT-DATA-1,DATA-1,BLOCKING,both,engineer,12
+task,DATA-2,SQLite as a written contract for four consumers,FT-DATA-1,DATA-2,BLOCKING,both,cto,12
+feature,FT-DATA-2,Lossless export and own-archive import,EP-DATA,,,,engineer,12
+task,DATA-3,Export is a lossless dump in one zip,FT-DATA-2,DATA-3,BLOCKING,both,engineer,12
+task,DATA-4,Export complete and unconditional in every state,FT-DATA-2,DATA-4,BLOCKING,both,engineer,12
+task,DATA-5,Import of the same archive ships at MVP,FT-DATA-2,DATA-5,BLOCKING,both,engineer,12
+feature,FT-DATA-3,Opt-in encrypted backup,EP-DATA,,,,engineer,12
+task,DATA-6,"Backup opt-in, off by default; Candour holds no key",FT-DATA-3,DATA-6,BLOCKING,both,engineer,12
+task,DATA-7,Losing the backup key never loses the journal,FT-DATA-3,DATA-7,BLOCKING,both,engineer,12
+task,DATA-8,Recovery-key step never needs transcription; paste works,FT-DATA-3,DATA-8,BLOCKING,both,engineer,12
+task,DATA-9,"Backup screen is a status, never a nag",FT-DATA-3,DATA-9,BLOCKING,both,engineer,12
+task,DATA-10,Key screen states the password-manager circularity,FT-DATA-3,DATA-10,MUST,both,engineer,12
+task,DATA-11,No scare modals or confirm-shaming in the backup flow,FT-DATA-3,DATA-11,BLOCKING,both,engineer,12
+task,DATA-12,"""Delete my backup"" at launch; say what uninstall removes",FT-DATA-3,DATA-12,BLOCKING,both,engineer,12
+feature,FT-DATA-4,Diagnostics that cannot hold journal content,EP-DATA,,,,engineer,12
+task,DATA-13,Diagnostic bundle can never contain journal content,FT-DATA-4,DATA-13,BLOCKING,both,engineer,12
+task,DATA-14,Keep per-build source maps with a symbolication runbook,FT-DATA-4,DATA-14,MUST,both,engineer,12
+feature,FT-DATA-5,Import from a competitor's export,EP-DATA,,,,engineer,12
+task,DATA-15,"Import from a competitor's export, user-confirmed identities",FT-DATA-5,DATA-15,MUST,both,engineer,12
+epic,EP-PHOTO,Photos by reference,,,,,cto,12.2
+feature,FT-PHOTO-1,Attach photos by reference with a kept thumbnail,EP-PHOTO,,,,engineer,12.2.6;12.2.7
+task,PHOTO-1,"Reference originals, never copy; keep one thumbnail",FT-PHOTO-1,PHOTO-1,MUST,both,engineer,12.2.6
+task,PHOTO-2,Photos optional; nothing depends on photo access,FT-PHOTO-1,PHOTO-2,BLOCKING,both,engineer,12.2.6
+task,PHOTO-5,"Attach-time thumbnail is journal content, not cache",FT-PHOTO-1,PHOTO-5,MUST,both,engineer,12.2.6
+task,PHOTO-10,Attach surface explains linking in one static sentence,FT-PHOTO-1,PHOTO-10,MUST,both,engineer,12.2.7
+task,PHOTO-11,Cloud photo fetch only via the platform framework,FT-PHOTO-1,PHOTO-11,BLOCKING,both,engineer,12.2.7
+feature,FT-PHOTO-2,Missing-photo state as a designed normal state,EP-PHOTO,,,,engineer,12.2.6;12.2.7
+task,PHOTO-7,Missing original shows the thumbnail and one plain line,FT-PHOTO-2,PHOTO-7,MUST,both,engineer,12.2.6
+task,PHOTO-8,Missing-photo state designed as a normal primary state,FT-PHOTO-2,PHOTO-8,MUST,both,engineer,12.2.7
+feature,FT-PHOTO-3,"Photos in export, backup and import",EP-PHOTO,,,,engineer,12.2.6;12.2.7
+task,PHOTO-3,Export resolves photo references and names the failures,FT-PHOTO-3,PHOTO-3,BLOCKING,both,engineer,12.2.6
+task,PHOTO-4,Backup carries references and thumbnails; says so first,FT-PHOTO-3,PHOTO-4,BLOCKING,both,engineer,12.2.6
+task,PHOTO-6,Export states its size and never gates on it,FT-PHOTO-3,PHOTO-6,BLOCKING,both,engineer,12.2.6
+task,PHOTO-9,Import with photos never copies or fails; relink optional,FT-PHOTO-3,PHOTO-9,MUST,both,engineer,12.2.7
+epic,EP-LIC,Licences and attribution,,,,,cgo,13
+feature,FT-LIC-1,Data sources and licences screen,EP-LIC,,,,engineer,13
+task,LIC-1,In-app Data sources and licences screen,FT-LIC-1,LIC-1,BLOCKING,both,engineer,13
+task,LIC-3,"Overture citation included as a courtesy, labelled so",FT-LIC-1,LIC-3,MUST,both,engineer,13
+task,LIC-4,Publish the Overture release identifier,FT-LIC-1,LIC-4,MUST,both,engineer,13
+task,LIC-6,OS Open Zoomstack OGL attribution in the required form,FT-LIC-1,LIC-6,BLOCKING,both,engineer,13
+feature,FT-LIC-2,Licence texts travel with redistributed data,EP-LIC,,,,engineer,13
+task,LIC-2,Licence texts inside the export README,FT-LIC-2,LIC-2,BLOCKING,both,engineer,13
+task,LIC-5,Licence items travel with any standalone index release,FT-LIC-2,LIC-5,MUST,none,cgo,13
+epic,EP-PRIV,Privacy and honesty surfaces,,,,,cgo,14
+feature,FT-PRIV-1,"Transmission claim, enforced and shown live",EP-PRIV,,,,engineer,14
+task,PRIV-1,"Transmission sentence verbatim in store, onboarding, backup",FT-PRIV-1,PRIV-1,BLOCKING,both,engineer,14
+task,PRIV-2,Privacy screen shows the live state of every transmission,FT-PRIV-1,PRIV-2,BLOCKING,both,engineer,14
+task,PRIV-8,"No analytics or telemetry SDK, enforced at build time",FT-PRIV-1,PRIV-8,BLOCKING,both,engineer,14
+feature,FT-PRIV-2,Privacy declarations and public statements,EP-PRIV,,,,cgo,14
+task,PRIV-3,Declare crash data on the App Privacy label,FT-PRIV-2,PRIV-3,BLOCKING,ios,cgo,14
+task,PRIV-4,Privacy notice in the specified order,FT-PRIV-2,PRIV-4,BLOCKING,none,cgo,14
+task,PRIV-5,Publish a short data-protection position statement,FT-PRIV-2,PRIV-5,MUST,none,cgo,14
+feature,FT-PRIV-3,Quiet by default: review prompt and spoken labels,EP-PRIV,,,,engineer,14
+task,PRIV-6,No timed in-app review prompt,FT-PRIV-3,PRIV-6,BLOCKING,both,engineer,14
+task,PRIV-7,User setting to abbreviate VoiceOver row labels,FT-PRIV-3,PRIV-7,CUT-LINE,both,engineer,14
+epic,EP-A11Y,Accessibility,,,,,ux-lead,15
+feature,FT-A11Y-1,No map-only or colour-only information,EP-A11Y,,,,engineer,15
+task,A11Y-1,A list route to every map function,FT-A11Y-1,A11Y-1,BLOCKING,both,engineer,15
+task,A11Y-2,Nothing encoded by colour alone,FT-A11Y-1,A11Y-2,BLOCKING,both,engineer,15
+task,A11Y-3,Controlled contrast surface for anything over map tiles,FT-A11Y-1,A11Y-3,BLOCKING,both,engineer,15
+feature,FT-A11Y-2,Screen-reader labels and announcements,EP-A11Y,,,,engineer,15
+task,A11Y-6,One spoken-English accessible label per row,FT-A11Y-2,A11Y-6,BLOCKING,both,engineer,15
+task,A11Y-7,Status messages announce without stealing focus,FT-A11Y-2,A11Y-7,MUST,both,engineer,15
+task,A11Y-8,Empty and degraded states are text in the a11y tree,FT-A11Y-2,A11Y-8,BLOCKING,both,engineer,15
+feature,FT-A11Y-3,"Text size, touch targets and motion",EP-A11Y,,,,engineer,15
+task,A11Y-4,No clipping or lost actions at the largest text sizes,FT-A11Y-3,A11Y-4,BLOCKING,both,engineer,15
+task,A11Y-5,Touch targets meet the minimum; rating is one control,FT-A11Y-3,A11Y-5,BLOCKING,both,engineer,15
+task,A11Y-9,Honour Reduce Motion with cross-fade alternatives,FT-A11Y-3,A11Y-9,MUST,both,engineer,15
+feature,FT-A11Y-4,Per-release accessibility gate,EP-A11Y,,,,qa,15
+task,A11Y-10,Accessibility checklist as a per-release QA gate,FT-A11Y-4,A11Y-10,BLOCKING,both,qa,15
+epic,EP-PLAT,"Platform, storefront and release",,,,,cto,16
+feature,FT-PLAT-1,React Native app shell on iOS 26+ and Android,EP-PLAT,,,,cto,16
+task,PLAT-1,"iOS and Android at launch: Expo, native capture modules",FT-PLAT-1,PLAT-1,BLOCKING,both,cto,16
+task,PLAT-8,Minimum iOS version is iOS 26,FT-PLAT-1,PLAT-8,BLOCKING,ios,engineer,16
+feature,FT-PLAT-2,Store release readiness and schedule,EP-PLAT,,,,pm-ba,16;16.1
+task,PLAT-3,Plan Play production access as a schedule item,FT-PLAT-2,PLAT-3,MUST,android,pm-ba,16
+task,PLAT-4,Model calendar waiting time separately from effort,FT-PLAT-2,PLAT-4,MUST,none,pm-ba,16
+task,PLAT-5,Choose and record the storefront before submission,FT-PLAT-2,PLAT-5,BLOCKING,none,ceo,16.1
+feature,FT-PLAT-3,"Name, icon and support statement before launch",EP-PLAT,,,,cgo,16
+task,PLAT-2,No five-year support commitment; no support date published,FT-PLAT-3,PLAT-2,BLOCKING,none,cgo,16
+task,PLAT-6,"Pass three name checks before ""Haunts"" goes public",FT-PLAT-3,PLAT-6,BLOCKING,none,cgo,16
+task,PLAT-7,App icon and in-image mark exist before launch,FT-PLAT-3,PLAT-7,BLOCKING,both,ux-lead,16
+epic,EP-PLAN,Build planning and spikes,,,,,cto,22
+feature,FT-PLAN-1,Block lifts owed before build,EP-PLAN,,,,cto,4;7.7.7
+task,SPK-01,CTO confirms Block 4 limb (b) lifts against 7.7.7,FT-PLAN-1,,BLOCKING,none,cto,7.7.7
+task,SPK-02,Android device-matrix spike (CTO Block 2); writes CAP-11..14,FT-PLAN-1,,BLOCKING,android,cto,4
+feature,FT-PLAN-2,Platform and device questions,EP-PLAN,,,,cto,22
+task,SPK-03,Set the Android minimum version,FT-PLAN-2,,BLOCKING,android,cto,22
+task,SPK-05,Check RN reduce-motion reads Android Remove animations,FT-PLAN-2,,BLOCKING,android,engineer,22
+task,SPK-07,Answer: does a local notification need authorization?,FT-PLAN-2,,BLOCKING,both,engineer,22
+task,SPK-10,"Store trial mechanism question; decides ENT-10, ENT-15..17",FT-PLAN-2,,BLOCKING,both,cto,22
+task,SPK-14,Can an app relinquish its own location authorization?,FT-PLAN-2,,BLOCKING,both,engineer,22
+feature,FT-PLAN-3,Architecture and security choices,EP-PLAN,,,,cto,12.1;12.2.7;22
+task,SPK-04,Heatmap render test on two phones; frame-time bar set first,FT-PLAN-3,,MUST,both,cto,22
+task,SPK-06,"Choose the backup KDF, parameters and dependency",FT-PLAN-3,,BLOCKING,none,cso,22
+task,SPK-11,Photos C-1: durable reference without full library access,FT-PLAN-3,,BLOCKING,both,cto,12.2.7
+task,SPK-12,"Backup architecture branch: user file only, or cloud module",FT-PLAN-3,,BLOCKING,both,cto,12.1
+task,SPK-13,Name the competitor export formats DATA-15 imports,FT-PLAN-3,,MUST,none,cto,22
+feature,FT-PLAN-4,Sizing and costing of scope outside the estimate,EP-PLAN,,,,cto,22
+task,SPK-08,"Size scope outside the 2,090 h (HEAD, PHOTO, LOOK-8/9, heatmap)",FT-PLAN-4,,MUST,none,cto,22
+task,SPK-09,Re-cost the build once the CTO sizing lands,FT-PLAN-4,,MUST,none,cfo,22
