@@ -1,6 +1,6 @@
 # Haunts: the heatmap's map, compared: offline basemap, platform maps, provider offline packs and privacy-focused providers
 
-**Seat:** Chief Technology Officer · **Date:** 2026-09-23 · **Status:** A comparison and a recommendation. **It prepares and flags. It does not certify** (Constitution 6.1). Which option ships is a user-data policy decision, and Constitution 5.4 reserves *"anything affecting user data policy"* to the CEO.
+**Seat:** Chief Technology Officer · **Date:** 2026-09-23, updated 2026-09-26 (Zoomstack measured; Overture added) · **Status:** A comparison and a recommendation. **It prepares and flags. It does not certify** (Constitution 6.1). Which option ships is a user-data policy decision, and Constitution 5.4 reserves *"anything affecting user data policy"* to the CEO.
 
 **Slug:** `haunt` · **Follows:** `products/haunt/map-tiles-note.md` (2026-09-22), which the CEO has read. **His stated preference, based on that note, is offline.** Before committing he asked for four things: (1) both options weighed evenly, with platform maps given their strongest case; (2) his third route, offline packs from the providers themselves, tested; (3) the trimmed basemap measured if possible; (4) a recommendation that says whether (2) changes it. **A later addition from the CEO:** survey privacy-focused map providers against the real constraints and put them in the same table.
 
@@ -16,7 +16,12 @@
 
 **Recommendation: keep the offline OS Open Zoomstack basemap, rendered on the device by MapLibre.** Deliver it as a **one-time, whole-country download through the App Store or Google Play**, not bundled in the app. Give Northern Ireland the no-basemap view at launch, and say so on the map. **The provider-offline route does not change this.**
 
-1. **Size, measured, and my earlier estimate was too low.** I could not measure Zoomstack itself (§5.1 says why). I measured the same cut on OpenStreetMap data for the whole UK instead: roads, water, green space and the coastline, down to street zoom 14. **The result is about 690–790 MB. My note's estimate was 100–400 MB.** To zoom 13 it is about 375–410 MB. [E, measured this session, §5] **Bundling in the app, which needs about 150 MB or less, is out at street zoom. A one-time pack through the store (Google Play allows up to 1.5 GB per pack) is in.** Zoomstack will probably come out somewhat smaller, but that is unmeasured [J].
+1. **Size, now measured on Zoomstack itself: about 0.76–0.84 GB.** This is Great Britain with roads, water, green space, outline and names, and street zoom 14 kept in built-up areas. I downloaded the real file (2.85 GB, checksum matching OS's) on the CEO's approval and trimmed every tile (§5).
+   - **To zoom 13 only:** 0.55 GB.
+   - **Zoom 14 everywhere:** 0.97 GB.
+   - **Cheapest usable cut:** 0.59 GB.
+
+   **My note's 100–400 MB estimate was wrong, and so was my later guess that Zoomstack would be smaller than OpenStreetMap: it is slightly larger.** [E, measured, §5.2] **Bundling in the app (about 150 MB or less) is out. A one-time pack through the store is in**, because Google Play allows up to 1.5 GB per pack.
 2. **The CEO's third route has the right principle, but no provider sells the product it needs.** A download of the whole UK depends on nobody's data, so it passes limb (b) of the rule I proposed, whoever supplies it. **Apple and Google do not offer offline maps to third-party apps at all.** Apple's DTS engineer says so, and Apple's licence limits caching to *"a temporary and limited basis"*. Google's terms forbid it: *"No Caching"*, and no *"bulk download"* of tiles. **Mapbox does sell offline packs, but with four catches.**
    - A whole-UK pack at street zoom needs about 2,600 "tile packs". The default cap is 750.
    - The downloaded map can be kept for at most 30 days.
@@ -24,11 +29,11 @@
    - The pack cannot be bundled in the app. It must come from Mapbox's servers.
 
    **HERE and TomTom** keep offline maps behind a paid licence or a request to their sales team. §3.
-3. **The CEO was right that storage would come back, for the providers.** Mapbox's 30-day limit means downloading the UK again every month, **roughly 15 GB per user per year** at the measured size [I]. HERE only supports offline map versions for one year. **On the Zoomstack route there is no expiry.** Updating is Candour's choice: at most twice a year, or less often, at about 0.4–0.8 GB each time [I]. §3.4.
+3. **The CEO was right that storage would come back, for the providers.** Mapbox's 30-day limit means downloading the UK again every month, **roughly 15 GB per user per year** at the measured size [I]. HERE only supports offline map versions for one year. **On the Zoomstack route there is no expiry.** Updating is Candour's choice: at most twice a year, or less often, at about 0.8 GB each time [I]. §3.4.
 4. **Platform maps win on five of the nine points, and I say so plainly.** They are better on UX quality, Northern Ireland coverage, app size, build effort and upkeep of the map data. **They lose on the one point the product is sold on.** Each map request tells Apple or Google which area this person is looking at, and on a heatmap that area is their most-visited place. Their best form is a map the user turns on, with that disclosed. That is a fair choice for the CEO to make, but it is a change to the privacy wording, not a technical detail. §2.
-5. **No privacy-focused provider beats Zoomstack plus MapLibre, and I looked.** OpenFreeMap, Protomaps and VersaTiles are all OpenStreetMap data. If Candour downloads it once and ships it, **it works as well as Zoomstack and also covers Northern Ireland, but it is ODbL**, the licence the CGO has marked as a boundary. Used live as an online service, it sends tile requests like any other provider. MapTiler charges for consumer use. Organic Maps cannot be embedded in another app. OsmAnd is GPLv3. §4.
+5. **No privacy-focused provider beats Zoomstack plus MapLibre, and I looked.** OpenFreeMap, Protomaps and VersaTiles are all OpenStreetMap data. If Candour downloads it once and ships it, **it works as well as Zoomstack and also covers Northern Ireland, but it is ODbL**, the licence the CGO has marked as a boundary. Used live as an online service, it sends tile requests like any other provider. MapTiler charges for consumer use. Organic Maps cannot be embedded in another app. OsmAnd is GPLv3. **Overture Maps (added 2026-09-26) is the same answer:** its Base, Transportation and Divisions themes are ODbL at source. The only non-ODbL parts are Places, satellite land cover and sea depth, which have no roads and no coastline. §4, §4.4.
 
-**One decision is needed now, and only one (§8):** the CEO's own go-ahead, in his chat, to download OS Open Zoomstack for the spike (§5.4). **The download needs his direct approval, and a relayed message from another seat cannot give it.**
+**No decision is needed now (§8).** The download the CEO approved on 2026-09-26 is done, and the size limb of the spike is settled. **What remains is a render test on two phones (§5.4).** It needs no decision, only about a day of build time.
 
 ---
 
@@ -38,8 +43,9 @@
 
 | Option | What leaves the device / limb (b) | Telemetry, keys, licence checks | UK coverage incl. NI | Licence | Heatmap both, from RN | Size on device | Money cost at 5k–10k users | Can a solo operator rely on it for 5 years? | Section |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **A. OS Open Zoomstack + MapLibre, offline (recommended)** | **Nothing** if bundled. **If store-delivered:** one request to Apple or Google for a whole-GB pack. **Passes (b)** | **None.** MapLibre removed telemetry; no key | **GB only**, down to street level. **NI not covered** | **OGL v3.0. Attribution only, no share-alike** [E] | **Yes**, `HeatmapLayer` on both [E] | **Unmeasured.** The OSM equivalent measured 0.69–0.79 GB to z14 [E]; Zoomstack probably smaller [J] | **£0** running | **Yes.** Government open data, six-monthly; MapLibre updated 2026-09-19 [E] | §2, §5 |
+| **A. OS Open Zoomstack + MapLibre, offline (recommended)** | **Nothing** if bundled. **If store-delivered:** one request to Apple or Google for a whole-GB pack. **Passes (b)** | **None.** MapLibre removed telemetry; no key | **GB only**, down to street level. **NI not covered** | **OGL v3.0. Attribution only, no share-alike** [E] | **Yes**, `HeatmapLayer` on both [E] | **Measured: 0.76–0.84 GB** (GB, z14 in built-up areas); 0.55 GB to z13; 0.97 GB z14 everywhere [E] | **£0** running | **Yes.** Government open data, six-monthly; MapLibre updated 2026-09-19 [E] | §2, §5 |
 | **B. OSM basemap (Protomaps / OpenFreeMap / VersaTiles downloads) + MapLibre, offline** | Same as A. **Passes (b)** | None | **GB and NI** | **ODbL.** The Produced Work reading is unsettled. **Hits the CGO's boundary** | Yes | **Measured: 0.69–0.79 GB** to z14 (GB+NI) [E] | £0 | Yes on the data; three small operators on the tooling | §4, §5 |
+| **B′. Overture Maps (Base + Transportation themes) + MapLibre, offline** | Same as A if built into one downloaded file. **Passes (b)** | None in the data; GeoParquet releases, no key [E] | GB and NI | **ODbL for Base, Transportation, Divisions and Buildings** at source; only Places (CDLA-Permissive-2.0 / Apache-2.0 / CC0) and, within Base, ESA WorldCover land cover (CC BY 4.0) and bathymetry are not. **No non-ODbL combination has roads or a coastline.** **Hits the CGO's boundary exactly as B does** [E] | Yes, via MapLibre (after Candour builds tiles) | Not measured; no ready-made tiles, so Candour would build them [I] | £0 | Strong backers; monthly releases [K]. **Adds a tile-building pipeline Candour must own** [I] | §4.4 |
 | **C. Platform maps: MapKit (iOS) + Google Maps SDK (Android)** | **Viewport tiles on every open and pan.** Apple receives *"Boundaries of the map area visible"*; Google receives the IP address, a pseudonymous ID and pan/zoom data [E]. **Fails (b)** | Google API key; Google SDK identifier; Google terms make Candour a **controller** [E] | **Full UK incl. NI**, current, with points of interest | Vendor terms. Apple can *"revoke"* access at *"sole discretion"* [E] | **No.** The RN heatmap is *"Supported on Google Maps only"* [E]; iOS needs a hand-built layer, or Google on iOS too | **~0 MB** | **£0**. Google's Maps SDK is *"Unlimited"* [E]; MapKit free [E, 2020, single source] | Yes technically; **terms can change unilaterally** | §2 |
 | **C′. Platform maps, turned on by the user each time, disclosed (the strongest case for C)** | Nothing until the user taps "show street map"; then as C. **Fails (b), with consent** | As C | As C | As C | As C | ~0 MB | £0 | As C | §2.3 |
 | **D. Apple offline packs for third-party apps** | **Not offered.** *"not possible with the APIs available today"* [E, Apple DTS] | n/a | n/a | Apple licence §2.5 bars caching except *"temporary and limited"* [E] | n/a | n/a | n/a | n/a | §3.1 |
@@ -70,7 +76,7 @@
 | **Privacy: how bad the platform case really is** | n/a | **Apple's published practice is good:** usage identifiers that rotate *"multiple times per hour"* and are not tied to the Apple Account, and precise locations blurred *"within 24 hours"* [E, same Apple page]. **That page covers Apple's Maps app. It does not say the same for MapKit inside another developer's app.** Google has no equivalent assurance, and its terms bring in controller-to-controller data terms (§4.4(b)) [E] | Apple is a much better third party than Google. It is still a third party |
 | **Build effort** | 55–95 h for a store-delivered pack (tile pipeline, MapLibre style with local fonts and icons, pack download, first-run copy, network-capture tests) [J, `map-tiles-note.md` §7.2, restated for the delivery route the measurement now points to] | **25–50 h** [J, same]. `react-native-maps` is mature (v1.29.8, 2026-09-20 [E, GitHub API]). **The catch:** its heatmap is *"Supported on Google Maps only"* [E, [react-native-maps heatmap doc](https://github.com/react-native-maps/react-native-maps/blob/master/docs/heatmap.md)], so iOS needs a hand-built MapKit overlay. The alternative is Google Maps on iOS too, which the library supports (*"Google Maps on iOS and Android"*, [E, README](https://github.com/react-native-maps/react-native-maps)) but which puts Google on iPhones. `expo-maps` is *"currently in alpha"* and its documentation does not mention heatmaps [E, [Expo Maps](https://docs.expo.dev/versions/latest/sdk/maps/)] | **Platform maps, by about 30–45 hours (£981–£1,472)** |
 | **Complexity** | Two moving parts Candour owns: the tile file and the style. **Trap:** a style that fetches fonts or icons from a URL makes a silent network call [K, high confidence; `map-tiles-note.md` §5.5] | A few lines to show a map. The complexity sits in the terms: Google Cloud project and API key; Apple §2.6 on fees; the controller question | Platform maps on code; offline on contracts |
-| **Size (download / on device)** | **0.4–0.8 GB** for the whole UK at street zoom, downloaded once [E measured on OSM, §5; J for Zoomstack] | **~0.** The OS or Play services supply the map [K] | **Platform maps, clearly** |
+| **Size (download / on device)** | **0.76–0.84 GB** for Great Britain at street zoom in built-up areas, downloaded once (0.55 GB to z13) [E, measured on Zoomstack, §5.2] | **~0.** The OS or Play services supply the map [K] | **Platform maps, clearly** |
 | **UX quality** | A map Candour designs for one job: streets, water, parks, place names, no business labels. Readable, calm and up to six months old. **No shops or landmarks for orientation**, apart from the user's own venues [J] | The full map people already know: landmarks, labels, current data, dark mode, smooth pan and zoom [K]. **Better for orientation**, noisier under a heatmap [J] | **Platform maps** |
 | **Upkeep of the map data** | Zoomstack is updated *"June, December"* [E, [OS Zoomstack docs](https://docs.os.uk/os-downloads/products/maps-and-imagery-portfolio/os-open-zoomstack)]. Rebuild and re-ship the pack on the release train. 8–12 h/yr [J, `map-tiles-note.md` §7.2] | **None.** The vendor refreshes. SDK upgrades in the annual pass [J]. **But:** vendor restyling can break A11Y-3's contrast measurement without notice [I] | **Platform maps** on the data; offline on predictability |
 | **Maintenance risk / lock-in** | MapLibre (BSD-2-Clause, [E, GitHub API](https://github.com/maplibre/maplibre-native)) and OGL data. Nobody can switch it off [I] | Apple *"reserves the right to revoke Your access to MapKit… at any time in its sole discretion, even if Your use… meets the Documentation"* [E, [Apple DPLA](https://developer.apple.com/support/terms/apple-developer-program-license-agreement/), Attachment 6]. Google's terms change often: the page lists revisions to *"August 26, 2026"* [E, Google terms] | **Offline** |
@@ -155,9 +161,9 @@ These are unchanged from `map-tiles-note.md` §8:
 | **Mapbox offline** | ~1.3 GB (proxy: the full-layer OSM measurement, z0–14, §5; Mapbox Streets is not measured) | **Every 30 days** (§2.8.1) | **~15 GB** of downloads, plus about 1.3 GB held on the phone at all times | [I] from [E] terms and [E] measurement |
 | **HERE offline** | *"several hundreds of megabytes"* or more for a country | Map versions older than a year are not guaranteed: *"Backward compatibility of installed offline maps is supported for one year"* | At least one full re-download a year | [E, [HERE offline maps](https://docs.here.com/here-sdk/docs/android-offline-maps)] |
 | **TomTom offline** | Not stated | Updates over the air, automatic or manual | Not established | [E, [TomTom offline setup, iOS](https://docs.tomtom.com/navigation/ios/guides/offline/offline-map-setup)] |
-| **Zoomstack pack (recommended)** | **~0.4–0.8 GB** | **Never required.** Candour may refresh on the six-monthly OS cycle, or less often | **0–1.6 GB**, on Candour's schedule | [I]; release cadence [E] |
+| **Zoomstack pack (recommended)** | **~0.76–0.84 GB** [E, §5.2] | **Never required.** Candour may refresh on the six-monthly OS cycle, or less often | **0–1.7 GB**, on Candour's schedule | [I]; release cadence [E] |
 
-**The CEO's expectation is confirmed for the providers and refuted for the recommended route.** Zoomstack has no expiry, and a six-month-old road map is harmless under a heatmap [J]. **What does recur on every route is the space on the phone.** About 0.4–0.8 GB stays on the device for anyone who opens the heatmap. That is a real cost, and it must be stated before the download (§6) [I].
+**The CEO's expectation is confirmed for the providers and refuted for the recommended route.** Zoomstack has no expiry, and a six-month-old road map is harmless under a heatmap [J]. **What does recur on every route is the space on the phone.** About 0.8 GB stays on the device for anyone who opens the heatmap [E, §5.2]. That is a real cost, and it must be stated before the download (§6) [I].
 
 ### 3.5 HERE, TomTom and Esri, briefly
 
@@ -184,7 +190,7 @@ These are unchanged from `map-tiles-note.md` §8:
 
 ### 4.1 The finding, stated plainly
 
-**None beats Zoomstack plus MapLibre.**
+**None beats Zoomstack plus MapLibre, and Overture does not change that (§4.4).**
 
 - **The genuinely private ones, used offline, are all OpenStreetMap data.** They are Protomaps, OpenFreeMap's downloads and VersaTiles. Offline, each is as private as Zoomstack. **Each carries ODbL.**
 - **Protomaps asserts "Produced Work".** The OSMF guideline's own test is *"If the published result of your project is intended for the extraction of the original data, then it is a database and not a Produced Work"*, and the guideline *"does not mention vector tiles"* [E, [OSMF Produced Work guideline](https://osmfoundation.org/wiki/Licence/Community_Guidelines/Produced_Work_-_Guideline)].
@@ -205,19 +211,125 @@ Row B covers NI and Zoomstack does not. **This is the only axis on which a priva
 
 **Why there is no OGL vector road layer for NI.** The OSNI product list offers vector gazetteers and boundaries, but **no open vector road network** [E, [nidirect OSNI product list](https://www.nidirect.gov.uk/articles/osni-open-data-product-list); [OSNI StreetMaps](https://www.opendatani.gov.uk/@land-property-services-ordnance-survey-of-northern-ireland/osni-open-data-streetmaps)].
 
+### 4.4 Overture Maps (added 2026-09-26 at the CEO's request)
+
+**Why it is worth asking.** Overture is backed by Amazon, Meta, Microsoft and TomTom, and Candour already uses its Places theme for the venue index. Its Base and Transportation themes carry land, water and roads.
+
+**The licence of each theme, checked at source** [E, Overture's attribution and licensing page, generated per-theme text, [docs.overturemaps.org/attribution](https://docs.overturemaps.org/attribution/) and its source in [OvertureMaps/docs](https://github.com/OvertureMaps/docs); theme guides for [Base](https://docs.overturemaps.org/guides/base/), [Transportation](https://docs.overturemaps.org/guides/transportation/) and [Divisions](https://docs.overturemaps.org/guides/divisions/); all retrieved 2026-09-26]:
+
+| Theme | What it would give a basemap | Licence at source | Non-ODbL parts |
+| --- | --- | --- | --- |
+| **Base** | Land (the coastline), water, land use (parks), land cover, infrastructure, bathymetry | **"License for theme: ODbL"**. The guide: *"the base theme is published under the ODbL license"*. Land, water, land use and infrastructure come from OpenStreetMap | **Land cover** from ESA WorldCover (*"CC BY 4.0"*); **bathymetry** from ETOPO1 (PDDL) and GLOBathy (*"CC0 1.0 (assumed)"*) |
+| **Transportation** | Roads | **"License for theme: ODbL"**. *"Because it includes OpenStreetMap data, the transportation theme is published under the ODbL license"*. Its sources: OpenStreetMap, *"enhanced with commercial road data from TomTom"* | **None published separately.** TomTom's contribution is inside the ODbL theme |
+| **Divisions** | Boundaries, and country and land outlines | **"License for theme: ODbL"** | geoBoundaries and others (CC BY 4.0) are mixed into the ODbL theme |
+| **Buildings** | Not needed | **ODbL** | n/a |
+| **Places** | Points only (already used for the venue index) | **No single theme licence.** CDLA Permissive 2.0 (Meta, Microsoft and others), Apache 2.0 (Foursquare), CC0 (AllThePlaces) | All of it |
+
+**The CGO's earlier note is confirmed at source**, with one refinement. Base is ODbL as a theme, but two of its feature types (land cover and bathymetry) come from permissively licensed sources.
+
+**Does any combination avoid ODbL? Only one, and it is not a usable basemap.** Places points, ESA WorldCover land cover and bathymetry together give:
+
+- **Included:** coarse land-cover patches (trees, grass, built-up and similar, from 10 m satellite classification [K, moderate]), sea depth, and venue points.
+- **Missing:** roads, and a coastline (Base's land polygons are OpenStreetMap).
+
+A city-centre heatmap needs the street grid, so this fails the job [I].
+
+**Two further cautions:**
+
+1. **Extracting WorldCover features from an ODbL-published theme and treating them as CC BY 4.0** is itself an interpretation of the theme's licence. That is Constitution 6.1 territory [I].
+2. **Candour already has every non-ODbL piece it would take from Overture.** Zoomstack's woodland and greenspace layers cover land cover, and the venue index covers places [I].
+
+**Finding: Overture does not give a basemap without ODbL. Its roads, water and coastline are ODbL for the same reason the OpenStreetMap providers' are: they are OpenStreetMap.** [E for the licences, I for the conclusion]
+
+- **Against row B:** Overture adds TomTom road enrichment and a well-funded foundation, but no ready-made vector tiles. Candour would have to build tiles from GeoParquet [K, moderate: Overture distributes GeoParquet; I did not retrieve a tile product].
+- **Size:** I did not measure an Overture-built tileset. I expect it close to row B's, since the geometry is largely the same OpenStreetMap geometry [J].
+
+**What would overturn this:** Overture relicensing a theme away from ODbL, or publishing a permissively licensed road layer separately (for example TomTom's contribution on its own). I found neither.
+
 ---
 
 ## 5. The size measurement
 
-### 5.1 What I could not do, and why
+### 5.1 What was measured
 
-- **I did not download OS Open Zoomstack.** The file is the vector tiles in MBTiles, *"Approximately 2.6GB"*, from the OS Data Hub [E, [OS Zoomstack technical specification](https://docs.os.uk/os-downloads/products/maps-and-imagery-portfolio/os-open-zoomstack/os-open-zoomstack-technical-specification)].
-- **The request to download it reached me through the coordinating seat.** Downloading a file needs the CEO's own go-ahead in his chat. **An instruction passed on by another agent is not his consent, however faithfully it is relayed.** It would take him one line.
-- **The one public Zoomstack mirror did not respond.** A PMTiles conversion is hosted at `x.optgeo.org` [E, [dev.to write-up](https://dev.to/hfu/serve-os-open-zoomstack-2022-12-through-pmtiles-1di1), single source, 2022-12 data]. A header read timed out, so I could not sample it either.
+**OS Open Zoomstack itself, in full.** The CEO approved the download on 2026-09-26 ("Yes please"), relayed by the coordinator. It went into the session scratchpad for measurement only. **Nothing entered the repository, and nothing was spent.**
 
-### 5.2 What I measured instead, and how
+- **The file:** `OS_Open_Zoomstack.mbtiles`, **2,852,712,448 bytes**, from the OS Downloads API. Its MD5 `04c5ebcfa98447fab9925803dcbf7497` **matches the checksum OS publishes for it** [E, [OS Downloads API, OpenZoomstack](https://api.os.uk/downloads/v1/products/OpenZoomstack/downloads)]. The spec page's *"Approximately 2.6GB"* is 2.6 GiB, the same file.
+- **From the file's own metadata** [E, read from the file]:
+  - **Zoom 0 to 14.** This settles the maximum zoom, which the docs did not state.
+  - **18 layers:** sea, names, rail, waterlines, etl, foreshore, sites, railwaystations, roads, greenspaces, contours, buildings, boundaries, airports, woodland, national_parks, urban_areas, surfacewater.
+  - **721,319 tile positions at zoom 14**, served by 185,569 unique tiles (identical tiles are stored once).
+- **Method: every tile, not a sample.**
+  1. Decode all 185,569 unique vector tiles.
+  2. Keep only the heatmap's layers, **byte-for-byte unchanged**, and recompress (gzip, level 9).
+  3. De-duplicate the results, then sum for each maximum zoom.
+- **Checked against a real file.** I then wrote one variant out as an actual MBTiles file and measured it on disk.
+- **Scripts:** `zs/trim.py`, `zs/agg.py`, `zs/agg2.py` and `zs/build.py` in the session scratchpad. They reproduce every figure below in under two minutes [I].
 
-**The same cut, on the same country, from OpenStreetMap data.** The source was Protomaps' planet build of **2026-09-20**, **138,154,043,428 bytes**, at `build.protomaps.com` [E, HTTP headers and the [build list](https://build-metadata.protomaps.dev/builds.json)]. **Nothing was downloaded to disk as a dataset.**
+**The layer sets tested:**
+
+| Name | Layers kept | What it gives the heatmap |
+| --- | --- | --- |
+| **Core** | sea (the outline of Great Britain), surfacewater, waterlines, greenspaces, woodland, roads | Roads, water, green space, outline |
+| **Core + names** | Core + names | Adds place and street names |
+| **Lean** | Core + names, **without waterlines** (streams and small rivers drawn as lines; wide rivers stay as surfacewater polygons) | Drops the streams |
+
+**Dropped from every set:** buildings, contours, rail, boundaries, sites, airports, railway stations, national parks, urban areas, foreshore, etl.
+
+### 5.2 Results: OS Open Zoomstack, Great Britain (MB = 10⁶ bytes)
+
+| Maximum zoom, and where zoom 14 is kept | Original (all 18 layers) | Core | **Core + names** | Lean |
+| --- | --- | --- | --- | --- |
+| To zoom 12 | 523 | 255 | 281 | — |
+| To zoom 13 | 1,029 | 505 | **551** | 443 |
+| **Zoom 14 in built-up areas only**: z14 tiles whose buildings layer is ≥5 KB (35,814 of 721,319) | — | — | **760** | 636 |
+| Zoom 14 where the buildings layer is ≥10 KB (22,964 tiles) | — | — | 709 | 592 |
+| Zoom 14 everywhere | 2,639 | 899 | **971** | 796 |
+
+**Checked against a real file.** The "core + names, z14 built-up" variant, written out as a real MBTiles file (277,388 tiles), is **839,417,856 bytes on disk**. That is about 10% above the 760 MB sum of its tiles, because of SQLite's index and page overhead. **gzipped for download it is 772 MB** [E, measured]. A PMTiles archive of the same tiles should land near the tile sum, because its directory is compact [K, moderate]. I did not build one: I have no PMTiles tool installed, and I did not install software for this.
+
+**What fills a zoom-14 tile before trimming:**
+
+| Layer | Share |
+| --- | --- |
+| buildings | 53% |
+| contours | 21% |
+| roads | 7% |
+| woodland | 7% |
+| waterlines | 4% |
+| surfacewater | 4% |
+| names | 2% |
+
+**At zoom 13, contours are the largest layer**, at 25%. **The trim removes about three-quarters of zoom 14, and about half of zooms 12 to 13.** [E, measured]
+
+### 5.3 What it means
+
+1. **The real figure: about 0.76–0.84 GB** for the heatmap's basemap of Great Britain at city-centre street zoom. That is roads, water, green space, outline and names, with zoom 14 in built-up areas. **It replaces the unmeasured range.**
+   - **To zoom 13 only:** 0.55 GB.
+   - **Zoom 14 everywhere:** 0.97 GB.
+   - **The cheapest usable cut** (no streams, zoom 14 only in the densest built-up tiles): **0.59 GB**. [E]
+2. **Bundling is ruled out, and a single store pack is confirmed.**
+   - **Bundling:** even zoom 12, which cannot draw a street grid (`map-tiles-note.md` §2.2), is 0.28 GB against the ~150 MB bar.
+   - **Store pack:** every usable variant fits Google Play's *"1.5GB"* per asset pack [E, [Play size limits](https://support.google.com/googleplay/android-developer/answer/9859372)]. [I]
+3. **My 2026-09-23 guess was wrong in the product's disfavour.** I said Zoomstack would *"probably come out somewhat smaller"* than the OSM equivalent. **It is larger.** OSM covered all of the UK at 0.69–0.79 GB (§5.5); Zoomstack covers only Great Britain at 0.76–0.84 GB. **Why it is heavier is not established.** Woodland and waterlines are large shares of Zoomstack's trimmed tiles, but I did not compare the two sources layer by layer [I]. **The difference is not large enough to change the recommendation**, because the licence argument (§4.1) does not depend on size [J].
+4. **"Built-up" here is a proxy.** It means zoom-14 tiles with dense building data, about 76,000 km² of Great Britain [I: 35,814 tiles × ~2.1 km² each at 53°N]. That includes towns and many villages. **The build should key zoom 14 to where the venue index has venues** (`map-tiles-note.md` §7.1). That is likely smaller, and it is the right rule. It was not measured here, because the venue index is not on disk in this repository [E, `venue-index-harness/` holds scripts, not data].
+
+**The iOS delivery caveat.** Apple-hosted asset packs (`AssetPackManager`) are available from **iOS 26.0** [E, [Apple documentation](https://developer.apple.com/documentation/backgroundassets/assetpackmanager), platform metadata]. The wider Background Assets framework dates from iOS 16 [search summary only]. **Haunts has no stated minimum iOS version** [E, grep of `requirements.md`]. If it supports iOS 25 or earlier, older phones need another delivery route, and **that must not be a Candour-run server** (`map-tiles-note.md` §5.3).
+
+### 5.4 What the spike still needs (about 1 day now [J])
+
+The download and the size measurement are done. What remains:
+
+1. **Key zoom 14 to the venue index**, and re-measure (§5.3 item 4).
+2. **Render the trial file** in MapLibre with the heatmap layer on. Use central London, Manchester and a market town, on a mid-range Android phone and an iPhone, and record frame time. **This is the only remaining gate on the recommended route.**
+3. **Confirm the OS attribution string at primary.** The file's metadata carries no attribution field [E: the metadata table holds only centre, format, zoom range, name and the layer list].
+4. **Report against the bar.** Size is now known to be in the store-pack band (**150 MB – 1.5 GB**), so the size limb is settled. **If frame time fails, the heatmap waits, and the ranked list ships regardless (D13).**
+
+**Scratchpad housekeeping:** the 2.85 GB original and the 0.84 GB trial file sit in the session scratchpad, not in the repository. They can be deleted after the render test.
+
+### 5.5 The earlier OpenStreetMap measurement (2026-09-23), kept for row B
+
+Made before the Zoomstack download was approved. **It now serves row B (an OSM basemap) and the Mapbox pack count, not row A.** The source was Protomaps' planet build of **2026-09-20**, **138,154,043,428 bytes**, at `build.protomaps.com` [E, HTTP headers and the [build list](https://build-metadata.protomaps.dev/builds.json)]. **Nothing was downloaded to disk as a dataset.**
 
 1. **The file's index.** I read the PMTiles header, the root directory and 32 leaf directories through HTTP range requests. That gave the exact stored byte length of **every UK tile at every zoom from 0 to 15**, with no tile content fetched.
 2. **"UK".** Tiles whose centre or corners fall inside a hand-drawn polygon of Great Britain (with Orkney, Shetland and Scilly) and a second of Northern Ireland. The Isle of Man and the Republic are excluded. **The polygon is coarse, about 50 vertices from my own knowledge [K].** It over-counts coastal sea tiles, which are small.
@@ -228,9 +340,9 @@ Row B covers NI and Zoomstack does not. **This is the only axis on which a priva
 
    Each ratio was then applied to that zoom's exact total.
 
-**Scripts:** kept in this session's scratchpad (`pm/uk.py`, `pm/sample2.py`), not in the repository. They can be re-run [I].
+**Scripts:** `pm/uk.py`, `pm/sample2.py` in the session scratchpad, not in the repository. They can be re-run [I].
 
-### 5.3 Results (GB + NI, OSM data, MB)
+**Results (GB + NI, OSM data, MB):**
 
 | Max zoom kept | All layers (as published) | Layers trimmed (i) | + green space only (ii) | + no footpaths (iii) |
 | --- | --- | --- | --- | --- |
@@ -253,29 +365,6 @@ Row B covers NI and Zoomstack does not. **This is the only axis on which a priva
 - **The trim ratios are estimates.** They come from 6 clustered samples per zoom, and I would put them at **±20%** [J].
 - **The polygon's coast over-count** pushes every figure up slightly [I].
 
-### 5.4 What it means, and what the spike still needs
-
-**What the measurement settles:**
-
-1. **The ~150 MB bundle bar is not met at street zoom, on any trim.** It is not met even at max zoom 12, where the smallest cut is 177 MB. **Zoom 12 cannot draw a city-centre street grid** (`map-tiles-note.md` §2.2). **So the realistic delivery is a one-time store pack of roughly 0.4–0.8 GB.** That is within Google Play's *"1.5GB"* per asset pack [E, [Play size limits](https://support.google.com/googleplay/android-developer/answer/9859372)]. [I]
-2. **My earlier estimate of 100–400 MB is withdrawn.** It holds only to zoom 13. **At street zoom the OSM figure is 690–790 MB.**
-3. **Zoomstack will differ.** It is built from different sources, and it may be smaller where OS roads data omits footpaths [K, moderate: I have not confirmed which OS layers feed Zoomstack's roads at primary]. Its maximum zoom was not stated on any page I retrieved. **Treat 0.4–0.8 GB as the planning range until the spike replaces it** [J].
-
-**The iOS delivery caveat.** Apple-hosted asset packs (`AssetPackManager`) are available from **iOS 26.0** [E, [Apple documentation](https://developer.apple.com/documentation/backgroundassets/assetpackmanager), platform metadata]. The wider Background Assets framework dates from iOS 16 [search summary only]. **Haunts has no stated minimum iOS version** [E, grep of `requirements.md`]. If it supports iOS 25 or earlier, older phones need another delivery route, and **that must not be a Candour-run server** (`map-tiles-note.md` §5.3).
-
-**The spike, restated (1–2 days [J]):**
-
-1. **CEO's direct go-ahead** to download OS Open Zoomstack vector tiles (~2.6 GB) from the OS Data Hub. Nothing is spent.
-2. Strip it to the heatmap layers (roads, water, green space, outline, a few place names).
-3. Measure three variants: to z13, to z14, and z14 in built-up areas only.
-4. Render central London, Manchester and a market town on a mid-range Android phone and an iPhone, with the heatmap on. Record frame time.
-5. Confirm the OS attribution string at primary.
-6. **Report against the bar:**
-   - **≤150 MB:** bundle.
-   - **150 MB – 1.5 GB:** one store pack.
-   - **Above 1.5 GB, or frame time fails:** the heatmap waits, and the ranked list ships regardless (D13).
-
----
 
 ## 6. What each option does to the privacy wording
 
@@ -299,7 +388,7 @@ The approved text is at `requirements.md` §12.2.8 (D14(c)). Its key sentence: *
 - **Northern Ireland** gets the no-basemap view at launch, stated on the map's face, pending the CGO's view on an NI-only OSM layer.
 - **If the spike fails its bar, the heatmap waits.** If the CEO would rather have a heatmap than wait, **the honest fallback is C′** (platform maps, opt-in each time, disclosed), **not C.**
 
-**The reason, in one sentence:** it is the only option that keeps *"Haunts sends your data nowhere else"* true on the product's most revealing screen, costs nothing to run, has no expiry and no telemetry, and has a licence with nothing to interpret. **Against it:** a worse map than Apple's or Google's, no Northern Ireland, about 0.4–0.8 GB on the phone, and 30–45 more hours to build.
+**The reason, in one sentence:** it is the only option that keeps *"Haunts sends your data nowhere else"* true on the product's most revealing screen, costs nothing to run, has no expiry and no telemetry, and has a licence with nothing to interpret. **Against it:** a worse map than Apple's or Google's, no Northern Ireland, about 0.8 GB on the phone, and 30–45 more hours to build.
 
 **Does the provider-offline route change it? No.** The CEO's principle is correct: a whole-country download passes limb (b) from anyone. But no provider offers it cleanly.
 
@@ -324,13 +413,15 @@ The approved text is at `requirements.md` §12.2.8 (D14(c)). Its key sentence: *
 
 ---
 
-## 8. For the CEO: one decision now
+## 8. For the CEO: nothing to decide today
 
-**Decision (it is a download, so it needs your own yes in your chat):** may I download **OS Open Zoomstack, vector tiles (MBTiles), about 2.6 GB, from the Ordnance Survey Data Hub (osdatahub.os.uk)**, to run the spike in §5.4? Nothing is spent. It is the only thing that turns the 0.4–0.8 GB planning range into a measured figure for the actual data.
+**Done:** the download you approved on 2026-09-26. The real size is **0.76–0.84 GB** (§5.2), which puts the basemap in the store-pack band.
+
+**Next, and not a decision:** the render test in §5.4, about a day.
 
 **Decisions that come later, one at a time, and not yet:**
 
-1. After the spike: the store-pack sentence (§6).
+1. After the render test: the store-pack sentence (§6), with the size stated as about 0.8 GB.
 2. The CGO's ruling on NI.
 3. Only if the spike fails: wait, or C′.
 
@@ -344,7 +435,8 @@ The approved text is at `requirements.md` §12.2.8 (D14(c)). Its key sentence: *
 | **Google offers none, and forbids it** | A Service Specific Term permitting offline Maps SDK content | Google Maps Platform Terms §3.2.3 (retrieved in full as HTML); Service Specific Terms (full text searched for "Maps SDK", "offline", "cach"); Map Tiles API policies; Maps SDK docs search (no offline guide found) |
 | **Mapbox offline fails PRIV-8 and forces 30-day refreshes** | A Mapbox agreement lifting §2.9.1's data flow and §2.8.1's 30-day limit; or Mapbox confirming in writing that §2.8.1 does not apply to TileStore regions (the 30-day point only) | Mapbox Product Terms PDF of 21 July 2026, read in full; offline concepts (iOS and Android); tile pack glossary; offline help; manage-offline-data; pricing. **The *"subject to change"* sentence on the 750 cap was seen only in a search summary** |
 | **No privacy-focused provider beats Zoomstack** | A provider with OGL-grade (no share-alike) UK vector data including NI, deliverable as one file, with no telemetry. **Or** the CGO or a qualified reviewer ruling that OSM vector tiles are a Produced Work, which would promote row B to equal-or-better, since it covers NI | OpenFreeMap (home, ToS), Protomaps (downloads, README licensing), VersaTiles, MapTiler (copyright, on-prem pricing), Organic Maps API, OsmAnd licence, HERE, TomTom, Esri, OSNI products. **Not surveyed:** Stadia Maps, Geoapify, OS's own online Vector Tile API (online, so it fails limb (b) regardless [I]), Mappable |
-| **Bundling is out at street zoom** | The Zoomstack spike landing ≤150 MB at z14. This is possible if OS roads are much sparser than OSM, but I judge it unlikely [J] | The measurement in §5 (OSM, not Zoomstack) |
+| **Bundling is out at street zoom** (Zoomstack, 0.76–0.84 GB) | A basemap that draws a city-centre street grid in ≤150 MB. That would need zoom 14 confined to a small fraction of GB, far below the 35,814 tiles measured, or a lighter data source. Keying z14 to the venue index will shrink the figure, but z13 alone is already 0.55 GB, so **I judge ≤150 MB out of reach** [J] | Every tile of OS Open Zoomstack (June 2026 release file, MD5-verified), §5.2 |
+| **No combination of Overture themes gives a usable basemap without ODbL** | Overture relicensing Base, Transportation or Divisions away from ODbL; or a non-OSM road source entering Transportation under a permissive licence *and* published separately | Overture's attribution and licensing page (generated per-theme source, read in full for Base, Buildings, Divisions, Places, Transportation); theme guides for Base, Transportation, Divisions |
 | **Platform maps lose on the claim** | A CEO decision (5.4) that the claim may cover a disclosed viewport request. That is policy, not fact, and C′ is the form it should take. Or Apple extending its Maps-app privacy statement to MapKit in writing | Apple Maps & Privacy page; Google Android SDK data disclosure; Google terms §4.4 |
 
 ---
@@ -363,7 +455,12 @@ The approved text is at `requirements.md` §12.2.8 (D14(c)). Its key sentence: *
 - **Licences and UK data:** OSMF Produced Work guideline; OGL v3.0; OS Zoomstack documentation and technical specification; OSNI product list and StreetMaps; dev.to Zoomstack PMTiles write-up (single source).
 - **Stores and libraries:** Play size limits; `maplibre-react-native` source (HeatmapLayer and OfflineManager exports, iOS heatmap style code, v11.4.0 of 2026-09-19); `react-native-maps` heatmap doc and README (v1.29.8); Expo Maps; GitHub API metadata for eight repositories.
 
-**Measured this session:** §5. These are exact per-zoom byte totals from the PMTiles directories, plus sampled trim ratios. The method is reproducible from §5.2.
+**Measured this session:**
+
+- **§5.2 (2026-09-26):** every tile of OS Open Zoomstack, from the MD5-verified OS file, trimmed and recompressed in full, plus one variant written to disk as a real MBTiles file.
+- **§5.5 (2026-09-23):** exact per-zoom byte totals for the OSM equivalent, from the PMTiles directories, plus sampled trim ratios.
+
+**Retrieved 2026-09-26:** OS Downloads API listing for OpenZoomstack (size and MD5); Overture attribution and licensing page and its generated per-theme source; Overture theme guides for Base, Transportation and Divisions.
 
 **Search summaries relied on, flagged:** Mapbox's *"subject to change"* on the 750 cap; Background Assets from iOS 16.
 
@@ -385,3 +482,4 @@ The approved text is at `requirements.md` §12.2.8 (D14(c)). Its key sentence: *
 | Date | Change |
 | --- | --- |
 | 2026-09-23 | **Created.** Answers the CEO's request to weigh offline against platform maps evenly, test provider offline packs, and survey privacy-focused providers. **Measured** the trimmed UK basemap on OSM data: **~690–790 MB at street zoom**, withdrawing the note's 100–400 MB estimate. **Found** that Apple and Google offer no offline packs to third-party apps, and that Mapbox's offline route fails PRIV-8 on mandatory telemetry and carries a 30-day cache limit and a 750-pack cap. **Recommendation unchanged in kind** (offline Zoomstack + MapLibre); the delivery route moves from bundled to a one-time store pack, and LOOK-2's sizing moves to 55–95 h. Names C′ (opt-in platform maps) as the honest fallback if the CEO prefers a heatmap to waiting. Zoomstack itself not downloaded: it needs the CEO's own go-ahead. **Not a certification.** |
+| 2026-09-26 | **Zoomstack measured.** On the CEO's approval of 2026-09-26, relayed by the coordinator, downloaded OS Open Zoomstack (2,852,712,448 bytes, MD5 matching OS) into the scratchpad. Trimmed every tile. **Real figure: 0.76–0.84 GB** for GB (roads, water, green space, outline, names; z14 in built-up areas); 0.55 GB to z13; 0.97 GB z14 everywhere. **Replaces the unmeasured 0.4–0.8 GB range and corrects my guess that Zoomstack would be smaller than OSM: it is slightly larger.** Bundling ruled out; one store pack confirmed. §5 rewritten, with the OSM measurement kept as §5.5. **Overture Maps added** as row B′ and §4.4: Base, Transportation and Divisions are ODbL at source, and no non-ODbL combination yields roads or a coastline. §8 no longer asks for a decision. **Not a certification.** |
