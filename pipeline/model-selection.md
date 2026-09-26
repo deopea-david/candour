@@ -1,6 +1,6 @@
 # Model and effort selection for the agent seats
 
-**Author:** main session (orchestrator), at the CEO's request · **Date:** 2026-09-26 · **Status:** proposal; binding on merge
+**Author:** main session (orchestrator), at the CEO's request · **Date:** 2026-09-26 · **Status:** binding on merge; Fable decided (§7)
 **Applies to:** every seat in `.claude/agents/`, and to the main session when it commissions them
 **Evidence:** tagged per `pipeline/evidence-standard.md`. Every [E] was retrieved on 2026-09-26 from the link given.
 
@@ -49,7 +49,7 @@
 ## 3. The constraints the choice must respect
 
 1. **Constitution 1.5, "cheap and boring by default".** On a subscription, the cost of a model choice is **usage-limit headroom**. When it is used up, the whole company stops until the window resets [E, costs: *"a seat-based usage window … shared across all models"*]. The Engineer and Research Analyst generate most of the tokens, so they are where a cheaper model buys the most headroom.
-2. **Constitution 5.4: spending real money is the CEO's alone.** Fable may bill to usage credits, and bills silently in a subagent (§1). **So no seat defaults to Fable, and the orchestrator uses it only under a standing approval from the CEO** (§7).
+2. **Constitution 5.4: spending real money is the CEO's alone.** Fable may bill to usage credits, and bills silently in a subagent (§1). **So no seat defaults to Fable, and the orchestrator uses it only only with the CEO's approval for that use** (§7).
 3. **Errors that reach the CEO have cost the most in this company's history:** interpretive errors in gate packs, transposed arithmetic, stale legal citations. **So the seats whose output feeds a 5.4 decision keep the strongest default model**, and their efficiency comes from being commissioned less often and more precisely, not from a cheaper model.
 
 ## 4. Default model and effort per seat (the frontmatter this PR sets)
@@ -80,7 +80,7 @@ The seat default is the starting point. The orchestrator changes the **model** (
 
 Use a smaller model for **mechanical work with a checkable output**: file and code search, inventories, reformatting, running scripts, fetching and summarising documentation, ticket generation from a script, and standup roll-ups. **Test:** could a wrong answer be caught by looking at the output? If so, step down.
 
-### 5.2 Step up: Sonnet → Opus, or Opus → Fable (Fable only under §7)
+### 5.2 Step up: Sonnet → Opus, or Opus → Fable (Fable only with the CEO's per-use approval, §7)
 
 Step up when any of these holds:
 - **Stakes:** the output feeds a Constitution 5.4 decision, makes a claim about what a clause of the Constitution or of law requires, sets a published number, or touches a **promise-line**, **standing-condition** or `needs:cso-review` ticket.
@@ -93,8 +93,8 @@ Step up when any of these holds:
 ### 5.3 Named step-ups for Haunts, known now
 
 - **Engineer → Opus:** the native capture modules (CAP-1 … CAP-3), the SQLite schema and the refresh rules (VEN-7 … VEN-12), and backup encryption (DATA-6 … DATA-8).
-- **CTO → Fable (under §7):** the architecture ADR, and review of any PR the Engineer wrote on Opus, so the reviewer stays a different model from the author.
-- **Skeptic → Fable (under §7):** every gate dissent memo and the annual audit.
+- **CTO → Fable (with the CEO's per-use approval, §7):** the architecture ADR, and review of any PR the Engineer wrote on Opus, so the reviewer stays a different model from the author.
+- **Skeptic → Fable (with the CEO's per-use approval, §7):** every gate dissent memo and the annual audit.
 
 ### 5.4 Reviewer different from author
 
@@ -124,6 +124,8 @@ Every commission states `model` and `effort`, and every artifact's provenance li
    - **(c) Fable per use, asked each time.**
 
    **Checked by the CEO, 2026-09-26: on his plan the Fable row reads "Requires usage credits".** So every Fable run is real spending, and this is a 5.4 decision.
+
+   **Decided by the CEO, 2026-09-26: option (c), Fable per use, asked each time.** Before any Fable run, the orchestrator asks the CEO in chat. It names the seat, the task, and why Opus is not enough, and it waits for a clear yes. **No standing budget exists.** Each approved use is recorded in the artifact's provenance line. If asking becomes a burden once the build is running, the CEO may move to option (b) with a monthly cap.
 
 ## 8. Review
 
