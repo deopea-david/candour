@@ -384,6 +384,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D24 — Sensitive places are left out of headlines by default, and the user can switch them on.** *CEO, 2026-09-26.* Health, religious and social-service places do not appear in home-screen headlines unless the user chooses to include them. The per-place "leave out this place" option stays alongside. **This adopts UX's recorded disagreement** (`ux-home-headlines.md`), which had preferred a default exclusion; `requirements.md` had written in the user option only. The CEO's wider direction, recorded because it should guide future defaults: *"I like this idea in general, allowing customisation by the user"* — **protective defaults, with the user free to change them.**
 
+**D25 — Uncategorised places carry their own headline switch.** *CEO, 2026-09-26.* Resolves `requirements.md` §22 item 26. The venue index holds almost none of D24's sensitive categories, so the real exposure is places the index cannot categorise: those the user **types in** and those **imported** in bulk, e.g. from Google Timeline, which will include clinics and places of worship. **Each such entry has its own toggle for inclusion in headlines, and an import offers a bulk on/off switch.** Defaults, per the CVO's proposal and DFLT-1: **typed-in places start included**, since the user named them deliberately; **imported places start excluded**, since they arrive in bulk and unchosen. The PM/BA had recommended excluding all uncategorised places, which would also have hidden a user's own typed-in local.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
