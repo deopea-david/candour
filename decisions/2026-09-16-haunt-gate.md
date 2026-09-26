@@ -394,6 +394,14 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **The backlog is split into epics, features and tasks** so that progress can be tracked at each level (CEO direction). **The mapping of requirement IDs onto those levels is the PM/BA's to propose**, and it goes to the CEO before any ticket is created.
 
+**D28 — The `haunts` repository is private for now, and is to be made public later under a licence permitting personal use but not commercial use.** *CEO, 2026-09-26.* Private first on the CVO's recommendation: private-to-public can happen at any time, public-to-private cannot recall copies already taken, and it keeps early security code and the unchecked working name (PLAT-6) less exposed until the CSO has reviewed and the name checks have passed. The governance record stays public in `candour` throughout, so transparency does not depend on the code being public.
+
+**Two company rules this engages, recorded now so they are met rather than discovered.**
+1. **`LICENSE.md` presumes open source for product code *"unless the decision record gives a written reason otherwise."*** A licence that forbids commercial use is generally not "open source" in the usual sense of that term [K — the Open Source Definition's bar on discrimination against fields of endeavour; not retrieved here]. **So a written reason is owed in this record before the code is published.** It is not recorded here because the CEO has not yet stated it, and it is not the CVO's to supply.
+2. **Constitution Article 7.2 requires that on discontinuation *"the product's code is open-sourced where third-party rights allow."*** A non-commercial licence during the product's life does not conflict with that, but whether it satisfies it at shutdown is not settled. If it does not, the code is relicensed at discontinuation.
+
+**Referred to the CGO:** which licence text delivers the CEO's intent; its compatibility with the bundled third-party terms (CDLA-Permissive-2.0, Apache-2.0, OGL) and dependencies; and the Article 7.2 question. The CGO's opinion prepares and flags and does not certify (Constitution 6.1).
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
