@@ -142,6 +142,34 @@ task,HEAD-12,Headlines never in the app-switcher snapshot,FT-HEAD-4,HEAD-12,BLOC
 task,HEAD-13,Headlines only on the in-app home screen,FT-HEAD-4,HEAD-13,BLOCKING,both,engineer,8.2
 task,HEAD-17,"Sensitive places out of headlines by default, one switch",FT-HEAD-4,HEAD-17,MUST,both,engineer,8.2
 task,HEAD-18,Per-place headline toggle for uncategorised places,FT-HEAD-4,HEAD-18,MUST,both,engineer,8.2
+feature,FT-HEAD-5,Moving headline per theme: Rotate and typed,EP-HEAD,,,,engineer,8.2
+task,HEAD-19,"Warm's Ticker is Rotate: whole sentences, at most 3 per open",FT-HEAD-5,HEAD-19,BLOCKING,both,engineer,8.2
+task,HEAD-20,"Mono's typed headline and blinking cursor, under D45",FT-HEAD-5,HEAD-20,BLOCKING,both,engineer,8.2
+feature,FT-HEAD-6,Headline variety: phrasings and new templates,EP-HEAD,,,,ux-lead,8.2
+task,HEAD-21,"Several phrasings per template, chosen from the date",FT-HEAD-6,HEAD-21,BLOCKING,both,engineer,8.2
+task,HEAD-22,"Templates T10-T12, each entering once UX sets its threshold",FT-HEAD-6,HEAD-22,BLOCKING,both,engineer,8.2
+task,HEAD-23,"Neighbourhood template, only if the index can name an area",FT-HEAD-6,HEAD-23,PENDING-ESTIMATE,both,engineer,8.2
+epic,EP-THEME,Appearance: themes and the floating tab bar,,,,,ux-lead,8.3
+feature,FT-THEME-1,Theme system and Settings > Appearance,EP-THEME,,,,engineer,8.3
+task,THEME-10,"Three themes at launch: Warm, Mono (default), Retro",FT-THEME-1,THEME-10,MUST,both,engineer,8.3
+task,THEME-5,"Theme and light/dark in Settings, persisted, never promoted",FT-THEME-1,THEME-5,MUST,both,engineer,8.3
+task,THEME-11,"Theme picker with live previews, accessible as a radio group",FT-THEME-1,THEME-11,BLOCKING,both,engineer,8.3
+task,THEME-12,Light and dark as a separate setting for every theme,FT-THEME-1,THEME-12,MUST,both,engineer,8.3
+task,THEME-3,"A theme never changes another setting, nor they it",FT-THEME-1,THEME-3,BLOCKING,both,engineer,8.3
+feature,FT-THEME-2,What a theme may change; every theme accessible,EP-THEME,,,,engineer,8.3
+task,THEME-1,"A theme changes how the app looks, never what it does",FT-THEME-2,THEME-1,MUST,both,engineer,8.3
+task,THEME-2,"Every theme accessible in light, dark and higher contrast",FT-THEME-2,THEME-2,BLOCKING,both,engineer,8.3
+task,THEME-4,Every theme equally still; one shared motion budget,FT-THEME-2,THEME-4,BLOCKING,both,engineer,8.3
+task,THEME-6,No theme is a reward; all themes in every entitlement state,FT-THEME-2,THEME-6,BLOCKING,both,engineer,8.3
+task,THEME-7,Privacy surfaces say the same thing in every theme,FT-THEME-2,THEME-7,BLOCKING,both,engineer,8.3
+feature,FT-THEME-3,Retro theme and its guardrails,EP-THEME,,,,engineer,8.3
+task,THEME-8,Retro keeps the early-2000s look and none of its tricks,FT-THEME-3,THEME-8,BLOCKING,both,engineer,8.3
+task,THEME-13,Retro's period details meet the accessibility bar,FT-THEME-3,THEME-13,BLOCKING,both,engineer,8.3
+feature,FT-THEME-4,"Native Tabs bar, Retro's own bar, and the glass contrast check",EP-THEME,,,,engineer,8.3
+task,THEME-15,Native Tabs bar; docked on Android; Retro's own bevelled bar,FT-THEME-4,THEME-15,BLOCKING,both,engineer,8.3
+task,THEME-16,Glass bar contrast measured: at colour change and each iOS release,FT-THEME-4,THEME-16,BLOCKING,ios,engineer,8.3
+feature,FT-THEME-5,Warm's Contour texture,EP-THEME,,,,engineer,8.3
+task,THEME-14,"Contour texture in Warm only, never under text",FT-THEME-5,THEME-14,MUST,both,engineer,8.3
 epic,EP-ENT,"Entitlement, trial, lapse and first run",,,,,cto,9;9.1
 feature,FT-ENT-1,"Entitlement as intervals, unknown stated honestly",EP-ENT,,,,engineer,9
 task,ENT-1,"Entitlement stored as intervals, readable by capture modules",FT-ENT-1,ENT-1,BLOCKING,both,engineer,9
@@ -233,6 +261,7 @@ task,LIC-1,In-app Data sources and licences screen,FT-LIC-1,LIC-1,BLOCKING,both,
 task,LIC-3,"Overture citation included as a courtesy, labelled so",FT-LIC-1,LIC-3,MUST,both,engineer,13
 task,LIC-4,Publish the Overture release identifier,FT-LIC-1,LIC-4,MUST,both,engineer,13
 task,LIC-6,OS Open Zoomstack OGL attribution in the required form,FT-LIC-1,LIC-6,BLOCKING,both,engineer,13
+task,LIC-7,Bundled font notices; Reserved Font Names respected,FT-LIC-1,LIC-7,BLOCKING,both,engineer,13
 feature,FT-LIC-2,Licence texts travel with redistributed data,EP-LIC,,,,engineer,13
 task,LIC-2,Licence texts inside the export README,FT-LIC-2,LIC-2,BLOCKING,both,engineer,13
 task,LIC-5,Licence items travel with any standalone index release,FT-LIC-2,LIC-5,MUST,none,cgo,13
@@ -275,6 +304,8 @@ feature,FT-PLAT-3,"Name, icon and support statement before launch",EP-PLAT,,,,cg
 task,PLAT-2,No five-year support commitment; no support date published,FT-PLAT-3,PLAT-2,BLOCKING,none,cgo,16
 task,PLAT-6,"Pass three name checks before ""Haunts"" goes public",FT-PLAT-3,PLAT-6,BLOCKING,none,cgo,16
 task,PLAT-7,App icon and in-image mark exist before launch,FT-PLAT-3,PLAT-7,BLOCKING,both,ux-lead,16
+feature,FT-PLAT-4,User-chosen app icon,EP-PLAT,,,,engineer,16
+task,PLAT-9,"User-chosen app icon, separate from the theme",FT-PLAT-4,PLAT-9,BLOCKING,both,engineer,16
 epic,EP-PLAN,Build planning and spikes,,,,,cto,22
 feature,FT-PLAN-1,Block lifts owed before build,EP-PLAN,,,,cto,4;7.7.7
 task,SPK-01,CTO confirms Block 4 limb (b) lifts against 7.7.7,FT-PLAN-1,,BLOCKING,none,cto,7.7.7
@@ -291,9 +322,14 @@ task,SPK-06,"Choose the backup KDF, parameters and dependency",FT-PLAN-3,,BLOCKI
 task,SPK-11,Photos C-1: durable reference without full library access,FT-PLAN-3,,BLOCKING,both,cto,12.2.7
 task,SPK-12,"Backup architecture branch: user file only, or cloud module",FT-PLAN-3,,BLOCKING,both,cto,12.1
 task,SPK-13,Name the competitor export formats DATA-15 imports,FT-PLAN-3,,MUST,none,cto,22
+task,SPK-18,Font licences: RFN and DejaVu readings before any subset (LIC-7),FT-PLAN-3,,BLOCKING,none,cgo,22
+task,SPK-19,Can the index carry an area name from Places alone? (HEAD-23),FT-PLAN-3,,PENDING-ESTIMATE,none,cto,22
 feature,FT-PLAN-4,Sizing and costing of scope outside the estimate,EP-PLAN,,,,cto,22
 task,SPK-08,"Size scope outside the 2,090 h (HEAD, PHOTO, LOOK-8/9, heatmap)",FT-PLAN-4,,MUST,none,cto,22
 task,SPK-09,Re-cost the build once the CTO sizing lands,FT-PLAN-4,,MUST,none,cfo,22
+task,SPK-17,"Cost the design scope (CTO sized it: 256-535 h, 40-130 h/yr)",FT-PLAN-4,,MUST,none,cfo,22
 feature,FT-PLAN-5,Repository conventions and agent scaffolding,EP-PLAN,,,,cto,
 task,SPK-15,"Traceable commits, branches and PRs: standard and enforcement (D37)",FT-PLAN-5,,MUST,none,cto,
 task,SPK-16,"Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)",FT-PLAN-5,,MUST,none,cto,
+feature,FT-PLAN-6,"Code architecture, decided before build",EP-PLAN,,,,cto,
+task,SPK-20,Code architecture proposals and ADR for CEO decision (D59),FT-PLAN-6,,BLOCKING,both,cto,

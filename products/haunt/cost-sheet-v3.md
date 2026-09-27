@@ -1,5 +1,7 @@
 # Cost sheet — Haunt — v3 (pre-requirements, publishable)
 
+> **Addendum, 2026-09-27:** the design scope (D38, D42–D58) and the carried heatmap and headline items add +476.5 h (£15,586) one-off and +82 h (£2,690) a year. **Prices unchanged.** See [`cost-sheet-v3-addendum-design.md`](cost-sheet-v3-addendum-design.md) (CFO, SPK-17).
+
 **Seat:** Chief Financial Officer · **Date:** 2026-09-21 (§§0–6.2) · **completed 2026-09-22** (§§6.2 close–19, and three marked insertions: this line, the §0 addendum and §4.6)
 **Name:** the product is **Haunts** (CEO decision **D9**, 2026-09-21), a working name until the three checks at `requirements.md` PLAT-6 pass. §§0–6.2 were drafted before D9 reached this seat and say "Haunt"; they are left as written rather than silently edited. **The customer-facing copy at §12 uses "Haunts".** The slug and file paths stay `haunt`.
 **Status: intended for publication under Constitution 2.1 and Article 3.** Written for a sceptical customer first and the CEO second. **It is not a price.** Pricing is a Constitution 5.4 decision — *"The following are never automated: kill/proceed decisions, spending real money, **pricing changes**… Agents prepare; the founder decides"* — and belongs to the CEO alone.
