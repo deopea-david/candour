@@ -136,4 +136,56 @@ EXTRA_PAIRS = {
         ("button_edge", "surface", "ui", "Bevel button edge on content"),
         ("button_edge", "button_face", "ui", "Bevel button edge on its own face"),
     ],
+    "hybrid_a": [
+        ("on_apricot", "apricot_fill", "text", "Headline card text on apricot"),
+        ("tab_idle", "surface", "text", "Idle tab label on opaque bar"),
+        ("bar_edge_hc", "bg", "ui", "Tab bar edge, Increase Contrast, on page"),
+        ("bar_edge_hc", "surface", "ui", "Tab bar edge, Increase Contrast, on cards"),
+    ],
+    "hybrid_b": [
+        ("tab_idle", "surface", "text", "Idle tab label on opaque bar"),
+        ("meta", "surface", "text", "Monospace metadata on row"),
+        ("bar_edge_hc", "bg", "ui", "Tab bar edge, Increase Contrast, on page"),
+        ("bar_edge_hc", "surface", "ui", "Tab bar edge, Increase Contrast, on cards"),
+    ],
+}
+
+# ---------------------------------------------------------------------------
+# ROUND 2 (D42, 2026-09-27). Two hybrids. Round-1 values above are unchanged.
+# Glass tokens: glass_tint is the colour of the tab bar's material, glass_alpha
+# its opacity in the model measured by glass.py (worst-case content beneath).
+# ---------------------------------------------------------------------------
+HYBRIDS = {
+    "hybrid_a": {
+        "name": "Hybrid A: warm editorial (Almanac type, Doorway colour)",
+        "light": dict(bg="#FFF8F1", surface="#FFFFFF", text="#241B2F", text2="#5C5266",
+                      primary="#5B2A86", on_primary="#FFFFFF", accent="#F2A65A",
+                      kicker="#5B2A86", outline="#8C7F99", unconfirmed="#9A4D00",
+                      focus="#5B2A86", star="#B45309", divider="#EFE6F4",
+                      apricot_fill="#F2A65A", on_apricot="#241B2F",
+                      tab_idle="#241B2F", glass_tint="#FFFFFF", glass_alpha=0.80,
+                      bar_edge_hc="#5C5266"),
+        "dark": dict(bg="#1A1422", surface="#251D30", text="#F6EFE8", text2="#B9AFC4",
+                     primary="#C9A7F0", on_primary="#24123A", accent="#F5B77A",
+                     kicker="#F5B77A", outline="#7E7190", unconfirmed="#F5B77A",
+                     focus="#C9A7F0", star="#F5B77A", divider="#33283F",
+                     apricot_fill="#F5B77A", on_apricot="#241B2F",
+                     tab_idle="#F6EFE8", glass_tint="#251D30", glass_alpha=0.90,
+                     bar_edge_hc="#B9AFC4"),
+    },
+    "hybrid_b": {
+        "name": "Hybrid B: mono editorial (Ledger monochrome, Almanac type)",
+        "light": dict(bg="#FAFAF8", surface="#FFFFFF", text="#111111", text2="#555555",
+                      primary="#111111", on_primary="#FFFFFF", accent="#C2410C",
+                      kicker="#555555", outline="#767676", unconfirmed="#B93D0B",
+                      focus="#C2410C", star="#111111", divider="#E8E8E5",
+                      meta="#555555", tab_idle="#111111", glass_tint="#FFFFFF",
+                      glass_alpha=0.80, bar_edge_hc="#555555"),
+        "dark": dict(bg="#0F0F10", surface="#1A1A1C", text="#F2F2F0", text2="#A3A3A0",
+                     primary="#F2F2F0", on_primary="#111111", accent="#FB923C",
+                     kicker="#A3A3A0", outline="#76767A", unconfirmed="#FB923C",
+                     focus="#FB923C", star="#F2F2F0", divider="#2A2A2D",
+                     meta="#A3A3A0", tab_idle="#F2F2F0", glass_tint="#1A1A1C",
+                     glass_alpha=0.90, bar_edge_hc="#A3A3A0"),
+    },
 }

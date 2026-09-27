@@ -9,9 +9,10 @@ UI components / graphical objects (SC 1.4.11).
 
 Run:  python3 contrast.py            -> markdown tables
       python3 contrast.py --check    -> exit 1 if any pair fails
+      python3 contrast.py --round2   -> round-2 hybrids (D42) and the retro theme only
 """
 import sys
-from palettes import DIRECTIONS, THEMES, STANDARD_PAIRS, EXTRA_PAIRS
+from palettes import DIRECTIONS, THEMES, HYBRIDS, STANDARD_PAIRS, EXTRA_PAIRS
 
 THRESHOLD = {"text": 4.5, "large": 3.0, "ui": 3.0}
 
@@ -48,7 +49,8 @@ def rows(key, spec):
 def main():
     check = "--check" in sys.argv
     failed = []
-    for group in (DIRECTIONS, THEMES):
+    groups = (HYBRIDS, THEMES) if "--round2" in sys.argv else (DIRECTIONS, THEMES, HYBRIDS)
+    for group in groups:
         for key, spec in group.items():
             print(f"\n#### {spec['name']} (`{key}`)\n")
             print("| Mode | Pair | Foreground | Background | Ratio | Needs | Result |")
