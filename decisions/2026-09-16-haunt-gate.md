@@ -490,6 +490,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D58 — Warm's Rotate shows at most 3 facts per open.** *CEO, 2026-09-27, on the CVO's recommendation, from a gap the PM/BA found.* Like Mono's typed headline (D45), Rotate cycles through **at most 3 facts per open**, then rests on the first. That's about 18 seconds of motion, where uncapped it could run for a minute or more. The cap keeps the two modern themes consistent and keeps motion short.
 
+**D59 — The code architecture is researched, proposed and decided by the CEO before any product code.** *CEO, 2026-09-27.* The CTO (or a senior engineer) researches *"the best code architecture for the app based on industry standards and best practices for React Native mobile apps. It should be intuitive, clear and simple with clear separations of concerns."* The CTO presents **one or more proposals to the CEO for review and final decision**, and records the chosen one as an ADR. **A prerequisite to build:** no product code reaches `haunts` until the CEO has decided. Tracked as **SPK-20** (FT-PLAN-6, M0). The proposal must fit the decisions already binding: CAP-1 (no JavaScript in the capture path), the zero-network and PRIV-8 enforcement, SESS-1 (derived sessions), the venue schema rules (VEN-7 … VEN-12), the theme register (D52), Native Tabs (D53), TypeScript only with arrow functions (D41), and the traceability conventions (D37). A seat other than the CTO reviews it, and the CSO reviews its security.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication

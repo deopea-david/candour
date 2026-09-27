@@ -331,3 +331,5 @@ task,SPK-17,"Cost the design scope (CTO sized it: 256-535 h, 40-130 h/yr)",FT-PL
 feature,FT-PLAN-5,Repository conventions and agent scaffolding,EP-PLAN,,,,cto,
 task,SPK-15,"Traceable commits, branches and PRs: standard and enforcement (D37)",FT-PLAN-5,,MUST,none,cto,
 task,SPK-16,"Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)",FT-PLAN-5,,MUST,none,cto,
+feature,FT-PLAN-6,"Code architecture, decided before build",EP-PLAN,,,,cto,
+task,SPK-20,Code architecture proposals and ADR for CEO decision (D59),FT-PLAN-6,,BLOCKING,both,cto,

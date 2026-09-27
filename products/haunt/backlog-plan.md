@@ -263,6 +263,7 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 | FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13, SPK-18, SPK-19 |
 | FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09, SPK-17 |
 | FT-PLAN-5 | Repository conventions and agent scaffolding | SPK-15, SPK-16 |
+| FT-PLAN-6 | Code architecture, decided before build | SPK-20 |
 
 ---
 
@@ -320,6 +321,7 @@ Each is a task with an owner, a priority inherited from the most severe requirem
 | **SPK-17** | Cost the design scope the CTO has sized: **256–535 h one-off (point 376 h) and about 40–130 h a year** (`design-feasibility-and-sizing.md` §5–§6), kept apart from the 2,090 h as scope added after the estimate; replace the CTO's assumed release cadence with the real one | CFO | The cost sheet's design-scope line; every THEME, HEAD-19 … HEAD-22, PLAT-9 and LIC-7 task's cost | `requirements.md` §22 item 30 |
 | **SPK-18** | Font licences before any subset ships: confirm UX's readings that Newsreader, Inter, Gelasio and Silkscreen declare no Reserved Font Name, DejaVu's naming restriction, and the form of the notices. Plex Mono ships unmodified (CTO) | CGO | LIC-7(c); the app-size saving from subsetting Inter and DejaVu Sans | `requirements.md` §22 item 31 |
 | **SPK-19** | Can the venue index carry an area name per venue from Overture's Places theme alone (VEN-2 bars Divisions), and at what cost in size, build and quarterly refresh? | CTO | HEAD-23 (PENDING-ESTIMATE) | `requirements.md` §22 item 35 |
+| **SPK-20** | Research the best code architecture for a React Native / Expo TypeScript app against industry standards and best practice: intuitive, clear, simple, with clear separation of concerns. Present one or more proposals to the CEO for decision, and record the chosen one as an ADR. **A prerequisite to build (D59): no product code before the CEO decides** | CTO (CSO reviews security; a seat other than the CTO reviews) | Every M1–M5 implementation ticket | D59 (CEO, 2026-09-27); `/build` step 2 |
 
 **Not added as spikes, and why.** §22 item 1 (usability testing) needs the CEO's authorisation and a spend decision under Constitution 5.4 — it is recorded in §12, not put on a build board where it would sit un-actionable. §22 item 12 (closed venues are undetectable) has no requirement attached and no seat has been asked to do work on it; putting it on the board would create unowned work. §22 items 3, 13, 14, 16 and 18 are CGO or CEO rulings, not technical work. §22 item 11 (thirty shopfront names) waits on the CEO's authorisation.
 

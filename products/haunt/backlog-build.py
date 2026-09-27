@@ -173,6 +173,7 @@ epic("EP-PLAN", "Build planning and spikes", "cto", "22", [
     ("FT-PLAN-4", "Sizing and costing of scope outside the estimate", "cto",
      ["SPK-08", "SPK-09", "SPK-17"]),
     ("FT-PLAN-5", "Repository conventions and agent scaffolding", "cto", ["SPK-15", "SPK-16"]),
+    ("FT-PLAN-6", "Code architecture, decided before build", "cto", ["SPK-20"]),
 ])
 
 # ---- task titles (<=70 chars) ------------------------------------------------
@@ -434,6 +435,7 @@ SPK = {
  "SPK-17": ("Cost the design scope (CTO sized it: 256-535 h, 40-130 h/yr)", "MUST", "none", "cfo", "22"),
  "SPK-18": ("Font licences: RFN and DejaVu readings before any subset (LIC-7)", "BLOCKING", "none", "cgo", "22"),
  "SPK-19": ("Can the index carry an area name from Places alone? (HEAD-23)", "PENDING-ESTIMATE", "none", "cto", "22"),
+ "SPK-20": ("Code architecture proposals and ADR for CEO decision (D59)", "BLOCKING", "both", "cto", ""),
 }
 
 # ---- write CSV ----------------------------------------------------------------
