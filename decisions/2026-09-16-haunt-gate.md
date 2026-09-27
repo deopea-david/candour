@@ -466,6 +466,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D47 — The themes are named Warm, Mono and Retro.** *CEO, 2026-09-27.* UX's proposal, taken as proposed: **Warm** (Hybrid A), **Mono** (Hybrid B, the default per D46) and **Retro** (the round-1 "Homepage" theme), shown in Settings → Appearance. The names are plain descriptions of the look, per UX (`round-3/finalise.md`).
 
+**D48 — A floating tab bar in every theme; real glass on iOS only if the CTO confirms it is feasible.** *CEO, 2026-09-27, on the CVO's recommendation.* The floating bar is what gives back the vertical space the CEO asked for (D42), so it is adopted in Warm, Mono and Retro. **Real Liquid Glass on iOS is conditional on the CTO confirming that React Native can render it.** Where it renders, it is frosted: at least 80% opaque in light mode and 90% in dark, measured against the worst content beneath it (`round-2/directions.md` §4). **The bar is solid** on Android, under Reduce Transparency or Increase Contrast, and wherever glass isn't feasible. **Retro's bar is always solid and bevelled.** UX's estimate [J]: 1–2 days for the floating bar, plus 2–4 days for real iOS glass and a device check each release. The CTO sizes it.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
