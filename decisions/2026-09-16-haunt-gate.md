@@ -468,6 +468,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D48 — A floating tab bar in every theme; real glass on iOS only if the CTO confirms it is feasible.** *CEO, 2026-09-27, on the CVO's recommendation.* The floating bar is what gives back the vertical space the CEO asked for (D42), so it is adopted in Warm, Mono and Retro. **Real Liquid Glass on iOS is conditional on the CTO confirming that React Native can render it.** Where it renders, it is frosted: at least 80% opaque in light mode and 90% in dark, measured against the worst content beneath it (`round-2/directions.md` §4). **The bar is solid** on Android, under Reduce Transparency or Increase Contrast, and wherever glass isn't feasible. **Retro's bar is always solid and bevelled.** UX's estimate [J]: 1–2 days for the floating bar, plus 2–4 days for real iOS glass and a device check each release. The CTO sizes it.
 
+**D49 — In Warm, the Ticker appearance is "Rotate": one whole sentence at a time.** *CEO, 2026-09-27, on UX's proposal and the CVO's recommendation.* Each fact shows for about 6 seconds, then cross-fades to the next. It goes round once per open and rests on the first. Whole sentences read more easily than a crawl, and Rotate matches Mono's one-sentence-at-a-time typed headline (D45). **Unchanged:** the appearance stays the user's choice (Line, Card, Ticker or Off, per HEAD-2), and HEAD-9 to HEAD-11 apply (one pass, a visible pause that persists, static under Reduce Motion or a screen reader). **Owed:** a §24 row amending the Ticker's specification from a crawl to Rotate for Warm (PM/BA); UX signs off the timings on a device.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
