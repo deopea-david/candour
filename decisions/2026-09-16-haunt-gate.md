@@ -488,6 +488,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D57 — HEAD-8's "entry animation" does not cover the motion that defines a user-chosen moving appearance.** *CEO, 2026-09-27, confirming the PM/BA's written reading.* Warm's Rotate cross-fade (HEAD-19), like the Ticker's movement, **is** that appearance and is not an entry animation. **HEAD-8 still bars** anything that animates a headline in to draw attention, such as a slide-in, a bounce or a "new" flourish, in every theme and appearance, with Mono's typed headline as the only exception (D45).
 
+**D58 — Warm's Rotate shows at most 3 facts per open.** *CEO, 2026-09-27, on the CVO's recommendation, from a gap the PM/BA found.* Like Mono's typed headline (D45), Rotate cycles through **at most 3 facts per open**, then rests on the first. That's about 18 seconds of motion, where uncapped it could run for a minute or more. The cap keeps the two modern themes consistent and keeps motion short.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
