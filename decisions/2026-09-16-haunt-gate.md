@@ -486,6 +486,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D56 — The recap image's credit is always the store mark.** *CEO, 2026-09-27, on the CVO's recommendation.* The small, hideable wordmark in a saved recap's footer (LOOK-5) is **always the store mark, Mono's lowercase "haunts"** (D46), whatever theme the user has chosen. A credit says where the image came from, and one consistent mark does that best. No Retro wordmark is needed. This closes `requirements.md` §22 item 32.
 
+**D57 — HEAD-8's "entry animation" does not cover the motion that defines a user-chosen moving appearance.** *CEO, 2026-09-27, confirming the PM/BA's written reading.* Warm's Rotate cross-fade (HEAD-19), like the Ticker's movement, **is** that appearance and is not an entry animation. **HEAD-8 still bars** anything that animates a headline in to draw attention, such as a slide-in, a bounce or a "new" flourish, in every theme and appearance, with Mono's typed headline as the only exception (D45).
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
