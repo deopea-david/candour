@@ -1,6 +1,6 @@
 # Haunts — status and hand-off
 
-**As of:** 2026-09-26 (evening) · **Phase:** build set up — repo, board and 295 tickets exist; **M0 (planning) is next**
+**As of:** 2026-09-27 · **Phase:** build set up — repo, board and 334 tickets exist (v1.3 design scope added); **M0 (planning) is next**
 **Product name:** Haunts (D9) · **Slug, branches, paths:** `haunt` — unchanged, do not rename · **Code repo:** `deopea-david/haunts` (private; local clone `~/Documents/haunts`) · **Board:** https://github.com/users/deopea-david/projects/1
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
@@ -84,7 +84,7 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ## Next step
 
-**The build is set up.** In `deopea-david/haunts`: the CSO security baseline (first commit; `secret-scan` CI green), **295 tickets** generated from `requirements.md` by `products/haunt/backlog-tickets.py` and created by `backlog-create.py` (key → issue map in `backlog-issues.csv`), a Kanban board with the D30 columns and fields, and milestones **M0–M5**. The 19 planning tickets (EP-PLAN and its spikes) are in **M0**; everything else waits for the CTO to confirm the phase order.
+**The build is set up.** In `deopea-david/haunts`: the CSO security baseline (first commit; `secret-scan` CI green), **334 tickets** generated from `requirements.md` by `products/haunt/backlog-tickets.py` and created by `backlog-create.py` (key → issue map in `backlog-issues.csv`), a Kanban board with the D30 columns and fields, and milestones **M0–M5**. The v1.3 design scope (backlog plan v0.4) added 36 tickets, #313–#348: EP-THEME, FT-HEAD-5/6 (HEAD-19 … HEAD-23), LIC-7, FT-PLAT-4 (PLAT-9), SPK-17 … SPK-19, and FT-PLAN-6 with **SPK-20** (D59, architecture before build). The planning tickets (EP-PLAN and its spikes) are in **M0**; **known gap:** tickets created before v1.3 still carry the requirement text stamped at their older commit; where v1.2/v1.3 changed a requirement (e.g. HEAD-8 under D57) the copy must be regenerated, and the GitHub update step in `backlog-tickets.py` is not written yet (the document wins meanwhile, D31); everything else waits for the CTO to confirm the phase order.
 
 **Next, in order (the main session orchestrates; the CEO decides):**
 1. **`haunts` scaffolding PR** — lean `CLAUDE.md` (the CSO rules are already in it), story template, PR template (`Refs #n` only), `docs/delivery-log.md`, from `agentic-agile-adoption.md` Appendices A–D. It is the first PR through the review process (CTO review record pinned to the head commit). **T15** (Claude Code deny rules in `haunts`) is checked in the first seat session there.
