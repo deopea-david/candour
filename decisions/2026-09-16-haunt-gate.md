@@ -484,6 +484,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D55 — On Android, the tab bar is Material's full-width docked bar.** *CEO, 2026-09-27, on the CVO's recommendation.* Native Tabs give Material's bottom bar on Android. The floating pill (12–20 h more, as our own component) is not built. So the vertical-space gain of D42 applies on iOS, where the glass bar floats over content, and not on Android, where the docked bar is what users expect. Retro's own bar (D54) applies on both platforms.
 
+**D56 — The recap image's credit is always the store mark.** *CEO, 2026-09-27, on the CVO's recommendation.* The small, hideable wordmark in a saved recap's footer (LOOK-5) is **always the store mark, Mono's lowercase "haunts"** (D46), whatever theme the user has chosen. A credit says where the image came from, and one consistent mark does that best. No Retro wordmark is needed. This closes `requirements.md` §22 item 32.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
