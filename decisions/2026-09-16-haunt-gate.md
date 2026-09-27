@@ -480,6 +480,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Contrast, replacing D48's 80%/90% opacity floors** (which cannot be set on Apple's bar): measured on a device over the worst content, **4.5:1 for labels and 3:1 for icons**. **The CEO's rule on timing:** *"as the bar is handled via iOS we should not need to check this each release, just once when colour for the bar is chosen or changed."* So the check runs **once per bar-colour choice or change**, not every release. If a theme fails, D52 lets it fall back to its own bar. Retro's bar and Android's floating pill are separate decisions (D54 onward).
 
+**D54 — Contrast is re-checked on each iOS release, and Retro draws its own bevelled bar.** *CEO, 2026-09-27.* (1) **The bar-contrast check (D53) also runs on each iOS release**, as well as when the bar's colours change, because Apple has adjusted Liquid Glass legibility between versions. This was the CVO's suggestion, and the CEO widened it from yearly to *"each iOS release"*. (2) **Retro has its own small bevelled tab bar** over the hidden system bar, a contained component under D52 (the CTO's estimate: about 15 h more than the system bar in Retro's colours). UX had favoured the system bar for a single code path. **Warm and Mono use the system bar.**
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
