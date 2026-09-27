@@ -106,7 +106,7 @@ epic("EP-THEME", "Appearance: themes and the floating tab bar", "ux-lead", "8.3"
     ("FT-THEME-2", "What a theme may change; every theme accessible", "engineer",
      ["THEME-1", "THEME-2", "THEME-4", "THEME-6", "THEME-7"]),
     ("FT-THEME-3", "Retro theme and its guardrails", "engineer", ["THEME-8", "THEME-13"]),
-    ("FT-THEME-4", "Floating tab bar, and glass on iOS if feasible", "engineer", ["THEME-15", "THEME-16"]),
+    ("FT-THEME-4", "Native Tabs bar, Retro's own bar, and the glass contrast check", "engineer", ["THEME-15", "THEME-16"]),
     ("FT-THEME-5", "Warm's Contour texture", "engineer", ["THEME-14"]),
 ])
 epic("EP-ENT", "Entitlement, trial, lapse and first run", "cto", "9;9.1", [
@@ -279,7 +279,7 @@ T = {
  "HEAD-16": "Headline screen-reader and layout behaviour",
  "HEAD-17": "Sensitive places out of headlines by default, one switch",
  "HEAD-18": "Per-place headline toggle for uncategorised places",
- "HEAD-19": "Warm's Ticker is Rotate: one whole sentence at a time",
+ "HEAD-19": "Warm's Ticker is Rotate: whole sentences, at most 3 per open",
  "HEAD-20": "Mono's typed headline and blinking cursor, under D45",
  "HEAD-21": "Several phrasings per template, chosen from the date",
  "HEAD-22": "Templates T10-T12, each entering once UX sets its threshold",
@@ -297,8 +297,8 @@ T = {
  "THEME-12": "Light and dark as a separate setting for every theme",
  "THEME-13": "Retro's period details meet the accessibility bar",
  "THEME-14": "Contour texture in Warm only, never under text",
- "THEME-15": "Floating tab bar in every theme; solid where required",
- "THEME-16": "Real Liquid Glass on iOS, frosted to its opacity floors",
+ "THEME-15": "Native Tabs bar; docked on Android; Retro's own bevelled bar",
+ "THEME-16": "Glass bar contrast measured: at colour change and each iOS release",
  "ENT-1": "Entitlement stored as intervals, readable by capture modules",
  "ENT-2": "Unknown entitlement state is conservative and stated",
  "ENT-3": "Two-week full trial; everything written stays usable free",

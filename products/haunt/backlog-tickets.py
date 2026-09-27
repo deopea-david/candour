@@ -150,7 +150,7 @@ def mentions(rid, *texts):
 PROMISE = {"DATA-4", "VEN-7", "VEN-8", "VEN-9", "VEN-10", "VEN-11", "VEN-12", "CONF-3", "SESS-1", "PRIV-1", "PRIV-8", "CAP-4", "VEN-21"}
 STANDING = {"VEN-24", "CONF-9", "VEN-14", "VEN-15", "VEN-21", "VPAGE-5"}
 MIXED = {"HEAD-4", "HEAD-5", "HEAD-9", "HEAD-13", "HEAD-14", "HEAD-15", "PHOTO-9",
-         "HEAD-19", "HEAD-20", "HEAD-21", "HEAD-22", "PLAT-9", "THEME-4", "THEME-6", "THEME-11", "THEME-15"}
+         "HEAD-19", "HEAD-20", "HEAD-21", "HEAD-22", "PLAT-9", "THEME-4", "THEME-6", "THEME-11", "THEME-15", "THEME-16"}
 CSO = {f"DATA-{n}" for n in range(6, 14)} | {"DATA-15", "ENT-11", "PRIV-8", "PHOTO-11", "CAP-1", "SPK-06"}
 NEEDS_CEO = {"PLAT-5", "PLAT-7"}
 BLOCKED_BY = {"VEN-24": "CAP-10", "CAP-10": "SPK-02", "HEAD-10": "SPK-05", "NOT-3": "SPK-07", "NOT-5": "SPK-07",
@@ -298,8 +298,9 @@ for r in rows:
                  "### Unblocks", s["unblocks"], "",
                  "### Origin and context", s["source"], "",
                  "### Negative constraints",
-                 "- A spike produces a written answer. No product code reaches `main` under a spike ticket; "
-                 "prototype code stays on its spike branch. *(Proposed by the PM/BA; the CTO confirms or changes this rule.)*", "",
+                 "- A spike produces a written answer. **Repository tooling may reach `main` under a spike ticket when it is the answer** "
+                 "(a check, script or configuration the spike exists to produce); **code that ships in the app may not**: "
+                 "prototype app code stays on its spike branch. *(The CTO's rule, as clarified 2026-09-27.)*", "",
                  "### Dependencies", parent_line(r), "",
                  "### Done when",
                  f"Its written artifact is committed and the owning seat has recorded the result "

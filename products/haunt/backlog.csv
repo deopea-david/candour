@@ -143,7 +143,7 @@ task,HEAD-13,Headlines only on the in-app home screen,FT-HEAD-4,HEAD-13,BLOCKING
 task,HEAD-17,"Sensitive places out of headlines by default, one switch",FT-HEAD-4,HEAD-17,MUST,both,engineer,8.2
 task,HEAD-18,Per-place headline toggle for uncategorised places,FT-HEAD-4,HEAD-18,MUST,both,engineer,8.2
 feature,FT-HEAD-5,Moving headline per theme: Rotate and typed,EP-HEAD,,,,engineer,8.2
-task,HEAD-19,Warm's Ticker is Rotate: one whole sentence at a time,FT-HEAD-5,HEAD-19,BLOCKING,both,engineer,8.2
+task,HEAD-19,"Warm's Ticker is Rotate: whole sentences, at most 3 per open",FT-HEAD-5,HEAD-19,BLOCKING,both,engineer,8.2
 task,HEAD-20,"Mono's typed headline and blinking cursor, under D45",FT-HEAD-5,HEAD-20,BLOCKING,both,engineer,8.2
 feature,FT-HEAD-6,Headline variety: phrasings and new templates,EP-HEAD,,,,ux-lead,8.2
 task,HEAD-21,"Several phrasings per template, chosen from the date",FT-HEAD-6,HEAD-21,BLOCKING,both,engineer,8.2
@@ -165,9 +165,9 @@ task,THEME-7,Privacy surfaces say the same thing in every theme,FT-THEME-2,THEME
 feature,FT-THEME-3,Retro theme and its guardrails,EP-THEME,,,,engineer,8.3
 task,THEME-8,Retro keeps the early-2000s look and none of its tricks,FT-THEME-3,THEME-8,BLOCKING,both,engineer,8.3
 task,THEME-13,Retro's period details meet the accessibility bar,FT-THEME-3,THEME-13,BLOCKING,both,engineer,8.3
-feature,FT-THEME-4,"Floating tab bar, and glass on iOS if feasible",EP-THEME,,,,engineer,8.3
-task,THEME-15,Floating tab bar in every theme; solid where required,FT-THEME-4,THEME-15,BLOCKING,both,engineer,8.3
-task,THEME-16,"Real Liquid Glass on iOS, frosted to its opacity floors",FT-THEME-4,THEME-16,MUST,ios,engineer,8.3
+feature,FT-THEME-4,"Native Tabs bar, Retro's own bar, and the glass contrast check",EP-THEME,,,,engineer,8.3
+task,THEME-15,Native Tabs bar; docked on Android; Retro's own bevelled bar,FT-THEME-4,THEME-15,BLOCKING,both,engineer,8.3
+task,THEME-16,Glass bar contrast measured: at colour change and each iOS release,FT-THEME-4,THEME-16,BLOCKING,ios,engineer,8.3
 feature,FT-THEME-5,Warm's Contour texture,EP-THEME,,,,engineer,8.3
 task,THEME-14,"Contour texture in Warm only, never under text",FT-THEME-5,THEME-14,MUST,both,engineer,8.3
 epic,EP-ENT,"Entitlement, trial, lapse and first run",,,,,cto,9;9.1
