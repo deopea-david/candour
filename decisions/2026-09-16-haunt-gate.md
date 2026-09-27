@@ -450,6 +450,18 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Recorded with the decision, per the CVO:** (1) **"Engaging" is read inside the rules.** The default should be the theme most appealing and clearest to a new user, never one chosen to increase time in the app. That would sit against Article 4's bar on compulsion mechanics and against MEM-1. (2) **No person has seen either design** (`requirements.md` §22 item 1: no usability testing of any kind). Desk research can inform the default but cannot measure appeal, so a small preference test with real people is the honest instrument, and needs the CEO's authorisation. (3) **Three themes at launch is new scope:** UX's rough estimate is 2–3 days per extra theme, plus 15–25% more UI verification per theme, for ever. It enters `requirements.md` through a §24 row (PM/BA), is sized by the CTO and costed by the CFO. (4) Round 1's rule that **a theme never changes the app icon** now meets two themes with two different icons. **Whether users may also choose the app icon** (alternate app icons) is a question for the CEO, with the CTO on feasibility.
 
+**D45 — HEAD-8 is amended so Hybrid B can type its headlines like a console, with a blinking cursor.** *CEO, 2026-09-27.* **Contour texture is Hybrid A's alone.** Hybrid B's headline appearance **types each sentence in like a console, holds it for a few seconds, then moves on, instead of a marquee.** The underscore cursor **keeps blinking when the typing stops**, at the CEO's express preference over the CVO's suggestion that it go steady. HEAD-8 (BLOCKING) bars *"flashing"* and *"entry animation"* on headlines, grounded in Article 4's *"no false urgency"* and its bar on compulsion mechanics. **The CEO's reason for the amendment:** *"I do not believe the flash would provide urgency or make it compulsive, it is just for style."* The CVO agrees that the Article 4 grounds are not reached by a stylistic cursor within the conditions below. **HEAD-8 itself stands for every other appearance and theme.**
+
+**The conditions that make it compliant, binding as acceptance criteria:**
+- one pass per open (HEAD-9), then rest on a full sentence
+- the blink rate stays far below three flashes a second (WCAG 2.2 SC 2.3.1)
+- **the visible pause control stops the typing and the blinking** (SC 2.2.2, which requires a way to pause any blinking that lasts more than five seconds), and paused persists (HEAD-9)
+- under Reduce Motion, Remove animations or a screen reader: the full sentence at once, with a **steady** cursor (HEAD-10, HEAD-11)
+- a screen reader announces each sentence once, never letter by letter
+- no sound, nothing marking a headline as new or unseen, and no variation in typing speed for effect
+
+**Owed:** the PM/BA writes the §24 scope-change row amending HEAD-8, and UX specifies the exact timings, which it signs off on a device.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
