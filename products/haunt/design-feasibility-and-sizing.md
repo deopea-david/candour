@@ -14,6 +14,8 @@
 
 **Nothing the CEO decided is infeasible at launch.** Every item can be built on the stated stack from components that exist today. Three items carry conditions the CEO should know about, and none of them needs a new decision.
 
+> **Revised the same day: see §10.** The CEO proposed Expo SDK 58's Native Tabs as the answer to D48, and D52 then allowed minimal theme-specific components. **§10 now recommends Native Tabs for Warm and Mono, with a small Retro bar component drawn over the hidden system bar.** The two D48 rows below describe the custom-bar route. That route stays valid as the fallback, and it is what §10's conditions fall back to. **One consequence is for the CEO to confirm:** with Native Tabs, D48's 80% and 90% opacity floors cannot be set. They are replaced by measured contrast (§10.4).
+
 | Decision | Verdict | The one thing to know |
 |---|---|---|
 | **D48 floating bar, every theme** | **Feasible** | It must be **our own tab bar**, not the system one. Expo's native tabs cannot draw Retro's bevels, cannot draw Android's floating pill, and on iOS 26 ignore every background setting [E]. §1.2 |
@@ -350,3 +352,107 @@ The charter asks, *"have I established that nobody is doing it — or only that 
 
 **Tried and failed:** the Android `PackageManager` and `ValueAnimator` reference pages returned navigation only, with no method text, so every `setComponentEnabledSetting` and animator-scale-listener detail rests on secondary sources or [K]. A Medium article on activity aliases returned HTTP 403.
 **[K], not retrieved:** the Android live-region default; `expo-linear-gradient`; font scaling of custom fonts; the static font sizes per weight; Latin-subset sizes.
+
+---
+
+## 10. Addendum (2026-09-27): Expo SDK 58 Native Tabs as the answer to D48, and D52
+
+**What prompted it.** The CEO proposed Expo SDK 58's Native Tabs instead of a custom bar. He noted that SDK 58 is in beta and expected it to be released before Haunts ships. The same day, **D52** allowed theme-specific components *"as long as they are easy to use, reusable and don't complicate things. They should be kept to a minimum though"* (`decisions/2026-09-16-haunt-gate.md`, D52, read on this branch). That removes §1.2's second reason (Retro's bevels) as a reason for a custom bar **everywhere**. Retrieved again at source on 2026-09-27. UX is assessing the design and theme impact separately. This section is engineering only.
+
+### 10.1 Recommendation
+
+**Adopt Native Tabs for Warm and Mono on both platforms, and give Retro a small bar component drawn over the hidden system bar, all inside one navigator.** There are three conditions:
+
+1. **Build against SDK 58 stable.** Its beta runs to about mid-October 2026 (§10.2), and no Haunts screen code exists yet.
+2. **Before committing, spend half a day on an iOS 26 device** measuring our label and icon colours on the system glass over worst-case content (§10.4).
+3. **The CEO confirms in the decision record that D48's 80% and 90% floors are replaced by measured contrast** (§10.4). The floors are a CEO decision, and Native Tabs cannot honour them as written.
+
+**If condition 2 fails, the fallback is §1's custom bar**, unchanged. The fallback can also be partial: hide the system bar only in the theme that fails.
+
+**Why, in one line** [J]: the hours saved are modest (about 12 h, §10.3). **The real gain is that Apple builds and maintains the bar**, including Reduce Transparency, Increase Contrast, Reduce Motion, VoiceOver semantics and each year's iOS redesign. That is the boring, cheap choice my charter asks for.
+
+### 10.2 SDK 58's real status
+
+- **Beta, not stable.** Expo's changelog of **15 September 2026**: *"The SDK 58 beta period begins today and will last three to four weeks"*. The stable release follows React Native 0.88, which the beta carries as a release candidate [E, [Expo changelog, SDK 58 beta](https://expo.dev/changelog/sdk-58-beta.md), Alan Hughes and Brent Vatne]. **Stable is therefore expected around 6–13 October 2026** [I, arithmetic on the stated window; it slips if RN 0.88 does].
+- **Native Tabs themselves are stable in 58:** *"The examples use `expo-router/native-tabs`, available in SDK 58 and later. In SDK 54 through 57, use `expo-router/unstable-native-tabs` instead"* [E, [Expo, Native tabs](https://docs.expo.dev/router/advanced/native-tabs.md)]. The changelog says native tabs *"are now stable"* [E, changelog above]. So the API has been public since SDK 54, which means four releases of use behind it.
+- **The risk of building on it is low for Haunts** [J]: the build is about 56 focused weeks (2,090 h at 37.5 h a week), so SDK 58 will be stable, and probably superseded, long before release. **The risks that remain:**
+  - **(a) RN 0.88 and the changelog's *"navigation core was reworked for deterministic state handling"*** [E, changelog] are fresh code. M1 should start on 58 stable, not the beta.
+  - **(b) SDK 58 moves Expo apps to the UIKit scene-based life cycle for iOS 27** [E, changelog, as summarised on retrieval]. **That touches the app's launch path, and so CAP-1(a)'s "Hermes never started" test** on a background visit relaunch, whatever bar we choose (§10.7).
+
+### 10.3 Hours: what Native Tabs save against §5 #8 and #9
+
+The custom route is §5 #8 (floating bar, 16 / 24 / 34) plus #9 (real glass, 14 / 22 / 32) = **30 / 46 / 66 h**.
+
+| Native Tabs route [J] | Low | Point | High |
+|---|---:|---:|---:|
+| Native Tabs set-up: per-theme colours as `DynamicColorIOS` with high-contrast values, our icons as images, Android colours | 6 | 10 | 14 |
+| **Retro bar component** (both platforms): tab roles and selected state, 44 pt targets, bevel from tokens, its own bottom inset, navigation through the router, shown only while `NativeTabs` is `hidden` | 12 | 18 | 26 |
+| Device work: the contrast measurement (§10.4), placing any floating control without a measurable bar height (§10.5), the FlatList scroll-edge check | 4 | 6 | 10 |
+| **Option A total (Retro component)** | **22** | **34** | **50** |
+| *Option B instead: Retro uses the system bar in Retro colours.* Set-up, device work, plus measuring Retro's colours on glass (2 / 3 / 5) | *12* | *19* | *29* |
+
+- **Saving, option A: about 8–16 h, point 12 h.** **Option B: about 18–37 h, point 27 h.**
+- **Per release:** §6's glass check (1–2 h) becomes a contrast spot-check of our tints on Apple's glass (0.5–1 h). The annual OS-change allowance (§6, 10–24 h/yr) falls a little, because Apple adapts its own bar each year [J].
+- **Revised §5 total with option A: 248 / 364 / 519 h** (was 256 / 376 / 535).
+
+### 10.4 Accessibility: who guarantees legibility now
+
+**Apple handles the settings itself.** *"If you use standard components from system frameworks, this experience adapts automatically"*, speaking of *"accessibility settings that reduce transparency or motion"* [E, [Apple, Adopting Liquid Glass](https://developer.apple.com/tutorials/data/documentation/technologyoverviews/adopting-liquid-glass.json)]. The HIG adds that the material's appearance changes for settings that *"reduce transparency or increase contrast"*, and that *"Standard components from system frameworks pick up the appearance and behavior of this material automatically"* [E, [Apple HIG, Materials](https://developer.apple.com/tutorials/data/design/human-interface-guidelines/materials.json)]. **So on iOS, Native Tabs remove §1.4's detection work** (the Reduce Transparency switch and the Increase Contrast listener) for Warm and Mono. The Expo page says nothing about accessibility settings either way [E, Native tabs page, checked for it].
+
+**What we lose: the 80% and 90% floors cannot be enforced.** Expo: *"On iOS 26 and later, the system draws the tab bar with Liquid Glass and derives its background from the content behind it"*. `backgroundColor`, `blurEffect` and `shadowColor` apply *"only on iOS 18 and earlier"* [E, Native tabs page]. **What replaces the guarantee** [J]:
+
+1. **The floors were a means, not the end.** UX derived 80% and 90% from a model that deliberately ignored Apple's luminosity adaptation (`round-2/directions.md` §4.2). The end is **SC 1.4.3 (4.5:1 for labels) and SC 1.4.11 (3:1 for icons and the selected indicator)**, the thresholds UX measured against.
+2. **Apple's regular material is designed for exactly that.** It *"blurs and adjusts the luminosity of background content to maintain legibility of text and other foreground elements"*, and scroll edge effects *"further enhance legibility by blurring and reducing the opacity of background content"* [E, HIG Materials]. That is Apple's design intent, **not a measured guarantee for our colours.**
+3. **So the guarantee becomes a measurement, not a construction.** On a device: every theme and mode, labels and icons over the worst content UX identified (white thumbnails in dark mode, black in light, the apricot card, the white Review button), with Reduce Transparency and Increase Contrast each on and off. Pass means ≥ 4.5:1 and ≥ 3:1. It runs once before committing (condition 2) and as a spot-check each release. **Our only controls are the colours** (`tintColor`, `iconColor`, `labelStyle` colour) [E, Native tabs page]. Because they are `DynamicColorIOS` values with high-contrast variants [E, §1.4], Increase Contrast still gets our stronger colours.
+4. **If a theme fails, D52 lets that theme hide the system bar and use its own**, so no theme is trapped.
+
+**This changes a CEO decision's wording, not just an implementation.** D48 says the glass is *"at least 80% opaque in light mode and 90% in dark, measured against the worst content beneath it"*. **The CEO should confirm the replacement in writing** (condition 3). I am not treating his proposal as that confirmation, because the floors were not mentioned in it.
+
+**The Retro component** uses no glass, so it is opaque and passes contrast by construction, as §1 designed. It needs no Reduce Transparency handling at all. It must provide its own tab semantics (§1.2's price, now paid for one theme only).
+
+### 10.5 Insets without a measurable bar height
+
+- **Scrolling screens are handled by the system.** On iOS, *"The first `ScrollView` nested inside a native tabs screen has automatic content inset adjustment enabled"*. On Android, *"Screen content is automatically wrapped in a `SafeAreaView` that applies the bottom inset for the tab bar"* [E, Native tabs page]. So the home list, the timeline and settings scroll clear of the bar with no height needed. **The headline sits at the top of the home screen and is unaffected.** SC 2.4.11 (focus not obscured) should follow, since the system scrolls focused items clear of its own insets [K, medium confidence]. Test it with Full Keyboard Access, as UX's criterion says (`round-2/directions.md` §4.3).
+- **What does need the height:** anything positioned absolutely above the bar, such as a floating add button, an undo bar or a toast. The limitation is stated plainly: *"The tabs move around, sometimes being on top of the screen when rendering on iPad…"*, with a layout function promised *"in the future"* [E]. **Options:** Native Tabs' **bottom accessory** (SDK 55+) for a control above the bar [E], or no floating controls at all. **This is UX's to design.** I have not found a floating control in the adopted designs beyond UX's passing mention of a floating add button (`round-2/directions.md` §4.1).
+- **One risk to test on a device:** *"Limited support for FlatList… detecting scroll edges may fail, causing the tab bar to appear transparent"*, fixed by `disableTransparentOnScrollEdge` [E]. **The same page says that prop affects the iOS bar only on iOS 18 and earlier** [E, as retrieved earlier today, §1.2]. The two statements don't sit well together on iOS 26. The timeline is likely a FlatList or a derivative [J], so this goes into condition 2's device work.
+- **With the system bar hidden** (Retro), the automatic inset presumably no longer reserves space [K, unverified]. The Retro component knows its own height and supplies the padding.
+
+### 10.6 One bar per theme? Yes, inside one navigator
+
+- **Native Tabs are not all-or-nothing per app.** *"You can hide the tab bar using `hidden` prop on the `NativeTabs` component"* [E, Native tabs page]. So the app keeps **one** `NativeTabs` navigator. In Retro, it sets `hidden` and renders the Retro bar component, which switches tabs through the router [K, high confidence that router navigation between tab routes works; not retrieved]. Navigation state survives a theme change because the navigator never changes [I].
+- **Not recommended: swapping navigators by theme** (`NativeTabs` for two themes, JavaScript `Tabs` with a custom bar for Retro). React can do it, but a theme change would remount the navigator and lose each tab's back stack [I]. The docs name no supported runtime switch [E, retrieval found none]. SDK 58 does put JavaScript `Tabs` and `NativeTabs` on *"the same `standard-navigation` integration"* [E, changelog], which may make it cleaner later. It is not needed.
+- **D52's conditions, checked for the Retro bar:** one component, used on every tab screen through the layout, never a fork of a screen, with the same tabs, labels, order and behaviour as the system bar. **It is a contained component** [J]. That is the CTO confirmation D52 asks for, for this variant only.
+
+**Option A or B for Retro is a taste call for UX and the CEO.** Engineering accepts either. The facts that bear on it:
+
+- **B** puts Liquid Glass under Retro. UX rejected that on period and legibility grounds (`round-2/directions.md` §8).
+- **B** also loses Retro's own tab type. `labelStyle` documents **only `color`**, and no custom fonts for labels [E, Native tabs page], so Retro's labels would be the system font, not Silkscreen or DejaVu.
+- **A** costs about 15 h more (§10.3).
+
+### 10.7 What else we lose, and the remaining checks
+
+| Item | Finding |
+|---|---|
+| **Android's floating pill** | **Lost for Warm and Mono.** Android renders *"the platform's Material Tabs component"* [E], a full-width bottom bar. Content does not scroll beneath it, so **D48's vertical-space gain does not reach Android** [I]. Whether that matters is UX's call. **If UX needs the pill on Android, hide the system bar on Android too and use §1's bar there.** That adds back about 12–20 h and halves the saving [J]. |
+| **Theme styling beyond colour** | **Lost in the system bar.** No background, blur, shape, radius, label font, weight or size. Only colours [E]. On iOS 26, Apple's glass pill is the shape. Warm and Mono differ in the bar only by tint and icon colours. Their icons come in as images [E, custom images supported]. |
+| **Selected-state styling** | UX's solid selected pill (`round-2/directions.md` §4.2) becomes Apple's own selected treatment [K, medium confidence]. Its contrast is part of condition 2's measurement. |
+| **5-tab maximum on Android vs our 4** | **Fits**, with one tab of headroom: *"a maximum of 5 tabs in the tab bar"* [E]. A sixth tab could never be added on Android without a redesign. UX's label rule (HIG: *"Use single words"*, UX's retrieval) is unaffected. |
+| **Minimise on scroll** | Opt-in only (`minimizeBehavior`) [E]. We leave it off, as UX proposed (`round-2/directions.md` §4.3). |
+| **CAP-1 (no JavaScript in the visit-recording path)** | **No conflict.** Native Tabs are UI. CAP-1 requires that *"The Swift and Kotlin modules receive the platform event, read entitlement, and write to SQLite directly"* (`requirements.md` CAP-1), and no navigator is on that path. **One adjacent item:** SDK 58's move to the scene-based life cycle (§10.2(b)) changes how the app launches. That is independent of tabs, but it **may change whether React Native starts on a background relaunch**, so **CAP-1(a)'s instrumented test must be re-run on SDK 58** before capture work relies on it [I]. |
+
+### 10.8 Negative findings from this addendum
+
+| Finding | What would overturn it | Where I looked |
+|---|---|---|
+| Native Tabs cannot enforce the 80% and 90% floors on iOS 26 | An Expo or Apple API that sets the iOS 26 tab bar's opacity | Native tabs page (twice today); Apple's Adopting Liquid Glass; HIG Materials |
+| Native Tabs cannot style the bar beyond colour, including the label font | A documented `labelStyle` font property, or a custom bar view API | Native tabs page |
+| No supported runtime switch between native and custom navigators | Documentation of one, or SDK 58's shared integration shown to preserve state across a swap | Native tabs page; SDK 58 changelog |
+
+### 10.9 Evidence added by this addendum (retrieved 2026-09-27)
+
+| # | Claim | Source |
+|---|---|---|
+| E33 | Native Tabs stable in SDK 58, unstable path in 54–57; `hidden` on `NativeTabs` hides the bar; automatic content insets on iOS and Android; FlatList scroll-edge limitation; the "cannot measure" text; `labelStyle` documents only colour; bottom accessory; 5-tab limit | [Expo, Native tabs (Markdown)](https://docs.expo.dev/router/advanced/native-tabs.md) and [HTML](https://docs.expo.dev/router/advanced/native-tabs/) |
+| E34 | SDK 58 beta from 15 September 2026, lasting three to four weeks; RN 0.88 RC; native tabs stable; reworked navigation core; scene-based life cycle for iOS 27 | [Expo changelog, SDK 58 beta](https://expo.dev/changelog/sdk-58-beta.md) |
+| E35 | Standard components adapt automatically to Reduce Transparency and Motion; the scroll edge effect; tab bars float in the glass layer | [Apple, Adopting Liquid Glass](https://developer.apple.com/tutorials/data/documentation/technologyoverviews/adopting-liquid-glass.json) |
+| E36 | The material's appearance changes with Reduce Transparency and Increase Contrast; standard components adopt it automatically; the regular variant adjusts luminosity for legibility | [Apple HIG, Materials](https://developer.apple.com/tutorials/data/design/human-interface-guidelines/materials.json) |
