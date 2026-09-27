@@ -457,7 +457,7 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 - the blink rate stays far below three flashes a second (WCAG 2.2 SC 2.3.1)
 - **the visible pause control stops the typing and the blinking** (SC 2.2.2, which requires a way to pause any blinking that lasts more than five seconds), and paused persists (HEAD-9)
 - under Reduce Motion, Remove animations or a screen reader: the full sentence at once, with a **steady** cursor (HEAD-10, HEAD-11)
-- a screen reader announces each sentence once, never letter by letter
+- a screen reader reads each sentence once, **when the user focuses it**, never letter by letter. *(Clarified the same day at UX's reading: HEAD-16 says headlines are never announced unprompted. The CVO's first wording, "announces", implied otherwise.)*
 - no sound, nothing marking a headline as new or unseen, and no variation in typing speed for effect
 
 **Owed:** the PM/BA writes the §24 scope-change row amending HEAD-8, and UX specifies the exact timings, which it signs off on a device.
