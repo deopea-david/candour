@@ -142,7 +142,7 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-HEAD — Home-screen headlines
 
-§8.2 · accountable seat: ux-lead · 4 features, 18 tasks
+§8.2 · accountable seat: ux-lead · 6 features, 23 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
@@ -150,6 +150,20 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 | FT-HEAD-2 | Headline content rules and small-numbers honesty | HEAD-4, HEAD-6, HEAD-7, HEAD-8, HEAD-14 |
 | FT-HEAD-3 | Ticker motion and screen-reader behaviour | HEAD-9, HEAD-10, HEAD-11, HEAD-16 |
 | FT-HEAD-4 | Headline privacy: surfaces and sensitive places | HEAD-12, HEAD-13, HEAD-17, HEAD-18 |
+| FT-HEAD-5 | Moving headline per theme: Rotate and typed *(added v0.3)* | HEAD-19, HEAD-20 |
+| FT-HEAD-6 | Headline variety: phrasings and new templates *(added v0.3)* | HEAD-21, HEAD-22, HEAD-23 |
+
+### EP-THEME — Appearance: themes and the floating tab bar *(added v0.3)*
+
+§8.3 · accountable seat: ux-lead · 5 features, 15 tasks
+
+| Feature | Title | Tasks |
+|---|---|---|
+| FT-THEME-1 | Theme system and Settings > Appearance | THEME-10, THEME-5, THEME-11, THEME-12, THEME-3 |
+| FT-THEME-2 | What a theme may change; every theme accessible | THEME-1, THEME-2, THEME-4, THEME-6, THEME-7 |
+| FT-THEME-3 | Retro theme and its guardrails | THEME-8, THEME-13 |
+| FT-THEME-4 | Floating tab bar, and glass on iOS if feasible | THEME-15, THEME-16 |
+| FT-THEME-5 | Warm's Contour texture | THEME-14 |
 
 ### EP-ENT — Entitlement, trial, lapse and first run
 
@@ -199,11 +213,11 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-LIC — Licences and attribution
 
-§13 · accountable seat: cgo · 2 features, 6 tasks
+§13 · accountable seat: cgo · 2 features, 7 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
-| FT-LIC-1 | Data sources and licences screen | LIC-1, LIC-3, LIC-4, LIC-6 |
+| FT-LIC-1 | Data sources and licences screen | LIC-1, LIC-3, LIC-4, LIC-6, LIC-7 |
 | FT-LIC-2 | Licence texts travel with redistributed data | LIC-2, LIC-5 |
 
 ### EP-PRIV — Privacy and honesty surfaces
@@ -229,24 +243,25 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-PLAT — Platform, storefront and release
 
-§16 · accountable seat: cto · 3 features, 8 tasks
+§16 · accountable seat: cto · 4 features, 9 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
 | FT-PLAT-1 | React Native app shell on iOS 26+ and Android | PLAT-1, PLAT-8 |
 | FT-PLAT-2 | Store release readiness and schedule | PLAT-3, PLAT-4, PLAT-5 |
 | FT-PLAT-3 | Name, icon and support statement before launch | PLAT-2, PLAT-6, PLAT-7 |
+| FT-PLAT-4 | User-chosen app icon *(added v0.3)* | PLAT-9 |
 
 ### EP-PLAN — Build planning and spikes
 
-§22 · accountable seat: cto · 4 features, 14 tasks
+§22 · accountable seat: cto · 5 features, 19 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
 | FT-PLAN-1 | Block lifts owed before build | SPK-01, SPK-02 |
 | FT-PLAN-2 | Platform and device questions | SPK-03, SPK-05, SPK-07, SPK-10, SPK-14 |
-| FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13 |
-| FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09 |
+| FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13, SPK-18, SPK-19 |
+| FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09, SPK-17 |
 | FT-PLAN-5 | Repository conventions and agent scaffolding | SPK-15, SPK-16 |
 
 ---
@@ -302,6 +317,9 @@ Each is a task with an owner, a priority inherited from the most severe requirem
 | **SPK-14** | Does any API let an app relinquish its own location authorization? | Engineer, about one hour | ENT-8 — *"honest by construction rather than by instruction"* if yes | §22 item 5 |
 | **SPK-15** | Traceable commits, branches and PRs: the Conventional Commits standard with the backlog key as scope, branch and PR naming, `Refs #n` linking, and enforcement by a `commit-msg` hook and a CI check that the key is a real ticket | CTO | Every later change in `haunts`: the traceability D37 requires | D37 (CEO, 2026-09-26) |
 | **SPK-16** | Agent scaffolding in `haunts`: the full `CLAUDE.md`, the implementation-story and PR templates, and `docs/delivery-log.md`, from `agentic-agile-adoption.md` Appendices A–D, following SPK-15's convention. The first PR through the CTO review record | CTO, drafting from the PM/BA's appendices | Every agent session in `haunts`; wave planning | D34; `agentic-agile-adoption.md` §6 |
+| **SPK-17** | Cost the design scope the CTO has sized: **256–535 h one-off (point 376 h) and about 40–130 h a year** (`design-feasibility-and-sizing.md` §5–§6), kept apart from the 2,090 h as scope added after the estimate; replace the CTO's assumed release cadence with the real one | CFO | The cost sheet's design-scope line; every THEME, HEAD-19 … HEAD-22, PLAT-9 and LIC-7 task's cost | `requirements.md` §22 item 30 |
+| **SPK-18** | Font licences before any subset ships: confirm UX's readings that Newsreader, Inter, Gelasio and Silkscreen declare no Reserved Font Name, DejaVu's naming restriction, and the form of the notices. Plex Mono ships unmodified (CTO) | CGO | LIC-7(c); the app-size saving from subsetting Inter and DejaVu Sans | `requirements.md` §22 item 31 |
+| **SPK-19** | Can the venue index carry an area name per venue from Overture's Places theme alone (VEN-2 bars Divisions), and at what cost in size, build and quarterly refresh? | CTO | HEAD-23 (PENDING-ESTIMATE) | `requirements.md` §22 item 35 |
 
 **Not added as spikes, and why.** §22 item 1 (usability testing) needs the CEO's authorisation and a spend decision under Constitution 5.4 — it is recorded in §12, not put on a build board where it would sit un-actionable. §22 item 12 (closed venues are undetectable) has no requirement attached and no seat has been asked to do work on it; putting it on the board would create unowned work. §22 items 3, 13, 14, 16 and 18 are CGO or CEO rulings, not technical work. §22 item 11 (thirty shopfront names) waits on the CEO's authorisation.
 
@@ -435,13 +453,13 @@ Verify against the file, never against this ticket.
 | Phase | What | Features | Why here [J, PM/BA] |
 |---|---|---|---|
 | **M0 — Planning** | Block lifts, spikes, sizing | FT-PLAN-1 … 4 | SPK-01 and SPK-02 gate build commencement on venue and Android work; SPK-06, SPK-11, SPK-12 gate whole features |
-| **M1 — Foundations that cannot be retrofitted** | The store contract, the schema rules, derived sessions, entitlement intervals, the JS-free capture path, and every **build-time enforcement check** | FT-DATA-1, FT-PLAT-1, FT-CAP-1, FT-ENT-1, FT-SESS-1, FT-VEN-1, FT-VEN-2, VEN-17 from FT-VEN-5; **plus the CI checks** in MEM-1(a), DFLT-1(a), PRIV-8, DATA-13, VPAGE-4, CAP-8(c), CONF-19(a) | `requirements.md` §20.1 calls the schema rules *"free now and unavailable later"* and says SESS-1 *"costs nothing now"*. A CI check written before the code it guards is cheap; one written after has to be argued past existing violations |
+| **M1 — Foundations that cannot be retrofitted** | The store contract, the schema rules, derived sessions, entitlement intervals, the JS-free capture path, and every **build-time enforcement check**; **(v0.3) the theme token system and its test harness**, which the CTO says must exist before screens multiply | **FT-THEME-1**, the CI checks in **THEME-1(f), THEME-2(a)**, FT-DATA-1, FT-PLAT-1, FT-CAP-1, FT-ENT-1, FT-SESS-1, FT-VEN-1, FT-VEN-2, VEN-17 from FT-VEN-5; **plus the CI checks** in MEM-1(a), DFLT-1(a), PRIV-8, DATA-13, VPAGE-4, CAP-8(c), CONF-19(a) | `requirements.md` §20.1 calls the schema rules *"free now and unavailable later"* and says SESS-1 *"costs nothing now"*. A CI check written before the code it guards is cheap; one written after has to be argued past existing violations |
 | **M2 — The core loop** | Capture → confirm → session → venue page → repair → export and re-import | FT-CAP-2 … 5, FT-CONF-1 … 4, FT-SESS-2 … 4, FT-VEN-3, FT-VEN-4, FT-VPAGE-1 … 3, FT-DATA-2, **ENT-4** (manual composer), FT-A11Y-1 … 3 built alongside | The loop is the product. ENT-4 comes forward because CAP-6 (usable with location denied) is untestable without it. DATA-4 is on the promise line and one serialiser serves export, restore and migration (DATA-5). Accessibility limbs are acceptance criteria of the screens they sit on, so they are built with them, not after |
 | **M3 — Money, lapse and first run** | Trial, lapse, entitlement boundary, pricing, notices, onboarding | FT-ENT-2 … 6, FT-PRICE-1 … 4 | Depends on SPK-07 and SPK-10. PRICE-7/8/9 also wait on §11.2 |
-| **M4 — Journal features added after the estimate, and backup** | Journal views, headlines, photos, encrypted backup, competitor import | FT-LOOK-1 … 5, FT-HEAD-1 … 4, FT-PHOTO-1 … 3, FT-DATA-3, FT-DATA-5 | Most of this is unsized (SPK-08). Backup waits on SPK-06 and SPK-12; photos on SPK-11; the heatmap on SPK-04; DATA-15 on SPK-13 |
-| **M5 — Release readiness** | Field measurement, release bars, licences, privacy declarations, store readiness | FT-CAP-6, the rest of FT-VEN-5 (VEN-18, VEN-20, VEN-24), FT-A11Y-4, FT-LIC-1 … 2, FT-PRIV-2 … 3, FT-DATA-4 (DATA-14), FT-PLAT-2 … 3 | CAP-10 and VEN-24 share one real-week field run (VEN-24's source says so) and need a near-final build. PLAT-3's 14-day closed test and PLAT-7's icon are calendar time, so **they start earlier than M5** even though they finish there — PLAT-4 exists to stop waiting time being planned as effort |
+| **M4 — Journal features added after the estimate, and backup** | Journal views, headlines, photos, encrypted backup, competitor import; **(v0.3) the themes, headline motion and variety** | FT-LOOK-1 … 5, FT-HEAD-1 … 6, FT-PHOTO-1 … 3, FT-DATA-3, FT-DATA-5, **FT-THEME-2 … 5** | Most of this is unsized (SPK-08). Backup waits on SPK-06 and SPK-12; photos on SPK-11; the heatmap on SPK-04; DATA-15 on SPK-13 |
+| **M5 — Release readiness** | Field measurement, release bars, licences, privacy declarations, store readiness; **(v0.3) the icon setting, with the icons** | **FT-PLAT-4**, FT-CAP-6, the rest of FT-VEN-5 (VEN-18, VEN-20, VEN-24), FT-A11Y-4, FT-LIC-1 … 2, FT-PRIV-2 … 3, FT-DATA-4 (DATA-14), FT-PLAT-2 … 3 | CAP-10 and VEN-24 share one real-week field run (VEN-24's source says so) and need a near-final build. PLAT-3's 14-day closed test and PLAT-7's icon are calendar time, so **they start earlier than M5** even though they finish there — PLAT-4 exists to stop waiting time being planned as effort |
 
-**Dependencies the ticket script should record as "Blocked by"** (from the requirements' own cross-references): VEN-24 ← CAP-10 ← SPK-02; HEAD-10 ← SPK-05; NOT-3, NOT-5 ← SPK-07; ENT-10 ← SPK-10; ENT-8 ← SPK-14; DATA-6, DATA-7, DATA-8 ← SPK-06; DATA-12 ← SPK-12; PHOTO-1 … PHOTO-11 ← SPK-11; LOOK-2 ← SPK-04; DATA-15 ← SPK-13; ONB-3 ← SPK-08; every EP-VEN task and FT-CONF-2/FT-CONF-3 ← SPK-01; LOOK-5 ← PLAT-7.
+**Dependencies the ticket script should record as "Blocked by"** (from the requirements' own cross-references; **v0.3 adds** LIC-7 ← SPK-18 and HEAD-23 ← SPK-19): VEN-24 ← CAP-10 ← SPK-02; HEAD-10 ← SPK-05; NOT-3, NOT-5 ← SPK-07; ENT-10 ← SPK-10; ENT-8 ← SPK-14; DATA-6, DATA-7, DATA-8 ← SPK-06; DATA-12 ← SPK-12; PHOTO-1 … PHOTO-11 ← SPK-11; LOOK-2 ← SPK-04; DATA-15 ← SPK-13; ONB-3 ← SPK-08; every EP-VEN task and FT-CONF-2/FT-CONF-3 ← SPK-01; LOOK-5 ← PLAT-7.
 
 ---
 
@@ -505,3 +523,4 @@ All four were read through a summarising fetch tool, not in the raw page; the qu
 |---|---|---|
 | 2026-09-26 | 0.1 | First proposal: 17 epics, 67 features, 211 tasks (197 requirement + 14 planning); coverage 197/197; board, fields, views, labels; phase proposal for the CTO; nine gaps at §11 |
 | 2026-09-26 | 0.2 | Ticket format per **D33** and **D34** (`agentic-agile-adoption.md` §3.3, §11): §6 labels gain `level:story`, `spec-defect`, `escaped`; §7 Ready rule requires the CTO-set files, interfaces, file ownership and wave; review recorded at the PR's head commit; implementation stories close on merge and never reach Done; column names as built ("In review"); §8 fields gain `Wave` and `QA attempts`, views gain "Current wave"; §9 and §12 superseded notes; §10 waves within phases. `backlog-tickets.py` regenerated to the §3.3 body. No mapping change: still 17 epics, 67 features, 211 tasks |
+| 2026-09-27 | 0.3 | **Design scope mapped** from `requirements.md` v1.2 (D38, D42–D52): new epic **EP-THEME** (5 features, 15 tasks: THEME-1 … THEME-8, THEME-10 … THEME-16; THEME-9 is unassigned by design); **FT-HEAD-5** (HEAD-19, HEAD-20) and **FT-HEAD-6** (HEAD-21 … HEAD-23); **LIC-7** into FT-LIC-1; **FT-PLAT-4** (PLAT-9); spikes **SPK-17** (CFO costs the design scope), **SPK-18** (CGO font licences), **SPK-19** (CTO: an area field for HEAD-23). The CTO's feasibility questions on glass and icons were answered by `design-feasibility-and-sizing.md` before tickets existed, so they are not spikes. Provisional phases in §10. `backlog-tickets.py`'s mixed-priority and blocked-by sets extended. **Now 18 epics, 76 features, 238 tasks (219 requirement + 19 planning); coverage 219/219.** No GitHub issue created |

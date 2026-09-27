@@ -97,6 +97,17 @@ epic("EP-HEAD", "Home-screen headlines", "ux-lead", "8.2", [
      ["HEAD-9", "HEAD-10", "HEAD-11", "HEAD-16"]),
     ("FT-HEAD-4", "Headline privacy: surfaces and sensitive places", "engineer",
      ["HEAD-12", "HEAD-13", "HEAD-17", "HEAD-18"]),
+    ("FT-HEAD-5", "Moving headline per theme: Rotate and typed", "engineer", ["HEAD-19", "HEAD-20"]),
+    ("FT-HEAD-6", "Headline variety: phrasings and new templates", "ux-lead", ["HEAD-21", "HEAD-22", "HEAD-23"]),
+])
+epic("EP-THEME", "Appearance: themes and the floating tab bar", "ux-lead", "8.3", [
+    ("FT-THEME-1", "Theme system and Settings > Appearance", "engineer",
+     ["THEME-10", "THEME-5", "THEME-11", "THEME-12", "THEME-3"]),
+    ("FT-THEME-2", "What a theme may change; every theme accessible", "engineer",
+     ["THEME-1", "THEME-2", "THEME-4", "THEME-6", "THEME-7"]),
+    ("FT-THEME-3", "Retro theme and its guardrails", "engineer", ["THEME-8", "THEME-13"]),
+    ("FT-THEME-4", "Floating tab bar, and glass on iOS if feasible", "engineer", ["THEME-15", "THEME-16"]),
+    ("FT-THEME-5", "Warm's Contour texture", "engineer", ["THEME-14"]),
 ])
 epic("EP-ENT", "Entitlement, trial, lapse and first run", "cto", "9;9.1", [
     ("FT-ENT-1", "Entitlement as intervals, unknown stated honestly", "engineer", ["ENT-1", "ENT-2"]),
@@ -133,7 +144,7 @@ epic("EP-PHOTO", "Photos by reference", "cto", "12.2", [
      ["PHOTO-3", "PHOTO-4", "PHOTO-6", "PHOTO-9"]),
 ])
 epic("EP-LIC", "Licences and attribution", "cgo", "13", [
-    ("FT-LIC-1", "Data sources and licences screen", "engineer", ["LIC-1", "LIC-3", "LIC-4", "LIC-6"]),
+    ("FT-LIC-1", "Data sources and licences screen", "engineer", ["LIC-1", "LIC-3", "LIC-4", "LIC-6", "LIC-7"]),
     ("FT-LIC-2", "Licence texts travel with redistributed data", "engineer", ["LIC-2", "LIC-5"]),
 ])
 epic("EP-PRIV", "Privacy and honesty surfaces", "cgo", "14", [
@@ -151,12 +162,16 @@ epic("EP-PLAT", "Platform, storefront and release", "cto", "16", [
     ("FT-PLAT-1", "React Native app shell on iOS 26+ and Android", "cto", ["PLAT-1", "PLAT-8"]),
     ("FT-PLAT-2", "Store release readiness and schedule", "pm-ba", ["PLAT-3", "PLAT-4", "PLAT-5"]),
     ("FT-PLAT-3", "Name, icon and support statement before launch", "cgo", ["PLAT-2", "PLAT-6", "PLAT-7"]),
+    ("FT-PLAT-4", "User-chosen app icon", "engineer", ["PLAT-9"]),
 ])
 epic("EP-PLAN", "Build planning and spikes", "cto", "22", [
     ("FT-PLAN-1", "Block lifts owed before build", "cto", ["SPK-01", "SPK-02"]),
-    ("FT-PLAN-2", "Platform and device questions", "cto", ["SPK-03", "SPK-05", "SPK-07", "SPK-10", "SPK-14"]),
-    ("FT-PLAN-3", "Architecture and security choices", "cto", ["SPK-04", "SPK-06", "SPK-11", "SPK-12", "SPK-13"]),
-    ("FT-PLAN-4", "Sizing and costing of scope outside the estimate", "cto", ["SPK-08", "SPK-09"]),
+    ("FT-PLAN-2", "Platform and device questions", "cto",
+     ["SPK-03", "SPK-05", "SPK-07", "SPK-10", "SPK-14"]),
+    ("FT-PLAN-3", "Architecture and security choices", "cto",
+     ["SPK-04", "SPK-06", "SPK-11", "SPK-12", "SPK-13", "SPK-18", "SPK-19"]),
+    ("FT-PLAN-4", "Sizing and costing of scope outside the estimate", "cto",
+     ["SPK-08", "SPK-09", "SPK-17"]),
     ("FT-PLAN-5", "Repository conventions and agent scaffolding", "cto", ["SPK-15", "SPK-16"]),
 ])
 
@@ -264,6 +279,26 @@ T = {
  "HEAD-16": "Headline screen-reader and layout behaviour",
  "HEAD-17": "Sensitive places out of headlines by default, one switch",
  "HEAD-18": "Per-place headline toggle for uncategorised places",
+ "HEAD-19": "Warm's Ticker is Rotate: one whole sentence at a time",
+ "HEAD-20": "Mono's typed headline and blinking cursor, under D45",
+ "HEAD-21": "Several phrasings per template, chosen from the date",
+ "HEAD-22": "Templates T10-T12, each entering once UX sets its threshold",
+ "HEAD-23": "Neighbourhood template, only if the index can name an area",
+ "THEME-1": "A theme changes how the app looks, never what it does",
+ "THEME-2": "Every theme accessible in light, dark and higher contrast",
+ "THEME-3": "A theme never changes another setting, nor they it",
+ "THEME-4": "Every theme equally still; one shared motion budget",
+ "THEME-5": "Theme and light/dark in Settings, persisted, never promoted",
+ "THEME-6": "No theme is a reward; all themes in every entitlement state",
+ "THEME-7": "Privacy surfaces say the same thing in every theme",
+ "THEME-8": "Retro keeps the early-2000s look and none of its tricks",
+ "THEME-10": "Three themes at launch: Warm, Mono (default), Retro",
+ "THEME-11": "Theme picker with live previews, accessible as a radio group",
+ "THEME-12": "Light and dark as a separate setting for every theme",
+ "THEME-13": "Retro's period details meet the accessibility bar",
+ "THEME-14": "Contour texture in Warm only, never under text",
+ "THEME-15": "Floating tab bar in every theme; solid where required",
+ "THEME-16": "Real Liquid Glass on iOS, frosted to its opacity floors",
  "ENT-1": "Entitlement stored as intervals, readable by capture modules",
  "ENT-2": "Unknown entitlement state is conservative and stated",
  "ENT-3": "Two-week full trial; everything written stays usable free",
@@ -333,6 +368,7 @@ T = {
  "LIC-4": "Publish the Overture release identifier",
  "LIC-5": "Licence items travel with any standalone index release",
  "LIC-6": "OS Open Zoomstack OGL attribution in the required form",
+ "LIC-7": "Bundled font notices; Reserved Font Names respected",
  "PRIV-1": "Transmission sentence verbatim in store, onboarding, backup",
  "PRIV-2": "Privacy screen shows the live state of every transmission",
  "PRIV-3": "Declare crash data on the App Privacy label",
@@ -359,6 +395,7 @@ T = {
  "PLAT-6": "Pass three name checks before \"Haunts\" goes public",
  "PLAT-7": "App icon and in-image mark exist before launch",
  "PLAT-8": "Minimum iOS version is iOS 26",
+ "PLAT-9": "User-chosen app icon, separate from the theme",
 }
 
 # ---- task overrides (owner, platform); default engineer / both ---------------
@@ -369,7 +406,7 @@ OWNER = {
  "PLAT-6": "cgo", "PLAT-7": "ux-lead", "LIC-5": "cgo", "DATA-2": "cto",
 }
 PLATFORM = {
- "CAP-2": "ios", "PLAT-8": "ios", "PRIV-3": "ios",
+ "CAP-2": "ios", "PLAT-8": "ios", "PRIV-3": "ios", "THEME-16": "ios",
  "CAP-3": "android", "PLAT-3": "android",
 }
 for k in ["VEN-2", "VEN-3", "VEN-5", "VEN-6", "VEN-17", "VEN-18", "VEN-19", "VEN-20",
@@ -394,6 +431,9 @@ SPK = {
  "SPK-14": ("Can an app relinquish its own location authorization?", "BLOCKING", "both", "engineer", "22"),
  "SPK-15": ("Traceable commits, branches and PRs: standard and enforcement (D37)", "MUST", "none", "cto", ""),
  "SPK-16": ("Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)", "MUST", "none", "cto", ""),
+ "SPK-17": ("Cost the design scope (CTO sized it: 256-535 h, 40-130 h/yr)", "MUST", "none", "cfo", "22"),
+ "SPK-18": ("Font licences: RFN and DejaVu readings before any subset (LIC-7)", "BLOCKING", "none", "cgo", "22"),
+ "SPK-19": ("Can the index carry an area name from Places alone? (HEAD-23)", "PENDING-ESTIMATE", "none", "cto", "22"),
 }
 
 # ---- write CSV ----------------------------------------------------------------

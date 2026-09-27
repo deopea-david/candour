@@ -149,12 +149,14 @@ def mentions(rid, *texts):
 
 PROMISE = {"DATA-4", "VEN-7", "VEN-8", "VEN-9", "VEN-10", "VEN-11", "VEN-12", "CONF-3", "SESS-1", "PRIV-1", "PRIV-8", "CAP-4", "VEN-21"}
 STANDING = {"VEN-24", "CONF-9", "VEN-14", "VEN-15", "VEN-21", "VPAGE-5"}
-MIXED = {"HEAD-4", "HEAD-5", "HEAD-9", "HEAD-13", "HEAD-14", "HEAD-15", "PHOTO-9"}
+MIXED = {"HEAD-4", "HEAD-5", "HEAD-9", "HEAD-13", "HEAD-14", "HEAD-15", "PHOTO-9",
+         "HEAD-19", "HEAD-20", "HEAD-21", "HEAD-22", "PLAT-9", "THEME-4", "THEME-6", "THEME-11", "THEME-15"}
 CSO = {f"DATA-{n}" for n in range(6, 14)} | {"DATA-15", "ENT-11", "PRIV-8", "PHOTO-11", "CAP-1", "SPK-06"}
 NEEDS_CEO = {"PLAT-5", "PLAT-7"}
 BLOCKED_BY = {"VEN-24": "CAP-10", "CAP-10": "SPK-02", "HEAD-10": "SPK-05", "NOT-3": "SPK-07", "NOT-5": "SPK-07",
               "ENT-10": "SPK-10", "ENT-8": "SPK-14", "DATA-6": "SPK-06", "DATA-7": "SPK-06", "DATA-8": "SPK-06",
-              "DATA-12": "SPK-12", "LOOK-2": "SPK-04", "DATA-15": "SPK-13", "ONB-3": "SPK-08", "LOOK-5": "PLAT-7"}
+              "DATA-12": "SPK-12", "LOOK-2": "SPK-04", "DATA-15": "SPK-13", "ONB-3": "SPK-08", "LOOK-5": "PLAT-7",
+              "LIC-7": "SPK-18", "HEAD-23": "SPK-19"}
 for n in range(1, 12):
     BLOCKED_BY[f"PHOTO-{n}"] = "SPK-11"
 
