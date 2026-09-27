@@ -462,6 +462,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **Owed:** the PM/BA writes the §24 scope-change row amending HEAD-8, and UX specifies the exact timings, which it signs off on a device.
 
+**D46 — Mono (Hybrid B) is the default theme, for now.** *CEO, 2026-09-27.* *"Lets go with Hybrid B for now as the default as it separates us from the rest and the closest competitor."* This follows the Research Analyst's finding (`research/2026-09-haunts-default-theme.md`) that the four retrieved competitor icons are all saturated blue, green or violet, that Hybrid A's plum sits in the same family as Arc Timeline 4 (the closest competitor), and that B's near-black is the only one of ours that breaks the pattern. **UX recommended Warm (Hybrid A)**, as clearer for newcomers; that is recorded, not overruled silently. **Consequences:** the store listing leads with Mono, and **the store icon is Mono's h with the orange bar**. Warm and Retro are one tap away in Settings → Appearance. **"For now"** means revisitable: the £0 preference test specified in the research brief remains available, and the brief records that a clear majority for Warm would overturn it. The default theme is not a customer-facing commitment, so changing it later needs no notice.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
