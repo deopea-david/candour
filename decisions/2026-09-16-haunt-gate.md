@@ -482,6 +482,8 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D54 — Contrast is re-checked on each iOS release, and Retro draws its own bevelled bar.** *CEO, 2026-09-27.* (1) **The bar-contrast check (D53) also runs on each iOS release**, as well as when the bar's colours change, because Apple has adjusted Liquid Glass legibility between versions. This was the CVO's suggestion, and the CEO widened it from yearly to *"each iOS release"*. (2) **Retro has its own small bevelled tab bar** over the hidden system bar, a contained component under D52 (the CTO's estimate: about 15 h more than the system bar in Retro's colours). UX had favoured the system bar for a single code path. **Warm and Mono use the system bar.**
 
+**D55 — On Android, the tab bar is Material's full-width docked bar.** *CEO, 2026-09-27, on the CVO's recommendation.* Native Tabs give Material's bottom bar on Android. The floating pill (12–20 h more, as our own component) is not built. So the vertical-space gain of D42 applies on iOS, where the glass bar floats over content, and not on Android, where the docked bar is what users expect. Retro's own bar (D54) applies on both platforms.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
