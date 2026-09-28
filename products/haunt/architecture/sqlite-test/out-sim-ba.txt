@@ -1,0 +1,41 @@
+A = /private/tmp/claude-501/-Users-davidparrish-Documents-candour/1c0db2a6-d671-472b-91d8-5123d15bad48/scratchpad/sqlite-test/libsqlite3-sim.dylib
+    version 3.53.4, threadsafe=1, source 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc
+B = /usr/lib/libsqlite3.dylib
+    version 3.51.0, threadsafe=2, source 2025-06-12 13:14:41 f0ca7bba1c5e232e5d279fad6338121ab55af0c8c68c84cdfb18ba5114dcaapl
+same loaded image (one copy)? NO — two copies in one process
+
+T3  WAL mode: B stays open (idle); A opens, writes and closes. No two writes overlap.
+    [B] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(1); -> rc=0
+    files after B's first write                   : -wal present (inode 57211119), -shm present (inode 57211120)
+    [A] INSERT INTO t VALUES(2);                                   -> rc=0
+    files after A closes (B still open)           : -wal present (inode 57211119), -shm present (inode 57211120)
+    [B] INSERT INTO t VALUES(3);                                   -> rc=0
+    files after B writes again                    : -wal present (inode 57211119), -shm present (inode 57211120)
+    [A] INSERT INTO t VALUES(4);                                   -> rc=0
+    A sees: 4 rows: 1,2,3,4
+    B sees: 4 rows: 1,2,3,4   (every INSERT returned rc=0; correct answer is 4 rows: 1,2,3,4)
+    files after A closes again                    : -wal present (inode 57211119), -shm present (inode 57211120)
+    files after B closes                          : -wal present (inode 57211119), -shm present (inode 57211120)
+    independent check (after both closed) via /usr/bin/sqlite3 in a separate process:
+      (simulator build: run this check from the host afterwards)
+
+T3b WAL mode: B (the long-lived app connection) stays open; A (capture) does open-write-close for three visits, B writes between them.
+    [B] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(1); -> rc=0
+    files start                                   : -wal present (inode 57211125), -shm present (inode 57211126)
+    [A] INSERT INTO t VALUES(2);                                   -> rc=0
+    files after capture visit 1 closes            : -wal present (inode 57211125), -shm present (inode 57211126)
+    [B] INSERT INTO t VALUES(3);                                   -> rc=0
+    B sees: 3 rows: 1,2,3 (expected 3 rows)
+    [A] INSERT INTO t VALUES(4);                                   -> rc=0
+    files after capture visit 2 closes            : -wal present (inode 57211125), -shm present (inode 57211126)
+    [B] INSERT INTO t VALUES(5);                                   -> rc=0
+    B sees: 5 rows: 1,2,3,4,5 (expected 5 rows)
+    [A] INSERT INTO t VALUES(6);                                   -> rc=0
+    files after capture visit 3 closes            : -wal present (inode 57211125), -shm present (inode 57211126)
+    [B] INSERT INTO t VALUES(7);                                   -> rc=0
+    B sees: 7 rows: 1,2,3,4,5,6,7 (expected 7 rows)
+    fresh A connection sees: 7 rows: 1,2,3,4,5,6,7 (expected 7 rows)
+    integrity_check via A: ok
+    files after all close                         : -wal present (inode 57211125), -shm present (inode 57211126)
+    independent check (after all closed) via /usr/bin/sqlite3 in a separate process:
+      (simulator build: run this check from the host afterwards)
