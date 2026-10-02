@@ -1,7 +1,7 @@
 # Code architecture proposals — Haunts (SPK-20, D59)
 
 **Seat:** CTO · **Date:** 2026-09-27 · **Ticket:** SPK-20 (FT-PLAN-6, M0) · **Decision it serves:** D59
-**Status:** Proposal for the CEO's decision. **Not adopted.** No product code reaches `haunts` until the CEO decides (D59). D59 also requires review by a seat other than the CTO, and a CSO security review, before adoption (§9).
+**Status:** **Decided — Option B-strict, CEO, 2026-10-02 (D64).** The adopted record is [`ADR-0001-code-architecture.md`](ADR-0001-code-architecture.md). This file stays as the proposal and its evidence. The reviews D59 required are in `reviews/`.
 **Reads:** `decisions/2026-09-16-haunt-gate.md` (D1, D22, D23, D27–D59); `products/haunt/requirements.md` v1.3 (§2, §3, §4, §6, §7, §8.3, §9, §12, §14, §15, §16); `android-and-stack-note.md`; `design-feasibility-and-sizing.md` (§4, §10); `feasibility-note.md` (§3–§5); `haunts/CLAUDE.md` and `haunts/docs/conventions.md` (with the arrow-function rule on branch `refactor/SPK-15-arrow-functions-2`).
 **Evidence tags** per `pipeline/evidence-standard.md`: [E] retrieved this session, link given (register at §11); [K] model knowledge, not verified; [I] inference; [J] judgment. Every vendor claim rests on the vendor's own page, so each is **single source** — the right source for how that vendor's product behaves.
 
@@ -61,7 +61,7 @@
 | # | Rule | Tool | Fails in |
 |---|---|---|---|
 | **1** | **Folder allow-list.** `src/` contains only `app/`, `features/`, `core/`, `ui/`, `strings/`. `core/` contains only `domain/`, `store/`, `diagnostics/`. `ui/` contains only `theme/`, `primitives/`, `variants/`. Each `features/<name>/` is listed in `features/README.md`. Inside a feature, the only subfolders are `components/` and `__tests__/`. A new folder anywhere fails until the allow-list (`tools/structure.json`) is edited, and that edit is a visible diff the CTO reviews | `tools/check-structure.ts` | both |
-| **2** | **Routes are thin.** Files in `src/app/` may import only a feature's `index.ts`, `@/ui`, `expo-router` and `react`. They are at most 40 lines | ESLint `no-restricted-imports` scoped to `src/app/**`; `max-lines` | both |
+| **2** | **Routes are thin.** Files in `src/app/` may import only a feature's `index.ts`, `@/ui`, `expo-router` and `react`. They are at most 40 lines. **Both the rule and the 40-line cap are Candour's judgment [J], not Expo's:** Expo's page says only that *"the src/app directory is exclusively for defining your app's routes"* ([core concepts](https://docs.expo.dev/router/basics/core-concepts/)) and sets no size | ESLint `no-restricted-imports` scoped to `src/app/**`; `max-lines` | both |
 | **3** | **No imports between features.** A file in `features/x/` may not import `features/y/` | ESLint `no-restricted-imports` per feature **and** dependency-cruiser's group rule (`$1`, the documented "peer folders" pattern) [E, A11] | both |
 | **4** | **Each feature has one public door.** Outside its own folder, a feature is imported only through `features/<name>/index.ts`, which exports screens only | ESLint (`no-restricted-imports` patterns banning deep paths); dependency-cruiser | both |
 | **5** | **`core/domain` is pure.** No `react`, `react-native`, `expo*`, `@/core/store`, `@/ui`, `@/features`, and no `node:*`. **No `Date.now()`, `new Date()` without arguments, or `Math.random()`**: time and randomness come in as parameters, so sessions (SESS-1) and daily headlines (HEAD-3, D50) are deterministic and testable | ESLint `no-restricted-imports` and `no-restricted-syntax`; dependency-cruiser; **and a third, independent check:** domain tests run as their own Jest project in plain Node with no React Native preset, so any React Native import crashes the test run | both (the Jest project in CI) |
@@ -128,6 +128,41 @@ All retrieved 2026-10-02 by this seat. Single-source items are flagged in the te
 | A15 | npm registry, [`@eslint-community/eslint-plugin-eslint-comments`](https://registry.npmjs.org/@eslint-community/eslint-plugin-eslint-comments): 4.8.1, 2026-09-12, MIT, 2 dependencies |
 | A16 | Search for controlled studies of codebase layout and agent accuracy: arXiv and web, 2026-10-02. None found comparing these layouts; A4 and A6 were the nearest |
 
+### A.6 What the PM/BA must change in `requirements.md` (after D61, D63, D64)
+
+*CEO decided B-strict at **D64**; the adopted record is [`ADR-0001-code-architecture.md`](ADR-0001-code-architecture.md). These are the requirement changes that follow, for the PM/BA to make as §24 scope-change rows. The wording is the PM/BA's; the substance is what the decisions require. Ticket copies are regenerated from the new commit (D31).*
+
+**From D61 — OS-level backups are the user's choice, and the app says so.**
+
+1. **A new requirement: the backup note.** It goes on the Privacy screen (PRIV-2) and in the relevant settings. It states in plain words that the phone's own backup includes the Haunts journal, if the user has that backup switched on (iCloud on iPhone, Google on Android), as it does for other apps. It also states, per the CSO, that Apple can read iCloud Backup for UK users, because Advanced Data Protection is no longer offered in the UK (D61 item 3). The note should be static text in the accessibility tree (A11Y-8), identical in every theme (THEME-7), and never a prompt or nag (CONF-1's spirit).
+2. **PRIV-1, the transmission sentence.** Qualify *"Haunts sends your data nowhere else"* so that a default the user may not know about does not contradict it. For example, add that the phone's own backup, if switched on, includes the journal. **The CGO confirms the new wording as a contract term** under CRA 2015 s.36(3) before it ships. This was already a launch bar (D61 item 2).
+3. **DATA-6.** *"Nothing leaves the device until the user chooses it"* needs the same qualification. The choice in question is now either Haunts' own backup or the user's OS-level backup. DATA-6(a)'s network capture is unchanged: the OS backup is not an app connection.
+4. **The one-place rule** (D61, *"Owed"*): a criterion that the OS backup setting lives only in the `plugins/` backup rules, so the decision stays a one-line change. Checked as part of ADR check 10 (guard files).
+
+**From D63 — two SQLite files, one owner each.**
+
+5. **DATA-1:** *"One SQLite file"* becomes *"the journal is one SQLite file (`journal.db`); capture data is a second file (`capture.db`) owned by the native capture module; the venue index (`venues.db`) is a third, read-only file"*. The criterion becomes: *"open `journal.db` and `capture.db` with the `sqlite3` CLI; every user-authored and every captured field is legible."*
+6. **DATA-2:** the contract becomes **the capture module's typed interface plus `capture.db`'s published schema**, not one shared file read by four consumers. It keeps the named migration owner **per file**, WAL, and one writer per table. **(b)** becomes: native write to `capture.db` while JavaScript reads `journal.db`, with no file ever opened by both SQLite copies.
+7. **New DATA-2 limbs: the Engineer's three guards** (`sqlite-two-copies-investigation.md` §5):
+   - **(c)** native code uses **one connection on one serial queue** for `capture.db`, or rollback-journal mode;
+   - **(d)** a CI check that **only `modules/capture/` opens `capture.db` and only `core/store/` opens `journal.db`**, in TypeScript, Swift and Kotlin (ADR check 6);
+   - **(e)** if native code ever opens `venues.db`, it does so read-only with `immutable=1`, after that flag is verified.
+
+   The optional half-day run on real phones at M1 is a measurement, not a criterion.
+8. **CAP-1:** *"write to SQLite directly"* becomes *"write to `capture.db` directly"*. CAP-1(b) names its mechanism: `ios/Core` compiled as its own Swift module (CSO C7), plus `tools/check-capture-isolation.ts`.
+9. **ENT-1 and SESS-9:** the entitlement-interval table and the capture-gap table live in `capture.db`. They are written through the capture module (the billing layer calls `recordEntitlement`) and read by JavaScript only through its interface. The criteria, *"answer without the JS runtime"*, are unchanged.
+10. **DATA-3, DATA-4, DATA-5:** the export, and DATA-4's diff test, cover **both** files. The diff is against `journal.db` **and** `capture.db` (gaps and entitlement intervals included). Import restores both. **A question for the PM/BA, not decided here:** does the export include unconfirmed capture candidates? They are not entries (DEF-1), but they are data the app holds about the user, and D13 frames export as a right of access. If they are excluded, the export must say so.
+11. **§12.1** ("One architecture decision this section is waiting on"): record that the architecture is decided (D64). The backup *shape* (user-saved encrypted file only, or a cloud route) is still open and remains the CEO's (Constitution 5.4).
+
+**From D64 — B-strict.** Most of the 17 checks are **engineering standards, and their home is the ADR and `docs/conventions.md`, not `requirements.md`**. Requirements say *what* the product must do. QA verifies them; the checks verify the code. Only where an existing criterion already asks for a static check should its wording name the mechanism, so that QA can find the evidence:
+
+12. **PRIV-8:** replace *"any outbound HTTP call site outside the backup module"* with the five layers in §6.8. Add that the network rules **cannot be disabled by an inline comment** (ADR check 9, CSO C1), that networking **imports** are banned as well as globals (CSO C2), and the Android release manifest without `INTERNET`, subject to the spike (CSO C5).
+13. **VPAGE-4, CAP-8(c), CONF-19(a), DFLT-1(a), MEM-1(a), LIC-7(b):** name the single home and check from §6.12 and the ADR. The criteria themselves do not change.
+14. **Also owed from the CSO review**, which the CSO assigned to the PM/BA (`reviews/cso-review.md` §9):
+    - **C13:** a home and criterion for HEAD-12's privacy cover;
+    - **C14:** DATA-15(d)'s hostile-archive fixture applies to DATA-5's own-format restore too;
+    - **C15:** a retention rule for `capture.db` that **deletes** expired and adopted candidates, not merely flags them (Article 4, minimum data).
+
 ---
 
 ## Page one — for the CEO
@@ -191,7 +226,7 @@ I read the sources' own pages this session. What each says, and what Haunts take
 
 | Source | What it says [E] | What Haunts takes |
 |---|---|---|
-| **Expo Router** (core concepts) | *"In Expo Router, the src/app directory is exclusively for defining your app's routes. Other parts of your app, like components, hooks, utilities, and so on, should be placed in other directories"*; rule 6: *"Non-navigation components live outside the src/app directory."* | **Routes are thin.** `src/app/` holds route files only; they import a screen and render it. Every option does this. |
+| **Expo Router** (core concepts) | *"In Expo Router, the src/app directory is exclusively for defining your app's routes. Other parts of your app, like components, hooks, utilities, and so on, should be placed in other directories"*; rule 6: *"Non-navigation components live outside the src/app directory."* | `src/app/` holds route files only, and every option does this. **Expo says nothing about how much a route file may contain.** Keeping routes *thin* (a route imports one screen and renders it) is **Candour's own rule [J]**, close to Obytes' *"thin re-export layers"* (next row), not an Expo requirement. *(Attribution corrected 2026-10-02.)* |
 | **Expo Router** (src directory) | *"Move your app directory to src/app"*; config files *"should remain in the root directory"*; custom roots are *"highly discouraged"*; SDK 55+ templates already use `src/app`. | App code under `src/`, config at the repo root, **no custom router root.** |
 | **Obytes starter** | `features/` hold *"feature-oriented modules"* with screens, components, api and stores; `app/` is *"app routes and layouts (Expo Router)"* serving as **thin re-export layers**; `components/ui/` is the design system; `lib/` is *"core infrastructure"*. | The closest published shape to Option B. |
 | **Bulletproof React** | *"organize most of the code within the features folder"*; *"It might not be a good idea to import across the features. Instead, compose different features at the application level"*; code flows *"shared -> features -> app"*, enforced by ESLint `import/no-restricted-paths` zones. | The **no-cross-feature-imports** rule and the **enforcement mechanism** for Option B. It is a web (React) reference, so its folders are adapted, not copied. |
@@ -516,7 +551,7 @@ The CTO standard at `design-feasibility-and-sizing.md` §4.1 is adopted unchange
 
 ### 6.6 Navigation: Native Tabs, one navigator, thin routes
 
-`src/app/(tabs)/_layout.tsx` holds the one `NativeTabs` navigator; in Retro it sets `hidden` and renders `ui/variants/retro-tab-bar.tsx`, which navigates through the router, so a theme change never remounts the navigator (`design-feasibility-and-sizing.md` §10.6). Routes stay thin: a route file imports one screen and renders it, and exports an `ErrorBoundary` where a tab needs its own (§6.10). **No deep links, universal links or URL schemes** are declared, because nothing outside the app needs to open a screen; a notification tap (CAP-8, CAP-9) opens the app, which is already the queue. **No custom router root** — Expo says it will *"not accept bug reports regarding projects with custom root directories"* [E].
+`src/app/(tabs)/_layout.tsx` holds the one `NativeTabs` navigator; in Retro it sets `hidden` and renders `ui/variants/retro-tab-bar.tsx`, which navigates through the router, so a theme change never remounts the navigator (`design-feasibility-and-sizing.md` §10.6). Routes stay thin, which is Candour's rule [J] and not Expo's (Expo requires only that `src/app` holds routes): a route file imports one screen and renders it, and exports an `ErrorBoundary` where a tab needs its own (§6.10). **No deep links, universal links or URL schemes** are declared, because nothing outside the app needs to open a screen; a notification tap (CAP-8, CAP-9) opens the app, which is already the queue. **No custom router root** — Expo says it will *"not accept bug reports regarding projects with custom root directories"* [E].
 
 ### 6.7 Boundaries, checked by tools
 
@@ -642,39 +677,9 @@ Each of these is common in React Native starters and is left out on purpose. Eac
 
 ---
 
-## 10. Draft ADR-0001 — ready to adopt if the CEO chooses Option B
+## 10. ADR-0001 — moved and adopted
 
-*If the CEO chooses A or C, the CTO rewrites §Decision and §Consequences from §4.A or §4.C; §Context and the §6 decisions carry over unchanged.*
-
-> # ADR-0001 — Code architecture: feature folders on a small shared core
->
-> **Status:** Proposed — awaiting the CEO's decision under D59. · **Date:** 2026-09-27 · **Deciders:** CEO (decision), CTO (proposal) · **Reviews owed:** a seat other than the CTO; CSO (security) · **Ticket:** SPK-20 · **Supersedes:** none
->
-> ## Context
-> Haunts is an Expo / React Native app in TypeScript for iOS and Android, with native capture in Swift and Kotlin, no server and no network code. D59 asks for an architecture that is *"intuitive, clear and simple with clear separations of concerns"*, based on current practice. Requirements fix much of the shape: CAP-1 (no JavaScript in the recording path), SESS-1 (derived sessions), VEN-7…12 (Candour-owned venue rows, a schema trigger), VPAGE-4 (entitlement-blind journal queries), DATA-1…5 and DATA-13, PRIV-8, the theme register (D52) and Native Tabs (D53). Expo SQLite bundles its own SQLite, and two SQLite copies in one app opening one file can corrupt it (sqlite.org, *How To Corrupt*, §2.3). Options considered: sorted by kind; feature folders on a shared core; strict layers in packages. `products/haunt/architecture/architecture-proposals.md` holds the full comparison and evidence.
->
-> ## Decision
-> 1. **Layout.** `src/app/` holds Expo Router routes only; each renders one screen from a feature. `src/features/<area>/` holds one user-facing area each (confirm, timeline, venue, compose, headlines, look, my-data, plans, onboarding, settings). `src/core/domain/` holds pure TypeScript rules; `src/core/store/` is the only code that touches SQLite or the capture module; `src/core/diagnostics/` is the typed log. `src/ui/` holds the theme tokens, primitives and the D52 variant register. `src/strings/` holds the one string table. `modules/capture/` is a local Expo module. The app lives at the repository root.
-> 2. **Dependency direction.** routes → features → core, ui, strings; store → domain; nothing imports features or routes; **features never import each other**; `core/domain` imports nothing outside itself. Code enters `core/` only if two features need it, a requirement names it as a testable unit, or it touches storage.
-> 3. **Storage.** Three SQLite files: `capture.db` (native-owned, native SQLite), `journal.db` (JavaScript-owned, Expo SQLite), `venues.db` (shipped, read-only). JavaScript reads capture data only through the capture module's typed interface. Each file has one migrator; migrations are numbered plain SQL tracked by `PRAGMA user_version`; WAL; one writer per table. Repositories are plain functions over a four-method database interface with an Expo SQLite adapter and a `node:sqlite` test adapter. No ORM.
-> 4. **State.** SQLite is the state, settings included; reads go through one `useLive` hook; screen state is local; no state library.
-> 5. **Native.** Expo Modules API. The capture module's recording path (`Core`) never imports its bridge (`Bridge`), and runs from Expo's AppDelegate subscriber and Android lifecycle listener without JavaScript. Entitlement intervals live in `capture.db`.
-> 6. **Theming and navigation** as `design-feasibility-and-sizing.md` §4.1 and §10.6: typed tokens, no branching on theme names, one `NativeTabs` navigator hidden in Retro.
-> 7. **No network code in the app.** Enforced in five layers (lint, native scan, dependency list, Android release manifest without `INTERNET` pending a spike, device network capture).
-> 8. **Tests** named by requirement limb: domain and store in Jest (store against real SQLite through `node:sqlite`), components with React Native Testing Library, native with XCTest and JUnit, end-to-end with Maestro.
-> 9. **Errors** that the requirements call honesty states are typed data; genuine faults throw to per-route `ErrorBoundary`s; the diagnostics log accepts no free text.
->
-> ## Enforcement
-> ESLint (flat config): `import/no-restricted-paths` zones for the dependency direction and feature isolation; `no-restricted-imports` for `expo-sqlite`, `modules/capture` and React-free `core/domain`; `no-restricted-globals` with `checkGlobalObject` for network globals; `no-restricted-syntax` for theme-name literals and remote URLs. `tools/check-capture-isolation.ts` (CAP-1(b), notification sites) and `tools/check-network.ts` (native network APIs, contacts APIs, merged Android manifest). All run in pre-commit and CI; a red check is not merged.
->
-> ## Consequences
-> **Easier:** a ticket's files are predictable (D33); parallel waves own separate folders (D34); the rules that must never be wrong are tested without a device on every commit; cutting a feature is deleting a folder and its routes; no corruption path between native and JavaScript storage. **Harder:** two concepts (feature, core) to learn; a component shared by two features must move to `ui/` and become presentational; no transaction spans capture and journal, so adopting a candidate is idempotent by design; DATA-1 and DATA-2 need a §24 wording change. **Costs:** about 20–34 h of set-up inside the existing set-up and data-layer estimate; development dependencies only; £0 running.
->
-> ## Follow-ups
-> §24 row for DATA-1/DATA-2 (PM/BA) · CSO security review and dependency approval · MAINT-4 lands the lint rules with the arrow-function rule · one-day spike: Android release build without `INTERNET` · entitlement spike (§6.4) · OS-level backups to the CEO after CSO and CGO notes · CAP-1(a) re-run on SDK 58 · the CTO fills M1 tickets' files sections.
->
-> ## Revisit when
-> The app gains a second app or package that shares code (reconsider packages); a second language (add a translation library); a server (reconsider state and networking); `core/` exceeds about a quarter of `src/` by lines (the entry rule is failing) [J].
+**The draft that stood here is replaced by the adopted record, [`ADR-0001-code-architecture.md`](ADR-0001-code-architecture.md)** (B-strict, CEO, 2026-10-02, **D64**). The draft was for plain B. The adopted record adds the 17 checks of §A.3, the two-file store as decided (**D63**) with the Engineer's three guards, and MAINT-4's arrow-function rule. The draft's text is in this file's git history (`734d3cc`).
 
 ---
 
@@ -729,3 +734,4 @@ All retrieved on 2026-09-27 by this seat unless marked. Each is the vendor's or 
 |---|---|
 | 2026-09-27 | First version (CTO), for SPK-20 / D59. Written incrementally; not yet reviewed by a second seat or the CSO. |
 | 2026-10-02 | Addendum at the top (CTO), answering the CEO's three questions: fit for AI agents (§A.1), why Expo and Ignite use A (§A.2), and the B-strict specification (§A.3). Recommendation moves from B to B-strict. Notes D61 and D63 as overtaking page one's two findings. The rest of the document is unchanged. |
+| 2026-10-02 | After D64 (CTO): status set to decided; §10's draft replaced by a pointer to the adopted `ADR-0001-code-architecture.md`; §A.6 added, listing the `requirements.md` changes owed by the PM/BA. **Citation corrected:** §2's Expo Router row, §6.6 and §A.3 rule 2 previously read as if Expo asks for *thin* routes. Expo says only that `src/app` is *"exclusively for defining your app's routes"*. Thin routes and the 40-line cap are Candour's judgment [J], and are now labelled so. |
