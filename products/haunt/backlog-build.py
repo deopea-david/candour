@@ -129,7 +129,7 @@ epic("EP-PRICE", "Pricing presentation and consumer notices", "cfo", "10;11", [
      ["NOT-1", "NOT-2", "NOT-3", "NOT-4", "NOT-5", "NOT-6"]),
 ])
 epic("EP-DATA", "Store, export, import and backup", "cto", "12", [
-    ("FT-DATA-1", "One SQLite store as a written contract", "cto", ["DATA-1", "DATA-2"]),
+    ("FT-DATA-1", "Two stores, one owner each, as written contracts", "cto", ["DATA-1", "DATA-2", "DATA-16"]),
     ("FT-DATA-2", "Lossless export and own-archive import", "engineer", ["DATA-3", "DATA-4", "DATA-5"]),
     ("FT-DATA-3", "Opt-in encrypted backup", "engineer",
      ["DATA-6", "DATA-7", "DATA-8", "DATA-9", "DATA-10", "DATA-11", "DATA-12"]),
@@ -148,7 +148,7 @@ epic("EP-LIC", "Licences and attribution", "cgo", "13", [
     ("FT-LIC-2", "Licence texts travel with redistributed data", "engineer", ["LIC-2", "LIC-5"]),
 ])
 epic("EP-PRIV", "Privacy and honesty surfaces", "cgo", "14", [
-    ("FT-PRIV-1", "Transmission claim, enforced and shown live", "engineer", ["PRIV-1", "PRIV-2", "PRIV-8"]),
+    ("FT-PRIV-1", "Transmission claim, enforced and shown live", "engineer", ["PRIV-1", "PRIV-2", "PRIV-8", "PRIV-9"]),
     ("FT-PRIV-2", "Privacy declarations and public statements", "cgo", ["PRIV-3", "PRIV-4", "PRIV-5"]),
     ("FT-PRIV-3", "Quiet by default: review prompt and spoken labels", "engineer", ["PRIV-6", "PRIV-7"]),
 ])
@@ -167,13 +167,13 @@ epic("EP-PLAT", "Platform, storefront and release", "cto", "16", [
 epic("EP-PLAN", "Build planning and spikes", "cto", "22", [
     ("FT-PLAN-1", "Block lifts owed before build", "cto", ["SPK-01", "SPK-02"]),
     ("FT-PLAN-2", "Platform and device questions", "cto",
-     ["SPK-03", "SPK-05", "SPK-07", "SPK-10", "SPK-14"]),
+     ["SPK-03", "SPK-05", "SPK-07", "SPK-10", "SPK-14", "SPK-22"]),
     ("FT-PLAN-3", "Architecture and security choices", "cto",
      ["SPK-04", "SPK-06", "SPK-11", "SPK-12", "SPK-13", "SPK-18", "SPK-19"]),
     ("FT-PLAN-4", "Sizing and costing of scope outside the estimate", "cto",
      ["SPK-08", "SPK-09", "SPK-17"]),
     ("FT-PLAN-5", "Repository conventions and agent scaffolding", "cto", ["SPK-15", "SPK-16"]),
-    ("FT-PLAN-6", "Code architecture, decided before build", "cto", ["SPK-20"]),
+    ("FT-PLAN-6", "Code architecture, decided before build, and its set-up", "cto", ["SPK-20", "SPK-21"]),
 ])
 
 # ---- task titles (<=70 chars) ------------------------------------------------
@@ -337,9 +337,9 @@ T = {
  "NOT-4": "Plain in-app cancel control to Manage Subscriptions",
  "NOT-5": "Answer notification authorization before R2/R3 are built",
  "NOT-6": "Price-rise notice and notices surface are one surface",
- "DATA-1": "One SQLite file, no opaque blobs",
- "DATA-2": "SQLite as a written contract for four consumers",
- "DATA-3": "Export is a lossless dump in one zip",
+ "DATA-1": "Three SQLite files, one owner each; no opaque blobs",
+ "DATA-2": "Native and JS never share a file; interface, schema, guards",
+ "DATA-3": "Export is a lossless dump of both stores in one zip",
  "DATA-4": "Export complete and unconditional in every state",
  "DATA-5": "Import of the same archive ships at MVP",
  "DATA-6": "Backup opt-in, off by default; Candour holds no key",
@@ -352,6 +352,7 @@ T = {
  "DATA-13": "Diagnostic bundle can never contain journal content",
  "DATA-14": "Keep per-build source maps with a symbolication runbook",
  "DATA-15": "Import from a competitor's export, user-confirmed identities",
+ "DATA-16": "Delete expired, discarded and adopted candidates from capture.db",
  "PHOTO-1": "Reference originals, never copy; keep one thumbnail",
  "PHOTO-2": "Photos optional; nothing depends on photo access",
  "PHOTO-3": "Export resolves photo references and names the failures",
@@ -377,7 +378,8 @@ T = {
  "PRIV-5": "Publish a short data-protection position statement",
  "PRIV-6": "No timed in-app review prompt",
  "PRIV-7": "User setting to abbreviate VoiceOver row labels",
- "PRIV-8": "No analytics or telemetry SDK, enforced at build time",
+ "PRIV-8": "No analytics, telemetry or networking code; five layers enforce it",
+ "PRIV-9": "Say plainly that the phone's own backup includes Haunts",
  "A11Y-1": "A list route to every map function",
  "A11Y-2": "Nothing encoded by colour alone",
  "A11Y-3": "Controlled contrast surface for anything over map tiles",
@@ -436,6 +438,8 @@ SPK = {
  "SPK-18": ("Font licences: RFN and DejaVu readings before any subset (LIC-7)", "BLOCKING", "none", "cgo", "22"),
  "SPK-19": ("Can the index carry an area name from Places alone? (HEAD-23)", "PENDING-ESTIMATE", "none", "cto", "22"),
  "SPK-20": ("Code architecture proposals and ADR for CEO decision (D59)", "BLOCKING", "both", "cto", ""),
+ "SPK-21": ("B-strict scaffolding: folders, guard configs, checks, planted failures", "BLOCKING", "both", "cto", ""),
+ "SPK-22": ("Android release build without INTERNET: does any path need it?", "BLOCKING", "android", "cto", "14"),
 }
 
 # ---- write CSV ----------------------------------------------------------------

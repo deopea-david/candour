@@ -191,11 +191,11 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-DATA — Store, export, import and backup
 
-§12 · accountable seat: cto · 5 features, 15 tasks
+§12 · accountable seat: cto · 5 features, 16 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
-| FT-DATA-1 | One SQLite store as a written contract | DATA-1, DATA-2 |
+| FT-DATA-1 | Two stores, one owner each, as written contracts | DATA-1, DATA-2, DATA-16 |
 | FT-DATA-2 | Lossless export and own-archive import | DATA-3, DATA-4, DATA-5 |
 | FT-DATA-3 | Opt-in encrypted backup | DATA-6, DATA-7, DATA-8, DATA-9, DATA-10, DATA-11, DATA-12 |
 | FT-DATA-4 | Diagnostics that cannot hold journal content | DATA-13, DATA-14 |
@@ -222,11 +222,11 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-PRIV — Privacy and honesty surfaces
 
-§14 · accountable seat: cgo · 3 features, 8 tasks
+§14 · accountable seat: cgo · 3 features, 9 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
-| FT-PRIV-1 | Transmission claim, enforced and shown live | PRIV-1, PRIV-2, PRIV-8 |
+| FT-PRIV-1 | Transmission claim, enforced and shown live | PRIV-1, PRIV-2, PRIV-8, PRIV-9 |
 | FT-PRIV-2 | Privacy declarations and public statements | PRIV-3, PRIV-4, PRIV-5 |
 | FT-PRIV-3 | Quiet by default: review prompt and spoken labels | PRIV-6, PRIV-7 |
 
@@ -254,16 +254,16 @@ Generated from `backlog.csv`, so it cannot disagree with it. Task titles, priori
 
 ### EP-PLAN — Build planning and spikes
 
-§22 · accountable seat: cto · 5 features, 19 tasks
+§22 · accountable seat: cto · 6 features, 22 tasks
 
 | Feature | Title | Tasks |
 |---|---|---|
 | FT-PLAN-1 | Block lifts owed before build | SPK-01, SPK-02 |
-| FT-PLAN-2 | Platform and device questions | SPK-03, SPK-05, SPK-07, SPK-10, SPK-14 |
+| FT-PLAN-2 | Platform and device questions | SPK-03, SPK-05, SPK-07, SPK-10, SPK-14, SPK-22 |
 | FT-PLAN-3 | Architecture and security choices | SPK-04, SPK-06, SPK-11, SPK-12, SPK-13, SPK-18, SPK-19 |
 | FT-PLAN-4 | Sizing and costing of scope outside the estimate | SPK-08, SPK-09, SPK-17 |
 | FT-PLAN-5 | Repository conventions and agent scaffolding | SPK-15, SPK-16 |
-| FT-PLAN-6 | Code architecture, decided before build | SPK-20 |
+| FT-PLAN-6 | Code architecture, decided before build, and its set-up | SPK-20, SPK-21 |
 
 ---
 
@@ -322,6 +322,8 @@ Each is a task with an owner, a priority inherited from the most severe requirem
 | **SPK-18** | Font licences before any subset ships: confirm UX's readings that Newsreader, Inter, Gelasio and Silkscreen declare no Reserved Font Name, DejaVu's naming restriction, and the form of the notices. Plex Mono ships unmodified (CTO) | CGO | LIC-7(c); the app-size saving from subsetting Inter and DejaVu Sans | `requirements.md` §22 item 31 |
 | **SPK-19** | Can the venue index carry an area name per venue from Overture's Places theme alone (VEN-2 bars Divisions), and at what cost in size, build and quarterly refresh? | CTO | HEAD-23 (PENDING-ESTIMATE) | `requirements.md` §22 item 35 |
 | **SPK-20** | Research the best code architecture for a React Native / Expo TypeScript app against industry standards and best practice: intuitive, clear, simple, with clear separation of concerns. Present one or more proposals to the CEO for decision, and record the chosen one as an ADR. **A prerequisite to build (D59): no product code before the CEO decides** | CTO (CSO reviews security; a seat other than the CTO reviews) | Every M1–M5 implementation ticket | D59 (CEO, 2026-09-27); `/build` step 2 |
+| **SPK-21** | Set up B-strict as ADR-0001 §2–§3 specify: the folder layout, `eslint.config.js` and the guard config, `.dependency-cruiser.cjs`, the `tools/check-*.ts` scripts and `tools/structure.json`, `core/MANIFEST.md`, and **a planted violation for every check, each seen to fail** (D32's rule). This is ADR-0001's follow-up 3, the M1 scaffolding PR. The new development dependencies need the CSO's approval first (D64). **MAINT-4** (`haunts` #308, the arrow-function rule) lands in the same M1 set-up wave as its own PR (D37), adding its rules to the `eslint.config.js` this ticket creates (ADR-0001 §4); it is a `haunts` maintenance ticket, not a child of this one | CTO (Engineer builds; CSO approves the dependencies and the guard-file list) | Every M1–M5 implementation ticket; the static limbs of PRIV-8, CAP-1(b), CAP-8(c), CONF-19(a), DFLT-1(a), MEM-1(a), LIC-7(b), VPAGE-4 and DATA-2(d) | D64 (CEO, 2026-10-02); `architecture/ADR-0001-code-architecture.md` §3, §4, §6 |
+| **SPK-22** | Can an Android release build ship with no `INTERNET` permission? Check whether Play asset packs, Play Billing or photo fetch through the media provider need it in the app's own process. One day | CTO | PRIV-8(e). If the answer is no, PRIV-8(e) is withdrawn by a §24 row and the other limbs stand | CSO C5 (`architecture/reviews/cso-review.md` §9.1); ADR-0001 §6 follow-up 5; `requirements.md` PRIV-8 |
 
 **Not added as spikes, and why.** §22 item 1 (usability testing) needs the CEO's authorisation and a spend decision under Constitution 5.4 — it is recorded in §12, not put on a build board where it would sit un-actionable. §22 item 12 (closed venues are undetectable) has no requirement attached and no seat has been asked to do work on it; putting it on the board would create unowned work. §22 items 3, 13, 14, 16 and 18 are CGO or CEO rulings, not technical work. §22 item 11 (thirty shopfront names) waits on the CEO's authorisation.
 
@@ -527,3 +529,4 @@ All four were read through a summarising fetch tool, not in the raw page; the qu
 | 2026-09-26 | 0.2 | Ticket format per **D33** and **D34** (`agentic-agile-adoption.md` §3.3, §11): §6 labels gain `level:story`, `spec-defect`, `escaped`; §7 Ready rule requires the CTO-set files, interfaces, file ownership and wave; review recorded at the PR's head commit; implementation stories close on merge and never reach Done; column names as built ("In review"); §8 fields gain `Wave` and `QA attempts`, views gain "Current wave"; §9 and §12 superseded notes; §10 waves within phases. `backlog-tickets.py` regenerated to the §3.3 body. No mapping change: still 17 epics, 67 features, 211 tasks |
 | 2026-09-27 | 0.3 | **Design scope mapped** from `requirements.md` v1.2 (D38, D42–D52): new epic **EP-THEME** (5 features, 15 tasks: THEME-1 … THEME-8, THEME-10 … THEME-16; THEME-9 is unassigned by design); **FT-HEAD-5** (HEAD-19, HEAD-20) and **FT-HEAD-6** (HEAD-21 … HEAD-23); **LIC-7** into FT-LIC-1; **FT-PLAT-4** (PLAT-9); spikes **SPK-17** (CFO costs the design scope), **SPK-18** (CGO font licences), **SPK-19** (CTO: an area field for HEAD-23). The CTO's feasibility questions on glass and icons were answered by `design-feasibility-and-sizing.md` before tickets existed, so they are not spikes. Provisional phases in §10. `backlog-tickets.py`'s mixed-priority and blocked-by sets extended. **Now 18 epics, 76 features, 238 tasks (219 requirement + 19 planning); coverage 219/219.** No GitHub issue created |
 | 2026-09-27 | 0.4 | `requirements.md` v1.3 (D53–D58): FT-THEME-4 and the THEME-15, THEME-16 and HEAD-19 task titles follow the Native Tabs decision, the contrast check and the Rotate cap. The spike ticket's negative constraint now carries the CTO's clarified rule: repository tooling may reach `main` under a spike when it is the answer; code that ships in the app may not. No mapping change: 18 epics, 76 features, 238 tasks |
+| 2026-10-02 | 0.5 | `requirements.md` v1.4 (D61, D63, D64, D65; CSO C13–C15): **PRIV-9** into FT-PRIV-1, **DATA-16** into FT-DATA-1 (retitled *Two stores, one owner each, as written contracts*); task titles for DATA-1, DATA-2, DATA-3 and PRIV-8 follow the new wording. Spikes **SPK-21** (B-strict scaffolding, ADR-0001 follow-up 3, with MAINT-4's relation) into FT-PLAN-6, and **SPK-22** (Android release without `INTERNET`, CSO C5) into FT-PLAN-2. `backlog-tickets.py`: the CSO-review set gains DATA-1, DATA-2, DATA-5, DATA-16, PRIV-9, HEAD-12, SPK-21 and SPK-22; the PRIV-8 and PRIV-1 product-wide lines follow v1.4. **Now 18 epics, 77 features, 243 tasks (221 requirement + 22 planning); coverage 221/221.** No GitHub issue created or changed |

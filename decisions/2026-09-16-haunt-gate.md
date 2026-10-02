@@ -506,6 +506,10 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 *A correction, recorded so it isn't repeated:* the CVO told the CEO that Expo's guidance says to keep `app/` "thin". **Expo doesn't say "thin".** What it says is: *"the src/app directory is exclusively for defining your app's routes. Other parts of your app, like components, hooks, utilities, and so on, should be placed in other directories such as src/components, src/hooks, and src/constants"* [E, [Expo Router core concepts, rule 6](https://docs.expo.dev/router/basics/core-concepts/), retrieved 2026-10-02]. "Thin routes" and B-strict's 40-line route cap are Candour's judgment built on that rule, not Expo's words.
 
+**D65 — The export includes capture candidates the user never confirmed.** *CEO, 2026-10-02, answering the CTO's open question (ADR-0001).* DATA-4 (export complete and unconditional) and Condition 8.3 point the same way: the export holds everything the app holds about the user. **They are marked unconfirmed, in their own section, never among the visits**, so nothing implies the user confirmed them (`requirements.md` v1.4). The PM/BA's import rules (candidates restore as candidates; any past the 30-day window are dropped; restoring never switches capture on) are the PM/BA's judgment, for CTO and CSO review.
+
+**D66 — The revised privacy sentence (PRIV-1, v1.4) is approved.** *CEO, 2026-10-02.* It replaces the D14(c) wording, which D61 made untrue, as the canonical sentence for the store copy, onboarding and the backup flow. The text is in `requirements.md` PRIV-1. **The CGO must still confirm it as a contract term** under CRA 2015 s.36(3) before it ships, which is a launch bar.
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
