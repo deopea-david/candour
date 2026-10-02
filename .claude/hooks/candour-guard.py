@@ -43,6 +43,7 @@ EXEC_CONTEXT = re.compile(r"subprocess|os\.system|os\.popen|popen|check_call|che
 
 
 PROJECT = [None]  # the project root, fixed for the whole check (see pre_tool_use)
+COMMAND = [""]    # the whole command being checked (see runs_hook_script)
 
 
 class Block(Exception):
@@ -197,10 +198,33 @@ def live_control(path, cwd, env):
         p == os.path.join(pc, "hooks") or p.startswith(os.path.join(pc, "hooks") + os.sep)
 
 
+# The guard's own scripts, which may be run (never written) from the live hooks
+# directory. Running a script is not writing to it, and it grants nothing that
+# running any other script does not (section 3.5, first row). Kept to these
+# names, and to the exact form `python3 <script>`, so it opens no write path.
+RUNNABLE_HOOK_SCRIPTS = ("candour-guard.py", "candour-guard-test.py")
+
+
+def runs_hook_script(argv, cwd, env):
+    """True only for `python3 <live hook script>` with no interpreter options
+    and no further arguments: the documented V1 command, and the guard itself
+    fed JSON on stdin. Anything else falls through to the write check."""
+    if len(argv) != 2 or not is_python(os.path.basename(argv[0])):
+        return False
+    if "PYTHONINSPECT" in COMMAND[0] or os.environ.get("PYTHONINSPECT"):
+        return False  # would run stdin as code after the script
+    p = expand(argv[1], env)
+    if "$" in p or argv[1].startswith("-"):
+        return False
+    p = os.path.normpath(p if os.path.isabs(p) else os.path.join(cwd, p))
+    hooks = os.path.join(PROJECT[0] or cwd, ".claude", "hooks")
+    return p in tuple(os.path.join(hooks, s) for s in RUNNABLE_HOOK_SCRIPTS)
+
+
 def check_control_writes(argv, targets, cwd, env):
     if any(live_control(t, cwd, env) for t in targets):
         block("writing to the live Claude Code settings or hooks (the CEO changes these by hand)")
-    if not argv:
+    if not argv or runs_hook_script(argv, cwd, env):
         return
     name = os.path.basename(argv[0])
     writes = name in WRITE_VERBS or (name == "sed" and any(re.match(r"^-[a-zA-Z]*i", a) or a == "--in-place"
@@ -543,6 +567,7 @@ def pre_tool_use(data):
         root = os.path.dirname(common) if common else cwd
     PROJECT[0] = os.path.normpath(root)
     command = (data.get("tool_input") or {}).get("command")
+    COMMAND[0] = command if isinstance(command, str) else ""
     if isinstance(command, str):  # a Monitor WebSocket watch has no command
         check_text(command, cwd)
 
