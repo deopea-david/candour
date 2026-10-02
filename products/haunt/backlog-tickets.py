@@ -151,7 +151,8 @@ PROMISE = {"DATA-4", "VEN-7", "VEN-8", "VEN-9", "VEN-10", "VEN-11", "VEN-12", "C
 STANDING = {"VEN-24", "CONF-9", "VEN-14", "VEN-15", "VEN-21", "VPAGE-5"}
 MIXED = {"HEAD-4", "HEAD-5", "HEAD-9", "HEAD-13", "HEAD-14", "HEAD-15", "PHOTO-9",
          "HEAD-19", "HEAD-20", "HEAD-21", "HEAD-22", "PLAT-9", "THEME-4", "THEME-6", "THEME-11", "THEME-15", "THEME-16"}
-CSO = {f"DATA-{n}" for n in range(6, 14)} | {"DATA-15", "ENT-11", "PRIV-8", "PHOTO-11", "CAP-1", "SPK-06"}
+CSO = {f"DATA-{n}" for n in range(6, 14)} | {"DATA-1", "DATA-2", "DATA-5", "DATA-15", "DATA-16", "ENT-11", "PRIV-8",
+                                              "PRIV-9", "PHOTO-11", "CAP-1", "HEAD-12", "SPK-06", "SPK-21", "SPK-22"}
 NEEDS_CEO = {"PLAT-5", "PLAT-7"}
 BLOCKED_BY = {"VEN-24": "CAP-10", "CAP-10": "SPK-02", "HEAD-10": "SPK-05", "NOT-3": "SPK-07", "NOT-5": "SPK-07",
               "ENT-10": "SPK-10", "ENT-8": "SPK-14", "DATA-6": "SPK-06", "DATA-7": "SPK-06", "DATA-8": "SPK-06",
@@ -194,9 +195,9 @@ PRODUCT_WIDE = [
     f"- **DFLT-1** ({sec('3.2')}): where a setting has a more and a less protective value, the default is the protective one, "
     "the user can change it, and every setting is in the settings register.",
     f"- **PRIV-8** ({sec('14')}): no analytics, no telemetry SDK, no bundled measurement of any kind; "
-    "no outbound call site outside the backup module.",
-    f"- **PRIV-1** ({sec('14')}), as narrowed by D12 ({sec('12.2.8')}): Candour receives nothing, and the user's data "
-    "goes nowhere but their own cloud.",
+    "no networking code in the app, enforced in five layers (ADR-0001 check 11).",
+    f"- **PRIV-1** ({sec('14')}), as narrowed by D12 ({sec('12.2.8')}) and D61: Candour receives nothing, and the user's data "
+    "goes nowhere but their own cloud, or their phone's own backup if they have it on (PRIV-9).",
 ]
 PW_NOTE = "*Summaries only; each linked requirement governs.*"
 

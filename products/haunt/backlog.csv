@@ -220,11 +220,12 @@ task,NOT-4,Plain in-app cancel control to Manage Subscriptions,FT-PRICE-4,NOT-4,
 task,NOT-5,Answer notification authorization before R2/R3 are built,FT-PRICE-4,NOT-5,BLOCKING,both,engineer,11
 task,NOT-6,Price-rise notice and notices surface are one surface,FT-PRICE-4,NOT-6,MUST,both,engineer,11
 epic,EP-DATA,"Store, export, import and backup",,,,,cto,12
-feature,FT-DATA-1,One SQLite store as a written contract,EP-DATA,,,,cto,12
-task,DATA-1,"One SQLite file, no opaque blobs",FT-DATA-1,DATA-1,BLOCKING,both,engineer,12
-task,DATA-2,SQLite as a written contract for four consumers,FT-DATA-1,DATA-2,BLOCKING,both,cto,12
+feature,FT-DATA-1,"Two stores, one owner each, as written contracts",EP-DATA,,,,cto,12
+task,DATA-1,"Three SQLite files, one owner each; no opaque blobs",FT-DATA-1,DATA-1,BLOCKING,both,engineer,12
+task,DATA-2,"Native and JS never share a file; interface, schema, guards",FT-DATA-1,DATA-2,BLOCKING,both,cto,12
+task,DATA-16,"Delete expired, discarded and adopted candidates from capture.db",FT-DATA-1,DATA-16,BLOCKING,both,engineer,12
 feature,FT-DATA-2,Lossless export and own-archive import,EP-DATA,,,,engineer,12
-task,DATA-3,Export is a lossless dump in one zip,FT-DATA-2,DATA-3,BLOCKING,both,engineer,12
+task,DATA-3,Export is a lossless dump of both stores in one zip,FT-DATA-2,DATA-3,BLOCKING,both,engineer,12
 task,DATA-4,Export complete and unconditional in every state,FT-DATA-2,DATA-4,BLOCKING,both,engineer,12
 task,DATA-5,Import of the same archive ships at MVP,FT-DATA-2,DATA-5,BLOCKING,both,engineer,12
 feature,FT-DATA-3,Opt-in encrypted backup,EP-DATA,,,,engineer,12
@@ -269,7 +270,8 @@ epic,EP-PRIV,Privacy and honesty surfaces,,,,,cgo,14
 feature,FT-PRIV-1,"Transmission claim, enforced and shown live",EP-PRIV,,,,engineer,14
 task,PRIV-1,"Transmission sentence verbatim in store, onboarding, backup",FT-PRIV-1,PRIV-1,BLOCKING,both,engineer,14
 task,PRIV-2,Privacy screen shows the live state of every transmission,FT-PRIV-1,PRIV-2,BLOCKING,both,engineer,14
-task,PRIV-8,"No analytics or telemetry SDK, enforced at build time",FT-PRIV-1,PRIV-8,BLOCKING,both,engineer,14
+task,PRIV-8,"No analytics, telemetry or networking code; five layers enforce it",FT-PRIV-1,PRIV-8,BLOCKING,both,engineer,14
+task,PRIV-9,Say plainly that the phone's own backup includes Haunts,FT-PRIV-1,PRIV-9,BLOCKING,both,engineer,14
 feature,FT-PRIV-2,Privacy declarations and public statements,EP-PRIV,,,,cgo,14
 task,PRIV-3,Declare crash data on the App Privacy label,FT-PRIV-2,PRIV-3,BLOCKING,ios,cgo,14
 task,PRIV-4,Privacy notice in the specified order,FT-PRIV-2,PRIV-4,BLOCKING,none,cgo,14
@@ -310,12 +312,13 @@ epic,EP-PLAN,Build planning and spikes,,,,,cto,22
 feature,FT-PLAN-1,Block lifts owed before build,EP-PLAN,,,,cto,4;7.7.7
 task,SPK-01,CTO confirms Block 4 limb (b) lifts against 7.7.7,FT-PLAN-1,,BLOCKING,none,cto,7.7.7
 task,SPK-02,Android device-matrix spike (CTO Block 2); writes CAP-11..14,FT-PLAN-1,,BLOCKING,android,cto,4
-feature,FT-PLAN-2,Platform and device questions,EP-PLAN,,,,cto,22
+feature,FT-PLAN-2,Platform and device questions,EP-PLAN,,,,cto,14;22
 task,SPK-03,Set the Android minimum version,FT-PLAN-2,,BLOCKING,android,cto,22
 task,SPK-05,Check RN reduce-motion reads Android Remove animations,FT-PLAN-2,,BLOCKING,android,engineer,22
 task,SPK-07,Answer: does a local notification need authorization?,FT-PLAN-2,,BLOCKING,both,engineer,22
 task,SPK-10,"Store trial mechanism question; decides ENT-10, ENT-15..17",FT-PLAN-2,,BLOCKING,both,cto,22
 task,SPK-14,Can an app relinquish its own location authorization?,FT-PLAN-2,,BLOCKING,both,engineer,22
+task,SPK-22,Android release build without INTERNET: does any path need it?,FT-PLAN-2,,BLOCKING,android,cto,14
 feature,FT-PLAN-3,Architecture and security choices,EP-PLAN,,,,cto,12.1;12.2.7;22
 task,SPK-04,Heatmap render test on two phones; frame-time bar set first,FT-PLAN-3,,MUST,both,cto,22
 task,SPK-06,"Choose the backup KDF, parameters and dependency",FT-PLAN-3,,BLOCKING,none,cso,22
@@ -331,5 +334,6 @@ task,SPK-17,"Cost the design scope (CTO sized it: 256-535 h, 40-130 h/yr)",FT-PL
 feature,FT-PLAN-5,Repository conventions and agent scaffolding,EP-PLAN,,,,cto,
 task,SPK-15,"Traceable commits, branches and PRs: standard and enforcement (D37)",FT-PLAN-5,,MUST,none,cto,
 task,SPK-16,"Agent scaffolding in haunts: CLAUDE.md, templates, delivery log (D34)",FT-PLAN-5,,MUST,none,cto,
-feature,FT-PLAN-6,"Code architecture, decided before build",EP-PLAN,,,,cto,
+feature,FT-PLAN-6,"Code architecture, decided before build, and its set-up",EP-PLAN,,,,cto,
 task,SPK-20,Code architecture proposals and ADR for CEO decision (D59),FT-PLAN-6,,BLOCKING,both,cto,
+task,SPK-21,"B-strict scaffolding: folders, guard configs, checks, planted failures",FT-PLAN-6,,BLOCKING,both,cto,
