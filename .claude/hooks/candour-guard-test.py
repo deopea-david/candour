@@ -64,6 +64,16 @@ MUST_BLOCK = [
     "git checkout other -- .claude/settings.json", "W=.claude; echo x > $W/settings.local.json",
     "cat /tmp/new > ~/.claude/settings.json",
     "python3 - <<'EOF'\nopen('.claude/settings.json','w').write('{}')\nEOF",
+    # F1: running a live hook script is allowed only as `python3 <script>`; nothing else rides on it
+    "python3 .claude/hooks/candour-guard-test.py .claude/settings.json",
+    "python3 .claude/hooks/candour-guard-test.py .claude/hooks/candour-guard.py",
+    "python3 -i .claude/hooks/candour-guard-test.py", "PYTHONINSPECT=1 python3 .claude/hooks/candour-guard-test.py",
+    "export PYTHONINSPECT=1; /usr/bin/python3 .claude/hooks/candour-guard-test.py",
+    "sh -c 'PYTHONINSPECT=1 python3 .claude/hooks/candour-guard-test.py'",
+    "python3 .claude/hooks/other.py", "python3 .claude/hooks/../settings.json",
+    "node .claude/hooks/candour-guard-test.py", "python3 .claude/hooks/candour-guard-test.py > .claude/hooks/out.txt",
+    "python3 .claude/hooks/candour-guard-test.py && cp /tmp/x .claude/hooks/candour-guard.py",
+    "python3 .claude/hooks/candour-guard-test.py <<'EOF'\nprint(1)\nEOF",
     # unparseable input fails closed
     "echo \"unbalanced",
 ]
