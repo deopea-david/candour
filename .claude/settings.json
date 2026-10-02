@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "disableAllHooks": false,
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "0"
+  },
+  "permissions": {
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Bash(gh pr merge *)",
+      "Bash(gh pr review *--approve*)",
+      "Bash(gh api *pulls/*/merge*)",
+      "Bash(gh api *merges*)",
+      "Bash(gh api graphql*mergePullRequest*)",
+      "Bash(gh api graphql*enablePullRequestAutoMerge*)",
+
+      "Bash(git push * main)",
+      "Bash(git push * main *)",
+      "Bash(git push *:main*)",
+      "Bash(git push *refs/heads/main*)",
+      "Bash(git push *--all*)",
+      "Bash(git push *--mirror*)",
+      "Bash(git push *--force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(git push *+*)",
+      "Bash(git push *--delete*)",
+      "Bash(git -C * push * main)",
+      "Bash(git -C * push *:main*)",
+      "Bash(git -C * push *--force*)",
+      "Bash(git -c * push*)",
+
+      "Bash(gh api *rulesets* -X *)",
+      "Bash(gh api -X * *rulesets*)",
+      "Bash(gh api *rulesets* --method *)",
+      "Bash(gh api --method * *rulesets*)",
+      "Bash(gh api *rulesets* --input *)",
+      "Bash(gh api *protection* -X *)",
+      "Bash(gh api -X * *protection*)",
+      "Bash(gh api *protection* --method *)",
+      "Bash(gh api --method * *protection*)",
+      "Bash(gh repo edit *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh repo rename *)",
+      "Bash(gh repo archive *)",
+      "Bash(gh repo create *)",
+      "Bash(gh repo fork *)",
+      "Bash(gh repo sync *)",
+      "Bash(gh secret set *)",
+      "Bash(gh secret delete *)",
+      "Bash(gh variable set *)",
+      "Bash(gh variable delete *)",
+      "Bash(gh auth login *)",
+      "Bash(gh auth logout *)",
+      "Bash(gh auth refresh *)",
+      "Bash(gh auth switch *)",
+      "Bash(gh auth token *)",
+      "Bash(gh auth setup-git *)",
+      "Bash(gh alias set *)",
+      "Bash(gh workflow disable *)",
+
+      "Bash(gh release create *)",
+      "Bash(gh release upload *)",
+      "Bash(gh release edit *)",
+      "Bash(gh release delete *)",
+      "Bash(gh gist create *)",
+      "Bash(gh gist edit *)",
+      "Bash(npm publish *)",
+
+      "Bash(claude -p *)",
+      "Bash(claude --print *)",
+      "Bash(claude * -p *)",
+      "Bash(claude *--bg*)",
+      "Bash(claude *--dangerously-skip-permissions*)",
+      "Bash(claude *--allow-dangerously-skip-permissions*)",
+      "Bash(claude *bypassPermissions*)",
+      "Bash(crontab *)",
+      "Bash(launchctl load *)",
+      "Bash(launchctl bootstrap *)",
+      "Bash(launchctl submit *)",
+      "Bash(at *)",
+      "Bash(osascript *)",
+      "RemoteTrigger",
+      "mcp__scheduled-tasks__create_scheduled_task",
+      "mcp__scheduled-tasks__update_scheduled_task",
+      "mcp__scheduled-tasks__run_scheduled_task",
+
+      "Edit(/.claude/settings.json)",
+      "Edit(/.claude/settings.local.json)",
+      "Edit(/.claude/hooks/**)",
+      "Edit(~/.claude/settings.json)",
+      "Edit(~/.claude.json)",
+      "mcp__ccd_session_mgmt__set_session_permission_mode",
+      "mcp__ccd_pr__set_auto_merge",
+      "mcp__ccd_session__move_to_cloud",
+      "mcp__terminal__run_in_terminal",
+      "mcp__claude-in-chrome__*",
+      "mcp__computer-use__*",
+      "mcp__Claude_Browser__*",
+
+      "mcp__*__send_message",
+      "mcp__*__forward",
+      "mcp__*__reply",
+      "mcp__*__share_file",
+      "mcp__*__create_event",
+      "mcp__*__update_event",
+      "mcp__*__delete_event",
+      "mcp__*__respond_to_event"
+    ],
+    "ask": [
+      "CronCreate",
+      "ScheduleWakeup",
+      "mcp__ccd_session_mgmt__set_remote_control"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Monitor",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "matcher": "project_settings|local_settings|user_settings",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
