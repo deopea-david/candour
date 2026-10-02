@@ -10,8 +10,18 @@
 #       identity writes; publishing; headless, background, scheduled or bypass
 #       runs; shell writes to the live Claude Code settings and hooks; and every
 #       command while the session is in bypassPermissions mode.
-#   ConfigChange   stops a running session loosening its own settings.
-#   SessionStart   warns the CEO about bypass mode or unapproved controls.
+#   PreToolUse (every tool the matcher sends, Bash included)  blocks the call
+#       while the live .claude/settings.json or .claude/hooks differ from
+#       origin/main (the drift tripwire, CSO V9(iv) diagnosis). A session loads
+#       its settings from disk whenever its process starts, and the Desktop
+#       restarts that process on its own (relaunch, rewind, edit), so a change
+#       ConfigChange held back can still be loaded later. The tripwire holds
+#       until the files are restored, however many restarts there are.
+#   ConfigChange   stops a running session loosening its own settings. A project
+#       settings change is let through only when it makes the file match
+#       origin/main, so a restore takes effect without a restart.
+#   SessionStart   warns the CEO, and tells the model, about bypass mode or
+#       unapproved controls.
 #
 # Fails closed: a Bash command that cannot be parsed or checked is blocked.
 # It is a backstop for mistakes and drift, not a security boundary. It does not
@@ -556,16 +566,59 @@ def check_text(text, cwd, env=None, depth=0):
             check_code(blob, start_cwd, env)
 
 
+# ---------------------------------------------------------------- approved controls
+
+CONTROL_PATHS = (".claude/settings.json", ".claude/hooks")
+APPROVED_REF = "origin/main"
+
+
+def approved(root, paths=CONTROL_PATHS):
+    """True if the tracked control files under root match origin/main, False if
+    they differ, None if git cannot tell. Only origin/main counts: an older
+    commit of main may carry looser rules, so 'behind but once approved' is not
+    approved. Untracked files are ignored; Claude Code loads only the files the
+    settings name."""
+    try:
+        rc = subprocess.run(["git", "-C", root, "diff", "--quiet", APPROVED_REF, "--"] + list(paths),
+                            capture_output=True, timeout=5).returncode
+    except Exception:
+        return None
+    return True if rc == 0 else False if rc == 1 else None
+
+
+DRIFT_HELP = ("The CEO restores them (git -C %s checkout origin/main -- .claude/settings.json "
+              ".claude/hooks, or pulls main after merging a change to them), then restarts the session")
+
+
+def check_drift(root):
+    state = approved(root)
+    if state is True:
+        return
+    if state is None:
+        block("could not compare the live .claude/settings.json and .claude/hooks with %s, so the "
+              "rules this session loaded cannot be shown to be the approved ones. %s"
+              % (APPROVED_REF, DRIFT_HELP % root))
+    block("the live .claude/settings.json or .claude/hooks differ from %s, so the rules this session "
+          "loaded may not be the approved ones. %s" % (APPROVED_REF, DRIFT_HELP % root))
+
+
+def project_root(cwd):
+    root = os.environ.get("CLAUDE_PROJECT_DIR")
+    if not root:
+        common = git_out(cwd, "rev-parse", "--path-format=absolute", "--git-common-dir")
+        root = os.path.dirname(common) if common else cwd
+    return os.path.normpath(root)
+
+
 def pre_tool_use(data):
     if data.get("permission_mode") == "bypassPermissions":
         block("this session is in bypassPermissions mode, which Candour does not use (Decision 1). "
               "Restart the session in auto mode")
     cwd = data.get("cwd") or os.getcwd()
-    root = os.environ.get("CLAUDE_PROJECT_DIR")
-    if not root:
-        common = git_out(cwd, "rev-parse", "--path-format=absolute", "--git-common-dir")
-        root = os.path.dirname(common) if common else cwd
-    PROJECT[0] = os.path.normpath(root)
+    PROJECT[0] = project_root(cwd)
+    check_drift(PROJECT[0])
+    if data.get("tool_name") not in ("Bash", "Monitor", None):
+        return  # other tools are sent here for the bypass and drift checks only
     command = (data.get("tool_input") or {}).get("command")
     COMMAND[0] = command if isinstance(command, str) else ""
     if isinstance(command, str):  # a Monitor WebSocket watch has no command
@@ -580,6 +633,13 @@ LOOSENING = re.compile(r'"disableAllHooks"\s*:\s*true|"defaultMode"\s*:\s*"bypas
 def config_change(data):
     source = data.get("source")
     if source == "project_settings":
+        fp = os.path.normpath(data.get("file_path") or "")
+        if fp.endswith(os.path.join(".claude", "settings.json")):
+            root = os.path.dirname(os.path.dirname(fp))
+        else:
+            root = project_root(data.get("cwd") or os.getcwd())
+        if approved(root, (".claude/settings.json",)) is True:
+            return None  # a restore to the approved file: let it take effect now
         return {"decision": "block",
                 "reason": "project settings change by merge to main and take effect in a new session"}
     if source in ("local_settings", "user_settings"):
@@ -598,15 +658,21 @@ def session_start(data):
     if data.get("permission_mode") == "bypassPermissions":
         msgs.append("This session is in bypass permissions mode. Candour runs in auto mode (Decision 1).")
     root = os.environ.get("CLAUDE_PROJECT_DIR") or data.get("cwd") or "."
-    rc = subprocess.run(["git", "-C", root, "diff", "--quiet", "origin/main", "--",
-                         ".claude/settings.json", ".claude/hooks"], capture_output=True, timeout=5).returncode
-    if rc == 1:
+    state = approved(root)
+    if state is False:
         msgs.append("The checked-out .claude/settings.json or .claude/hooks differ from origin/main, "
-                    "so the controls in force are not the approved ones.")
-    elif rc != 0:
+                    "so the controls in force are not the approved ones. Tool calls are blocked until "
+                    "they are restored.")
+    elif state is None:
         msgs.append("Could not compare .claude/settings.json and .claude/hooks with origin/main.")
     if msgs:
-        print(json.dumps({"systemMessage": "candour-guard: " + " ".join(msgs)}))
+        text = "candour-guard: " + " ".join(msgs)
+        # systemMessage is for the CEO; the Desktop may not show it (finding F6).
+        # additionalContext reaches the model, whose standing duty is to tell the CEO first.
+        print(json.dumps({"systemMessage": text,
+                          "hookSpecificOutput": {"hookEventName": "SessionStart",
+                                                 "additionalContext": text + " Tell the CEO this before "
+                                                 "anything else."}}))
 
 
 def main():

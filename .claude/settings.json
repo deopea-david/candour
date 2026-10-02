@@ -116,7 +116,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash|Monitor",
+        "matcher": "^(Bash|Monitor|Edit|Write|NotebookEdit)$|^mcp__",
         "hooks": [
           {
             "type": "command",
