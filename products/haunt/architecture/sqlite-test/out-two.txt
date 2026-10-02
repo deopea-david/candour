@@ -1,0 +1,54 @@
+A = /usr/lib/libsqlite3.dylib
+    version 3.54.0, threadsafe=2, source 2026-04-09 12:25:13 8fa8248e303219400c646a885e36dfc52eae33d83f4412e3f369b2be5373aapl
+B = /opt/homebrew/opt/sqlite/lib/libsqlite3.dylib
+    version 3.53.4, threadsafe=1, source 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc
+same loaded image (one copy)? NO — two copies in one process
+
+T1  rollback-journal mode: can two write locks be held at once?
+    [A] PRAGMA journal_mode=DELETE; CREATE TABLE t(v INTEGER);     -> rc=0
+    [A] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    [B] BEGIN IMMEDIATE;                                           -> rc=5 database is locked
+    => B's write lock while A holds RESERVED: refused (SQLITE_BUSY) — locking works
+    [A] COMMIT;                                                    -> rc=0
+    [B] INSERT INTO t VALUES(2);                                   -> rc=5 database is locked
+    => B's commit (needs EXCLUSIVE) while A is mid-read holding SHARED: refused (SQLITE_BUSY) — locking works
+
+T2  WAL mode: can two writers hold the WAL write lock at once, and what happens if they both commit?
+    [A] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(0); -> rc=0
+    [B] SELECT count(*) FROM t;                                    -> rc=0
+    [A] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    [B] BEGIN IMMEDIATE;                                           -> rc=5 database is locked
+    => B's WAL write lock while A holds it: refused (SQLITE_BUSY) — locking works
+    [A] COMMIT;                                                    -> rc=0
+    independent check (after both closed) via /usr/bin/sqlite3 in a separate process:
+            rows: 2  distinct: 2
+            integrity_check: ok
+
+T3  WAL mode: B stays open (idle); A opens, writes and closes. No two writes overlap.
+    [B] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(1); -> rc=0
+    files after B's first write                   : -wal present (inode 57165576), -shm present (inode 57165577)
+    [A] INSERT INTO t VALUES(2);                                   -> rc=0
+    files after A closes (B still open)           : -wal present (inode 57165576), -shm present (inode 57165577)
+    [B] INSERT INTO t VALUES(3);                                   -> rc=0
+    files after B writes again                    : -wal present (inode 57165576), -shm present (inode 57165577)
+    [A] INSERT INTO t VALUES(4);                                   -> rc=0
+    A sees: 4 rows: 1,2,3,4
+    B sees: 4 rows: 1,2,3,4   (every INSERT returned rc=0; correct answer is 4 rows: 1,2,3,4)
+    files after A closes again                    : -wal present (inode 57165576), -shm present (inode 57165577)
+    files after B closes                          : -wal ABSENT  (inode -1), -shm ABSENT  (inode -1)
+    independent check (after both closed) via /usr/bin/sqlite3 in a separate process:
+            rows: 4  distinct: 4
+            integrity_check: ok
+
+T4  rollback mode, the documented close() case, observed from a separate process
+    [B] PRAGMA journal_mode=DELETE; CREATE TABLE t(v INTEGER);     -> rc=0
+    [B] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    B holds RESERVED. Another process tries to write:
+      other process: write lock refused (busy)
+    [A] opened the same file, read count=0, now closes
+    A has closed. Another process tries to write again:
+      other process: write lock GRANTED
+    [B] COMMIT;                                                    -> rc=10 disk I/O error
+    independent check (after all closed (correct: B's row 1 present; 99 only if a lock was lost)) via /usr/bin/sqlite3 in a separate process:
+            rows: 1  distinct: 1
+            integrity_check: ok

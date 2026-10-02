@@ -1,0 +1,63 @@
+A = /opt/homebrew/opt/sqlite/lib/libsqlite3.dylib
+    version 3.53.4, threadsafe=1, source 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc
+B = /opt/homebrew/opt/sqlite/lib/libsqlite3.dylib
+    version 3.53.4, threadsafe=1, source 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc
+same loaded image (one copy)? YES — control run
+
+T1  rollback-journal mode: can two write locks be held at once?
+    [A] PRAGMA journal_mode=DELETE; CREATE TABLE t(v INTEGER);     -> rc=0
+    [A] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    [B] BEGIN IMMEDIATE;                                           -> rc=5 database is locked
+    => B's write lock while A holds RESERVED: refused (SQLITE_BUSY) — locking works
+    [A] COMMIT;                                                    -> rc=0
+    [B] INSERT INTO t VALUES(2);                                   -> rc=5 database is locked
+    => B's commit (needs EXCLUSIVE) while A is mid-read holding SHARED: refused (SQLITE_BUSY) — locking works
+
+T2  WAL mode: can two writers hold the WAL write lock at once, and what happens if they both commit?
+    [A] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(0); -> rc=0
+    [B] SELECT count(*) FROM t;                                    -> rc=0
+    [A] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    [B] BEGIN IMMEDIATE;                                           -> rc=5 database is locked
+    => B's WAL write lock while A holds it: refused (SQLITE_BUSY) — locking works
+    [A] COMMIT;                                                    -> rc=0
+    independent check (after both closed) via /usr/bin/sqlite3 in a separate process:
+            rows: 2  distinct: 2
+            integrity_check: ok
+
+T3  WAL mode: B stays open (idle); A opens, writes and closes. No two writes overlap.
+    [B] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER); INSERT INTO t VALUES(1); -> rc=0
+    files after B's first write                   : -wal present (inode 57165459), -shm present (inode 57165460)
+    [A] INSERT INTO t VALUES(2);                                   -> rc=0
+    files after A closes (B still open)           : -wal present (inode 57165459), -shm present (inode 57165460)
+    [B] INSERT INTO t VALUES(3);                                   -> rc=0
+    files after B writes again                    : -wal present (inode 57165459), -shm present (inode 57165460)
+    [A] INSERT INTO t VALUES(4);                                   -> rc=0
+    A sees: 4 rows: 1,2,3,4
+    B sees: 4 rows: 1,2,3,4   (every INSERT returned rc=0; correct answer is 4 rows: 1,2,3,4)
+    files after A closes again                    : -wal present (inode 57165459), -shm present (inode 57165460)
+    files after B closes                          : -wal ABSENT  (inode -1), -shm ABSENT  (inode -1)
+    independent check (after both closed) via /usr/bin/sqlite3 in a separate process:
+            rows: 4  distinct: 4
+            integrity_check: ok
+
+T4  rollback mode, the documented close() case, observed from a separate process
+    [B] PRAGMA journal_mode=DELETE; CREATE TABLE t(v INTEGER);     -> rc=0
+    [B] BEGIN IMMEDIATE; INSERT INTO t VALUES(1);                  -> rc=0
+    B holds RESERVED. Another process tries to write:
+      other process: write lock refused (busy)
+    [A] opened the same file, read count=0, now closes
+    A has closed. Another process tries to write again:
+      other process: write lock refused (busy)
+    [B] COMMIT;                                                    -> rc=0
+    independent check (after all closed (correct: B's row 1 present; 99 only if a lock was lost)) via /usr/bin/sqlite3 in a separate process:
+            rows: 1  distinct: 1
+            integrity_check: ok
+
+T5  stress: two threads, one per library, WAL, busy_timeout 5s, 2000 committed inserts each
+    [A] PRAGMA journal_mode=WAL; CREATE TABLE t(v INTEGER);        -> rc=0
+    thread A: 2000 commits reported OK, 0 busy, 0 other errors
+    thread B: 2000 commits reported OK, 0 busy, 0 other errors
+    rows that should exist: 4000
+    independent check (after both threads finished) via /usr/bin/sqlite3 in a separate process:
+            rows: 4000  distinct: 4000
+            integrity_check: ok
