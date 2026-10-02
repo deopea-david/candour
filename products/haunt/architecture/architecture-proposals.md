@@ -7,6 +7,129 @@
 
 ---
 
+## Addendum, 2026-10-02 — the CEO's three questions
+
+*Added after the Engineer's review, the CSO's review, the Engineer's SQLite investigation and D61–D63. The original page one follows it unchanged, except where this addendum says it is overtaken. Sources marked A1–A16 are listed at §A.5.*
+
+### In plain words
+
+1. **Which option suits AI agents best? B, and strict B even more.** An agent does its best work when it has to read little, can tell at once where new code belongs, and gets told by a tool when it gets that wrong. B puts each feature in one folder, so an agent working on the venue page reads one folder and a small shared core. A spreads that work across five folders. C makes it wade through extra layers of interfaces. Research on AI coding agents supports the first and last points. I found no study that compares these three folder layouts directly, so the ranking itself is my judgment.
+2. **Why do Expo and Ignite use A?** Because they are **starting points for any app**, not designs for a particular one. Expo's template ships *"example code to help you get started"* with a couple of screens. Ignite is a consultancy's boilerplate, built around generators that create "a component" or "a screen". By-kind folders are the natural shape for that. The only rule Expo actually sets is that routes live in `src/app` and everything else lives outside it, and B keeps that rule. **A is the better choice for a small app of five to ten screens. Haunts has about 25 screens, 197 requirements and agents working in parallel, so A is not better here.** I am being straight about that rather than defending my earlier answer.
+3. **Strict rules.** "B-strict" below turns every boundary into a check that fails on the agent's machine at commit time and again in CI. It also makes the "keep the core small" rule mechanical, stops anyone silencing a boundary or network rule with a comment, and adds a second, independent checker. **It adds about 22–35 hours, once.**
+
+**My recommendation changes from B to B-strict.** The CEO's direction (*"I want rules to be strict"*) is the reason, and the evidence in §A.1 points the same way.
+
+### A.1 Which option suits AI agents doing most of the coding?
+
+**What the evidence says, about agents in general.**
+- **Agents get worse as they read more.** Anthropic's own guide to Claude Code: *"LLM performance degrades as context fills"*. It calls the context window *"the most important resource to manage"* [E, A1]. Chroma tested 18 models, including Claude 4, and found performance *"grows increasingly unreliable as input length grows"*. They also found that *"even a single distractor reduces performance"* [E, A2; single source, a vendor's own research]. Earlier academic work found models use information worst when it sits *"in the middle of long contexts"* [E, A3, TACL 2023].
+- **Agents work best when a tool tells them they are wrong.** Anthropic's guide again: *"Give Claude a check it can run"*. It names *"a linter"* among the checks, and says that without one *"you become the verification loop"* [E, A1]. It also says written instructions are *"advisory"* while hooks are *"deterministic"* [E, A1].
+- **Agents get worse as the rules they must remember pile up.** A 2026 preprint, *Constraint Decay*, found coding agents *"lose 27.28 points on average in assertion pass rates"* when structural requirements are added. Agents did worse in *"convention-heavy"* frameworks, and *"data-layer defects (e.g., incorrect query composition and ORM runtime violations)"* were the leading cause of failure [E, A4; single preprint, backend web code, not mobile].
+- **Finding the right files is a separate step, and it is harder when a change crosses subsystems.** Agentless, a well-known agent design, splits issue fixing into *"localization, repair, and patch validation"* [E, A5]. A June 2026 preprint calls changes that *"span several subsystems"* *"a structural mismatch"* for agents that explore one folder at a time, and found that exploring by domain did best [E, A6; single preprint].
+- **Agents copy more than they reuse.** GitClear analysed 211 million changed lines. Copy-pasted code rose from 8.3% to 12.3% of changes between 2021 and 2024, while moved (refactored) code fell from 25% to under 10% [E, A7; single source, the vendor's own research, and correlation only].
+
+**What I could not find.** I found no controlled study comparing by-kind, by-feature and layered-package layouts for AI agents (searched arXiv and the web for agent localisation and codebase-structure studies). **So the ranking below applies the general evidence to these three layouts. It is judgment [J], not a measured result.** It would be overturned by a study, or by our own delivery log, showing agents place code wrongly less often in A or C.
+
+| What matters for agents | A — by kind | B — feature + core | C — packages |
+|---|---|---|---|
+| **What an agent must read per ticket** [J] | The most scattered. One feature's code sits in `screens/`, `components/`, `hooks/`, `domain/`, `db/` and `services/`, so the agent searches. That is the cross-subsystem case A6 found hard | The least. One feature folder, the small core API it calls, and the strings file. The worked example (§4.B) touches three top-level places | More than B. The same feature, plus a port interface, an adapter, a use case and the composition root, across four packages |
+| **Chance it puts code in the wrong place** [J] | High. A hook used by two screens could go in any of three folders, and nothing objects | Low. One home per kind of code, and the lint error names the right place | Low for which package, high for which layer: port, adapter, use case or rule. That is the "constraint decay" effect, more rules to hold at once [I from A4] |
+| **Instant, machine-checkable feedback** | Weak. Only the rules that keep the domain free of storage and React | Strong. Every boundary is a lint or dependency rule with a message saying where the code should go, and it fires on commit | Strong, through package manifests and dependency-cruiser. But the CSO found npm workspaces let a package import what it never declared unless dependency-cruiser checks it (`reviews/cso-review.md` §6) |
+| **Parallel agents with separate files** (D34) | Poor. Shared `components/` and `hooks/` are hot files that several waves edit | Good. One folder per feature, so a wave's files are one folder. The remaining shared files are the core, routes and strings, and B-strict handles them (§A.3, rules 15–16) | Poor at the centre. Every feature edits `composition.ts` and the domain package, so they collide |
+| **Boilerplate agents write and humans read** | Low | Low | High: a port, an adapter, a use case and a wiring line per feature [J]. Agents produce boilerplate cheaply, but every line is something a human must review, and A7 suggests agents copy rather than abstract |
+| **Readability for a human reviewer** [J] | Familiar, but a PR spans many folders | A PR is mostly one folder, and its title names it | Clean per layer, but one feature reads as four diffs |
+
+**One point for A, stated fairly.** Agents have seen far more by-kind React Native projects than any other kind [K, plausible from Expo's and Ignite's popularity; not measured]. That familiarity is real but small, because an agent reads `CLAUDE.md` and the lint messages before it writes, and in B the inside of each feature is by-kind anyway (`components/`, hooks, tests).
+
+**Answer:** **B is the best fit for AI agents, and B-strict better still.** It is the smallest reading load, has the fewest places to go wrong, and gives the fastest machine feedback. C's rigour comes at the cost the constraint-decay evidence warns about, and A's simplicity leaves agents without guidance exactly where Haunts most needs it.
+
+### A.2 Why Expo and Ignite use A, and whether that should decide it
+
+- **Expo's default template** is described as *"Designed to build multi-screen apps… Suitable for most apps"*. The project includes *"example code to help you get started"* [E, A8, A9]. What Expo **prescribes** is narrower: *"the src/app directory is exclusively for defining your app's routes. Other parts of your app… should be placed in other directories such as src/components, src/hooks, and src/constants"* [E, §11 E1]. That is an example of somewhere outside `src/app`, not a rule against feature folders. **B follows Expo's rule exactly.**
+- **Ignite** is Infinite Red's boilerplate for *"client apps"*. Its generators are, in its own words, *"The true gem of Ignite"*. There are component, screen, navigator, app-icon and splash-screen generators, and they put files in `app/` by kind [E, A10; §11 E5]. A by-kind layout is what you want when the work is "generate a screen, generate a component" across many unrelated client apps. A consultancy's starter has to fit apps it has never seen.
+- **Not every well-known starter uses A.** Obytes' React Native starter uses `features/` with thin `app/` routes [E, §11 E3]. Bulletproof React, the most-cited structure guide, organises *"most of the code within the features folder"* [E, §11 E4].
+- **When A would be my answer** [J]: an app of five to ten screens, one developer, no parallel agents, and no requirement that some logic be provably separate from screens and storage. **That is not Haunts.** Haunts has about 25 screens and 197 requirement IDs. Its BLOCKING criteria need proof that some logic is separate (VPAGE-4's *"no entitlement read is reachable from any journal query"*, CAP-1(b), DATA-13), and its work runs in parallel waves with separate file ownership (D34).
+
+**So A is not genuinely better for Haunts, and I am not changing the recommendation on this ground.** If the CEO prefers A for familiarity, A-with-strict-rules is buildable. It would need most of B-strict's checks anyway, and would end up as B with different folder names.
+
+### A.3 B-strict: exactly what is enforced, by what, and where it fails
+
+**Principle.** Every rule is a check that **fails with a message telling the agent what to do instead**, such as *"Features may not import other features. Move shared presentational code to src/ui, or shared logic to src/core (see core/MANIFEST.md)."* Checks run in **pre-commit**, so the agent sees them before it can commit (D41: `pre-commit` is the one hook manager). They run again in **CI**, which a skipped hook cannot dodge. Each check must be **seen to fail** on a planted violation before it is trusted, the CSO's rule for the security baseline (D32).
+
+**Tools.** ESLint, using its built-in `no-restricted-imports`, `no-restricted-globals` and `no-restricted-syntax` rules, as the CSO preferred over an import plugin (`reviews/cso-review.md` §6); **dependency-cruiser** as the second, independent checker; `@eslint-community/eslint-plugin-eslint-comments` to protect the rules from suppression; TypeScript in strict mode; and three small TypeScript scripts in `tools/` with no dependencies (D41).
+
+| # | Rule | Tool | Fails in |
+|---|---|---|---|
+| **1** | **Folder allow-list.** `src/` contains only `app/`, `features/`, `core/`, `ui/`, `strings/`. `core/` contains only `domain/`, `store/`, `diagnostics/`. `ui/` contains only `theme/`, `primitives/`, `variants/`. Each `features/<name>/` is listed in `features/README.md`. Inside a feature, the only subfolders are `components/` and `__tests__/`. A new folder anywhere fails until the allow-list (`tools/structure.json`) is edited, and that edit is a visible diff the CTO reviews | `tools/check-structure.ts` | both |
+| **2** | **Routes are thin.** Files in `src/app/` may import only a feature's `index.ts`, `@/ui`, `expo-router` and `react`. They are at most 40 lines | ESLint `no-restricted-imports` scoped to `src/app/**`; `max-lines` | both |
+| **3** | **No imports between features.** A file in `features/x/` may not import `features/y/` | ESLint `no-restricted-imports` per feature **and** dependency-cruiser's group rule (`$1`, the documented "peer folders" pattern) [E, A11] | both |
+| **4** | **Each feature has one public door.** Outside its own folder, a feature is imported only through `features/<name>/index.ts`, which exports screens only | ESLint (`no-restricted-imports` patterns banning deep paths); dependency-cruiser | both |
+| **5** | **`core/domain` is pure.** No `react`, `react-native`, `expo*`, `@/core/store`, `@/ui`, `@/features`, and no `node:*`. **No `Date.now()`, `new Date()` without arguments, or `Math.random()`**: time and randomness come in as parameters, so sessions (SESS-1) and daily headlines (HEAD-3, D50) are deterministic and testable | ESLint `no-restricted-imports` and `no-restricted-syntax`; dependency-cruiser; **and a third, independent check:** domain tests run as their own Jest project in plain Node with no React Native preset, so any React Native import crashes the test run | both (the Jest project in CI) |
+| **6** | **Only `core/store` touches storage.** `expo-sqlite` and `modules/capture` may be imported only under `core/store/`. **SQL text** (string literals matching `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `CREATE`) may appear only in `core/store/` and `.sql` files | ESLint `no-restricted-imports` and `no-restricted-syntax`; dependency-cruiser | both |
+| **7** | **Dependency direction as an allow-list.** dependency-cruiser runs in **allow-list mode**, *"any dependency not matching at least one allowed rule"* is an error [E, A11]. Only the arrows drawn in §4.B's diagram are allowed. Cycles are forbidden (`no-circular`) and orphan files are forbidden (`no-orphans`) [E, A11] | dependency-cruiser | both |
+| **8** | **The core cannot quietly grow (the junk-drawer rule, made mechanical).** (a) **Manifest:** every file in `core/` is listed in `core/MANIFEST.md` with its reason: the requirement IDs it serves (rule b of §4.B), the two or more features that use it (rule a), or "storage" (rule c). An unlisted file fails, and so does a listed file that does not exist. (b) **Usage:** a `core/domain` module whose manifest reason is "shared" must actually be imported by at least two features. This is computed from dependency-cruiser's JSON graph, and a "shared" module used by one feature fails with *"move it into features/<that one>"*. (c) **Budget:** `core/` may be at most 30% of non-test lines under `src/` [J on the number]. (d) **Surface:** `core/` exports only functions, types and constants. No classes, no default exports | `tools/check-core.ts` (a–c); ESLint `no-restricted-syntax` (d) | (a), (d) both; (b), (c) CI |
+| **9** | **Boundary, network and SQL rules cannot be switched off by a comment.** (a) `eslint-comments/no-restricted-disable` lists every rule in this table plus the network rules, so an `eslint-disable` for any of them is itself an error [E, A12]. (b) **CI runs a second ESLint pass with `--no-inline-config`** over a guard-only config, so no comment of any kind has effect there, including one disabling the comments rule. This is the CSO's condition C1 [E, A13]. (c) `reportUnusedDisableDirectives: "error"` and `eslint-comments/require-description` for any other rule. (d) No dependency-cruiser "known violations" file may exist, and CI never passes `--ignore-known`. dependency-cruiser's suppression lives in such files rather than in code comments [I, from its documentation] | ESLint + eslint-comments; `tools/check-structure.ts` (d) | (a), (c), (d) both; (b) CI |
+| **10** | **Guard files change only with a CSO note.** If a PR touches `eslint.config.js`, the guard config, `.dependency-cruiser.cjs`, `tools/structure.json`, `tools/check-*.ts` or `core/MANIFEST.md`, its body must contain a `## CSO note` section (for `MANIFEST.md`: a `## CTO note`). This is CSO condition C23 made checkable, since branch protection is not available on the private free plan (`docs/conventions.md` §7) | `tools/traceability.ts`, extended | CI |
+| **11** | **Network (unchanged from §6.8, now protected by rule 9):** the network globals are banned, and so are `import … from 'expo/fetch'` and other networking imports (CSO C2) | ESLint | both |
+| **12** | **TypeScript strict.** `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`; no `any`; no `@ts-ignore` or `@ts-nocheck`; `@ts-expect-error` only with a description | `tsc`; typescript-eslint | both (`tsc` on staged projects in pre-commit; full in CI) |
+| **13** | **Size limits**, so an agent can read a whole file and a reviewer a whole function [J on the numbers]: at most **250 lines per file** (tests exempt), **60 lines per function** (`skipBlankLines`, `skipComments`), cyclomatic **complexity 10**, nesting **depth 3**, **3 parameters** (pass an object beyond that). ESLint's own default for function length is 50 [E, A14] | ESLint `max-lines`, `max-lines-per-function`, `complexity`, `max-depth`, `max-params` | both |
+| **14** | **Naming.** Files and folders kebab-case. Screens `*-screen.tsx`. Hooks `use-*.ts`, exporting `useX`. Components PascalCase exports. **No default exports** except route files (Expo Router needs them). Arrow functions (D41; MAINT-4's `func-style`). Tests named by limb (`CAP-4(a) …`), as `haunts/CLAUDE.md` already requires | `tools/check-structure.ts` (names); ESLint (exports, `func-style`); `tools/limb-coverage.ts` (test names) | both; limb coverage CI |
+| **15** | **No hot shared files for parallel waves.** Strings are split per feature (`src/strings/<feature>.ts`, plus `common.ts`), so two waves never edit one string file. One route file per screen. Shared `core/` changes go in a **core-first wave** before the feature waves that use them (a wave-planning rule for the CTO, D34) | `tools/check-structure.ts` (string files map to features); wave plans | both / planning |
+| **16** | **No barrel files** (`index.ts` that re-exports) except each feature's door and `ui/index.ts`. Barrels hide where code lives and make an agent read more [J] | `tools/check-structure.ts` | both |
+| **17** | **Agent-side early warning (optional).** A Claude Code `PostToolUse` hook in `haunts/.claude/settings.json` runs ESLint on each file an agent edits, so it sees a boundary error immediately rather than at commit. Anthropic documents exactly this hook [E, A1]. That file is a CSO-baseline file, so this needs a CSO note and CEO approval (D43's route) | Claude Code hook | at edit time |
+
+**What B-strict deliberately does not add** [J]: a copy-paste detector (A7 is suggestive, not decisive; review it after M2 using the delivery log); limits on exports per file (rule 8(d) and the size limits already do that job); and any rule that cannot give the agent a clear message saying what to do instead.
+
+**Is dependency-cruiser worth it as a second checker? Yes, for B-strict** [J]. It is an independent implementation, so one tool's bug or blind spot does not open the boundary. Its allow-list mode fails anything not explicitly permitted, where ESLint's restrictions only fail what is explicitly banned [E, A11]. It produces the dependency graph that rule 8(b) needs. And suppression requires a file, which rule 9(d) forbids. **The cost** is one more development dependency with 18 direct dependencies, MIT licensed, published 2026-09-20 (`reviews/cso-review.md` §6, citing npm). The CSO judged it *"supply-chain surface for no security gain"* in Option C. Here its gain is correctness, not security, so **I record that disagreement and leave the approval to the CSO** under D40's rule. If the CSO declines, B-strict keeps rules 1–17 with ESLint alone and loses rule 7's allow-list mode and rule 8(b).
+
+**New development dependencies:** `dependency-cruiser` and `@eslint-community/eslint-plugin-eslint-comments` (4.8.1, published 2026-09-12, MIT, 2 direct dependencies [E, A15]). There is no import plugin, per the CSO's preference. All are exact-pinned and CSO-approved. The production dependency count does not change.
+
+**Added cost over plain B** [J]:
+
+| Item | Hours |
+|---|---|
+| `check-structure.ts` and `structure.json` (rules 1, 9(d), 14–16) | 4–6 |
+| `core/MANIFEST.md` and `check-core.ts` (rule 8) | 4–6 |
+| dependency-cruiser in allow-list mode (rules 3, 4, 6, 7) | 4–6 |
+| Guard pass, eslint-comments, guard-file check (rules 9, 10) | 3–5 |
+| TypeScript strictness, size and naming rules, tuned on the first real screens (rules 12–14) | 3–5 |
+| Node-only Jest project for `core/domain` (rule 5) | 1–2 |
+| A planted violation for every rule, each seen to fail (D32's rule) | 3–5 |
+| **Total** | **22–35 h one-off** |
+
+**Ongoing** [J]: about 1–2 h a month tuning limits in the first months. There will also be some agent rework when a limit bites, which is the point of having one. **Running cost: £0.** B's 20–34 h plus B-strict's 22–35 h comes to **42–69 h**. That is still below C's 45–80 h, and it is enforced more completely than C would be.
+
+### A.4 What this addendum changes elsewhere in the document
+
+- **Recommendation:** B-strict. Page one's table and recommendation stand otherwise. ADR-0001 (§10) gains B-strict's rule table as its Enforcement section when adopted.
+- **Overtaken by later decisions:** page one's finding 1 is decided as **D63** (two SQLite files), and finding 2 as **D61** (OS backups are the user's choice and are not excluded). The §6.13 flag and the CSO's condition C9 are read in that light.
+- **§6.7's plugin choice** moves from `eslint-plugin-import` to ESLint's built-in rules plus dependency-cruiser, per the CSO's preference and rule 7.
+
+### A.5 Sources for this addendum
+
+All retrieved 2026-10-02 by this seat. Single-source items are flagged in the text.
+
+| # | Source |
+|---|---|
+| A1 | Anthropic, [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices): context degradation, *"Give Claude a check it can run"*, hooks as deterministic, worktrees and parallel sessions, the ESLint-after-edit hook example |
+| A2 | Hong, Troynikov, Huber, [Context Rot](https://www.trychroma.com/research/context-rot), Chroma, 14 July 2025: 18 models; distractors |
+| A3 | Liu et al., [Lost in the Middle](https://arxiv.org/abs/2307.03172), TACL 2023 |
+| A4 | Dente, Satriani, Papotti, [Constraint Decay](https://arxiv.org/abs/2605.06445), arXiv preprint, May 2026 (revised Sept 2026) |
+| A5 | Xia et al., [Agentless](https://arxiv.org/abs/2407.01489), arXiv 2024 |
+| A6 | Fattha et al., [Exploration Structure in LLM Agents for Multi-File Change Localization](https://arxiv.org/abs/2606.11976), arXiv preprint, June 2026 |
+| A7 | GitClear, [AI Copilot Code Quality 2025](https://www.gitclear.com/ai_assistant_code_quality_2025_research): 211M lines, 2020–2024 |
+| A8 | Expo, [create-expo-app templates](https://docs.expo.dev/more/create-expo/) |
+| A9 | Expo, [Create a project](https://docs.expo.dev/get-started/create-a-project/): *"example code to help you get started"* |
+| A10 | Ignite, [Generators](https://docs.infinite.red/ignite-cli/concept/Generators/) |
+| A11 | dependency-cruiser, [Rules reference](https://github.com/sverweij/dependency-cruiser/blob/main/doc/rules-reference.md): group matching, `allowed` with `allowedSeverity`, `no-circular`, `no-orphans`; suppression by known-violations file per its [CLI docs](https://github.com/sverweij/dependency-cruiser/blob/main/doc/cli.md) (`--ignore-known`), as surfaced by search; no inline-comment form found |
+| A12 | eslint-comments, [no-restricted-disable](https://eslint-community.github.io/eslint-plugin-eslint-comments/rules/no-restricted-disable.html) |
+| A13 | ESLint, [Configure rules](https://eslint.org/docs/latest/use/configure/rules): `noInlineConfig` is all-or-nothing per config object, hence the separate guard pass; `reportUnusedDisableDirectives` |
+| A14 | ESLint, [max-lines-per-function](https://eslint.org/docs/latest/rules/max-lines-per-function): default 50 |
+| A15 | npm registry, [`@eslint-community/eslint-plugin-eslint-comments`](https://registry.npmjs.org/@eslint-community/eslint-plugin-eslint-comments): 4.8.1, 2026-09-12, MIT, 2 dependencies |
+| A16 | Search for controlled studies of codebase layout and agent accuracy: arXiv and web, 2026-10-02. None found comparing these layouts; A4 and A6 were the nearest |
+
+---
+
 ## Page one — for the CEO
 
 **What you are deciding.** How the Haunts code is organised: which folder a piece of code lives in, which parts are allowed to use which, and how a tool checks that automatically. Every option below runs the same app on the same stack (Expo, React Native, TypeScript, SQLite, native Swift and Kotlin for capture). They differ in **how the code is sorted and how strictly the sorting is enforced.**
@@ -605,3 +728,4 @@ All retrieved on 2026-09-27 by this seat unless marked. Each is the vendor's or 
 | Date | Change |
 |---|---|
 | 2026-09-27 | First version (CTO), for SPK-20 / D59. Written incrementally; not yet reviewed by a second seat or the CSO. |
+| 2026-10-02 | Addendum at the top (CTO), answering the CEO's three questions: fit for AI agents (§A.1), why Expo and Ignite use A (§A.2), and the B-strict specification (§A.3). Recommendation moves from B to B-strict. Notes D61 and D63 as overtaking page one's two findings. The rest of the document is unchanged. |
