@@ -121,7 +121,7 @@
           {
             "type": "command",
             "command": "/usr/bin/python3",
-            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "args": ["-I", "${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
             "timeout": 30
           }
         ]
@@ -134,7 +134,7 @@
           {
             "type": "command",
             "command": "/usr/bin/python3",
-            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "args": ["-I", "${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
             "timeout": 30
           }
         ]
@@ -146,7 +146,7 @@
           {
             "type": "command",
             "command": "/usr/bin/python3",
-            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
+            "args": ["-I", "${CLAUDE_PROJECT_DIR}/.claude/hooks/candour-guard.py"],
             "timeout": 15
           }
         ]
