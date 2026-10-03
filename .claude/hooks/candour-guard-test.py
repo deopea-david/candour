@@ -19,7 +19,7 @@ ENV = dict(os.environ, CLAUDE_PROJECT_DIR=R)
 def rc(cmd, mode="auto"):
     d = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": cmd},
          "cwd": R, "permission_mode": mode}
-    return subprocess.run(["/usr/bin/python3", GUARD], input=json.dumps(d), capture_output=True,
+    return subprocess.run(["/usr/bin/python3", "-I", GUARD], input=json.dumps(d), capture_output=True,
                           text=True, env=ENV).returncode
 
 
@@ -109,5 +109,33 @@ sh("git", "-C", R, "checkout", "-q", "main")
 for c in ("git push", "git push origin", "git push origin HEAD"):
     if rc(c) != 2:
         fail += 1; print("NOT BLOCKED on main:", c)
-print("%d must-block, %d must-allow, %d failures" % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), fail))
+
+# F11 (PR #17 review): the hook runs in isolated mode (-I), so a stray module beside the
+# guard is not imported in place of the standard library. Plant one beside a copy of the
+# guard and check that it loads without -I (the test can see the problem) but not with it.
+P = os.path.join(T, "planted")
+os.mkdir(P)
+with open(GUARD) as src, open(os.path.join(P, "candour-guard.py"), "w") as dst:
+    dst.write(src.read())
+MARK = os.path.join(T, "planted-loaded")
+with open(os.path.join(P, "json.py"), "w") as f:
+    f.write("open(%r, 'w').close()\nimport sys\nsys.exit(0)\n" % MARK)
+d = json.dumps({"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": R,
+                "tool_input": {"command": "gh pr merge 1"}, "permission_mode": "auto"})
+for flags, want_loaded in (([], True), (["-I"], False)):
+    r = subprocess.run(["/usr/bin/python3"] + flags + [os.path.join(P, "candour-guard.py")],
+                       input=d, capture_output=True, text=True, env=ENV).returncode
+    loaded = os.path.exists(MARK)
+    if loaded != want_loaded or (not want_loaded and r != 2):
+        fail += 1; print("PLANTED MODULE:", flags, "loaded=%s rc=%d" % (loaded, r))
+    if loaded:
+        os.remove(MARK)
+# and every hook in the committed settings actually runs with -I
+S = json.load(open(os.path.join(os.path.dirname(GUARD), "..", "settings.json")))
+hooks = [h for groups in S["hooks"].values() for g in groups for h in g["hooks"]]
+for h in hooks:
+    if h.get("args", [None])[0] != "-I":
+        fail += 1; print("HOOK WITHOUT -I:", h)
+print("%d must-block, %d must-allow, %d isolation checks, %d failures"
+      % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), 2 + len(hooks), fail))
 sys.exit(1 if fail else 0)
