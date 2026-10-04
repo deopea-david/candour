@@ -31,7 +31,8 @@ PROTECTED_BRANCHES = {"main"}
 SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish"}
 OTHER_INTERPRETERS = {"python", "python3", "node", "perl", "ruby", "deno", "bun"}
 WRAPPERS = {"command", "builtin", "nohup", "time", "noglob", "exec", "nice", "timeout",
-            "stdbuf", "env", "xargs", "sudo", "caffeinate", "arch"}
+            "stdbuf", "env", "xargs", "sudo", "caffeinate", "arch",
+            "npx", "bunx", "pnpx", "corepack"}  # package runners reach gh (haunts MAINT-6 R3)
 SEPARATORS = {";", "&&", "||", "|", "&", "|&", "(", ")", ";;"}
 GIT_OPTS_WITH_VALUE = {"-C", "-c", "--git-dir", "--work-tree", "--namespace", "--exec-path",
                        "--super-prefix", "--config-env"}
@@ -139,6 +140,28 @@ def split_redirects(seg):
     return argv, targets
 
 
+# Package-runner subcommands that run a package's binary, as npx does
+# (haunts MAINT-6 CTO reviews, S2 and R3; ported to candour). yarn and pnpm also run a binary named directly.
+PKG_RUNNERS = {"npm": ("exec", "x"), "pnpm": ("exec", "dlx"), "yarn": ("exec", "dlx"), "bun": ("x",)}
+RUNNER_BINS = ("eas", "eas-cli", "fastlane", "gh")  # gh: pnpm/yarn exec reach PATH (round 2)
+
+
+def runner_verbs(argv):
+    """Each word a package manager could read as its command when its own
+    options come first (`npm --tag x publish`): every bare option is read
+    both as a flag and as taking the next word as its value."""
+    out = set()
+    for takes_value in (False, True):
+        k = 1
+        while k < len(argv) and argv[k].startswith("-"):
+            k += 1
+            if takes_value and "=" not in argv[k - 1] and k < len(argv) and not argv[k].startswith("-"):
+                k += 1
+        if k < len(argv):
+            out.add(argv[k])
+    return out
+
+
 def unwrap(argv):
     """Strip leading assignments and wrapper commands; return the real argv."""
     changed = True
@@ -147,6 +170,23 @@ def unwrap(argv):
         while argv and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", argv[0]):
             argv = argv[1:]
             changed = True
+        base = os.path.basename(argv[0]) if argv else ""
+        if base in PKG_RUNNERS and "publish" in runner_verbs(argv):
+            return argv  # `npm --tag x publish` is a publish, not `npm x`: check_other blocks it
+        if base in PKG_RUNNERS:
+            # the runner's own options may come first: `npm -y exec`,
+            # `npm --prefix . exec` (CTO review of 81ef45c, R3). A bare option
+            # takes the next word as its value unless that word is the verb.
+            k = 1
+            while k < len(argv) and argv[k].startswith("-") and argv[k] != "--":
+                k += 1
+                if "=" not in argv[k - 1] and k < len(argv) and not argv[k].startswith("-") \
+                        and argv[k] not in PKG_RUNNERS[base]:
+                    k += 1
+            if k < len(argv) and (argv[k] in PKG_RUNNERS[base]
+                                  or (base in ("yarn", "pnpm") and argv[k].split("@")[0] in RUNNER_BINS)):
+                argv = argv[k + 1:] if argv[k] in PKG_RUNNERS[base] else argv[k:]
+                argv = ["npx"] + argv  # then stripped as the npx wrapper below
         if argv and os.path.basename(argv[0]) in WRAPPERS:
             name = os.path.basename(argv[0])
             argv = argv[1:]
@@ -155,6 +195,17 @@ def unwrap(argv):
                             or (name == "timeout" and re.match(r"^\d", argv[0]))):
                 if name == "nice" and argv[0] == "-n" and len(argv) > 1:
                     argv = argv[1:]
+                if name in ("npx", "bunx", "pnpx") and argv[0] in ("-p", "--package") and len(argv) > 1:
+                    argv = argv[1:]  # the option's value is a package, not the command
+                elif name in ("npx", "bunx", "pnpx") and argv[0] in ("-c", "--call") and len(argv) > 1:
+                    # the option's value is a shell command; npx runs it with sh -c,
+                    # so it is checked as one, separators and all (R3)
+                    argv = ["sh", "-c", argv[1]]
+                    break
+                elif name in ("npx", "bunx", "pnpx") and re.match(r"^(--call=|-c.)", argv[0]):
+                    # the attached forms, --call='eas submit' and -c'eas submit' (R3)
+                    argv = ["sh", "-c", argv[0][7:] if argv[0].startswith("--call=") else argv[0][2:]]
+                    break
                 argv = argv[1:]
     return argv
 
@@ -389,24 +440,57 @@ GQL_MUTATIONS = re.compile(
     r"transferRepository|archiveRepository|updateRepositoryWebCommitSignoffSetting")
 
 
+def skip_gh_flags(args, j, takes_value):
+    """Index of the first word at or after j that is not a flag. With
+    takes_value, a bare `-X` or `--name` also skips the next word, as gh's
+    parser (cobra) assumes for -R/--repo and any flag it does not know."""
+    while j < len(args) and args[j].startswith("-") and args[j] != "-":
+        a = args[j]
+        j += 1
+        if takes_value and "=" not in a and (a.startswith("--") or len(a) == 2):
+            j += 1
+    return j
+
+
+def gh_readings(args):
+    """gh accepts flags before the command group and between the group and its
+    verb: `gh pr -R o/r merge 5`, `gh pr --repo=o/r merge 5`, `gh --repo o/r pr
+    merge 5`, `gh pr --repo=o/r -L1 list` (CTO review of haunts 81ef45c, R2).
+    Return every reading of (group, verb, words after the verb, words after the
+    group): each flag taken as bare and as taking a value, at each level, so no
+    flag can hide the verb from the checks."""
+    out = set()
+    for group_values in (False, True):
+        i = skip_gh_flags(args, 0, group_values)
+        if i >= len(args):
+            continue
+        for verb_values in (False, True):
+            j = skip_gh_flags(args, i + 1, verb_values)
+            out.add((args[i], args[j] if j < len(args) else "", tuple(args[j + 1:]), tuple(args[i + 1:])))
+    return out
+
+
 def check_gh(argv):
     args = argv[1:]
     if not args or "--help" in args or "-h" in args or args[0] in ("help", "--version", "version"):
         return
-    sub, rest = args[0], args[1:]
-    verb = rest[0] if rest else ""
-    flat = " ".join(rest)
+    for sub, verb, after, rest in gh_readings(args):
+        check_gh_command(sub, verb, list(after), list(rest))
+
+
+def check_gh_command(sub, verb, after, rest):
+    flat = " ".join(rest)  # every word after the group, flags before the verb included
     if sub == "pr":
         if verb == "merge":
             block("gh pr merge: the CEO merges")
-        if verb == "review" and re.search(r"(^| )(--approve|-a)( |$)", flat):
+        if verb == "review" and re.search(r"(^| )(--approve(=\S*)?|-[crh]*a\S*)( |$)", flat):  # -ab x approves
             block("approving a pull request: approval is the CEO's")
     elif sub == "api":
         check_gh_api(rest)
     elif sub == "repo" and verb in ("edit", "delete", "rename", "archive", "unarchive", "create", "fork",
                                      "sync", "deploy-key", "autolink", "set-default"):
         read_only = (verb == "set-default" and re.search(r"(^| )(--view|-v)( |$)", flat)) or \
-            (verb in ("deploy-key", "autolink") and len(rest) > 1 and rest[1] in ("list", "view"))
+            (verb in ("deploy-key", "autolink") and after and after[0] in ("list", "view"))
         if not read_only:
             block("gh repo %s changes repository settings or publishes" % verb)
     elif sub == "release" and verb not in ("list", "view", "download", "verify", "verify-asset", ""):
@@ -494,7 +578,7 @@ def check_other(name, argv):
         block("%s schedules unattended work" % name)
     elif name == "osascript":
         block("osascript drives other applications (terminal, browser) outside these checks")
-    elif name in ("npm", "pnpm", "yarn", "bun") and "publish" in argv[1:3]:
+    elif name in ("npm", "pnpm", "yarn", "bun") and ("publish" in argv[1:3] or "publish" in runner_verbs(argv)):
         block("package publish")
     elif name == "eas" and len(argv) > 1 and argv[1] in ("submit", "update", "credentials", "env",
                                                           "secret", "metadata:push"):
@@ -516,7 +600,8 @@ def check_code(code, cwd, env):
         return
     flat = re.sub(r"[\"'\\\[\](),+]", " ", code)
     flat = re.sub(r"\s+", " ", flat)
-    if re.search(r"\bgh pr merge\b|\bgh pr review\b.*(--approve|-a\b)", flat):
+    gf = r"(?: -\S+(?: [^\s-]\S*)?)*"  # flags, with or without a value, before or after `pr` (R2)
+    if re.search(r"\bgh%s pr%s merge\b|\bgh%s pr%s review\b.*(--approve|(?<!\S)-[crh]*a)" % (gf, gf, gf, gf), flat):
         block("interpreter code that merges or approves a pull request")
     if GQL_MUTATIONS.search(flat):
         block("interpreter code with a GitHub mutation that merges, approves or changes settings")

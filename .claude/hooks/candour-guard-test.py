@@ -86,6 +86,21 @@ MUST_BLOCK = [
     "node .claude/hooks/candour-guard-test.py", "python3 .claude/hooks/candour-guard-test.py > .claude/hooks/out.txt",
     "python3 .claude/hooks/candour-guard-test.py && cp /tmp/x .claude/hooks/candour-guard.py",
     "python3 .claude/hooks/candour-guard-test.py <<'EOF'\nprint(1)\nEOF",
+    # CTO review of haunts 81ef45c, R2: flags before the verb, or before the group
+    "gh pr -R o/r merge 5", "gh pr --repo o/r merge 5", "gh pr --repo=o/r merge 5", "gh pr -Ro/r merge 5",
+    "gh --repo o/r pr merge 5", "gh -R o/r pr merge 5", "gh pr --auto=true merge 5", "gh pr -dm merge 5",
+    "gh pr -R o/r review 3 --approve", "gh pr --repo=o/r review 3 -a", "gh pr --approve=true review 3",
+    "gh release -R o/r create v1", "gh secret --repo o/r set X", "gh ruleset -R o/r delete 1",
+    "python3 -c \"import subprocess; subprocess.run(['gh','pr','-R','o/r','merge','1'])\"",
+    # round 2 (both guards): combined short approve flags; runner options before publish
+    "gh pr review 3 -ab x", "gh pr review -ab x 3", "gh pr -R o/r review 3 -ab 'ok'",
+    "python3 -c \"import subprocess; subprocess.run(['gh','pr','review','3','-ab','x'])\"",
+    "npm --tag x publish", "npm -w pkg publish", "npm --tag=beta publish", "pnpm --filter x publish",
+    # haunts MAINT-6 R3 ported: package runners that reach gh pr merge
+    "npx --call='gh pr merge 5'", "npm -y exec -- gh pr merge 5", "npm exec -- gh pr merge 5",
+    "npx -c 'true; gh pr merge 5'", "npx -c'gh pr merge 5'", "npm exec --call='gh pr merge 5'",
+    "npm --prefix . exec gh pr merge 5", "pnpm exec gh pr merge 5", "pnpm gh pr merge 5",
+    "corepack pnpm dlx gh pr merge 5", "npx -y gh pr review 3 --approve",
     # unparseable input fails closed
     "echo \"unbalanced",
 ]
@@ -111,6 +126,11 @@ MUST_ALLOW = [
     "diff roles/coordinator.md .claude/commands/coordinator.md",
     "python3 - <<'EOF'\np='CLAUDE.md'\ns=open(p).read().replace('Merge: gh pr merge <PR>','Merge: gh pr merge <PR> --merge')\nopen(p,'w').write(s)\nEOF",
     "claude --version 2>/dev/null", "claude doctor", "crontab -l", "launchctl list",
+    "gh pr -R o/r view 3", "gh pr --repo=o/r -L1 list --state merged", "gh --repo o/r pr list",
+    "gh pr -R o/r create --title 'merge docs' --body b", "gh pr -R o/r review 3 --comment -b ok",
+    "gh pr review 3 -c -b 'all good'", "gh pr review 3 -b 'has a nit'", "gh pr review 3 -r -b fix",
+    "npm --prefix . run build", "npm -w pkg install", "npm view x versions",
+    "npx tsc --version", "npm -y exec -- tsc --version", "npx --call='echo hi'", "corepack enable",
     "curl -s https://api.github.com/repos/o/r", "npm test", "python3 scripts/check.py",
 ]
 
@@ -164,6 +184,25 @@ SEAT_DENIES = ("mcp__ccd_session_mgmt__set_session_output_style", "mcp__ccd_sett
 for rule in SEAT_DENIES:
     if rule not in DENY:
         fail += 1; print("MISSING DENY RULE:", rule)
+# R2 (CTO review of haunts 81ef45c): deny rules for flags before the verb, checked with an
+# approximate glob match (each * matches anything), against the forms they must and must not catch.
+import re as _re
+R2_DENIES = ["Bash(gh pr -* merge*)", "Bash(gh -* pr *merge*)", "Bash(gh pr -*review*--approve*)",
+             "Bash(gh -* pr *review*--approve*)"]
+for rule in R2_DENIES:
+    if rule not in DENY:
+        fail += 1; print("MISSING DENY RULE:", rule)
+GLOBS = [_re.compile(_re.escape(r[5:-1]).replace(r"\*", ".*") + "$", _re.S) for r in DENY
+         if r.startswith("Bash(") and r.endswith(")")]
+denied = lambda c: any(g.match(c) for g in GLOBS)
+for c in ("gh pr -R o/r merge 5", "gh pr --repo o/r merge 5", "gh pr --repo=o/r merge 5", "gh pr -Ro/r merge 5",
+          "gh --repo o/r pr merge 5", "gh -R o/r pr merge 5", "gh pr -R o/r review 3 --approve"):
+    if not denied(c):
+        fail += 1; print("NOT DENIED BY SETTINGS:", c)
+for c in ("gh pr view 3", "gh pr create --title 'merge docs' --body b", "gh pr list --search merge",
+          "gh pr comment 3 --body 'the CEO will merge'", "gh pr -R o/r view 3"):
+    if denied(c):
+        fail += 1; print("WRONGLY DENIED BY SETTINGS:", c)
 print("%d must-block, %d must-allow, %d isolation checks, %d settings checks, %d failures"
-      % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), 2 + len(hooks), len(SEAT_DENIES), fail))
+      % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), 2 + len(hooks), len(SEAT_DENIES) + len(R2_DENIES) + 12, fail))
 sys.exit(1 if fail else 0)
