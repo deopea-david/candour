@@ -526,7 +526,7 @@ None of these amends the Constitution. Each is made by its owning seat through a
 | 21 | Decision record for adoption | The CEO's words **verbatim, from his own transcript**: both steers, *"They are off"*, *"I have updated the branch permissions for main"*, and *"Done"*. Also the Skeptic memo, unedited; this §15; the CEO's written response (1.6, 5.3); and each decision in §13. Published within 30 days, as Article 3 sets for gate decisions [J]. **Revision 4: written,** at `decisions/2026-10-02-coordinator-seat.md`, for D0.1–D4. The CEO's words were checked against his own transcript, and all match. Decisions 5 onwards are added as they are taken | CGO |
 | 22 | `pipeline/templates/amendment.md` | Still owed | CGO |
 | 23 | **New:** split the operating annex into `pipeline/coordinator-operating.md` (F1) | Same protection: drafted by the CGO only. `roles/coordinator.md` stays one page | CGO, when the amendment is applied |
-| 24 | **New:** a usage-credit check | How the seat confirms, at session start and on any usage or billing message, that paid credits remain off. If no mechanical check exists, say so, and the charter's "treat as unknown and ask" applies | CTO |
+| 24 | **New:** a usage-credit check | How the seat confirms, at session start and on any usage or billing message, that paid credits remain off. If no mechanical check exists, say so, and the charter's "treat as unknown and ask" applies. **Superseded by D19 (2026-10-04): the CEO confirms credits are off at the start of each `/coordinator` session; no CTO check is needed** | CTO |
 | 25 | **New:** re-verify the enforcement assumptions | At each phase review, and at each Claude Code release that changes permission behaviour: deny rules, the hook, the ruleset, and the permission mode. `roles/cso.md` *Invoked* gains this (memo, "abandon in six months" item 2) | CSO |
 | 26 | **New:** brief corrections (F4) | The MAST category shares, the 15.6% attribution, the 0.85% figure for information withholding, "peer-reviewed", and the Lee et al. status | Research Analyst |
 | 27 | **New:** publish the verbatim commissions | The commissions to the Research Analyst, the CGO and the Skeptic for this amendment, with the decision record (F6) | Main session |
@@ -1076,3 +1076,5 @@ It measured the command from its start to the end of Annex F (byte 19,199) at ab
 **What would overturn this:** a count from Anthropic's token-counting endpoint, on the main session's model, putting bytes 0 to 12,431 above 5,000 tokens; or vendor documentation that the re-attached 5,000 tokens include a wrapper large enough to push Annex F's end past the line.
 
 **This seat prepares and flags; it does not certify.** Whether v0.9 is the charter in force is the CEO's to decide, by merging the PR (D8).
+
+**Note, 2026-10-04 (charter v0.10): D19 supersedes the CTO credit check described above (§11 item 24, F5).** The CEO's word at session start is the check (`decisions/2026-10-02-coordinator-seat.md`, D19).
