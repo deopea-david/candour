@@ -30,6 +30,50 @@ ANNEX = REPO / "pipeline" / "coordinator-operating.md"
 
 NO_MODEL_INVOCATION = "disable-model-invocation: true"
 
+# The charter's last line (charter *Role*; CTO review of #22, F1). After
+# compaction Claude Code keeps only the start of the command, so a session that
+# cannot see this line knows the charter was cut. Asserted here from the
+# outside, like the line above.
+SENTINEL = ("END OF COORDINATOR CHARTER — if this line is not in your context, the charter "
+            "was cut: do not proceed without asking; ask the CEO to re-run /coordinator.")
+
+# "Claude Code re-attaches the most recent invocation of each skill after the
+# summary, keeping the first 5,000 tokens of each"
+# (https://code.claude.com/docs/en/skills.md, "Skill content lifecycle").
+# Every limit must sit inside that. The CTO measured this charter at about 2.8
+# to 3.0 bytes a token and asked for a ceiling of at most 2.5 bytes a token
+# (review of #22, F1); the CGO measured 2.74 (draft §16.6). Counted from the
+# command's first byte, frontmatter included, which is the conservative end.
+LIMITS_BYTE_CEILING = 5000 * 25 // 10   # 12,500 bytes
+
+# Text that must fall inside the window: the grant and every limit on it.
+LIMIT_ANCHORS = [
+    "**Role:", "**The charter's last line is a closing marker,**",
+    "**If the charter may no longer be in your context in full**",
+    "**Can block:**", "**Decides:**", "Silence is not consent.",
+    "**Proceeding without asking.**", "**These always come to the CEO first:**",
+    "**Unattended or scheduled work is outside this charter.**", "**Commissioning:**",
+    "## C. Limits", "**Retry cap:", "**At a usage limit, stop and report.**",
+    "## D. Proceeding without asking", "**Preconditions.**", "**Case (a): the allowlist.**",
+    "**Not authority:**", "**The per-ticket chain", "**Case (b):",
+    "**Always comes to the CEO, whatever the authority:**", "**Review and QA loops.**",
+    "**Caps [J]**", "chain depth of 2", "**Out of scope:**",
+    "## F. Enforcement", "**Must never break:**", "**What none of them can do.**",
+]
+
+
+def limits_window_end(text):
+    """Byte offset of the first top-level heading after Annex F: the end of the limits."""
+    f = text.index("\n## F. ")
+    nxt = text.find("\n# ", f)
+    if nxt == -1:
+        raise AssertionError("nothing follows Annex F: the limits window has no end marker")
+    return len(text[:nxt].encode("utf-8"))
+
+
+def last_nonempty_line(text):
+    return [l for l in text.split("\n") if l.strip()][-1]
+
 
 def run(root, *args):
     """Run the copied script inside the scratch tree; return (exit, stdout, stderr)."""
@@ -189,6 +233,23 @@ class GeneratedShape(ScratchTree):
         self.assertEqual(sum(1 for l in front if l.startswith("disable-model-invocation")), 1)
         self.assertFalse([l for l in front if l.startswith("user-invocable")])
 
+    def test_generated_command_ends_with_the_sentinel(self):
+        # A cut is detectable only if the line is last and appears once: a
+        # second copy higher up would survive the cut and hide it.
+        self.generate()
+        text = self.command.read_bytes().decode("utf-8")
+        self.assertEqual(last_nonempty_line(text), SENTINEL)
+        self.assertTrue(text.endswith(SENTINEL + "\n"))
+        self.assertEqual(text.count("END OF COORDINATOR CHARTER"), 1)
+
+    def test_a_charter_without_the_sentinel_does_not_end_with_it(self):
+        # The sentinel test above must be able to fail.
+        text = self.charter.read_bytes().decode("utf-8")
+        self.charter.write_bytes(text.replace(SENTINEL + "\n", "").encode("utf-8"))
+        self.generate()
+        out = self.command.read_bytes().decode("utf-8")
+        self.assertNotEqual(last_nonempty_line(out), SENTINEL)
+
     def test_nothing_sits_between_the_notice_and_the_charter(self):
         # The command holds the charter and nothing else beyond the fixed
         # frontmatter and notice: whatever else a command file says becomes
@@ -250,6 +311,26 @@ class RealRepository(unittest.TestCase):
         self.assertIsNotNone(front, "the opening --- must be the file's first line")
         self.assertIn(NO_MODEL_INVOCATION, front)
         self.assertFalse([l for l in front if l.startswith("user-invocable")])
+
+    def test_committed_command_ends_with_the_sentinel(self):
+        text = COMMAND.read_bytes().decode("utf-8")
+        self.assertEqual(last_nonempty_line(text), SENTINEL)
+        self.assertEqual(text.count("END OF COORDINATOR CHARTER"), 1)
+
+    def test_every_limit_fits_in_the_compaction_window(self):
+        # If this fails, do not raise the ceiling: move text that is not a
+        # limit below Annex F, or measure the window again (draft §16.6) and
+        # record the measurement before changing the number.
+        text = COMMAND.read_bytes().decode("utf-8")
+        end = limits_window_end(text)
+        self.assertLessEqual(
+            end, LIMITS_BYTE_CEILING,
+            "the limits end at byte %d, past the %d-byte ceiling (5,000 tokens at 2.5 "
+            "bytes a token)" % (end, LIMITS_BYTE_CEILING))
+        for anchor in LIMIT_ANCHORS:
+            self.assertIn(anchor, text, "limit anchor missing: %s" % anchor)
+            at = len(text[:text.index(anchor)].encode("utf-8"))
+            self.assertLess(at, end, "%r sits after Annex F, outside the window" % anchor)
 
     def test_the_output_style_is_gone_and_not_selected(self):
         # D14 replaces the default-on style; bringing either half back would make

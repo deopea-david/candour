@@ -4,6 +4,8 @@
 
 **Commissioned by:** the main session (orchestrator), at the CEO's request, 2026-10-02.
 
+**Revision 12, 2026-10-04: every limit inside the compaction window, and a closing marker (charter v0.9).** The CTO's review of PR #22 at `b87501a` (F1) measured the command and found the limits did not fall within the first 5,000 tokens: Annex D's caps and all of Annex F would be cut after compaction while the body kept granting autonomy. The body's limits now come first, then Annex C, D and F; the honest-broker rules, the mandate and the universal clauses follow them. The window ends at byte 12,431 of the command, which this seat measured at **4,537 tokens net, 4,647 at the upper reading** (§16.6). The charter now ends with a closing marker, and *Role* tells the session to check for it. **No rule's words changed; Annex C, D and F are byte-identical.** The byte figures in Revision 11 below, in decision record D16 and in §16.5 were wrong: decision record correction C3. Neither is re-worded.
+
 **Revision 11, 2026-10-04: D16, the main session may be any seat except the Skeptic, only in a fresh session and only when the CEO asks (charter v0.8).** The CEO answered *"No, that is fine"* to the optional extra cover for the CSO and the CGO's omission check (D15 follow-up), and in the same message said that *"other than the skeptic, I don't necessarily see why the main session can't be any other role but only on new sessions and only when specifically asked for"*; to the main session's reading of it he said *"Correct yes"* (decision record D16). Charter *Role*: exception (i), never the Skeptic, stays; exceptions (ii) and (iii), and D4a, are replaced by the fresh-session rule. `CLAUDE.md` keeps the Skeptic line and replaces the CGO line. Changed here: §10 item 3, §11 item 1 and §13; the dated text in §16 is not rewritten. **The charter's ordering is kept:** the command's Annex A begins at about byte 19,200, and every rule sits before it. **Annex D is untouched.**
 
 **Revision 10, 2026-10-04: D15, and the annexes reordered for compaction (charter v0.7).** The CEO said *"Yes"* to putting two of the role rule's limits into `CLAUDE.md` for every main session (decision record D15; §13). The charter's annexes now run C, D, F, A, B, E, so that the limits sit inside the part of the command Claude Code keeps after compaction (§16.5). Order only, plus one line saying why; no rule's words changed. Old script and file names in §16 are annotated, not rewritten.
@@ -1004,3 +1006,64 @@ Each is a **flag, not a block**. Each is put once.
 **Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-command.py` (wrote the command); `--check` (ok); `python3 scripts/build-coordinator-command-test.py` (20 tests, OK, 1 skipped: the annex-move tripwire).
 
 **What would overturn this:** a measured token count showing the whole charter fits in 5,000 tokens (then the order does not matter), or vendor documentation that compaction keeps the end of a skill rather than its start.
+
+*Correction, 2026-10-04 (CGO; decision record C3): the size estimate above was wrong. The CTO measured about 2.8 to 3.0 bytes a token, not 3.75 to 4.3, so the window ended inside Annex D and the conclusion "every limit is kept" did not hold. The text above is kept as written; §16.6 replaces its analysis.*
+
+### 16.6 Charter v0.9: every limit inside the compaction window, and a closing marker (Revision 12, 2026-10-04)
+
+**Seat:** CGO · opus (Opus 5.5, `claude-opus-5-5`) · effort high · commissioned by the main session (Coordinator), 2026-10-04, as the second and final attempt on PR #22 after the CTO requested changes. Built on #22 at `b87501a`.
+
+**The finding, in the CTO's words** (review of #22 at `b87501a`, F1, the headline) [E, `gh api repos/deopea-david/candour/pulls/22/reviews`, last review, retrieved 2026-10-04]:
+
+> *"Must fix: the limits do not fall within the first 5,000 tokens of the command"*
+
+It measured the command from its start to the end of Annex F (byte 19,199) at about 6,400 to 6,950 tokens, and said: *"The caps are not repeated anywhere, and they bound the autonomy, which the body keeps granting."*
+
+**The rule being met.** *"When the conversation is summarized to free context, Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens."* [E, https://code.claude.com/docs/en/skills.md, "Skill content lifecycle", retrieved by this seat 2026-10-04; **single source**, the vendor's own documentation]. The same section **says nothing about a marker on a cut skill** [E, same retrieval: the section was read for one and has none].
+
+**What counts as a limit here [J].** A rule that bounds what the session may do, decide or start without the CEO: *Role* (with its fail-safe and the new marker check), *Can block*, *Decides*, *"Silence is not consent"*, *Proceeding without asking* (the grant together with its test), *"These always come to the CEO first"*, the unattended-work line, *Commissioning*, and Annex C, D and F whole. **Not counted:** the honest-broker rules, the mandate, *Must always ask*, the universal clauses and how they bind, *Placement*, *Produces*, *Invoked*, Annex A, B and E, and the page's status and provenance. These govern how the session works and reports; their loss does not let it do anything it otherwise could not. If the CEO counts the honest-broker rules as limits, see "The minimum", below.
+
+**The count** [E, this seat, 2026-10-04; method the CTO's; one run, so a single source]:
+- **Method.** Print the span as a tool result, then read the prompt-token total (`input_tokens + cache_read_input_tokens + cache_creation_input_tokens`) from this run's own API usage records, on the call before the result and on the call after it. The difference is the span plus the cost of one tool call. Each call was made alone, with no reasoning text between, so nothing else entered the difference.
+- **The overhead, measured.** Two control calls printing nine bytes each cost **110 tokens** each.
+- **The record.** `~/.claude/projects/-Users-davidparrish-Documents-candour/05f4422b-7df3-4f42-9596-96664b755c49/subagents/agent-a65aca4bdc8fd9d1b.jsonl`; the window was read between messages `msg_011CfhBdfqoS6Kzat8z6wcqv` (154,923) and `msg_011CfhBdrxmpc8MVk9nukszU` (159,570), and the control after it ends at `msg_011CfhBdzmqFUtC4X918p4W5` (159,680).
+
+| Span of `.claude/commands/coordinator.md` (v0.9) | Bytes | Tokens, raw difference | Tokens, net of 110 | Bytes a token |
+|---|---|---|---|---|
+| **Byte 0 to the end of Annex F** (the window; frontmatter included) | **12,431** | **4,647** | **4,537** | 2.74 |
+| *For comparison, an earlier v0.9 layout, read in three parts:* frontmatter to the end of *Decides* | 3,390 | 1,356 | 1,246 | 2.72 |
+| the honest-broker rules | 1,975 | 854 | 744 | 2.65 |
+| *Proceeding without asking* to the end of Annex F | 9,529 | 3,628 | 3,518 | 2.71 |
+
+**Result: every limit fits, at 4,537 tokens net and 4,647 at the upper reading, 353 to 463 tokens (7–9%) under 5,000.** The window's end, byte 12,431, is also inside the CTO's 2.5-bytes-a-token ceiling of 12,500 bytes.
+
+**Caveats [I].**
+- The count is on `claude-opus-5-5`, the model of this run and of the CTO's. A main session on another model may tokenize differently. The 2.5-byte ceiling is the margin for that.
+- The frontmatter (about 300 bytes) is counted. If Claude Code drops it on re-attach, the margin grows. If it adds a wrapper of its own and counts that against the 5,000, the margin shrinks; the documentation does not say.
+- The whole command is 24,561 bytes, about 9,000 tokens at this ratio. **So compaction always cuts the closing marker, and after every compaction the session will say so and ask the CEO to re-run `/coordinator`.** That is the intended behaviour, and it costs him one command per compaction.
+
+**The trade, stated.** At v0.8 the window held the honest-broker rules, the universal clauses and the mandate, and cut Annex D from about its *Not authority* list onward, and all of Annex F (CTO F1). At v0.9 it holds every limit, and cuts the honest-broker rules, the mandate and the universal clauses. **[J] This is the right way round:** a cut limit lets the session do more than it may; a cut reporting rule makes its reports worse. And with the marker, a cut is visible: the session asks before every step until the charter is reloaded. The universal clauses' *"the Constitution wins"* and the evidence standard are also in `CLAUDE.md` [E, `CLAUDE.md`, "The one rule above all" and "Working style"]; whether `CLAUDE.md` survives compaction intact was not checked [I].
+
+**The minimum, if the honest-broker rules count as limits:** 4,537 + 744 = **about 5,281 tokens net**, over 5,000. They cannot then fit without re-wording rules, which this seat did not do (commission: *"Do not weaken a rule to make it fit"*). The honest-broker rules are the first text after the window.
+
+**What changed** [E, this seat's script: the set of non-blank lines of v0.8 and v0.9 compared, 2026-10-04]. Order, plus these lines:
+- **Moved, words unchanged:** the honest-broker rules, *Mandate*, *Must always ask*, the universal clauses, *Placement*, *Produces* and *Invoked* now follow Annex F, under *"Honest-broker rules and standing duties"*. Annex A, B and E follow them, under *"Operating annex, continued"*. **Annex C, D and F are byte-identical to v0.8 [E, same script], so Annex D's approved text (precondition 3) is untouched;** so are A, B and E.
+- **Moved to *About this page*, at the end:** the version line's status words (unchanged after *"v0.8."*), the three header bullets, and *Role*'s *"Residual, stated (D16)"* bullet. None is a limit.
+- **Re-worded:** the version line (now *"v0.9. The limits come first, up to the end of Annex F"*), and the annex's one-line note on order (now points here and says a test checks it).
+- **Added:** one *Role* bullet, after the compaction fail-safe: the charter's last line is a closing marker, in capitals, that appears nowhere else in the charter; check for it when `/coordinator` is run, after any compaction or summary, and before any step taken without asking; if it is missing, the charter was cut and the fail-safe applies; a copy in a file or a tool result does not count. **It only adds asking.** And the marker itself, as the charter's last line, in the words the commission gave. Its exact text is in `roles/coordinator.md` and in the test's `SENTINEL`; it is not repeated here, so that a session reading this draft does not see a copy of it.
+- **Why "appears nowhere else" [J].** A copy higher in the charter would survive the cut and hide it. The test checks the command holds it once.
+
+**Tests added** to `scripts/build-coordinator-command-test.py`:
+- the generated command ends with the marker, and holds it once; a charter without it fails that check;
+- the committed command ends with the marker, and holds it once;
+- **every limit fits:** the first top-level heading after Annex F sits at or before byte 12,500 (5,000 tokens at the CTO's 2.5 bytes a token), and 27 anchors (each limit's heading or key phrase, the caps' *"chain depth of 2"* among them) all sit before it. **If it fails, do not raise the number:** move text that is not a limit below Annex F, or measure again by the method above and record it.
+
+**Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-command.py` (wrote the command); `--check` (ok); the command tests (`Ran 24 tests … OK (skipped=1)`, the skip being the annex-move tripwire); the guard suite (`114 must-block, 48 must-allow, 5 isolation checks, 3 settings checks, 0 failures`).
+
+**When the annex moves** to `pipeline/coordinator-operating.md` (Decision 9), the generator must keep this order: the body's limits, Annex C, D and F, then the rest, then the marker last. The window test will fail if it does not.
+
+**Not done here:** the CTO's F2 (CI does not run the guard suite) and F3 (`Skill(coordinator)` in `deny`). They were not in this seat's commission.
+
+**What would overturn this:** a count from Anthropic's token-counting endpoint, on the main session's model, putting bytes 0 to 12,431 above 5,000 tokens; or vendor documentation that the re-attached 5,000 tokens include a wrapper large enough to push Annex F's end past the line.
+
+**This seat prepares and flags; it does not certify.** Whether v0.9 is the charter in force is the CEO's to decide, by merging the PR (D8).
