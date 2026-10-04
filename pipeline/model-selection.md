@@ -2,6 +2,7 @@
 
 **Author:** main session (orchestrator), at the CEO's request · **Date:** 2026-09-26 · **Status:** binding on merge; Fable decided (§7)
 **Applies to:** every seat in `.claude/agents/`, and to the main session when it commissions them
+**Terminology, 2026-10-04:** "the orchestrator" in this file means **the main session when it commissions seats**. In a session where the CEO has typed `/coordinator` that is the Coordinator (`roles/coordinator.md`; D14, `decisions/2026-10-02-coordinator-seat.md`), whose routine decisions include which model a seat runs on under this file. In any other session it is the main session working under `CLAUDE.md`. No rule below changes.
 **Evidence:** tagged per `pipeline/evidence-standard.md`. Every [E] was retrieved on 2026-09-26 from the link given.
 
 ---
@@ -49,7 +50,7 @@
 ## 3. The constraints the choice must respect
 
 1. **Constitution 1.5, "cheap and boring by default".** On a subscription, the cost of a model choice is **usage-limit headroom**. When it is used up, the whole company stops until the window resets [E, costs: *"a seat-based usage window … shared across all models"*]. The Engineer and Research Analyst generate most of the tokens, so they are where a cheaper model buys the most headroom.
-2. **Constitution 5.4: spending real money is the CEO's alone.** Fable may bill to usage credits, and bills silently in a subagent (§1). **So no seat defaults to Fable, and the orchestrator uses it only only with the CEO's approval for that use** (§7).
+2. **Constitution 5.4: spending real money is the CEO's alone.** Fable may bill to usage credits, and bills silently in a subagent (§1). **So no seat defaults to Fable, and the orchestrator uses it only with the CEO's approval for that use** (§7).
 3. **Errors that reach the CEO have cost the most in this company's history:** interpretive errors in gate packs, transposed arithmetic, stale legal citations. **So the seats whose output feeds a 5.4 decision keep the strongest default model**, and their efficiency comes from being commissioned less often and more precisely, not from a cheaper model.
 
 ## 4. Default model and effort per seat (the frontmatter this PR sets)
@@ -61,7 +62,7 @@
 | **CTO** | opus | high | Architecture, wave planning, and **review of every PR**. On Opus it reviews Sonnet-written code as a different model |
 | **CSO** | opus | high | Threat models, security review, crypto choices (SPK-06). Security errors are silent and permanent |
 | **Skeptic** | opus | xhigh | Its only job is finding what others missed. Thoroughness is the capability, so it gets the highest effort short of `max`. Moves to Fable for gate dissent if the CEO approves (§7), which would also make it a different model from the authors |
-| **CVO** | opus | high | Idea development and proposals. In practice the main session often acts as CVO |
+| **CVO** | opus | high | Idea development and proposals. The main session may act as the CVO only in a fresh session and only when the CEO explicitly asks for that seat (D16); otherwise it commissions this seat |
 | **PM/BA** | opus | medium | Long, careful specifications, but mostly structured restatement of decided things. `medium` is Opus 5.5's own default. The orchestrator steps up to `pm-ba` on Fable only for a scope-change trade-off that goes to the CEO |
 | **UX Lead** | opus | medium | Article 4 and dark-pattern judgments are load-bearing (they became acceptance criteria); accessibility checks are structured |
 | **QA** | opus | medium | Verifies against written criteria, so thoroughness matters more than depth. **Kept on Opus so that it is a different model from the Engineer** |
@@ -102,7 +103,7 @@ Wherever possible, the seat that checks work runs on a different model from the 
 
 ### 5.5 Record it
 
-Every commission states `model` and `effort`, and every artifact's provenance line records them, for example *"CTO · opus (Opus 5.5) · effort high"*. This costs one line. It is what lets the adoption plan's day-one metrics (first-pass QA rate and escaped defects) be read **by model**.
+Every commission states `model` and `effort`, and every artifact's provenance line records them, for example *"CTO · opus (Opus 5.5) · effort high"*. Where the main session wrote the artifact in a seat's role (D16), the line also records that role. This costs one line. It is what lets the adoption plan's day-one metrics (first-pass QA rate and escaped defects) be read **by model**.
 
 ## 6. Other vendors' models: not now
 
@@ -123,7 +124,7 @@ Every commission states `model` and `effort`, and every artifact's provenance li
    - **(b) Fable within a monthly credit cap the CEO sets**, for the named uses in §5.3 only, logged in the decision record.
    - **(c) Fable per use, asked each time.**
 
-   **Checked by the CEO, 2026-09-26: on his plan the Fable row reads "Requires usage credits".** So every Fable run is real spending, and this is a 5.4 decision.
+   **Checked by the CEO, 2026-09-26: on his plan the Fable row reads "Requires usage credits".** So every Fable run is real spending, and this is a 5.4 decision. **Update, 2026-10-02 (D0.2): paid usage credits are off, so Fable is unavailable until the CEO turns credits on** (turning them on is spending, his alone). Option (c) below then applies only from that point.
 
    **Decided by the CEO, 2026-09-26: option (c), Fable per use, asked each time.** Before any Fable run, the orchestrator asks the CEO in chat. It names the seat, the task, and why Opus is not enough, and it waits for a clear yes. **No standing budget exists.** Each approved use is recorded in the artifact's provenance line. If asking becomes a burden once the build is running, the CEO may move to option (b) with a monthly cap.
 
