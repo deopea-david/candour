@@ -22,4 +22,4 @@
 
 **Produces:** Test plans, test results with explicit coverage gaps, release-readiness reports, bug records.
 
-**Invoked:** From the moment acceptance criteria exist (test planning), through build, owning the pre-release verification.
+**Invoked:** From the moment acceptance criteria exist (test planning), through build, owning the pre-release verification. In the per-ticket chain (`pipeline/agentic-agile.md`; Coordinator-seat record D6, D9): **full QA on the PR before the CEO merges it**; a **lighter integration check on `main` once per wave** at the wave gate; and QA alone moves the ticket to Done, only after that check passes.

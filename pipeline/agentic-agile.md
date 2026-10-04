@@ -27,8 +27,8 @@ Generalised from the Haunts decisions D30–D35 (`decisions/2026-09-16-haunt-gat
 2. **Every ticket has Files to create or modify, Interfaces and File ownership, marked TBD until the CTO sets them from the architecture.** These sit in a region regeneration never touches. **A ticket cannot enter Ready while they say TBD.** *(D33.)*
 3. **Waves run inside Kanban.** The CTO groups Ready work into waves whose files do not overlap and which have no dependencies inside the wave. Each wave closes at a wave gate: review at the head commit, `main` green, **QA's post-merge integration check** (see "The per-ticket chain" below), the next interfaces written. **A wave gate never makes work "done"; only the phase review pack and demo do** (Constitution 5.5). *(D34; Coordinator-seat D6.)*
 4. **Parallelism is earned.** At most two parallel Engineer instances until two waves have run clean. Narrow again after any merge conflict or escaped defect.
-5. **Implementation stories only when needed:** where a requirement is too big for one PR, or one change serves several requirements. Stories name limbs by letter and never copy criteria by hand. The reviewer closes a story on merge; **only QA moves a requirement ticket to Done**, and only after the post-merge check in "The per-ticket chain" below; the board's auto-Done automations are switched off. *(D30, D34; Coordinator-seat D6.)*
-6. **The commission is the originating prompt.** The orchestrator's commission to a seat is recorded verbatim on the ticket when an agent starts work. The CEO's own words live in the decision record's D-entries and are linked, not copied into tickets.
+5. **Implementation stories only when needed:** where a requirement is too big for one PR, or one change serves several requirements. Stories name limbs by letter and never copy criteria by hand. The reviewer closes a story **after the CEO's merge** (D8 left the timing open; `products/haunt/standup-routine.md`, "In review → QA" row, says it in terms); **only QA moves a requirement ticket to Done**, and only after the post-merge check in "The per-ticket chain" below; the board's auto-Done automations are switched off. *(D30, D34; Coordinator-seat D6.)*
+6. **The commission is the originating prompt.** The main session's (the Coordinator's, in a `/coordinator` session) commission to a seat is recorded verbatim on the ticket when an agent starts work. The CEO's own words live in the decision record's D-entries and are linked, not copied into tickets.
 7. **PRs reference tickets with `Refs #n` only**, never `closes`/`fixes`/`resolves`. The review is a written record in the PR, **pinned to the head commit it reviewed**, and every finding ends fixed, accepted (with a reason) or deferred (with an issue). Tests are named by acceptance-criterion limb.
 8. **Five delivery measures, recorded from day one:** merge conflicts per wave; QA first-pass rate (the share of tickets passing **pre-merge** QA, step 3 of the chain below, at the first attempt); escaped defects by finder, with CEO-found defects counted separately; spec defects with cause; founder hours per phase, for the cost sheet's actual-hours restatement. **No self-scored ratings**: the scorer would be the same model that did the work. *(D35.)*
 9. **Each product repository has one agent context file** (`CLAUDE.md`). It embeds the CSO's agent rules verbatim, links to the governance record rather than copying it, and is committed after the security baseline.
@@ -73,22 +73,24 @@ Every ticket that changes code goes through these six steps, in this order:
 
 ## Follow-ups not yet made
 
-These are changes to company templates and charters implied by the list above. Each is made by its owning seat, through a PR, and **none amends the Constitution** (the CGO to confirm that at the first one):
+These are changes to company templates and charters implied by the list above. Each is made by its owning seat, through a PR, and **none amends the Constitution** (the CGO to confirm that at the first one). Status as of 2026-10-04 (`pipeline/consistency-sweep-2026-10-04.md`):
 
-- `pipeline/templates/review-pack.md`: add a "Delivery measures and retrospective" section (CGO)
-- `roles/cto.md`: wave plans and file ownership among what the CTO produces (CTO)
-- `.claude/commands/build.md`: waves in step 3, and the security baseline before step 3 (orchestrator, with the CTO)
+**Open:**
+
 - `pipeline/templates/`: a ticket-format page, a product `CLAUDE.md` starter, a PR template and a delivery-log template (PM/BA)
-- **Files that still state the old order** (QA only after merge), or leave out pre-merge QA, after D6. Each is changed by its owner; this file was the only one edited:
-  - `products/haunt/STATUS.md` line 127: *"The CEO merges … QA verifies requirement tickets after merge and alone moves them to Done."* (orchestrator / Coordinator)
-  - `products/haunt/standup-routine.md` §8, line 119: "In review → QA" happens on merge, and the reviewer moves the ticket to QA *"when all its work is merged"*; line 120 has no wave-gate step before Done (PM/BA)
-  - `products/haunt/agentic-agile-adoption.md` line 240: *"QA runs continuously and is not held for the wave gate. Tickets reach the QA column as their PRs merge"*; line 396: *"QA verifies independently after merge"* (PM/BA; a dated proposal, so a dated note rather than a rewrite)
-  - `decisions/2026-09-16-haunt-gate.md` D34, line 415: *"A requirement ticket reaches QA when all its stories are merged."* (CGO; a record, so superseded by D6 rather than edited)
-  - `pipeline/amendment-draft-coordinator.md` lines 571 to 574: recommends keeping QA *"after"* (CGO; overtaken by D6)
-  - `.claude/commands/build.md` lines 10 to 11: Engineer then QA, with no review step, no merge and no wave-gate check (orchestrator, with the CTO)
-  - `roles/qa.md` line 25 ("Invoked"): silent on when in the chain QA runs (QA seat; charter changes through the CGO)
-  - `haunts` `.github/pull_request_template.md` lines 41 to 50 and `docs/conventions.md` line 102: merge follows the review record, with no QA step before it (CTO)
-  - Not affected: Haunts tickets. Their generated Verification text (`products/haunt/backlog-tickets.py` lines 338 to 339) and the implementation-story template state who moves a ticket to Done, not when QA runs. `pipeline/dissent-chief-of-staff.md` line 130 quotes the old order, but it is the Skeptic's memo and is never edited.
+- `haunts` `.github/pull_request_template.md` lines 41 to 50 and `docs/conventions.md` line 102: merge follows the review record, with no QA step before it (CTO)
+
+**Done:**
+
+- `roles/cto.md`: wave plans, file ownership, the review record on every PR and `/coordinator` generator review among what the CTO produces (CTO)
+- `.claude/commands/build.md`: defers to "The per-ticket chain"; waves and file ownership; security baseline and agent controls before code (main session, CTO-reviewed)
+- `pipeline/templates/review-pack.md`: "Delivery measures and retrospective" section added (CGO)
+- `roles/qa.md` "Invoked": QA's place in the chain after D6 (QA seat, through the CGO)
+- `products/haunt/STATUS.md` line 127 and `products/haunt/standup-routine.md` §8: the D6 order (PM/BA)
+- `products/haunt/agentic-agile-adoption.md` lines 240 and 396: a dated note rather than a rewrite, as it is a dated proposal (PM/BA)
+- `decisions/2026-09-16-haunt-gate.md` D34: cross-referenced to D6 and not edited, as it is a record (CGO)
+
+**Left as written:** `pipeline/amendment-draft-coordinator.md` lines 571 to 574 (overtaken by D6; a draft record). `pipeline/dissent-chief-of-staff.md` line 130 quotes the old order, but it is the Skeptic's memo and is never edited. Haunts tickets are not affected: their generated Verification text states who moves a ticket to Done, not when QA runs.
 
 ## Change log
 

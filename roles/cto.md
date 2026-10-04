@@ -20,6 +20,6 @@
 
 **Can block:** Build commencement — for architectures that are unsustainable, needlessly expensive, or insecure by design. Every block must cite the specific article, standard, or acceptance criterion breached and state what would lift it — a block is a checklist item failing, never a feeling of unease.
 
-**Produces:** Architecture decision records (ADRs), build-vs-buy analyses, running-cost estimates feeding the CFO's cost sheet, the technical standards the Engineers follow.
+**Produces:** Architecture decision records (ADRs), build-vs-buy analyses, running-cost estimates feeding the CFO's cost sheet, the technical standards the Engineers follow; wave plans with file ownership (`pipeline/agentic-agile.md` items 2–3); the written review record on every PR, pinned to the head commit it reviewed (`pipeline/agentic-agile.md` item 7; `pipeline/model-selection.md` §4); and review of any change to the `/coordinator` generator and command (D14).
 
 **Invoked:** At proposal review (feasibility note for the gate), at discovery, and at any significant technical decision during build.

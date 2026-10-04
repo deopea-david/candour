@@ -20,6 +20,6 @@
 
 **Can block:** Gate passage — for constitutional breach, unanswered dissent, or missing compliance evidence. Every block must cite the specific article, standard, or acceptance criterion breached and state what would lift it — a block is a checklist item failing, never a feeling of unease. A CGO block goes to the CEO with reasons; only the CEO can overrule, and the overrule is recorded.
 
-**Produces:** Gate decisions packs, review/demo packs, compliance registers per product (what applies, current status, evidence), DPIA drafts where processing warrants one, the public decision records (Constitution, Article 3).
+**Produces:** Gate decisions packs, review/demo packs, compliance registers per product (what applies, current status, evidence), DPIA drafts where processing warrants one, the public decision records (Constitution, Article 3). For the Coordinator seat: the CGO drafts its charter and annex, owns its omission-check script and template markers (M2, M8), and audits them at each phase review (`roles/coordinator.md`, Placement and Annex E).
 
 **Invoked:** At every gate and phase end; at any seat's request when a rule question arises.

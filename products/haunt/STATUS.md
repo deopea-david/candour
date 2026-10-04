@@ -1,6 +1,8 @@
 # Haunts — status and hand-off
 
 **As of:** 2026-10-02 · **Phase:** planning complete; **build starts at M1** (M0's remaining spikes run alongside)
+
+**Note, 2026-10-04:** the `haunts` repo has moved on since this was written (PR #357 merged; MAINT-6 agent controls). This file is state, not authority, and is to be refreshed at the next build session.
 **Product name:** Haunts (D9, still a working name until PLAT-6's checks pass) · **Slug in `candour`:** `haunt` · **Code repo:** `deopea-david/haunts` (private; local clone `~/Documents/haunts`) · **Board:** https://github.com/users/deopea-david/projects/1
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
@@ -119,12 +121,14 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ## Next step: the build (M1)
 
+*Dated note, 2026-10-04: the `haunts` repo has moved on since this was written (PR #357 merged; MAINT-6 agent controls). This section is state, not authority, and is to be refreshed at the next build session.*
+
 1. **CTO plans the first wave of M1.** Start with **SPK-21 (the B-strict scaffolding)** and **MAINT-4 (the arrow-function lint rule)** in the same set-up wave, then the two-file store (DATA-1/2, D63), the JS-free capture path (CAP-1), entitlement and sessions foundations. Fill each ticket's CTO-maintained files section, set the **Wave** field, and confirm or move the **provisional** milestones (M1–M5).
 2. **CSO writes the threat model** alongside the first wave, and approves the B-strict dev tools (`dependency-cruiser`, `eslint-plugin-eslint-comments`).
 3. **Remaining M0 spikes** run as desk research in the background, two or three at a time: SPK-02 (Block 2), SPK-03, SPK-04, SPK-06, SPK-07, SPK-10, SPK-11, SPK-12, SPK-13, SPK-14, SPK-18, SPK-19, SPK-22.
 4. **Standups start** (`standup-routine.md`). The CEO logs his hours per phase (D35).
 
-**The PR flow in `haunts`:** the author seat opens a branch (`type/KEY-slug`) and writes commits with the key and `Refs: #n`. The orchestrator pushes and opens the PR. **A seat other than the author reviews**, and the review is pinned to the head commit and posted on the PR. The CSO reviews anything labelled `needs:cso-review`. **QA verifies the PR in full before merge** (D6), checking a split requirement limb by limb on each PR (D9). The CEO merges every PR (D8) with **"Create a merge commit"**. If GitHub offers "Update branch", choose **merge, never rebase**. After merge, QA runs a light integration check once per wave, checks a split requirement as a whole (D9), and only then alone moves the ticket to Done (D6). Decisions D6, D8 and D9: `decisions/2026-10-02-coordinator-seat.md`; practice: `pipeline/agentic-agile.md`.
+**The PR flow in `haunts`:** the author seat opens a branch (`type/KEY-slug`) and writes commits with the key and `Refs: #n`. The main session pushes and opens the PR. **A seat other than the author reviews**, and the review is pinned to the head commit and posted on the PR. The CSO reviews anything labelled `needs:cso-review`. **QA verifies the PR in full before merge** (D6), checking a split requirement limb by limb on each PR (D9). The CEO merges every PR (D8) with **"Create a merge commit"**. If GitHub offers "Update branch", choose **merge, never rebase**. After merge, QA runs a light integration check once per wave, checks a split requirement as a whole (D9), and only then alone moves the ticket to Done (D6). Decisions D6, D8 and D9: `decisions/2026-10-02-coordinator-seat.md`; practice: `pipeline/agentic-agile.md`.
 
 **Tickets:** generated from `requirements.md` by `backlog-tickets.py` and created by `backlog-create.py` (key → issue map in `backlog-issues.csv`). A changed requirement means regenerating the ticket body, never hand-editing it (D31). **Always set a board Status on any ticket created by hand** (the `MAINT-n` ones were once left without one).
 
@@ -133,7 +137,7 @@ A private, on-device journal of places visited. The phone detects visits; the us
 ## How this company works — things a new session should know
 
 - **Replies to the CEO are short and plain; documents stay thorough.** One decision at a time. This is in `CLAUDE.md` and binds every seat's summary.
-- **Seats are the agents in `.claude/agents/`**, each bound to its charter in `roles/`. **The main session is the orchestrator** (CEO, 2026-09-26): it commissions the seats, routes their artifacts between them, and brings the CEO only questions and decisions. The CEO guides and decides. Where no seat owns a task, the main session has acted as the **CVO**.
+- **Seats are the agents in `.claude/agents/`**, each bound to its charter in `roles/`. **The main session is the Coordinator only after `/coordinator`** (D14): it commissions the seats, routes their artifacts between them, and brings the CEO only questions and decisions. The CEO guides and decides. Where no seat owns a task, the main session acts as the **CVO** only in a fresh session and only when the CEO explicitly asks (D16). Decisions D14 and D16: `decisions/2026-10-02-coordinator-seat.md`.
 - **Record decisions as they are made**, in the decision record's CEO decisions log, then commit and push. Uncommitted work has been lost once in this cycle.
 - **Never `git add -A` blindly.** It once swept an in-progress requirements draft onto the wrong branch. Stage named paths.
 - **Agents hit usage limits and occasionally stall.** Commission them to write incrementally. When one stops, resume it with SendMessage and ask it to continue from disk. Run two or three at a time, not more.

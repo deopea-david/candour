@@ -12,6 +12,8 @@
 > 4. **Confirmed by testing, previously inferred:** gitleaks keywords are case-insensitive (T4) [E, RESULTS.md]. Hooks run from a git worktree (T13). Hook and CI output is redacted (T11: 46 outputs checked against every generated value, none present).
 > 5. **Accepted non-security departures:** the `SECURITY.md` placeholder reads *"TBD — CEO decision pending"*. `CLAUDE.md` carries a one-line heading above §8.3's text. `.claude/settings.json` is committed, as §8.3 allowed. Everything else in `haunts` commit `0f8bfa4` matches this spec's code blocks **line for line** [E, checked mechanically by me against the working tree of `/Users/davidparrish/Documents/haunts`, 2026-09-26].
 >
+> **CSO note, 2026-10-04 (guard-rail wording):** §8.3 rules 5 and 7 and the CI bullet now read "report … to the main session" and "never ask for a merge on a red `secret-scan`", because no seat merges (D8). Wording only. The CEO's merge of this change is the approval. The matching `haunts/CLAUDE.md` lines are to be mirrored in a follow-up.
+>
 > **Still open after testing:** T14 (first push: `secret-scan` green, including the checksum step, which was not run locally) and T15 (the Claude Code deny rules, which need an interactive session).
 
 **Slug:** `haunt` · **Product name:** Haunts (D9) · **Answers:** D29 (*"Referred to the **CSO**, whose charter covers secret hygiene, to specify the baseline"*) and the CVO's two additions recorded under it.
@@ -514,7 +516,7 @@ into the app in plain text.
   The hooks run gitleaks, a private-key check, a large-file check, a merge-conflict
   check, and a block on signing and credential filenames.
 - **CI.** `.github/workflows/secret-scan.yml` scans the whole history on every push and
-  pull request. **Never merge on a red secret-scan.**
+  pull request. **Never ask for a merge on a red secret-scan.**
 - **Changes to the guard rails** (`.pre-commit-config.yaml`, `.gitleaks.toml`,
   `.github/workflows/secret-scan.yml`, the security block of `.gitignore`, this file)
   need a written note from the CSO seat and the CEO's approval, recorded in the
@@ -563,10 +565,10 @@ the fix is a narrow allowlist entry in `.gitleaks.toml`, with a comment naming t
    fixtures, commit messages, issues, pull requests, tickets or chat. **A secret an agent
    has seen counts as leaked.**
 5. **If you see a secret anywhere** (a diff, a file, command output): stop, do not commit,
-   and report **the path and the type only, never the value** to the orchestrator.
+   and report **the path and the type only, never the value** to the main session.
    Do not try to rewrite history yourself.
 6. **Stage named paths only.** Never `git add -A` or `git add .`.
-7. **Never merge on a red `secret-scan`.** Never force-push to `main`.
+7. **Never ask for a merge on a red `secret-scan`.** Never force-push to `main`.
 8. **Workflows:** pin every action to a full commit SHA; default to
    `permissions: contents: read`; never use `pull_request_target`; reference secrets only
    as `${{ secrets.NAME }}` and never echo them.

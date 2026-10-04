@@ -214,7 +214,7 @@ M1 and M6 measure what the CEO notices. **A falling M1 is not evidence of qualit
 
 # About this page
 
-**Status.** In force from 2026-10-04 (D13), in a session where the CEO has run `/coordinator` (D14). Adopted by the CEO (D2–D5; D16 replaced D4a). Not yet listed in Article 6:** the amendment writes it in publicly (Article 11; `pipeline/amendment-draft-coordinator.md` §13, Decision 9). Until then the seat is in force as a charter the CEO adopted.
+**Status.** In force from 2026-10-04 (D13), in a session where the CEO has run `/coordinator` (D14). Adopted by the CEO (D2–D5; D16 replaced D4a). Not yet listed in Article 6: the amendment writes it in publicly (Article 11; `pipeline/amendment-draft-coordinator.md` §13, Decision 9). Until then the seat is in force as a charter the CEO adopted.
 
 - This page is the canonical charter for the seat and the standing instructions of **the main Claude Code session when the CEO invokes `/coordinator`** (D14). The command is generated from this file; edit this file, never the command. It is deliberately **not** a subagent definition.
 - **The Operating annex below is part of the charter.** It moves to `pipeline/coordinator-operating.md` when the amendment is applied. Charter and annex carry the same protection: changes are drafted by the CGO, never by the seat itself.

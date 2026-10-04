@@ -18,7 +18,7 @@ The file is the memory. If it is not written down, it did not happen.
 **`docs/standups/YYYY-MM-DD.md` in the `deopea-david/haunts` repository**, one file per calendar day (UK date), created by whichever seat writes first that day.
 
 - **Append only.** Never edit or delete another seat's entry. Corrections are a new entry that says what it corrects.
-- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry directly to a `standups` branch that is merged daily — **the orchestrator's call, not this document's** [J].
+- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry directly to a `standups` branch. **The notes are batched: the CEO merges that branch once, at each wave gate** (CEO decision D22, `decisions/2026-10-02-coordinator-seat.md`, 2026-10-04: *"b"*), not daily, because he merges every PR (D8). Until then the notes are readable on the branch.
 - The PM/BA's summaries to the CEO (§6) are **not** kept here; they go to the CEO in chat. The file holds the working record only.
 
 ---
@@ -30,7 +30,7 @@ The file is the memory. If it is not written down, it did not happen.
 3. **Commits and PRs since the last entry by your seat:** `git log --since=<last entry>` on `main`, and open PRs referencing your tickets.
 4. **For QA only:** the **"QA queue"** view.
 5. **For every ticket you touch:** its row in `candour/products/haunt/requirements.md`, fetched fresh. Never work from memory of the criteria. The ticket carries a stamped copy (D31), and **the document wins**: if the ticket's stamp is older than the document's latest commit touching that ID, work from the document and say so in your entry.
-6. **For Engineers:** the ticket's (or story's) **Commission** comment, the orchestrator's verbatim instructions for this run, and its **File ownership**. Touch no file outside it.
+6. **For Engineers:** the ticket's (or story's) **Commission** comment, the main session's (the Coordinator's, in a `/coordinator` session) verbatim instructions for this run, and its **File ownership**. Touch no file outside it.
 
 ---
 
@@ -41,7 +41,7 @@ The file is the memory. If it is not written down, it did not happen.
 
 **Done:** #<issue> <KEY> <what moved, one line> [, …]  — or "nothing moved"
 **Next:** #<issue> <KEY> <what I will do next, one line> [, …]
-**Blocked:** #<issue> <KEY> — <blocked by what, one line> — needs <seat | orchestrator | CEO>  — or "none"
+**Blocked:** #<issue> <KEY> — <blocked by what, one line> — needs <seat | main session | CEO>  — or "none"
 **Notes:** <optional; at most two lines; anything the next reader would otherwise have to rediscover>
 ```
 
@@ -82,7 +82,7 @@ A day with no Haunts work has no file. **An empty day is not a missed standup.**
 
 ## 6. The PM/BA's summary to the CEO
 
-Sent in chat by the orchestrator, **after** the PM/BA's daily entry, on days something changed. Per `CLAUDE.md`, *"Talking to the CEO"*: short, plain, leads with the answer, numbers and bad news included.
+Sent in chat by the main session (the Coordinator, in a `/coordinator` session), **after** the PM/BA's daily entry, on days something changed. Per `CLAUDE.md`, *"Talking to the CEO"*: short, plain, leads with the answer, numbers and bad news included.
 
 **At most five plain lines:**
 
@@ -101,13 +101,13 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 | Blocked by | Who acts | How | Time limit before it goes up a level |
 |---|---|---|---|
 | **Another ticket or spike** | The seat that owns the blocking ticket | `Blocked` line naming it; the blocked ticket gets the `blocked` label and its "Blocked by" field set | Next PM/BA daily entry |
-| **A seat's ruling** (CTO, CSO, CFO, CGO, UX) | **The orchestrator**, which commissions that seat | PM/BA's entry says *"needs <seat>"*; the orchestrator reads the file and commissions the seat with the ticket and the question | The orchestrator commissions within one working day of the entry [J] |
+| **A seat's ruling** (CTO, CSO, CFO, CGO, UX) | **The main session**, which commissions that seat | PM/BA's entry says *"needs <seat>"*; the main session reads the file and commissions the seat with the ticket and the question | The main session commissions at the next session after the entry [J] |
 | **A spec defect** — a criterion that is wrong, untestable or contradicts another | **PM/BA** | The Engineer or QA writes it as a `Blocked` line naming the ID and limb, and adds the `spec-defect` label; **nobody builds through it** (Engineer charter: *"raise spec defects… rather than building through them"*). The PM/BA answers in `requirements.md` and, if criteria change, a §24 row | Next PM/BA entry |
 | **An escaped defect**: wrong behaviour in something a **Done** ticket covers | **The owning seat of the Done ticket**; QA re-verifies | Whoever finds it files a **new** issue labelled `escaped`, linking the Done ticket and naming the finder (QA, CTO/CSO, CEO at a demo, a user after release), and writes a `Blocked` or `Notes` line. The Done ticket is not reopened | Next PM/BA entry; counted in the phase review pack |
 | **A CEO decision** (anything in Constitution 5.4 — money, pricing, user-data policy, kill/proceed, release) | **The CEO** | The ticket gets `needs:ceo`; the PM/BA's summary puts it on line 4, **one decision at a time** | Raised in the next summary; never decided by a seat |
-| **A seat's block** (Constitution 5.6) | The blocking seat, or the CEO to overrule | Recorded as a block, citing the seat's charter ground; only the CEO may overrule, and every overrule is recorded in the decision record | Straight to the orchestrator and the CEO |
+| **A seat's block** (Constitution 5.6) | The blocking seat, or the CEO to overrule | Recorded as a block, citing the seat's charter ground; only the CEO may overrule, and every overrule is recorded in the decision record | Straight to the main session and the CEO |
 
-**A blocker listed on two consecutive days with no movement goes up one level automatically** — to the orchestrator if it was with a seat, to the CEO's summary if it was with the orchestrator. This is the standup's version of the evidence standard's *"twice-flagged is escalated"* rule [J, PM/BA]: a blocker that is merely repeated becomes furniture.
+**A blocker listed on two consecutive days with no movement goes up one level automatically at the next session** — to the main session if it was with a seat, to the CEO's summary if it was with the main session. This is the standup's version of the evidence standard's *"twice-flagged is escalated"* rule [J, PM/BA]: a blocker that is merely repeated becomes furniture.
 
 ---
 
