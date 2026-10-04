@@ -1,7 +1,7 @@
 # Decision record — the Coordinator seat (Article 6 amendment, in preparation)
 
 **Date:** 2026-10-02 · **Decided by:** CEO · **Compiled by:** CGO · opus (Opus 5.5) · effort high (seat default), commissioned by the main session, 2026-10-02
-**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bound every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **D16 (2026-10-04) replaced the second, and D4a:** the main session may act as any seat except the Skeptic, but only in a fresh session and only when the CEO explicitly asks for that seat. **D17 (2026-10-04) accepted the charter's compaction placement as built:** the honest-broker rules are not counted as limits, so they sit after the part of the command that compaction keeps (D17, below). **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
+**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bound every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **D16 (2026-10-04) replaced the second, and D4a:** the main session may act as any seat except the Skeptic, but only in a fresh session and only when the CEO explicitly asks for that seat. **D17 (2026-10-04) accepted the charter's compaction placement as built:** the honest-broker rules are not counted as limits, so they sit after the part of the command that compaction keeps (D17, below). **D18 (2026-10-04) kept the chat widget tools available** and **D19 (2026-10-04) settled how a `/coordinator` session confirms that credits are off: the CEO says so at the start of the session** (both below). **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
 **This is not a gate.** Nothing was killed, proceeded or parked.
 **Anti-drift (5.2):** not applicable. This is not an idea in the pipeline [E, `research/2026-10-orchestrator-practice.md`, header].
 **Publication.** Article 3 requires publication within 30 days for gate decisions. This is not one, but the CGO committed to the same standard [J, `pipeline/amendment-draft-coordinator.md` §11 item 21]. **Due by 2026-11-01.** ~~**Held for now:** the CSO has not cleared the branch for publication (*"no, not yet"*, `pipeline/cso-controls-results.md`, CSO review R5).~~ *(2026-10-04: cleared. The CSO's sign-off: "Publication under my §6: **yes**", with its redactions applied [E, `pipeline/cso-controls-results.md`, S5]. The push waits on the CEO's approval.)* This record carries the same facts and is held with it. **If the hold has not lifted by 2026-10-25, the date goes to the CEO.**
@@ -548,6 +548,56 @@ Both of his messages were read from his own transcript by this seat, and match t
 
 **Applied** in `pipeline/amendment-draft-coordinator.md` (Revision 13; §13; a dated note under §16.6). No other file.
 
+### D18 — The widget tools stay available. *2026-10-04, 13:29:45.*
+
+*Recorded by the CGO because it concerns the Coordinator's own conditions (A3). Commissioned by the main session (Coordinator); written by a Sonnet run of the CGO seat. Times are BST, converted from the transcript's UTC timestamps.*
+
+**What the CSO found.** The in-chat widget's `sendPrompt(text)` can send text *"as if the user typed it"*, and no click, confirmation or marking of the message as widget-sent is documented [E, `pipeline/cso-controls-results.md`, "Widget sendPrompt, 2026-10-04"; the CSO's own conclusion is [I], with likelihood low [J]]. It recommended a flag, not a block, and one deny rule, `mcp__*__show_widget`, at a cost of €0 and the loss of inline charts and diagrams in this repository's sessions [E, same section].
+
+**The question put to him** (main session, 2026-10-04 12:28:50 UTC, `assistant` message) [E, `~/.claude/projects/-Users-davidparrish-Documents-candour/0c6ad0a8-7bbf-41a1-854b-c438904372e6.jsonl`, read-only by this seat 2026-10-04]: *"should the CSO open the small PR to deny the chat widget in this repo? The cost is that I can't draw diagrams or charts inline here."*
+
+**His answer** [E, same transcript, `user` message, 2026-10-04 12:29:45.971 UTC; it is the second line of a two-line message, the first being "Pushed"]:
+
+> *"No, we want those tools to be available"*
+
+**What it settles.**
+- **No deny rule for the widget tool.** `.claude/settings.json` is not changed by it, and the CSO opens no PR for one.
+- **The residual risk is accepted by him, and is stated here once.** A message sent from a widget would be treated as if he had typed it, so it could stand in for a "Yes", an approval or a `/coordinator` [I, the CSO's reading]. The CTO's re-review of #23 adds that a widget-sent message almost certainly carries `origin.kind: "human"`, so the omission check (M2) would count it as his words [E, main session's report to him, 2026-10-04 12:39:18 UTC, same transcript; the CTO's review itself is not cited by this seat]. **That is inference: no widget-sent message exists locally to check** [I]. What the controls lose is the property the CSO named, that *"the CEO's own message"* is consent; what they keep is every deny rule and the guard, which a forged "Yes" cannot defeat [E, CSO section above].
+- **What would overturn it.** A vendor statement, or a test he runs in a throwaway session, showing that `sendPrompt` needs a click or marks its message as widget-sent. Then the risk narrows, and the CSO's own note applies: *"a message from a widget is not the CEO's"* in the charter would do [E, CSO section, "What would overturn this"].
+
+**Still open: one optional rule, not answered by him.** The main session also offered a one-line charter rule: widgets never send decisions, approvals or slash commands. **He has not answered it.** It is recorded as open and **no word of it is in the charter** [J: this seat did not add it on its own reading]. It would also need room in the limits window (see D19, Applied).
+
+**Applied.** This record only.
+
+### D19 — A `/coordinator` session confirms that credits are off because the CEO says so, at the start of the session (option 1). *2026-10-04, 13:41:51.*
+
+*Recorded by the CGO because it concerns the Coordinator's own charter (A3). Commissioned by the main session (Coordinator); written by a Sonnet run of the CGO seat.*
+
+**The gap.** Annex C told the session to confirm that credits are still off *"using the check the CTO establishes (§11 of the amendment draft)"* [E, `roles/coordinator.md` v0.9, Annex C, the "Before relying on that stop" bullet]. **No such check exists** [E, main session's report, 2026-10-04 12:34:14 UTC, same transcript: *"the CTO never established one"*]. A new `/coordinator` session therefore raised it as a flag and asked before every step, which defeats the autonomy granted at D5. This is the open condition 8 below.
+
+**The question put to him** (main session, 2026-10-04 12:34:14 UTC, `assistant` message, same transcript), two options:
+1. *"You tell it at the start of each `/coordinator` session, for example "credits are off"."*
+2. *"Ask the CTO to find a check the session can run itself, if the Desktop or account exposes one."*
+
+The main session's own suggestion was *"1 now, and the CTO looking into 2 at no rush"* [E, same message; its label as a view is not checked here].
+
+**His answer** [E, same transcript, `user` message, 2026-10-04 12:40:51.393 UTC]:
+
+> *"option 1"*
+
+**What it settles.**
+- **His word is the check.** At the start of a `/coordinator` session, the session asks him to confirm that credits are off, unless he has already said so in that session. Until he confirms, it treats the setting as unknown and asks before each step.
+- **Credits remain off by D0.2.** This changes how a session confirms it, not the setting. Turning credits on is still his decision alone (5.4).
+- **What it costs, stated once.** One sentence from him at the start of each session, and, after a compaction, one more with the re-run of `/coordinator` (the charter is then re-read in full). Without it, every step waits for his yes.
+- **The limit of the check [I].** It is his statement of a setting, not a reading of the account. If the setting were changed without his remembering, the session would not see it. Option 2 (the CTO looking for a self-check) was not chosen; **it was not researched, and this seat does not know whether such a check exists.** Condition 8 is closed as to the method, and nothing stops him asking for option 2 later.
+
+**Applied.**
+- **Charter v0.10, Annex C**, the "Before relying on that stop" bullet: *"confirm that credits are still off"*; his own word in the session is the confirmation (D19); at the start of a `/coordinator` session, ask him to confirm credits are off, unless he has already said so in that session; until he confirms, treat the setting as unknown and ask before each step; if a usage-limit or billing message suggests otherwise, treat it as unknown again. **The reference to "the check the CTO establishes" is removed.** The last two sentences of the bullet (Fable unavailable while credits are off; turning credits on is the CEO's alone) are unchanged. The charter's earlier trigger, "whenever a usage-limit or billing message appears", is kept in the narrower form just quoted [J]: this seat kept it rather than drop a check the CEO did not ask to drop. Annex D's text is untouched.
+- **The command regenerated** from the charter (`scripts/build-coordinator-command.py`). The limits end at **byte 12,491 of the 12,500-byte ceiling**: 9 bytes of headroom [E, measured on the generated command; the test `test_every_limit_fits_in_the_compaction_window` passes]. **Any further limit added to Annex C to F will not fit without moving or trimming something,** including the optional widget rule under D18. Do not raise the ceiling (the test says so); re-measure the window first (draft §16.6).
+- **Not updated, flagged:** `pipeline/amendment-draft-coordinator.md` §11 item 24 (the CTO's credit-check task) and its §16 still describe the CTO establishing a check [I; not read in full by this seat for this commission]. They need a one-line note that D19 supersedes them.
+
+**This is a charter change, so merging the PR is what adopts it (D8).** It is one line of Annex C, not Annex D, so precondition 3 is not engaged [I].
+
 ---
 
 ## CGO flags on D11 and D12
@@ -609,7 +659,7 @@ He did not add to it.
 | 5 | **One redaction:** connector providers named in `pipeline/cso-controls-results.md` become kinds (email, file storage, calendar) | CSO, as author of that file's review | **Gates publication (R5)** |
 | 6 | **The M2 omission check and template markers** exist, and have run before a decision request | CGO (spec, owner), Engineer (script) | **Gates Decision 9** (the amendment) |
 | 7 | **Publication** of this record with the draft, the memo, the brief and the CSO files | CGO, once the CSO clears it | **Due 2026-11-01** [J, the CGO's commitment]. If still held on 2026-10-25, the date goes to the CEO |
-| 8 | **The usage-credit check method** (how the seat confirms credits are still off) | CTO (§11 item 24) | Before Annex D relies on the stop at a usage limit |
+| 8 | ~~**The usage-credit check method** (how the seat confirms credits are still off) | CTO (§11 item 24) | Before Annex D relies on the stop at a usage limit~~ **Settled by D19 (2026-10-04, 13:41:51):** the CEO states it at the start of each `/coordinator` session; no CTO check is needed. Applied in charter v0.10, awaiting his merge | CEO | In force on merge |
 | 9 | **The verbatim commissions** for this amendment are published with this record | Main session (§11 item 27) | With condition 7 |
 
 **On the next Desktop update past 2.1.286**, the CSO re-runs V1–V9 and V13 (CSO review R2, R7 step 8). That is standing, not a condition of these decisions.
