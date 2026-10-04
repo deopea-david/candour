@@ -511,3 +511,31 @@ The autonomy that starts on this record should stay inside these bounds:
 | # | Result | Evidence |
 |---|---|---|
 | V1 on `0cac2c1` | **PASS** | `/usr/bin/python3 /Users/davidparrish/Documents/candour/.claude/hooks/candour-guard-test.py` → `96 must-block, 39 must-allow, 5 isolation checks, 0 failures`. This is the documented form. The CSO's F12 refusal came from running the suite with `-I` added, which is not the documented V1 command. |
+
+## Widget sendPrompt, 2026-10-04
+
+**Seat:** CSO, subagent (Opus, effort high), commissioned by the main session for PR #22 (the CTO's flag). **Research only:** nothing was rendered or run. I prepare and flag; I do not certify.
+
+**The question.** Could the in-chat visualize widget's `sendPrompt(text)` send `/coordinator`, or a forged "Yes", that the session then treats as the CEO's own message?
+
+**What the sources say.**
+- The `show_widget` tool description, as loaded in this session: *"A global sendPrompt(text) function is available — it sends a message to chat as if the user typed it"*, and *"Scripts are supported but execute after streaming completes."* [E, the tool's schema in this session, 2026-10-04; single source, the vendor's own text.]
+- The tool's `read_me` guidance (fetched this session) repeats the definition and presents `sendPrompt` as something a button calls. **It names no user-gesture requirement, no confirmation step, and no marking of the message as widget-sent.** [E, `mcp__visualize__read_me`, 2026-10-04.]
+- The Claude Code docs say nothing about widgets or `sendPrompt`. I searched the docs index and the skills, permissions, tools-reference and Desktop pages. [E, https://code.claude.com/docs/llms.txt and the four pages under https://code.claude.com/docs/en/, retrieved 2026-10-04.] **The docs are silent; this is a gap, not a clean bill.**
+
+**What I conclude.**
+- **[I] Yes, the route plausibly exists.** The model writes the widget's code. Scripts run once the widget renders. Nothing documented requires a click before `sendPrompt` runs. The message then arrives "as if the user typed it", so neither the harness nor a later turn can tell it from the CEO's words. A widget-sent `/coordinator` at the start of a message would, if parsed like a typed message, run the command directly (skills.md, "Where you write the skill's name"). A widget-sent "Yes" would read as the CEO's approval of whatever was last asked.
+- **[I] What this route reaches.** It does not defeat deny rules or the guard: a forged "Yes" cannot make a denied action allowed. What it defeats is every control that rests on *the CEO's own message being consent*, which includes D8's approvals, the Coordinator seat's "ask the CEO" steps, and the run-once-per-ask rule for Fable. That is the controls' whole consent layer.
+- **[J] Likelihood is low and the cost of closing it is close to nothing.** It needs the model itself to author such a widget, whether misaligned or steered by injected content it has read. The tool call is visible in the transcript afterwards. Not verified: whether the host actually blocks script-initiated calls (for example by requiring user activation), and whether a widget opened by a subagent renders where the CEO's chat is. Either answer would only narrow the route.
+
+**Is a control needed?** **Yes, as a flag, not a block** [J]. My block power is release, on security grounds; this is repository tooling.
+
+**The control I recommend.**
+- Add one deny rule, `mcp__*__show_widget`, to `.claude/settings.json`. The glob form is needed because this session exposes the widget under two server names (`visualize` and a connector id). The repository already uses the same `mcp__*__<tool>` form for connector writes, and V8 showed that form reaching in-process connector tools.
+- **Cost:** €0, and the loss of inline charts in this repository's sessions. Pages through the Artifact tool are unaffected and do the same job for documents.
+- **Not recommended:** a hook that scans widget code for `sendPrompt`. Obfuscation defeats a text match, and a hook is more to maintain (Constitution 1.5).
+- **Not in this PR.** The commission limited `settings.json` to F3. The rule is a separate PR for the CEO to merge, then checked once like V7: the call is refused by rule.
+
+**What would overturn this.** A vendor statement, or a CEO-run test in a throwaway session, showing that `sendPrompt` needs a user click or marks its message as widget-sent. Then the deny is unnecessary, and a note in the Coordinator charter ("a message from a widget is not the CEO's") would do.
+
+**Where I looked:** the `show_widget` and `read_me` tool descriptions and `read_me` output in this session; the Claude Code docs index, skills, permissions, tools-reference and Desktop pages; this record's V7 and V8 results; the CTO's PR #22 review. **What I did not do:** render a widget or call `sendPrompt`.

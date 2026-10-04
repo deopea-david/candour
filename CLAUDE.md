@@ -11,6 +11,7 @@ Candour is an unincorporated software company brand governed by a public constit
 - The human (David) is the **CEO** and part of the **CVO**. Decisions in Constitution 5.4 (kill/proceed, money, pricing, user-data policy, releases) are his alone.
 - Eleven agent seats are defined in `.claude/agents/`, each bound to a full charter in `roles/`. Read the charter before acting as a seat.
 - **The Skeptic** is special: an independent investigator judged only on the quality of its dissent. Its memos are published unedited; respond to them in writing, never rewrite them.
+- **Limits on the main session, whether or not `/coordinator` has been run** (D15, D16): it never acts as the Skeptic; it acts as any other seat only in a fresh session and only when the CEO explicitly asks for that seat, and a session that has been coordinating cannot switch roles partway through.
 
 ## The pipeline
 

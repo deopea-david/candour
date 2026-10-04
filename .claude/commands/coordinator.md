@@ -1,3 +1,9 @@
+---
+description: "Invoke the Candour Coordinator seat for this session. Only the CEO runs this; the model cannot invoke it (charter: roles/coordinator.md)"
+disable-model-invocation: true
+---
+<!-- Generated from roles/coordinator.md by scripts/build-coordinator-command.py — do not edit; edit the charter -->
+
 # Coordinator
 
 **Candour role charter — v0.9.** The limits come first, up to the end of Annex F. Status and provenance: *About this page*, at the end.

@@ -1,0 +1,31 @@
+name: Coordinator command
+
+# .claude/commands/coordinator.md is generated from roles/coordinator.md.
+# This fails the pull request if the two have drifted, or if the tests fail.
+# Fix a drift: run
+#   python3 scripts/build-coordinator-command.py
+# and commit the result. Never edit the generated file by hand.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # actions/checkout v7.0.1, pinned to its commit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Command is current with the charter
+        run: python3 scripts/build-coordinator-command.py --check
+      - name: Generator and command tests
+        run: python3 scripts/build-coordinator-command-test.py
+      # The guard's own suite (PR #22 review F2). It hard-codes /usr/bin/python3, which
+      # Ubuntu runners have, and builds its own throwaway git repo in a temp dir.
+      - name: Guard tests
+        run: /usr/bin/python3 .claude/hooks/candour-guard-test.py

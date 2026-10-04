@@ -8,8 +8,9 @@
 #   PreToolUse (Bash, Monitor)  blocks: merging or approving a PR; pushing to,
 #       force-pushing or deleting main; GitHub ruleset, settings, ref, secret and
 #       identity writes; publishing; headless, background, scheduled or bypass
-#       runs; shell writes to the live Claude Code settings and hooks; and every
-#       command while the session is in bypassPermissions mode.
+#       runs; shell writes to the live Claude Code settings, hooks and
+#       Coordinator command; and every command while the session is in
+#       bypassPermissions mode.
 #   ConfigChange   stops a running session loosening its own settings.
 #   SessionStart   warns the CEO about bypass mode or unapproved controls.
 #
@@ -175,13 +176,16 @@ def git_out(cwd, *args):
 
 def live_control(path, cwd, env):
     """True if the path is a live Claude Code control file: the project's own
-    .claude/settings*.json or .claude/hooks (not a worktree's copy), the user's
-    ~/.claude/settings.json or ~/.claude.json, or managed settings."""
+    .claude/settings*.json, .claude/hooks or .claude/commands/coordinator.md
+    (not a worktree's copy), the user's ~/.claude/settings.json or
+    ~/.claude.json, or managed settings. The Coordinator command carries the
+    seat's charter into the session when the CEO runs it (D14), so a session
+    must not rewrite the command that grants it the seat."""
     p = expand(path, env)
     if not re.search(r"\.claude|managed-settings|ClaudeCode", p):
         return False
     if "$" in p:
-        return bool(re.search(r"\.claude/(settings|hooks)", p))  # unresolvable: fail closed
+        return bool(re.search(r"\.claude/(settings|hooks|commands)", p))  # unresolvable: fail closed
     if not os.path.isabs(p):
         p = os.path.join(cwd, p)
     p = os.path.normpath(p)
@@ -194,8 +198,35 @@ def live_control(path, cwd, env):
     pc = os.path.join(project, ".claude")
     if p.startswith(os.path.join(pc, "worktrees") + os.sep):
         return False
-    return p in (os.path.join(pc, "settings.json"), os.path.join(pc, "settings.local.json")) or \
-        p == os.path.join(pc, "hooks") or p.startswith(os.path.join(pc, "hooks") + os.sep)
+    if p in (os.path.join(pc, "settings.json"), os.path.join(pc, "settings.local.json"),
+             os.path.join(pc, "commands"), os.path.join(pc, "commands", "coordinator.md")):
+        return True
+    return p == os.path.join(pc, "hooks") or p.startswith(os.path.join(pc, "hooks") + os.sep)
+
+
+# The generator that writes the Coordinator command from the charter. It writes
+# beside its own location, so run from the live checkout it rewrites the live
+# command. Only --check, or a copy in a worktree, may run it.
+COMMAND_GENERATOR = "build-coordinator-command.py"
+
+
+def regenerates_live_command(argv, cwd, env):
+    """True for an interpreter running the live checkout's command generator
+    without --check. Unresolvable script paths fail closed."""
+    if not argv or not (is_python(os.path.basename(argv[0])) or argv[0] in OTHER_INTERPRETERS):
+        return False
+    scripts = [a for a in argv[1:] if os.path.basename(expand(a, env)) == COMMAND_GENERATOR]
+    if not scripts or "--check" in argv:
+        return False
+    for a in scripts:
+        q = expand(a, env)
+        if "$" in q:
+            return True
+        q = os.path.normpath(q if os.path.isabs(q) else os.path.join(cwd, q))
+        project = PROJECT[0] or cwd
+        if not q.startswith(os.path.join(project, ".claude", "worktrees") + os.sep):
+            return True
+    return False
 
 
 # The guard's own scripts, which may be run (never written) from the live hooks
@@ -223,7 +254,9 @@ def runs_hook_script(argv, cwd, env):
 
 def check_control_writes(argv, targets, cwd, env):
     if any(live_control(t, cwd, env) for t in targets):
-        block("writing to the live Claude Code settings or hooks (the CEO changes these by hand)")
+        block("writing to the live Claude Code settings, hooks or Coordinator command (the CEO changes these by hand)")
+    if regenerates_live_command(argv, cwd, env):
+        block("regenerating the live Coordinator command (run --check, or generate in a worktree)")
     if not argv or runs_hook_script(argv, cwd, env):
         return
     name = os.path.basename(argv[0])
@@ -233,7 +266,7 @@ def check_control_writes(argv, targets, cwd, env):
         or (name == "git" and any(a in GIT_WRITE_SUBS for a in argv[1:4])) \
         or name in OTHER_INTERPRETERS or is_python(name)
     if writes and any(live_control(a, cwd, env) for a in argv[1:]):
-        block("writing to the live Claude Code settings or hooks (the CEO changes these by hand)")
+        block("writing to the live Claude Code settings, hooks or Coordinator command (the CEO changes these by hand)")
 
 
 # ---------------------------------------------------------------- git
@@ -478,7 +511,7 @@ def check_code(code, cwd, env):
     if re.search(r"open\(|write_text|writeFile|shutil\.|os\.(remove|rename|replace|unlink)|unlinkSync|rmSync", code):
         for path in re.findall(r"[\"']([^\"'\n]*\.claude[^\"'\n]*)[\"']", code):
             if live_control(path, cwd, env):
-                block("interpreter code writing to the live Claude Code settings or hooks")
+                block("interpreter code writing to the live Claude Code settings, hooks or Coordinator command")
     if not EXEC_CONTEXT.search(code):
         return
     flat = re.sub(r"[\"'\\\[\](),+]", " ", code)
@@ -599,12 +632,15 @@ def session_start(data):
         msgs.append("This session is in bypass permissions mode. Candour runs in auto mode (Decision 1).")
     root = os.environ.get("CLAUDE_PROJECT_DIR") or data.get("cwd") or "."
     rc = subprocess.run(["git", "-C", root, "diff", "--quiet", "origin/main", "--",
-                         ".claude/settings.json", ".claude/hooks"], capture_output=True, timeout=5).returncode
+                         ".claude/settings.json", ".claude/hooks", ".claude/commands/coordinator.md"],
+                        capture_output=True, timeout=5).returncode
     if rc == 1:
-        msgs.append("The checked-out .claude/settings.json or .claude/hooks differ from origin/main, "
+        msgs.append("The checked-out .claude/settings.json, .claude/hooks or "
+                    ".claude/commands/coordinator.md differ from origin/main, "
                     "so the controls in force are not the approved ones.")
     elif rc != 0:
-        msgs.append("Could not compare .claude/settings.json and .claude/hooks with origin/main.")
+        msgs.append("Could not compare .claude/settings.json, .claude/hooks and "
+                    ".claude/commands/coordinator.md with origin/main.")
     if msgs:
         print(json.dumps({"systemMessage": "candour-guard: " + " ".join(msgs)}))
 
