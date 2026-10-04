@@ -21,7 +21,7 @@ spark → discovery (research brief, cost model, feasibility) → proposal → *
 
 - `/idea [spark or proposal]` — CVO develops it and commissions discovery
 - `/gate [slug]` — Skeptic dissent + seat reviews → decision pack → CEO decides
-- `/build [slug]` — PM/BA → CTO+CSO → Engineer(s) → CTO/CSO review → QA → the CEO merges → QA's wave-gate integration check → CGO review pack + demo (the per-ticket chain is in `pipeline/agentic-agile.md`)
+- `/build [slug]` — PM/BA → CTO+CSO → Engineer(s) → CTO/CSO review → QA → the CEO merges → QA's wave-gate integration check → UX check during the build and before release → CGO review pack + demo (the per-ticket chain is in `pipeline/agentic-agile.md`)
 - `/audit` — annual Skeptic audit of the company against its own Constitution
 - `/coordinator` — the CEO invokes the Coordinator seat for this session only (`roles/coordinator.md`; `decisions/2026-10-02-coordinator-seat.md`)
 - `/agile-sync` — check `microsoft/agentic-agile-template` for new advice since our last review and propose updates by PR (`pipeline/agentic-agile.md`)
