@@ -1,7 +1,7 @@
 # Decision record — the Coordinator seat (Article 6 amendment, in preparation)
 
 **Date:** 2026-10-02 · **Decided by:** CEO · **Compiled by:** CGO · opus (Opus 5.5) · effort high (seat default), commissioned by the main session, 2026-10-02
-**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bind every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
+**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bound every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **D16 (2026-10-04) replaced the second, and D4a:** the main session may act as any seat except the Skeptic, but only in a fresh session and only when the CEO explicitly asks for that seat. **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
 **This is not a gate.** Nothing was killed, proceeded or parked.
 **Anti-drift (5.2):** not applicable. This is not an idea in the pipeline [E, `research/2026-10-orchestrator-practice.md`, header].
 **Publication.** Article 3 requires publication within 30 days for gate decisions. This is not one, but the CGO committed to the same standard [J, `pipeline/amendment-draft-coordinator.md` §11 item 21]. **Due by 2026-11-01.** ~~**Held for now:** the CSO has not cleared the branch for publication (*"no, not yet"*, `pipeline/cso-controls-results.md`, CSO review R5).~~ *(2026-10-04: cleared. The CSO's sign-off: "Publication under my §6: **yes**", with its redactions applied [E, `pipeline/cso-controls-results.md`, S5]. The push waits on the CEO's approval.)* This record carries the same facts and is held with it. **If the hold has not lifted by 2026-10-25, the date goes to the CEO.**
@@ -156,6 +156,8 @@ It recommended *"grant it with both conditions"*. It linked Annex D of `roles/co
 **On who writes this entry.** The main session wrote it as the Coordinator, which its charter allows as a clerical act. Exception (iii) does not apply to that: it limits which seat the main thread may *act as*, and it was approved 30 seconds after this entry was written. The commission sent the entry to this seat because the record is the CGO's (charter, Produces), and the entry records limits on the Coordinator.
 
 ### D4a — A third exception to the role rule: approved. *2026-10-02, 23:56:46.*
+
+***Superseded by D16 (2026-10-04, 01:50:53).*** *The text below is kept as decided. Exception (iii) is replaced by the fresh-session rule; exception (i), never the Skeptic, stays.*
 
 **Placed after D5 because it was answered after D5.** It was put first (23:53:35) and answered second.
 
@@ -469,6 +471,53 @@ He did not strike either of the two lines this seat added to *Role* at D14. They
 **What the question put did not cover, flagged once [I].** This seat's draft question was wider: the CGO *"(or the CSO)"* on the Coordinator's *"charter, annex, omission check or controls"* [E, `pipeline/amendment-draft-coordinator.md` §13, Revision 9]. The words put to him named only the CGO and *"its own charter"*. So, outside a `/coordinator` session, nothing yet stops the main session acting as **the CSO verifying the Annex F controls**, or as **the CGO writing the omission check (M2) or a record of the Coordinator's own conduct**. Exception (iii) covers all of these inside an invoked session. **This seat did not add them, because his yes was to the narrower words.** Whether to is one yes or no for him, and not urgent: the main session commissions those seats in practice, and the autonomy does not run outside an invoked session.
 
 **Applied** in `CLAUDE.md` and in `pipeline/amendment-draft-coordinator.md` (Revision 10; §13, §16.5).
+
+***The CGO line was replaced by D16 (2026-10-04, 01:50:53). The Skeptic line stands.*** *The text above is kept as decided.*
+
+**D15 follow-up: the gap above, put to him and answered. *2026-10-04, 01:49:57.*** The main session put it at 00:48:07 UTC (same transcript, `assistant` message): *"**One small gap remains, optional and not urgent.** In ordinary sessions, nothing stops the main session acting as the CSO checking its own controls, or as the CGO writing its own omission check. … **Do you want that covered too?** Yes or no, whenever you like."* The question came from this seat's optional question to the main session (should the CSO-on-its-own-controls case, and the CGO-on-its-own-check case, also be guarded outside `/coordinator`?).
+
+**His answer** [E, `~/.claude/projects/-Users-davidparrish-Documents-candour/05f4422b-7df3-4f42-9596-96664b755c49.jsonl`, `user` message, 2026-10-04 00:49:57 UTC, read-only by this seat 2026-10-04]. The first sentence of his message:
+
+> *"No, that is fine."*
+
+**What it settles.** `CLAUDE.md` is not extended to the CSO on its own controls or the CGO on the omission check. **He then went further in the same message, and that is D16, below.** [I] Read together, the two answers leave the case where it is under D16: allowed in a fresh session, when he asks.
+
+---
+
+### D16 — The main session may be any seat except the Skeptic, but only in a fresh session and only when he asks. Replaces D4a and the CGO line of D15. *2026-10-04, 01:49:57 and 01:50:53.*
+
+*Recorded by the CGO because it concerns limits on the Coordinator seat (A3). Commissioned by the main session (Coordinator); written by a Sonnet run of the CGO seat. The CTO reviews the branch before the CEO merges it.*
+
+**His words**, the rest of the message quoted at D15's follow-up [E, same transcript, `user` message, 2026-10-04 00:49:57 UTC]:
+
+> *"Honestly, other than the skeptic, I don't necessarily see why the main session can't be any other role but only on new sessions and only when specifically asked for"*
+
+**The main session's reading, put back to him** (same transcript, `assistant` message, 2026-10-04 00:50:09 UTC; quoted in part):
+- *"The main session may act as any seat except the Skeptic. That includes the CGO on the Coordinator's own charter, and the CSO on its own controls."*
+- *"Only in a fresh session, and only when you explicitly ask for that seat. A session that has been coordinating can't switch roles partway through."*
+- *"This replaces your D4a (never the CGO on its own limits), and the CGO line we just added to `CLAUDE.md` (D15). The Skeptic line stays."*
+- *"Why it still works: a fresh session hasn't been in the room. So 'never reviewing its own work' is satisfied by starting fresh, rather than by banning seats."*
+- Under *"What you may not want to hear"*: *"one gap the old rule closed is reopened. A fresh session acting as the CGO could loosen the Coordinator's charter. It's still only a draft: the CTO reviews it and you merge it, and its record shows which session wrote it. So the backstop is your merge."* Its view: *"No view offered."* It asked: *"Is that reading right? Yes, or correct me."*
+
+**His answer** [E, same transcript, `user` message, 2026-10-04 00:50:53 UTC]:
+
+> *"Correct yes"*
+
+Both of his messages were read from his own transcript by this seat, and match the words in the commission.
+
+**What it settles.**
+- **The main session may act as any seat except the Skeptic.** That includes the CGO on the Coordinator's own charter, and the CSO on its own controls.
+- **Only in a fresh session, and only when he explicitly asks for that seat.** A session that has been coordinating, or in which `/coordinator` has been run, cannot switch roles partway through.
+- **D4a is replaced.** Exceptions (ii) *never reviewing its own work* and (iii) *never a seat that sets, checks or records the limits on the Coordinator* leave the charter's *Role*. Exception (i), *never the Skeptic*, stays. D4's *"for a session or for a task"* is narrowed to a fresh session: he did not say it applies mid-session, and the main session's reading, which he confirmed, says it cannot.
+- **D15 is replaced in part.** The CGO line in `CLAUDE.md` goes; the Skeptic line stays, and `CLAUDE.md` now carries the fresh-session rule in one line.
+- **"Never reviewing its own work" is now met by starting fresh,** not by banning seats. [I] This is the main session's reasoning, which he confirmed; `pipeline/model-selection.md` §5.4 (*"Reviewer different from author"*) is a separate rule that D16 does not touch.
+- **Stated residual** (put to him in the reading above, and confirmed): a fresh session acting as the CGO could loosen the Coordinator's charter. The backstop is the CTO's review plus his merge (D8), and the provenance line, which records which session wrote the artifact (`pipeline/model-selection.md` §5.5).
+
+**Applied** in `roles/coordinator.md` v0.8 (header; *Role*; *Commissioning*; *Invoked*), in `CLAUDE.md` ("Who's who"), and in `pipeline/amendment-draft-coordinator.md` (Revision 11; §10 item 3, §11 item 1, §13). **Not touched: Annex D.** Its approved words (precondition 3) say the autonomy *"does not run while the main thread acts as another seat"* and still read true under D16. The charter's ordering is kept: every rule still sits before Annex A, and the command's Annex A begins at about byte 19,200, inside the 19,300 limit.
+
+**Two things for the CEO to strike if he did not mean them [J].**
+1. *"Decline, and tell the CEO to start a new session"*, in the charter's *Role*. It is how a session that has been coordinating refuses a mid-session role switch, and his words *"only on new sessions"* require it.
+2. The CVO is folded into the general rule (*"any seat except the Skeptic"*); the charter's separate *"acts as the CVO only when the CEO says so"* line is gone. D16's *"explicitly asks"* covers it, and it is no looser.
 
 ---
 
