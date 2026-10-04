@@ -394,6 +394,8 @@ Both quotes are read from his own messages in the same transcript file, as for D
 
 **Correction recorded with it: the restart rule.** At 00:38:22 the main session told the CEO the restart is needed *"after any change to `.claude/settings.json`"*, narrower than the CSO's rule (CGO flag 4, below). At 00:53:51 it corrected itself, in its own words: *"That narrowing was mine, and it's wrong now: the output style we're about to add also loads only at session start. **Go back to the CSO's broader rule: restart after any change under `.claude/`.**"* **The rule is the CSO's form again:** restart after any change to `.claude/` on disk, by hand or by a pull [E, `pipeline/cso-controls-results.md`, "V9(iv) limit"]. This closes flag 4. It was closed by the main session's correction, and the CSO's rule was never narrowed.
 
+**Later the same day: charter v0.5.** At the CEO's request, *"I would like the CGO to trim afterwards to avoid excessive context/token usage"* (01:03:23; source in draft §16), the charter is trimmed. Its status lines, history and quotations move to `pipeline/amendment-draft-coordinator.md` §16, verbatim. No operative rule moves out or changes meaning, and §16.1 maps each one.
+
 ---
 
 ## CGO flags on D11 and D12
@@ -498,6 +500,15 @@ Recorded here because they shaped what the CEO was told. Each has the original w
 
 ## Corrections
 
-None yet. A correction to this record will preserve the original text verbatim, name the error, attribute it, and be dated.
+A correction to this record preserves the original text verbatim, names the error, attributes it, and is dated.
+
+**C1, 2026-10-04 (CGO). D6, "What it settles": "Applied to charter Annex D."**
+- **The original text,** first bullet, last two sentences: *"Applied to charter Annex D. **The order of the CTO's review and pre-merge QA was not decided**; it is for the PM/BA's process file [I]."* It stays in place, unedited.
+- **The error.** D6 was not applied to the charter. Annex D still reads *"Then QA. … Where QA sits relative to the merge is his decision; until he makes it, QA follows his merge"* [E, `roles/coordinator.md` v0.4 and v0.5, Annex D]. D6 was written into `pipeline/agentic-agile.md`, "The per-ticket chain", which is on `main`.
+- **Attributed to:** this seat, which compiled D6. Found by this seat while trimming the charter to v0.5.
+- **Effect [I, high confidence]:** none on what governs. Annex D's chain applies only *"until a process file says otherwise"*, and the process file now does. A reader of the charter alone is told the old order.
+- **Not fixed in the charter at first,** because Annex D's words are the text the CEO approved at D5 (precondition 3). The fix needed one yes or no from him to a new Annex D text: `pipeline/amendment-draft-coordinator.md` §16.3, flag 1.
+- **The CEO's answer: yes. 2026-10-04, 01:14:57.** The question put (main session, 00:11:54 UTC): *"May the CGO update that one line of Annex D to match D6? It changes your approved text only to bring it into line with your later decision."* His answer, the first line of his message: *"1. Yes"* [E, `~/.claude/projects/-Users-davidparrish-Documents-candour/2e1bef0c-52b9-4bac-891a-50b1ab827978.jsonl`, `user` message, 2026-10-04 00:14:57 UTC, read-only by this seat 2026-10-04; it matches the main session's relay].
+- **Applied** in charter v0.5, Annex D, "The per-ticket chain": full QA on the branch before the PR; the CEO merges every PR (D8); the integration check once per wave; QA moves the ticket to Done only after it (D6); a split requirement checked per PR and confirmed at the integration check after its last story merges (D9). **Precondition 3 now covers Annex D's text as amended by this yes** [I, high confidence]. No other word of Annex D changed.
 
 **This seat prepares and flags; it does not certify.** Every decision above is the CEO's (Constitution 5.4; Article 11.1).
