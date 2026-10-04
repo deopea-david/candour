@@ -1,7 +1,7 @@
 # Decision record — the Coordinator seat (Article 6 amendment, in preparation)
 
 **Date:** 2026-10-02 · **Decided by:** CEO · **Compiled by:** CGO · opus (Opus 5.5) · effort high (seat default), commissioned by the main session, 2026-10-02
-**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bound every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **D16 (2026-10-04) replaced the second, and D4a:** the main session may act as any seat except the Skeptic, but only in a fresh session and only when the CEO explicitly asks for that seat. **D17 (2026-10-04) accepted the charter's compaction placement as built:** the honest-broker rules are not counted as limits, so they sit after the part of the command that compaction keeps (D17, below). **D18 (2026-10-04) kept the chat widget tools available** and **D19 (2026-10-04) settled how a `/coordinator` session confirms that credits are off: the CEO says so at the start of the session** (both below). **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
+**Decision:** the seat is **ADOPTED IN PRINCIPLE**, held by the main thread (D2). It is named **"Coordinator"** (D3). Its charter is **ADOPTED**, with one change of the CEO's (D4) and a third exception to its role rule (D4a). **Annex D (the autonomy) is GRANTED, with both of the CGO's proposed conditions** (D5). ~~**It has not started:** its precondition 4, the CSO's checks, is not met.~~ *(2026-10-04: precondition 4 is met by the CSO's sign-off [E, `pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2]. Whether it operates before the amendment is applied is put to the CEO: "CGO flags on D11 and D12", flag 1.)* **How the charter is loaded** was decided at D11, ~~an output style loaded by default~~, and **reopened at D14 (2026-10-04): the seat is held only in a session where the CEO runs `/coordinator`**; D11 is superseded. **The Coordinator's own view** is limited to named triggers (D12). **The charter is in force now, before the amendment** (D13, 2026-10-04). **Two of the role rule's limits bound every main session, through `CLAUDE.md`:** never the Skeptic, and never the CGO on the Coordinator's own charter (D15, 2026-10-04). **D16 (2026-10-04) replaced the second, and D4a:** the main session may act as any seat except the Skeptic, but only in a fresh session and only when the CEO explicitly asks for that seat. **D17 (2026-10-04) accepted the charter's compaction placement as built:** the honest-broker rules are not counted as limits, so they sit after the part of the command that compaction keeps (D17, below). **D18 (2026-10-04) kept the chat widget tools available** and **D19 (2026-10-04) settled how a `/coordinator` session confirms that credits are off: the CEO says so at the start of the session** (both below). **D20 to D22 (2026-10-04) came from the consistency sweep:** the CEO merges every PR is now stated in `CLAUDE.md` (D20); typing `/idea` or `/scout` is his ask for the CVO seat in a fresh session, and in a `/coordinator` session they commission the `cvo` subagent (D21); Haunts standup notes are batched and merged at each wave gate (D22). **The amendment to Article 6 is not applied**: it is Decision 9, and it is what lists the seat in the Constitution.
 **This is not a gate.** Nothing was killed, proceeded or parked.
 **Anti-drift (5.2):** not applicable. This is not an idea in the pipeline [E, `research/2026-10-orchestrator-practice.md`, header].
 **Publication.** Article 3 requires publication within 30 days for gate decisions. This is not one, but the CGO committed to the same standard [J, `pipeline/amendment-draft-coordinator.md` §11 item 21]. **Due by 2026-11-01.** ~~**Held for now:** the CSO has not cleared the branch for publication (*"no, not yet"*, `pipeline/cso-controls-results.md`, CSO review R5).~~ *(2026-10-04: cleared. The CSO's sign-off: "Publication under my §6: **yes**", with its redactions applied [E, `pipeline/cso-controls-results.md`, S5]. The push waits on the CEO's approval.)* This record carries the same facts and is held with it. **If the hold has not lifted by 2026-10-25, the date goes to the CEO.**
@@ -597,6 +597,64 @@ The main session's own suggestion was *"1 now, and the CTO looking into 2 at no 
 - **Not updated, flagged:** `pipeline/amendment-draft-coordinator.md` §11 item 24 (the CTO's credit-check task) and its §16 still describe the CTO establishing a check [I; not read in full by this seat for this commission]. They need a one-line note that D19 supersedes them. *(Done, 2026-10-04: commit `30b3b51`. See C4.)*
 
 **This is a charter change, so merging the PR is what adopts it (D8).** It is one line of Annex C, not Annex D, so precondition 3 is not engaged [I].
+
+### D20 — "The CEO merges every PR, in every repo; no seat merges" goes into `CLAUDE.md`. *2026-10-04, 15:32:44.*
+
+*Recorded by the CGO. Commissioned by the main session, 2026-10-04. The decision and the CEO's words are his; the application is the CGO's. Times are BST, converted from the transcript's UTC timestamps.*
+
+**The question put** (main session, 2026-10-04 14:31:59 UTC, `assistant` message) [E, `~/.claude/projects/-Users-davidparrish-Documents-candour/0c6ad0a8-7bbf-41a1-854b-c438904372e6.jsonl`, read-only by this seat 2026-10-04]: *"Decision 1: add "the CEO merges every PR, in every repo; no seat merges" to `CLAUDE.md`? It's already decided (D8), and the controls enforce it. But `CLAUDE.md`, which every seat reads first, doesn't say it, and it's a limit, so it needs your yes. I recommend yes."* The origin is `pipeline/consistency-sweep-2026-10-04.md`, section B, "CEO".
+
+**His answer** [E, same transcript]:
+
+> *"Sure"*
+
+**How the transcript records it [E; the form is [I]].** The message was typed while the main session was still working, so it was queued. It is stored as a `queued_command` attachment with `origin: {kind: "human"}`, timestamp 2026-10-04 14:32:44.904 UTC, and removed from the queue as `absorbed_mid_turn` at 14:33:24 UTC. It is not a row of type `user`, which is where the other decisions' words sit. The main session's next message (14:33:39 UTC) treats it as the answer to Decision 1, and nothing else was open when he sent it [I, high confidence]. **A reader who greps this record's other quotes in `user` rows will not find this one there.**
+
+**What it settles.** `CLAUDE.md` says, in Who's who, that the CEO merges every PR in every repo and no seat merges. It restates D8. It adds no new rule: the decision and its deny rules stand as they were.
+
+**Applied.** `CLAUDE.md`, Who's who, one bullet directly after the D15/D16 limits bullet: *"The CEO merges every PR, in every repo; no seat merges (D8). Seats open PRs and ask for a merge; they never merge, approve or enable auto-merge."* The second sentence is this seat's wording of D8's own text (D8 quotes the deny rule: *"Never merge, approve, or enable auto-merge …"*). It is for the CEO to strike if he reads it as more than he said [J].
+
+### D21 — Typing `/idea` or `/scout` is the CEO's explicit ask for the CVO seat, in a fresh session (option a). *2026-10-04, 15:33:54.*
+
+*Recorded by the CGO. Commissioned by the main session, 2026-10-04. Times are BST.*
+
+**The question put** (main session, 2026-10-04 14:33:39 UTC, `assistant` message, same transcript): *"Decision 2: does typing `/idea` or `/scout` count as asking for the CVO seat? Both commands say "Act as the CVO". Under your D16, the main session acts as another seat only in a fresh session and only when you ask."* Two options:
+- *"(a) Yes, typing the command is the ask. It works in a fresh session only. Inside a `/coordinator` session it can't switch roles, so it would commission the CVO subagent instead."*
+- *"(b) The commands always commission the CVO subagent, and the main session never plays the CVO through them."*
+
+The main session's own suggestion was (a) [E, same message; its label as a view is not checked here].
+
+**His answer** [E, same transcript, `user` message, `origin: {kind: "human"}`, 2026-10-04 14:33:54.801 UTC]:
+
+> *"a"*
+
+**What it settles.**
+- **In a fresh session, typing `/idea` or `/scout` is his explicit ask for the CVO seat** under D16. The main session may then act as the CVO for that command.
+- **In a `/coordinator` session, the command commissions the `cvo` subagent.** That session cannot switch roles partway through (D15, D16, `CLAUDE.md`).
+- **The Skeptic is untouched.** D16's exclusion stands; neither command is about the Skeptic.
+
+**Applied.** One parenthetical note in step 1 of `.claude/commands/idea.md` and of `.claude/commands/scout.md`, both on Annex D's allowlist. **Merging the PR is what changes the allowlisted files** (D8), so the CEO's merge is the approval [I]. The notes add the `/coordinator` case; they do not change what either command asks for. This seat has not read the rest of the commands for other dependencies on "Act as the CVO" beyond the two lines named.
+
+### D22 — Haunts standup notes are batched and merged at each wave gate (option b). *2026-10-04, 15:34:25.*
+
+*Recorded by the CGO. Commissioned by the main session, 2026-10-04. Times are BST. `products/haunt/standup-routine.md` is the PM/BA's file; this seat made the edit at the CEO's decision, and the commit message says so.*
+
+**The question put** (main session, 2026-10-04 14:34:00 UTC, `assistant` message, same transcript): *"Decision 3: the daily standup merge. The Haunts standup routine puts each day's notes on a `standups` branch that's "merged daily". Since you merge every PR (D8), that means a daily merge for you."* Three options:
+- *"(a) Keep it. One small PR to merge each day."*
+- *"(b) Batch it. Standup notes merge once a week, or at each wave gate."*
+- *"(c) Stop putting standup notes in git. They go in the session's report to you, and only decisions get recorded."*
+
+The main session's own suggestion was *"(b), at each wave gate. It's less overhead, and you can still read the notes on the branch any time"*. It put the question again at 14:34:19 UTC with (b) worded *"Batch it at each wave gate. I suggest this."* [E, same transcript; its label as a view is not checked here].
+
+**His answer** [E, same transcript, `user` message, `origin: {kind: "human"}`, 2026-10-04 14:34:25.285 UTC]:
+
+> *"b"*
+
+**What it settles.** Standup notes are not merged daily. They stay on the `standups` branch and the CEO merges it in one PR, at each wave gate.
+
+**One reading, stated.** The first putting of (b) offered *"once a week, or at each wave gate"*; the second, sent six seconds before his answer, said *"at each wave gate"*. The main session then recorded his answer as *"(b), standup notes are batched and merged at each wave gate"* (14:34:42 UTC) and he did not object; his next message (14:35:16 UTC) concerns something else. **This record reads "b" as the wave gate** [I, medium-high confidence]. If he meant a weekly merge, it is one line to change in `standup-routine.md`.
+
+**Applied.** `products/haunt/standup-routine.md`, §2, the bullet at line 21: *"…commits its entry directly to a `standups` branch that is merged daily — the main session's call, not this document's [J]"* now reads that the notes are batched and the CEO merges the branch once, at each wave gate, citing this decision; the notes are readable on the branch meanwhile. A keyword search of the repository's Markdown for "merged daily", "daily merge" and "standups branch" found no other copy outside this record and the sweep. The `haunts` repository was not searched.
 
 ---
 

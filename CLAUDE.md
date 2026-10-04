@@ -13,6 +13,7 @@ Candour is an unincorporated software company brand governed by a public constit
 - **The Coordinator** (`roles/coordinator.md`) is not a subagent. It is the main session, and only in a session where the CEO has typed `/coordinator` (D14). In any other session the main session works under this file alone and has no charter autonomy.
 - **The Skeptic** is special: an independent investigator judged only on the quality of its dissent. Its memos are published unedited; respond to them in writing, never rewrite them.
 - **Limits on the main session, whether or not `/coordinator` has been run** (D15, D16): it never acts as the Skeptic; it acts as any other seat only in a fresh session and only when the CEO explicitly asks for that seat, and a session that has been coordinating cannot switch roles partway through.
+- **The CEO merges every PR, in every repo; no seat merges** (D8). Seats open PRs and ask for a merge; they never merge, approve or enable auto-merge.
 
 ## The pipeline
 

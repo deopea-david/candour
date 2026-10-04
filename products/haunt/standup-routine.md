@@ -18,7 +18,7 @@ The file is the memory. If it is not written down, it did not happen.
 **`docs/standups/YYYY-MM-DD.md` in the `deopea-david/haunts` repository**, one file per calendar day (UK date), created by whichever seat writes first that day.
 
 - **Append only.** Never edit or delete another seat's entry. Corrections are a new entry that says what it corrects.
-- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry directly to a `standups` branch that is merged daily — **the main session's call, not this document's** [J].
+- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry directly to a `standups` branch. **The notes are batched: the CEO merges that branch once, at each wave gate** (CEO decision D22, `decisions/2026-10-02-coordinator-seat.md`, 2026-10-04: *"b"*), not daily, because he merges every PR (D8). Until then the notes are readable on the branch.
 - The PM/BA's summaries to the CEO (§6) are **not** kept here; they go to the CEO in chat. The file holds the working record only.
 
 ---

@@ -3,7 +3,7 @@ description: Take a spark or full proposal from the CEO into the Candour pipelin
 ---
 The CEO has an idea: $ARGUMENTS
 
-1. Act as the CVO (read `.claude/agents/cvo.md` context). If this is a bare spark, draft `pipeline/templates/idea-brief.md` into `proposals/[slug]/idea-brief.md`, asking the CEO only what genuinely can't be inferred. If it's already a full proposal, move straight to step 2's commissions and then `/gate` prep.
+1. Act as the CVO (read `.claude/agents/cvo.md` context). *(D21: in a fresh session, typing this command is the CEO's explicit ask for the CVO seat under D16. In a `/coordinator` session, which cannot switch roles, commission the `cvo` subagent instead of acting as the CVO.)* If this is a bare spark, draft `pipeline/templates/idea-brief.md` into `proposals/[slug]/idea-brief.md`, asking the CEO only what genuinely can't be inferred. If it's already a full proposal, move straight to step 2's commissions and then `/gate` prep.
 2. Commission discovery: delegate to the research-analyst subagent (research brief → `research/[slug]-brief.md`) and the cfo subagent (cost model). Add a cto feasibility note if the idea is technically novel.
 3. When discovery returns, synthesise a proposal from `pipeline/templates/proposal.md` into `proposals/[slug]/proposal.md`.
 4. Record the anti-drift deadline (research brief date + 4 weeks) prominently in the proposal, and tell the CEO the date.

@@ -2,6 +2,8 @@
 
 **CGO · sonnet (Sonnet 5.5) · effort high · 2026-10-04.** Commissioned by the main session on the CEO's instruction: *"we do not want anything to be out of date after this weeks changes … Check other areas for inconsistensies as well"*. Base: `origin/main` at `4862a9c`. Branch `governance/consistency-sweep-2026-10-04`, not pushed.
 
+**Status, 2026-10-04 (final pass, CGO):** every item below is now fixed, decided, or waiting only on a by-hand step or a merge. Section F lists each with its commit. The original sections A to E are left as written.
+
 **Benchmark.** `decisions/2026-10-02-coordinator-seat.md` D0.1–D19 and `pipeline/agentic-agile.md`: the Coordinator runs only via `/coordinator` (D14); any seat but the Skeptic only in a fresh session on the CEO's explicit ask (D16); the CEO merges every PR (D8); full QA before merge, a wave integration check, then Done (D6, D9); controls trusted with limits and restart after any `.claude/` change (D10); no unattended work; credits confirmed by the CEO each session (D19); widgets stay (D18); agent teams off (D7); model selection unchanged.
 
 **Read:** `CLAUDE.md`; every `roles/*.md`; all 11 `.claude/agents/*.md`; the commands `idea`, `gate`, `audit`, `scout`, `agile-sync` (`build.md` skipped, as commissioned); `pipeline/agentic-agile.md`, `model-selection.md`, `evidence-standard.md`, `omission-check-markers.md`; all nine `pipeline/templates/*.md`; `products/haunt/STATUS.md`, `standup-routine.md`, and by keyword search the rest of `products/haunt/*.md`; `README.md`; `project-instructions.md`; `constitution.md` (read only). **Not checked:** the `haunts` repository (`docs/conventions.md`, `.github/pull_request_template.md`, its `CLAUDE.md`); it is a separate repo.
@@ -105,3 +107,50 @@ Left as written: `decisions/2026-09-16-haunt-gate.md` (text), `pipeline/dissent-
 ## E. What would overturn this, and where I looked
 
 A stale statement in a file I did not open. The in-scope list above is what I read; the rest of `products/haunt/` was searched by keyword (orchestrat, merge, unattended, scheduled, routine, coordinator, main session, bypass), so a stale statement that uses none of those words would be missed. The `haunts` repo was not read.
+
+---
+
+## F. Status after the final pass (2026-10-04)
+
+Branch `governance/coordinator-d20-d22` (from `034e7f0`), not pushed. Nothing here is live until the CEO merges the PRs (D8). "Fixed" means the text is changed on a branch; "decided" means he answered and the answer is applied.
+
+### A. Fixed by this seat (items 1 to 19)
+Unchanged: fixed on `governance/consistency-sweep-2026-10-04`, the base of the stack that this branch sits on.
+
+### B. Owner items
+
+| Owner | Item | Status | Where |
+|---|---|---|---|
+| PM/BA | `pipeline/agentic-agile.md` line 31 "orchestrator's commission" | Fixed | `31a90b2` |
+| PM/BA | `agentic-agile.md` line 30, reviewer closes a story after the merge | Fixed | `31a90b2` (the item was reworded with the "Follow-ups" section; this seat did not re-read it word by word) |
+| PM/BA | `agentic-agile.md` 74 to 91, stale "Follow-ups not yet made" | Fixed: split into Open, Done, Left as written | `31a90b2` |
+| PM/BA | `standup-routine.md` "orchestrator" seven times | Fixed | `31a90b2` |
+| PM/BA | `standup-routine.md` line 21, standup branch "merged daily" | **Decided: D22 (b)**, batched, merged at each wave gate. Edit made by this seat at the CEO's decision | this commit |
+| PM/BA | `standup-routine.md` 104, 110, "within one working day" and automatic escalation | Fixed: "at the next session" | `31a90b2` |
+| PM/BA | `backlog-plan.md` line 420 | Fixed | `31a90b2` |
+| Main session | `STATUS.md` 127 "orchestrator pushes" | Fixed | `31a90b2` |
+| Main session | `STATUS.md` 136, "main session is the orchestrator" | Fixed | `31a90b2` |
+| Main session | `STATUS.md` lines 3 and 120, state out of date | **Noted, not refreshed.** Dated notes say the file is state, not authority, to be refreshed at the next build session | `31a90b2` |
+| Main session | `.claude/commands/idea.md` line 6 and `scout.md` line 8 | **Decided: D21 (a).** One-line note in each | this commit |
+| Main session | `.claude/commands/build.md` | Fixed on its own branch, a separate PR | `ac6bdcd` on `docs/build-command-current` |
+| Main session | Memory `main-session-is-orchestrator.md` and `chief-of-staff-seat-in-progress.md` | Index lines re-described (D14/D16 qualification; D0.1 to D19, charter v0.10). The first file's name is unchanged. Outside the repo; not checked line by line by this seat | `MEMORY.md` |
+| CTO | `roles/cto.md` Produces | Fixed | `9ea81cd` |
+| CTO | `haunts` `docs/conventions.md` 102; `.github/pull_request_template.md` 41 to 50 | **Not verified by this seat.** In the `haunts` repository; this seat did not read it | the CTO's guard-fix PR, if it covered them |
+| CSO | `roles/cso.md` Produces | Fixed | `034e7f0` |
+| CSO | `repo-security-baseline.md` "report to the orchestrator", "never merge on a red secret-scan" | Fixed (wording only; a dated CSO note records it) | `034e7f0` |
+| CSO | `haunts/CLAUDE.md` mirror of the same lines | Fixed in the `haunts` repository, branch `fix/MAINT-6-guard-bypasses` | `639f2ab` (reported by the main session; not read by this seat) |
+| CGO | `roles/coordinator.md` line 217, stray `**` | **Fixed**, command regenerated. No rule's words changed; the version stays v0.10 | this commit |
+| CGO | `constitution.md` Article 6 does not list the Coordinator | Unchanged, deliberately, until Decision 9 (D13) | n/a |
+
+### CEO
+
+| Question | Status |
+|---|---|
+| Add "the CEO merges every PR, in every repo; no seat merges" to `CLAUDE.md` | **Decided: D20**, *"Sure"*. Added to Who's who |
+| Does typing `/idea` or `/scout` count as asking for the CVO seat | **Decided: D21**, *"a"*. Notes added to both commands |
+| Re-paste `project-instructions.md` into the claude.ai Project | **Still owed, by hand.** Not a decision. Do it after the PR with item 13 is merged, so the approved text is pasted. Only he can do it |
+
+The CEO's later question, *"Was there not a fourth decision"*, was answered by the main session: the fourth item is this re-paste, a by-hand step and not a decision. This seat did not put a fourth question to him.
+
+### Checks run on this branch
+`python3 scripts/build-coordinator-command.py --check` reports the command up to date with the charter. `scripts/build-coordinator-command-test.py`: 24 tests, OK (1 skipped). `scripts/omission-check-test.py`: 68 tests, OK.
