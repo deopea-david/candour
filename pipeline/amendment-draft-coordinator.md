@@ -4,6 +4,8 @@
 
 **Commissioned by:** the main session (orchestrator), at the CEO's request, 2026-10-02.
 
+**Revision 10, 2026-10-04: D15, and the annexes reordered for compaction (charter v0.7).** The CEO said *"Yes"* to putting two of the role rule's limits into `CLAUDE.md` for every main session (decision record D15; §13). The charter's annexes now run C, D, F, A, B, E, so that the limits sit inside the part of the command Claude Code keeps after compaction (§16.5). Order only, plus one line saying why; no rule's words changed. Old script and file names in §16 are annotated, not rewritten.
+
 **Revision 9, 2026-10-04: D14, the seat only when the CEO invokes `/coordinator`.** The CEO reopened D11 and D4's "by default" (decision record D14). Charter v0.6 says the main thread is the Coordinator only in a session where he has run `/coordinator`; elsewhere it works under `CLAUDE.md` alone, with no autonomy. Annex D's per-ticket chain now opens the PR first, as the process file does (decision record C2, found by the CTO). Changed here: §10 item 3, §11 items 1 and 3, §13 and §16.4. **The Article 6 line (§9, Edit 2) is checked and unchanged**: it describes the seat, not who holds it or when (§16.4). *Where §16 below says the charter is loaded with every request, that was true under D11 and is not under D14.*
 
 **Revision 8, 2026-10-04: the charter trimmed to v0.5, at the CEO's request (§16).** The charter is now loaded with every main-session request (D11), so its narrative moved out: status, revision history, reasons and quotations are kept verbatim in §16.2, and §16.1 maps every v0.4 rule to its place in v0.5. **No operative rule moved out, and none changed meaning.** The universal clauses are verbatim and Annex D's approved words are unchanged, except the per-ticket chain, aligned with D6, D8 and D9 on the CEO's yes to §16.3 flag 1 (*"1. Yes"*, decision record C1). 26,990 → 22,291 bytes.
@@ -563,6 +565,7 @@ Each decision below can be taken on its own. Each states what it needs to have h
 | 7 | D7 | Agent teams stay off | Taken |
 | **8** | **D11** | **How the charter reaches the main session: output style, full charter generated from the role file by a script, with a CI check** | ~~Taken, 2026-10-04. Not yet carried out~~ **Carried out by PR #21, then superseded by D14** |
 | **8 (reopened)** | **D14** | **The seat only when the CEO runs `/coordinator`: a command generated from the role file (option 1). Replaces D11 and D4's "by default"** | **Taken, 2026-10-04, 01:23:50. Charter v0.6 drafted; the command, generator and check are the Engineer's, reviewed by the CTO** |
+| none | **D15** | **Never the Skeptic; never the CGO on the Coordinator's own charter: into `CLAUDE.md`, for every main session** | **Taken, 2026-10-04: his answer was "Yes". Applied** |
 | none | **D13** | **The charter is in force now (option (a)), not only when the amendment is applied** | **Taken, 2026-10-04: his answer was "a"** |
 | 9 | none | Apply the amendment: lists the seat in Article 6 | **Open**, conditional on M2 |
 | 10 | none | The Copilot code review rule | **Open** |
@@ -573,6 +576,8 @@ Each decision below can be taken on its own. Each states what it needs to have h
 *Revision 6: the record also carries four CGO flags on D11 and D12. The first needed one line from the CEO: whether D5's autonomy operates before Decision 9, given the charter's "not yet in force" header (record, "CGO flags on D11 and D12").* **Revision 7: answered at D13. His word was "a" (00:55:12): the charter is in force now. The header and status lines of `roles/coordinator.md` say so. Article 6 lists the seat only once Decision 9 is applied. Flag 4 (the restart rule) is also closed: the main session restored the CSO's form, restart after any change under `.claude/`.** The Decision 9 text at §9 is unchanged.
 
 **Revision 9: a new question for the CEO, one yes or no, not urgent.** Outside a `/coordinator` session nothing in the charter binds the main thread, including the role rule's exceptions. **Should `CLAUDE.md` say, for every main session: never act as the Skeptic, and never act as the CGO (or the CSO) on the Coordinator's own charter, annex, omission check or controls?** *For:* exception (i) protects the Skeptic's fresh start, and (iii) stops the seat writing its own limits; both reasons hold whether or not the seat is invoked. *Against:* it adds lines that every subagent reads (`CLAUDE.md` loads into every seat), and the main session already commissions those seats rather than acting as them. This seat's view [J]: yes, as two short lines. It is the CEO's, and it is a change to `CLAUDE.md` (§11 item 1).
+
+**Revision 10: answered, D15.** Put to him as *"never act as the Skeptic"* and *"never act as the CGO on its own charter"*; his answer, *"Yes"* (01:29:36). Applied as one line in `CLAUDE.md`, "Who's who", scoped to the main session because the Skeptic and the CGO read `CLAUDE.md` too. **Not covered by the words put to him:** the CSO on the Annex F controls, and the CGO on the omission check or on a record of the Coordinator's conduct. Not added; one yes or no for him if he wants them (record D15).
 
 *(Revision 4 status, kept: Decisions 1–4 are taken (2026-10-02). Decision 5 is next.)* The record, with the CEO's words checked against his own transcript, is `decisions/2026-10-02-coordinator-seat.md`. Times are BST.
 
@@ -752,7 +757,9 @@ From the CSO's review of 2026-10-02 (`pipeline/cso-controls-results.md`, R1–R7
 | File | v0.4 | v0.5 | Change |
 |---|---|---|---|
 | `roles/coordinator.md` | 26,990 bytes · 4,513 words | 22,291 bytes · 3,695 words | −4,699 bytes (−17.4%) · −818 words |
-| `.claude/output-styles/coordinator.md` (generated) | 27,346 bytes | 22,647 bytes | −4,699 bytes |
+| ~~`.claude/output-styles/coordinator.md`~~ `.claude/commands/coordinator.md` (generated; renamed at D14) | 27,346 bytes | 22,647 bytes | −4,699 bytes |
+
+*Revision 10 note: the output style was replaced by the `/coordinator` command at D14, so the generated file is now `.claude/commands/coordinator.md`. The sizes above are as measured for the style at v0.5. At v0.7 the command is 23,818 bytes [E, `wc -c`, this seat, 2026-10-04].*
 
 *The trim alone gave 21,726 bytes and 3,601 words (−19.5%). The per-ticket chain's alignment with D6, D8 and D9 (§16.3 flag 1, approved by the CEO) added 565 bytes.*
 
@@ -921,9 +928,9 @@ Each is a **flag, not a block**. Each is put once.
    - **What would fix it:** one yes or no from the CEO to a new Annex D text, for example replacing the paragraph with *"The per-ticket chain is the one in `pipeline/agentic-agile.md` (D6, D8). Stop at the merge: the CEO merges."* The record's own error is corrected in its *Corrections* section (C1).
    - **What would overturn this flag:** a later CEO decision that Annex D's chain text stands, or evidence that D6's application was meant only for the process file.
    - **Answered, 2026-10-04:** the CEO said yes (*"1. Yes"*, 01:14:57; decision record C1). Annex D's per-ticket chain now follows D6, D8 and D9. This is the one change to Annex D's approved words.
-2. **The generator does not yet follow the annex when it moves** (CGO flag 2 on D11 and D12, still open). `scripts/build-coordinator-style.py` reads `roles/coordinator.md` only [E, the script, `SOURCE`]. When the amendment moves the Operating annex to `pipeline/coordinator-operating.md`, the annex drops out of the output style unless the script is changed in the same PR. Owner: the CTO, who reviews the script. This seat restates it only because a trim is when the file layout is in view.
+2. **The generator does not yet follow the annex when it moves** (CGO flag 2 on D11 and D12, still open). ~~`scripts/build-coordinator-style.py`~~ `scripts/build-coordinator-command.py` (renamed at D14) reads `roles/coordinator.md` only [E, the script, `SOURCE`]. When the amendment moves the Operating annex to `pipeline/coordinator-operating.md`, the annex drops out of the ~~output style~~ `/coordinator` command unless the script is changed in the same PR. *(Revision 10: the Engineer's test suite now carries a tripwire that fails the day `pipeline/coordinator-operating.md` appears and the command does not contain it [E, `scripts/build-coordinator-command-test.py`, `test_if_the_annex_has_moved_the_command_still_carries_it`]. That makes the gap loud; it does not close it.)* Owner: the CTO, who reviews the script. This seat restates it only because a trim is when the file layout is in view.
 
-**Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-style.py` (wrote the style); `--check` (ok); `python3 scripts/build-coordinator-style-test.py` (12 tests, OK).
+**Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-style.py` (wrote the style); `--check` (ok); `python3 scripts/build-coordinator-style-test.py` (12 tests, OK). *(Revision 10: those were the script names at v0.5. At D14 they became `scripts/build-coordinator-command.py` and `scripts/build-coordinator-command-test.py`, and the style became `.claude/commands/coordinator.md`. The checks re-run on them at v0.7 are in §16.5.)*
 
 ### 16.4 Charter v0.6: D14, and C2 (Revision 9, 2026-10-04)
 
@@ -953,3 +960,40 @@ Each is a **flag, not a block**. Each is put once.
 3. **Annex D's text changed again (C2).** Merging this PR is what approves it, as the CTO said of #22.
 
 **This seat prepares and flags; it does not certify.** Whether v0.5 is the charter in force is the CEO's to decide, by merging the PR (D8).
+
+### 16.5 Charter v0.7: the annexes reordered for compaction (Revision 10, 2026-10-04)
+
+**Seat:** CGO · opus (Opus 5.5) · effort high · commissioned by the main session (Coordinator), 2026-10-04. Built on the Engineer's command branch (`da7518c`).
+
+**The limit.** *"When the conversation is summarized to free context, Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens"*, filled from the most recently invoked, so *"older skills can be dropped entirely"* [E, https://code.claude.com/docs/en/skills.md, "Skill content lifecycle", retrieved by this seat 2026-10-04; **single source**, the vendor's own documentation]. The same page says command files *"work the same way"* as skills, and advises: *"put the most important instructions near the top"* [E, same page, "Claude stops following a skill"].
+
+**The size.** The command was 23,581 bytes at v0.6 [E, `wc -c`]. The Engineer estimates the charter at about 5,500–6,200 tokens [I, the Engineer's estimate, relayed by the main session; this seat has no tokenizer and did not verify it]. On that estimate, 5,000 tokens is about 18,750–21,000 bytes. At v0.6, everything from Annex D's *"Out of scope"* (byte 18,912) onward was at risk, and **Annex F's "Must never break" (byte 21,922) would have been cut.**
+
+**Is the Role line enough? No [J], for three reasons.**
+1. It works only if the session notices the charter is cut. The page shows no marker for a cut, and a charter whose last annex is missing does not look truncated.
+2. A cut is fail-unsafe in one direction: the body's grant (*Proceeding without asking*) survives while Annex D's limits on it were partly past the line.
+3. The vendor's own advice is to put what matters first.
+**The Role line stays.** It still covers the case the reorder cannot: the charter dropped entirely when other skills fill the 25,000-token budget. In that case the autonomy goes with it, so the session falls back to `CLAUDE.md`, which has no autonomy.
+
+**What changed.** The annexes now run **C (limits), D (the autonomy's preconditions and limits), F (must never break; enforcement), then A (report shape), B (commissions), E (measures).** The letters are kept, because the decision record, this draft and the charter cite them by letter. One line (37 words) is added under the annex heading saying why, so that nobody re-sorts them. **No rule's words changed:** a script checked that the set of non-blank lines is identical apart from that one line [E, this seat, 2026-10-04]. Annex D's approved words (precondition 3) are untouched; only what sits around them moved. Version v0.6 → v0.7.
+
+**Where things now sit in `.claude/commands/coordinator.md`** (23,818 bytes) [E, this seat's byte offsets, 2026-10-04]:
+
+| Bytes | What |
+|---|---|
+| 0–11,543 | Frontmatter, notice, the body (universal clauses, mandate, *Decides*, honest-broker rules, *Proceeding without asking*, *Role*) |
+| 11,544–13,092 | Annex C, limits (retry cap; at a usage limit, stop; never paid credits) |
+| 13,093–17,585 | Annex D, the autonomy: preconditions, allowlist, not-authority, per-ticket chain, always to the CEO, out of scope |
+| 17,586–19,287 | Annex F: **"Must never break"** at 17,629; what enforces it; the CSO's limits |
+| 19,288–21,115 | Annex A, report shape; then Annex B, commissions |
+| 21,116–23,818 | Annex E, measures |
+
+**After about 20,000 bytes:** the end of Annex A (from item 3's marker sentence: items 4–6), all of Annex B, and all of Annex E. **Their loss degrades report quality; it does not loosen a limit.** The body still carries rule 2 ("What you may not want to hear"), rule 3's markers and rule 7 (run M2), and M2 is a script, not the session's memory.
+
+**Residual [I].** At the low end of the estimate (3.75 bytes a token), and if the frontmatter counts, the tail of Annex F (*"What none of them can do"*, about bytes 18,983–19,287) could still be cut. Every "must never break" item is also in the body: merges, pushes, publication and paid usage under *Decides*; unattended work in its own line.
+
+**When the annex moves** to `pipeline/coordinator-operating.md` (Decision 9), the generator should keep this order: body, then C, D, F, then the rest. Owner: the CTO, who reviews the script (record, flag 2 on D11 and D12).
+
+**Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-command.py` (wrote the command); `--check` (ok); `python3 scripts/build-coordinator-command-test.py` (20 tests, OK, 1 skipped: the annex-move tripwire).
+
+**What would overturn this:** a measured token count showing the whole charter fits in 5,000 tokens (then the order does not matter), or vendor documentation that compaction keeps the end of a skill rather than its start.
