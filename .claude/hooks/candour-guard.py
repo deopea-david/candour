@@ -389,24 +389,57 @@ GQL_MUTATIONS = re.compile(
     r"transferRepository|archiveRepository|updateRepositoryWebCommitSignoffSetting")
 
 
+def skip_gh_flags(args, j, takes_value):
+    """Index of the first word at or after j that is not a flag. With
+    takes_value, a bare `-X` or `--name` also skips the next word, as gh's
+    parser (cobra) assumes for -R/--repo and any flag it does not know."""
+    while j < len(args) and args[j].startswith("-") and args[j] != "-":
+        a = args[j]
+        j += 1
+        if takes_value and "=" not in a and (a.startswith("--") or len(a) == 2):
+            j += 1
+    return j
+
+
+def gh_readings(args):
+    """gh accepts flags before the command group and between the group and its
+    verb: `gh pr -R o/r merge 5`, `gh pr --repo=o/r merge 5`, `gh --repo o/r pr
+    merge 5`, `gh pr --repo=o/r -L1 list` (CTO review of haunts 81ef45c, R2).
+    Return every reading of (group, verb, words after the verb, words after the
+    group): each flag taken as bare and as taking a value, at each level, so no
+    flag can hide the verb from the checks."""
+    out = set()
+    for group_values in (False, True):
+        i = skip_gh_flags(args, 0, group_values)
+        if i >= len(args):
+            continue
+        for verb_values in (False, True):
+            j = skip_gh_flags(args, i + 1, verb_values)
+            out.add((args[i], args[j] if j < len(args) else "", tuple(args[j + 1:]), tuple(args[i + 1:])))
+    return out
+
+
 def check_gh(argv):
     args = argv[1:]
     if not args or "--help" in args or "-h" in args or args[0] in ("help", "--version", "version"):
         return
-    sub, rest = args[0], args[1:]
-    verb = rest[0] if rest else ""
-    flat = " ".join(rest)
+    for sub, verb, after, rest in gh_readings(args):
+        check_gh_command(sub, verb, list(after), list(rest))
+
+
+def check_gh_command(sub, verb, after, rest):
+    flat = " ".join(rest)  # every word after the group, flags before the verb included
     if sub == "pr":
         if verb == "merge":
             block("gh pr merge: the CEO merges")
-        if verb == "review" and re.search(r"(^| )(--approve|-a)( |$)", flat):
+        if verb == "review" and re.search(r"(^| )(--approve(=\S*)?|-a)( |$)", flat):
             block("approving a pull request: approval is the CEO's")
     elif sub == "api":
         check_gh_api(rest)
     elif sub == "repo" and verb in ("edit", "delete", "rename", "archive", "unarchive", "create", "fork",
                                      "sync", "deploy-key", "autolink", "set-default"):
         read_only = (verb == "set-default" and re.search(r"(^| )(--view|-v)( |$)", flat)) or \
-            (verb in ("deploy-key", "autolink") and len(rest) > 1 and rest[1] in ("list", "view"))
+            (verb in ("deploy-key", "autolink") and after and after[0] in ("list", "view"))
         if not read_only:
             block("gh repo %s changes repository settings or publishes" % verb)
     elif sub == "release" and verb not in ("list", "view", "download", "verify", "verify-asset", ""):
@@ -516,7 +549,8 @@ def check_code(code, cwd, env):
         return
     flat = re.sub(r"[\"'\\\[\](),+]", " ", code)
     flat = re.sub(r"\s+", " ", flat)
-    if re.search(r"\bgh pr merge\b|\bgh pr review\b.*(--approve|-a\b)", flat):
+    gf = r"(?: -\S+(?: [^\s-]\S*)?)*"  # flags, with or without a value, before or after `pr` (R2)
+    if re.search(r"\bgh%s pr%s merge\b|\bgh%s pr%s review\b.*(--approve|-a\b)" % (gf, gf, gf, gf), flat):
         block("interpreter code that merges or approves a pull request")
     if GQL_MUTATIONS.search(flat):
         block("interpreter code with a GitHub mutation that merges, approves or changes settings")
