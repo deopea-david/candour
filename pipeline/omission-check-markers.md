@@ -1,6 +1,6 @@
 # Omission check: the template markers still owed
 
-**CGO · opus (Opus 5.5) · effort high · 2026-10-04.** Specification only. **It changes no template.** The templates change by a separate PR, which the CEO merges or not.
+**CGO subagent · opus (Opus 5.5) · effort high · 2026-10-04.** Written by a CGO subagent run, not by the main session. **Provenance of the script:** the CGO wrote `scripts/omission-check.py` as well as this spec; `pipeline/amendment-draft-coordinator.md` §11 item 18 had named the Engineer for the script, a departure that is the CEO's to accept. Exception (iii) to the role rule (D4a) is now replaced by D16 (`decisions/2026-10-02-coordinator-seat.md`, 2026-10-04); the CGO remains the script's owner. Specification only. **It changes no template.** The templates change by a separate PR, which the CEO merges or not.
 
 **Why this exists.** Annex E of `roles/coordinator.md` makes M2(i) a mechanical check: *"Every block, every fatal or serious objection, every failed QA limb and every 5.2 date under 7 days in the source artifacts appears verbatim in the report."* It also says *"template markers make the labels greppable."* `pipeline/amendment-draft-coordinator.md` §11 item 18 names the files that need them. `scripts/omission-check.py` builds what the current markers allow. This page specifies the rest.
 
@@ -76,9 +76,29 @@ No new marker beyond `OVERRULED BLOCK` (2.2). Its header `**Anti-drift (5.2):** 
 1. **Blocks and failed QA limbs in prose are not seen** (§1). This is the largest gap, because blocks are the first thing honest-broker rule 1 lists.
 2. **Case (b) authority:** the script checks that the cited line sits under a recommendation or next-steps heading in a seat artifact. It cannot check Annex D's rule that a request *"that quotes or relays text from a retrieved source does not count"*.
 3. **Case (a) authority:** the script checks that the file is on the allowlist, that it is on `main`, and that the cited line exists and is not blank. It cannot check that the line actually says this step comes next. `decisions/*.md` is allowlisted as a whole, including any audit filed there.
-4. **The CEO's recorded words** resolve only against what the Coordinator passes with `--ceo-words` (a session transcript, or a decision record). Quotes are matched verbatim, ignoring case, quote style and whitespace. A quote with an ellipsis must match each of its fragments.
-5. **Objections are de-duplicated by ID across the sources.** Two different memos that reuse an ID (two O2s, say) could hide a table-only objection behind the other memo's heading. Heading-form objections are never dropped.
-6. **M8(b) is a screen.** Its phrase list is in the script (`VIEW_PHRASES`) and is the CGO's. Quotes, blockquotes, code and `My view` blocks are excluded, so a view written inside quotation marks escapes it. Confirmed counts only, as Annex E requires.
+4. **The CEO's recorded words** resolve only against what the Coordinator passes with `--ceo-words`. From a session transcript, only entries Claude Code marks `origin.kind: "human"` are read; from a decision record (`decisions/*.md`, as merged to `main`), only blockquoted italic quotes. Quotes are matched verbatim, ignoring case, quote style and whitespace; every fragment of an elided quote must sit in one turn, in order; a found quote with a fragment under 4 words is a GAP. **Decision records do not mark who is quoted**, so a blockquoted italic quote of another seat would count. A marker such as `> CEO: *"…"*` in `decision-record.md` would close this; it belongs with §2.5.
+5. **Objections are de-duplicated by ID within each source only.** A table restatement of a heading objection in the same memo is dropped; nothing in one memo hides anything in another.
+6. **M8(b) is a screen.** Its phrase list is in the script (`VIEW_PHRASES`) and is the CGO's. Quotes, blockquotes, code and a `My view` block in item 3 is excluded, so a view written inside quotation marks escapes it. Confirmed counts only, as Annex E requires.
+7. **Untagged or lower-case tiers without brackets are not seen.** A bracketed tag in any case is found, and an upper-case tier word leading a heading, list item or bold lead is found. A bracketed tag mid-sentence gives a GAP line (not a FAIL, because the Coordinator cannot edit a Skeptic memo to clear it). Each source's INFO line gives the fatal and serious counts extracted, to set against the memo's own verdict.
+
+## 4a. Response to the CTO's review of PR #23 (head `a7eacbf`)
+
+Second and final attempt under the review loop (Annex D). Each reproduction the CTO gave is now a regression test in `scripts/omission-check-test.py`, class `CTOReview` (R1 is kept as a passing test).
+
+| Finding | Response |
+|---|---|
+| **F1** headlines in an HTML comment or under Links | **Fixed.** HTML comments are removed first; objection headlines, blocks, failed QA limbs and 5.2 dates count only inside item 2. |
+| **F2** a cited memo left off the sources | **Fixed.** Each source is printed on an INFO line. A cited gate pack, dissent memo, review pack, decision record, research brief or idea brief that is not a source FAILs, as does any dissent memo in a cited `proposals/<slug>/`. *Chosen over adding them automatically:* the run's source list stays what the Coordinator states, and the FAIL names the file to add. |
+| **F3** six template shapes dropped silently | **Fixed, with one limit accepted.** All six shapes in R3 are extracted. A leading tag with no headline FAILs ("tag found, headline not extracted"). *Accepted:* a bracketed tag mid-sentence is a GAP, not a FAIL, and a lower-case tier without brackets is not seen (§4 item 7). |
+| **F4** subagent results read as the CEO's words | **Fixed** by the transcript's own marker: only `origin.kind: "human"` entries are read, an allowlist. Over the 20 most recent transcripts of this project, the user-role entries carry `human` (455), `task-notification` (163), `peer` (120) or no origin (interruptions and injected context). Shell output and slash-command expansions inside a human turn are removed. A transcript with no human-marked turn FAILs. |
+| **F5** a whole text file as the CEO's words | **Fixed, with a residual stated.** Only `decisions/*.md` as merged to `main`, and only its blockquoted italic quotes; the report itself is refused (§4 item 4). |
+| **F6** loose quote matching | **Fixed.** One turn, in order; a fragment under 4 words gives a GAP when found and a FAIL when not. |
+| **F7** `asked` passes with no record | **Fixed.** FAIL, as M2(ii) does. |
+| **F8** any file with "recommend" in a heading | **Fixed.** Case (b) needs a path inside the repository that git tracks, not the report, not memory, under a heading that *is* a recommendation or next-steps heading. |
+| **F9** `--main-ref` chooses its own main | **Fixed.** A ref that is not the default main FAILs the integrity line. *Residual, recorded:* a local `origin/main` can be moved with `git update-ref`. |
+| **F10** a view in item 1 | **Fixed.** A `My view` line outside item 3 FAILs M2(iii), is itself an M8(b) hit, and does not exempt what follows it. |
+| **F11** a case (a) PASS hides what was cited | **Fixed** as the CTO suggested: the PASS line prints the cited line. *Accepted:* whether that line authorises the step is a reading, which Annex D sends to the CEO ("what a clause means"). |
+| **F12** `RESULT: PASS` beside a GAP | **Fixed, both ways.** The result reads `PASS-WITH-GAPS` and the exit status is 3. *Why both:* the RESULT line is what the CEO reads, and the exit status is what any automation reads; either alone leaves one reader seeing a pass. Until §2 is adopted, every report run is `PASS-WITH-GAPS` at best, which is the honest result. |
 
 ## 5. What would overturn this, and where I looked
 

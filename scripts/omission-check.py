@@ -2,10 +2,16 @@
 """Omission check (M2) and view screen (M8) for the Coordinator seat.
 
 Owner: the CGO. roles/coordinator.md, Annex E: "The CGO owns and maintains the
-script", so the Coordinator runs it and never edits it (exception (iii), D4a).
-Changes to this file, to ALLOWLIST and to VIEW_PHRASES are drafted by the CGO.
-Spec: pipeline/amendment-draft-coordinator.md section 11 item 18, and Annex E
-of roles/coordinator.md (M2 (i)-(iii), M8). Template markers still owed:
+script", so the Coordinator runs it and never edits it. Changes to this file,
+to ALLOWLIST and to VIEW_PHRASES are drafted by the CGO.
+Provenance: written by a CGO subagent (opus), not by the main session.
+Section 11 item 18 of pipeline/amendment-draft-coordinator.md had named the
+Engineer for the script; the CGO wrote it, a departure that is the CEO's to
+accept. Exception (iii) to the role rule (D4a) is replaced by D16 (2026-10-04,
+decisions/2026-10-02-coordinator-seat.md): any seat but the Skeptic, only in
+a fresh session the CEO asks for. The CGO remains the owner.
+Spec: section 11 item 18 of the amendment draft, and Annex E of
+roles/coordinator.md (M2 (i)-(iii), M8). Template markers still owed:
 pipeline/omission-check-markers.md.
 
   python3 scripts/omission-check.py report REPORT [SOURCE ...] [options]
@@ -13,43 +19,68 @@ pipeline/omission-check-markers.md.
 
 report      Runs M2 over one report (a file, or - for stdin) against the source
             artifacts it covers. Attach the output under Annex A item 5.
+            HTML comments are removed first: what the CEO cannot see does not
+            count.
               (i)   every fatal or serious objection headline, every 5.2 date
                     under 7 days, and every marked block and failed QA limb in
-                    the sources appears verbatim in the report
+                    the sources appears verbatim in item 2 ("What you may not
+                    want to hear"), not merely somewhere in the report. Every
+                    gate pack, dissent memo, review pack, decision record,
+                    research brief or idea brief the report cites, and every
+                    dissent memo in a cited proposals/<slug>/, must be a source
               (ii)  every "Work I started without asking" authority resolves to
                     an allowlisted file and line on main, the CEO's recorded
-                    words, or a seat's recommendation or next-steps section
+                    words, or a seat's recommendation or next-steps section in
+                    a file git tracks (never the report itself, nor memory)
               (iii) item 3 carries "No view offered." or a "My view - trigger:"
                     line naming a listed trigger, with the kind of reference
-                    honest-broker rule 3 requires
+                    honest-broker rule 3 requires. A "My view" line outside
+                    item 3 fails
             Options:
-              --ceo-words PATH  the CEO's recorded words: a session transcript
-                                (.jsonl; only his own messages are read) or a
-                                text file such as a decision record. Repeatable.
+              --ceo-words PATH  the CEO's recorded words. Repeatable. Either a
+                                session transcript (.jsonl), of which only the
+                                entries the harness marks origin.kind "human"
+                                are read (never tool results, task
+                                notifications, peer messages or shell output),
+                                or a decision record (decisions/*.md, read as
+                                merged to main), of which only blockquoted
+                                italic quotes ('> *"..."*') are read
               --today DATE      ISO date for the 5.2 arithmetic (default: today)
-              --main-ref REF    the ref that stands for main (default: origin/main,
-                                else main)
+              --main-ref REF    for tests: any ref that is not the default main
+                                (origin/main, else main) makes the integrity
+                                line FAIL, so a run against it is not evidence
               --repo DIR        repository root (default: the git top level)
 
 transcript  Runs M8 over main-session transcript files (.jsonl, text or
             markdown files, or directories holding .jsonl), at a phase review:
               (a) reports whose item 3 fails M2(iii); references are checked for
                   form only, and an "asked" quote against the CEO's earlier
-                  messages in the same transcript
-              (b) view phrases outside a "My view" block. A lexical screen with
-                  false positives and false negatives. Its hits are raw: the CGO
-                  samples them and reports confirmed counts, never raw ones.
+                  turns in the same transcript
+              (b) view phrases outside a "My view" block in item 3. A lexical
+                  screen with false positives and false negatives. Its hits are
+                  raw: the CGO samples them and reports confirmed counts.
             Options:
               --since WHEN  count only messages stamped from then on (for
                             example, from D12 coming into force); unstamped
                             messages are then left out
+
+Quotes: every fragment of a quote (split at an ellipsis) must sit in one CEO
+turn, or one recorded quote, in order. A quote that is found but has a
+fragment under MIN_QUOTE_WORDS words is a GAP, never a PASS.
 
 Output is plain text, one line per check:
   PASS  the check was made and passed
   FAIL  the check was made and failed, or could not be made from what was given
   GAP   a check the script cannot make; never read it as a pass
   HIT   an M8(b) screen hit, unconfirmed
-Exit status: 1 if any line is FAIL, 2 on a usage or input error, else 0.
+  INFO  what was read: each source, and what was extracted from it
+The last line is RESULT: FAIL, PASS-WITH-GAPS or PASS.
+Exit status: 1 if any line is FAIL; 2 on a usage or input error; 3 if nothing
+fails but a GAP line is present; else 0.
+
+Residuals, stated rather than fixed: a local origin/main can be moved with
+git update-ref; a seat could hand over a forged .jsonl; decision records do
+not mark who is quoted, so a blockquoted italic quote of another seat counts.
 Python 3 standard library only.
 """
 
@@ -62,7 +93,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-VERSION = "1.0"
+VERSION = "1.1"
 SCRIPT_PATH = "scripts/omission-check.py"
 
 # Annex D, case (a): the files whose text, as merged to main, is authority.
@@ -79,7 +110,9 @@ ALLOWLIST = (
 )
 
 # Annex D, "Not authority": state, never authority, even under case (b).
-NOT_AUTHORITY = ("STATUS.md", "*/STATUS.md", "*standup*", "*commission*")
+NOT_AUTHORITY = ("STATUS.md", "*/STATUS.md", "*standup*", "*commission*",
+                 "MEMORY.md", "*/MEMORY.md", "memory/*", "*/memory/*",
+                 ".claude/projects/*")
 
 # Honest-broker rule 3: the only four triggers.
 TRIGGERS = ("asked", "seat error", "seat conflict", "process broken")
@@ -112,7 +145,19 @@ VIEW_PHRASES = (
 # failed QA limbs written in prose.
 MARKERS_IN_TEMPLATES = False
 
-PASS, FAIL, GAP, HIT = "PASS", "FAIL", "GAP", "HIT"
+PASS, FAIL, GAP, HIT, INFO = "PASS", "FAIL", "GAP", "HIT", "INFO"
+
+# A quote fragment shorter than this is too common to show the words are his.
+MIN_QUOTE_WORDS = 4
+
+# Annex A item 2 is where rule 1's copies go. Reports cite these kinds of
+# artifact; each one cited must be among the sources M2(i) reads.
+SOURCE_KINDS = (
+    ("gate pack", "gate-pack*.md"), ("dissent memo", "*dissent*.md"),
+    ("review pack", "review-pack*.md"), ("decision record", "decisions/*.md"),
+    ("research brief", "research-brief*.md"), ("research brief", "research/*.md"),
+    ("idea brief", "idea-brief*.md"),
+)
 
 # ---------------------------------------------------------------- text helpers
 
@@ -131,6 +176,18 @@ def norm(text):
 def one_line(text, limit=160):
     text = re.sub(r"\s+", " ", text).strip()
     return text if len(text) <= limit else text[:limit - 3] + "..."
+
+
+_COMMENT = re.compile(r"<!--.*?(?:-->|\Z)", re.S)
+
+
+def strip_comments(text):
+    """HTML comments removed (they do not render), line numbers kept."""
+    return _COMMENT.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+
+
+def section_text(secs, key):
+    return "\n".join(l for _, l in secs.get(key, []))
 
 
 # ------------------------------------------------------- Annex A report shape
@@ -186,7 +243,17 @@ PATH_RE = re.compile(
     r"(?::(?P<line>\d+)(?:-\d+)?|#L(?P<line2>\d+)(?:-L?\d+)?|#(?P<anchor>[\w-]+))?")
 LINE_AFTER = re.compile(r"^[\s,]*(?:line|l\.|L)\s*(\d+)\b", re.I)
 ANCHOR_AFTER = re.compile(r"^[\s,]*(D\d+[a-z]?|Condition \d+)\b")
-RECO = re.compile(r"recommend|next[- ]steps?", re.I)
+# A recommendation or next-steps heading, after its number: "7. Recommendation",
+# "My recommendation: ...", "The CTO's recommendation", "Recommended next step",
+# "Next steps". Not any heading containing the word ("Seats' recommendations").
+_HEAD_NUM = re.compile(r"^(?:[A-Z]?\d+(?:\.[\dA-Z]+)*\.?\s+)?")
+RECO_HEAD = re.compile(
+    r"^(?:(?:my|our|the(?:\s+[\w'-]+)?)\s+)?"
+    r"(?:recommendations?|recommended next steps?|next steps?)\b", re.I)
+
+
+def reco_heading(heading):
+    return bool(RECO_HEAD.match(_HEAD_NUM.sub("", norm(heading))))
 
 
 class Ref:
@@ -233,12 +300,38 @@ def quotes_in(text):
     return [q for q in re.findall(r'"([^"]+)"', text) if re.search(r"\w", q)]
 
 
-def quote_found(quote, texts):
-    """Every fragment of the quote (split at an ellipsis) is in one text."""
+def quote_status(quote, texts):
+    """PASS if every fragment (split at an ellipsis) is in one text, in order,
+    and each has MIN_QUOTE_WORDS words; GAP if found but a fragment is shorter;
+    FAIL if no single text holds them all in order."""
     frags = re.split(r"\[?(?:…|\.\.\.)\]?", norm(quote))
     frags = [f.strip(" .,;:!?").casefold() for f in frags]
     frags = [f for f in frags if re.search(r"\w", f)]
-    return bool(frags) and all(any(f in t for t in texts) for f in frags)
+    if not frags:
+        return FAIL
+    for t in texts:
+        at = 0
+        for f in frags:
+            i = t.find(f, at)
+            if i < 0:
+                break
+            at = i + len(f)
+        else:
+            short = any(len(re.findall(r"\w+(?:'\w+)?", f)) < MIN_QUOTE_WORDS for f in frags)
+            return GAP if short else PASS
+    return FAIL
+
+
+def quotes_status(qs, texts):
+    """The worst status over several quotes, and the first quote at it."""
+    worst = (PASS, None)
+    for q in qs:
+        st = quote_status(q, texts)
+        if st == FAIL:
+            return FAIL, q
+        if st == GAP and worst[0] == PASS:
+            worst = (GAP, q)
+    return worst
 
 
 def slug(heading):
@@ -261,14 +354,23 @@ def git(repo, *args):
 class Main:
     """Read files as merged to main (Annex D: "as merged to main")."""
 
+    DEFAULT = ("origin/main", "main")
+
     def __init__(self, repo, ref=None):
         self.repo, self.name, self.sha, self.cache = repo, None, None, {}
-        self.tried = [ref] if ref else ["origin/main", "main"]
-        for cand in self.tried:
-            out = git(repo, "rev-parse", "--verify", "--quiet", cand + "^{commit}")
+        self.default_name, self.default_sha = self._first(self.DEFAULT)
+        self.tried = [ref] if ref else list(self.DEFAULT)
+        self.name, self.sha = self._first(self.tried)
+        # --main-ref may not choose its own "main" (CTO review F9): a ref that
+        # is not the default main is recorded here and fails the integrity line.
+        self.overridden = bool(ref) and (self.sha is None or self.sha != self.default_sha)
+
+    def _first(self, cands):
+        for cand in cands:
+            out = git(self.repo, "rev-parse", "--verify", "--quiet", cand + "^{commit}")
             if out and out.strip():
-                self.name, self.sha = cand, out.strip()
-                break
+                return cand, out.strip()
+        return None, None
 
     def read(self, path):
         if not self.sha:
@@ -291,9 +393,22 @@ class Main:
 
 
 class Ctx:
-    def __init__(self, repo, main, ceo, today, form_only=False):
+    def __init__(self, repo, main, ceo, today, form_only=False, report_path=None):
         self.repo, self.main, self.ceo = repo, main, ceo
         self.today, self.form_only = today, form_only
+        self.report_path = report_path
+
+
+def in_repo(ctx, path):
+    """The repository-relative path, or None if it lies outside the repository."""
+    try:
+        return (ctx.repo / path).resolve().relative_to(ctx.repo.resolve()).as_posix()
+    except ValueError:
+        return None
+
+
+def tracked(ctx, rel):
+    return git(ctx.repo, "ls-files", "--error-unmatch", "--", rel) is not None
 
 
 def read_tree(ctx, path):
@@ -321,7 +436,9 @@ def resolve_allowlisted(ref, ctx, require_line):
                 ref.path, len(lines), ctx.main.name, ref.line)
         if not lines[ref.line - 1].strip():
             return False, "%s:%d is blank on %s" % (ref.path, ref.line, ctx.main.name)
-        return True, "%s on %s" % (ref, ctx.main.name)
+        # Print what the cited line says, so a reader sees what the authority is.
+        return True, "%s on %s, which reads: \"%s\"" % (
+            ref, ctx.main.name, one_line(lines[ref.line - 1], 120))
     if ref.anchor:
         if re.search(r"\b%s\b" % re.escape(ref.anchor), text):
             return True, "%s on %s" % (ref, ctx.main.name)
@@ -334,9 +451,18 @@ def resolve_allowlisted(ref, ctx, require_line):
 
 def resolve_seat_section(ref, ctx):
     """Annex D case (b): a seat's own recommendation or next-steps section."""
-    if not_authority(ref.path):
+    rel = in_repo(ctx, ref.path)
+    if rel is None:
+        return False, "%s lies outside the repository; case (b) needs a seat's " \
+                      "artifact in it" % ref.path
+    if not_authority(rel):
         return False, "%s is state, not authority (Annex D, 'Not authority')" % ref.path
-    text = read_tree(ctx, ref.path)
+    if ctx.report_path is not None and (ctx.repo / rel).resolve() == ctx.report_path:
+        return False, "%s is this report; a report cannot authorise its own work" % ref.path
+    if not tracked(ctx, rel):
+        return False, "%s is not tracked by git; case (b) needs a seat's committed " \
+                      "artifact" % ref.path
+    text = read_tree(ctx, rel)
     if text is None:
         return False, "%s not found" % ref.path
     lines = text.splitlines()
@@ -349,14 +475,14 @@ def resolve_seat_section(ref, ctx):
         above = [h for i, h in headings if i <= ref.line]
         if not above:
             return False, "%s:%d is under no heading" % (ref.path, ref.line)
-        if RECO.search(above[-1]):
+        if reco_heading(above[-1]):
             return True, "case (b): %s, under '%s'" % (ref, one_line(above[-1], 60))
         return False, "%s:%d sits under '%s', not a recommendation or next-steps section" % (
             ref.path, ref.line, one_line(above[-1], 60))
     if ref.anchor:
         for _, h in headings:
             if slug(h) == ref.anchor.lower():
-                if RECO.search(h):
+                if reco_heading(h):
                     return True, "case (b): %s#%s" % (ref.path, ref.anchor)
                 return False, "%s#%s is not a recommendation or next-steps section" % (
                     ref.path, ref.anchor)
@@ -377,6 +503,14 @@ def check_item3(text, ctx, check="M2(iii)"):
         return [(FAIL, check, "item 3 (\"Seats' recommendations\") not found, "
                  "so neither marker can be checked")]
     lines = secs["item3"]
+    in3 = set(n for n, _ in lines)
+    # Rule 3: "a recommendation in item 1 ... is a view". A My view line has
+    # one home, item 3 (CTO review F10).
+    stray = [n for n, l in enumerate(text.splitlines(), 1)
+             if n not in in3 and VIEW_RE.search(norm(l))]
+    if stray:
+        return [(FAIL, check, "a 'My view' line sits outside item 3 (line %s); rule 3 "
+                 "gives a view one place, item 3" % ", ".join(str(n) for n in stray))]
     no_view = [n for n, l in lines if NO_VIEW in norm(l).lower()]
     views = [(n, VIEW_RE.search(norm(l))) for n, l in lines]
     views = [(n, m) for n, m in views if m]
@@ -413,22 +547,27 @@ def check_view_line(n, rest, ctx, check):
     out = []
     for t in names:
         ok, msg = REFERENCE_CHECKS[t](ref, ctx)
-        out.append((PASS if ok else FAIL, check,
-                    "%s: trigger '%s': %s" % (where, t, msg)))
+        status = ok if ok in (PASS, FAIL, GAP) else (PASS if ok else FAIL)
+        out.append((status, check, "%s: trigger '%s': %s" % (where, t, msg)))
     return out
 
 
 def ref_asked(ref, ctx):
     qs = quotes_in(ref)
     if not qs:
-        return False, "needs the CEO's words, quoted (rule 3)"
-    if ctx.ceo is None:
-        return True, "quote present (form only: not checked against a record; " \
-                     "pass --ceo-words to check it)"
-    missing = [q for q in qs if not quote_found(q, ctx.ceo)]
-    if missing:
-        return False, "quote not found in the CEO's recorded words: \"%s\"" % one_line(missing[0], 80)
-    return True, "quote found in the CEO's recorded words"
+        return FAIL, "needs the CEO's words, quoted (rule 3)"
+    if not ctx.ceo:
+        # As M2(ii) does: an unchecked CEO quote is the case this check is for.
+        return FAIL, "quotes the CEO, but no record of his words was given to check " \
+                     "it against (pass --ceo-words)"
+    st, q = quotes_status(qs, ctx.ceo)
+    if st == FAIL:
+        return FAIL, "quote not found in the CEO's recorded words: \"%s\"" % one_line(q, 80)
+    if st == GAP:
+        return GAP, "quote found, but \"%s\" has a fragment under %d words, too short " \
+                    "to show the words are his; check it by hand" % (one_line(q, 80),
+                                                                  MIN_QUOTE_WORDS)
+    return PASS, "quote found in the CEO's recorded words"
 
 
 def ref_seat_error(ref, ctx):
@@ -517,48 +656,61 @@ def check_item4(text, ctx, check="M2(ii)"):
         out.append((FAIL, check, "item 4 names %d seats but gives %d authorities"
                     % (seats, len(auths))))
     for n, v in auths:
-        ok, msg = resolve_authority(v, ctx)
-        out.append((PASS if ok else FAIL, check, "item 4, line %d: %s" % (n, msg)))
+        status, msg = resolve_authority(v, ctx)
+        out.append((status, check, "item 4, line %d: %s" % (n, msg)))
     return out
 
 
 def resolve_authority(v, ctx):
-    reasons = []
+    reasons, gap = [], None
     refs = path_refs(norm(v))
     for r in refs:
         if allowlisted(r.path):
             ok, msg = resolve_allowlisted(r, ctx, require_line=True)
             if ok:
-                return True, "case (a): " + msg
+                return PASS, "case (a): " + msg
             reasons.append(msg)
     qs = quotes_in(v)
     if qs:
-        if ctx.ceo is None:
+        if not ctx.ceo:
             reasons.append("quotes the CEO, but no --ceo-words record was given to "
                            "resolve it against")
         else:
-            missing = [q for q in qs if not quote_found(q, ctx.ceo)]
-            if not missing:
-                return True, "the CEO's recorded words"
-            reasons.append("quote not found in the CEO's recorded words: \"%s\""
-                           % one_line(missing[0], 80))
+            st, q = quotes_status(qs, ctx.ceo)
+            if st == PASS:
+                return PASS, "the CEO's recorded words"
+            if st == GAP:
+                gap = "quote found in the CEO's recorded words, but \"%s\" has a fragment " \
+                      "under %d words, too short to show the words are his; check it by " \
+                      "hand" % (one_line(q, 80), MIN_QUOTE_WORDS)
+            else:
+                reasons.append("quote not found in the CEO's recorded words: \"%s\""
+                               % one_line(q, 80))
     for r in refs:
         if not allowlisted(r.path):
             ok, msg = resolve_seat_section(r, ctx)
             if ok:
-                return True, msg
+                return PASS, msg
             reasons.append(msg)
+    if gap:
+        return GAP, gap
     if not refs and not qs:
         reasons.append("cites no file and quotes no words")
-    return False, "authority does not resolve: " + "; ".join(reasons)
+    return FAIL, "authority does not resolve: " + "; ".join(reasons)
 
 
 # ------------------------------------------------------------------------ M2(i)
 
-TIER = re.compile(r"\[(FATAL|SERIOUS)\b[^\]]*\]")
+# The template requires a tier tag, not a line shape (CTO review F3), so a tag
+# is looked for in any case, and an upper-case tier word without brackets
+# counts where it leads a heading, list item or bold lead.
+TIER = re.compile(r"\[(FATAL|SERIOUS)\b[^\]]*\]", re.I)
+BARE_TIER = re.compile(r"(?<![\w\[])(FATAL|SERIOUS)(?![\w\]])")
+FRICTION_TAG = re.compile(r"\[FRICTION\b", re.I)
 OID = re.compile(r"^(?P<id>[A-Z]{1,3}\d+(?:-[A-Z]{1,3}\d+)*)(?=[\s.:—–-]|$)\.?")
-BOLD_LEAD = re.compile(r"^(?:[-*+]\s+)?\*\*(?P<b>.+?)\*\*")
-LIST_TAG = re.compile(r"^[-*+]\s+\[(?:FATAL|SERIOUS)")
+LIST_LEAD = re.compile(r"^(?:[-*+]|\d+[.)])\s+")
+BOLD_SPLIT = re.compile(r"^\*\*(?P<b>.+?)\*\*(?P<after>.*)$")
+DELIMS = " .:—–-"
 TIER_CELL = re.compile(r"^\[?(FATAL|SERIOUS)\b")
 DATE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
 DUE_MARKERS = (
@@ -579,9 +731,21 @@ class Objection:
         self.path, self.line, self.form = path, line, form
 
 
+def _strip_id(title):
+    """(objection id or None, the title without it)."""
+    idm = OID.match(title)
+    if not idm:
+        return None, title
+    return idm.group("id"), title[idm.end():]
+
+
 def objections_in(path, text):
-    heads, rows = [], []
-    for n, raw in enumerate(text.splitlines(), 1):
+    """(headed objections, table rows, problems). A problem is (line, kind):
+    "unextracted" for a leading tag with no headline found, which fails closed,
+    and "prose" for a bracketed tag mid-sentence, which is a GAP."""
+    heads, rows, problems = [], [], []
+    lines = text.splitlines()
+    for n, raw in enumerate(lines, 1):
         s = raw.strip()
         if s.startswith("|"):
             cells = [norm(c) for c in s.strip("|").split("|")]
@@ -592,32 +756,88 @@ def objections_in(path, text):
                     rows.append(Objection(m.group(1), oid, cells[i + 1], path, n, "table"))
                     break
             continue
-        if s.startswith("#"):
-            body, whole = s.lstrip("#").strip(), False
-        else:
-            m = BOLD_LEAD.match(s)
-            if m and TIER.search(m.group("b")):
-                body, whole = m.group("b"), False
-            elif LIST_TAG.match(s):
-                body, whole = s[1:].strip(), True
-            else:
-                continue
+        s = re.sub(r"^(?:>\s*)+", "", s)
+        heading = s.startswith("#")
+        listed = bool(LIST_LEAD.match(s))
+        body = s.lstrip("#").strip() if heading else LIST_LEAD.sub("", s, count=1)
+        bold = BOLD_SPLIT.match(body)
         t = TIER.search(body)
+        if not t and (heading or listed or bold):
+            t = BARE_TIER.search(body)
         if not t:
             continue
-        title = norm(body[:t.start()] + " " + body[t.end():])
-        idm = OID.match(title)
-        oid = idm.group("id") if idm else None
-        if idm and not whole:
-            title = title[idm.end():]
-        title = title.lstrip(" .:—–-").strip()
-        if whole:
-            # A tagged list item has no delimited headline: require the line.
-            title = norm(body[:t.start()] + body[t.end():]).strip()
+        tier = t.group(1).upper()
+        lead = norm(body[:t.start()]).strip(DELIMS)
+        if lead and not OID.fullmatch(lead):
+            # Mid-sentence. The template's tier legend ("[FATAL] / [SERIOUS] /
+            # [FRICTION]") is the one expected case; any other is for a human.
+            if t.re is TIER and not FRICTION_TAG.search(body):
+                problems.append((n, "prose"))
+            continue
+        if bold and t.start() < bold.end("b"):
+            inner = body[:t.start()] + " " + body[t.end():bold.end("b")]
+            oid, title = _strip_id(norm(inner))
+            title, form = title.lstrip(DELIMS).strip(), "bold"
+            if not title:
+                title, form = norm(bold.group("after")).lstrip(DELIMS).strip(), "bold, after"
+        elif heading:
+            oid, title = _strip_id(norm(body[:t.start()] + " " + body[t.end():]))
+            title, form = title.lstrip(DELIMS).strip(), "heading"
+            if not title:
+                nxt = next((l.strip() for l in lines[n:n + 3] if l.strip()), "")
+                # Another heading or a table is not this objection's headline.
+                if nxt.startswith(("#", "|")):
+                    nxt = ""
+                title = norm(LIST_LEAD.sub("", nxt.lstrip(">").strip())).lstrip(DELIMS).strip()
+                form = "heading, next line"
+        else:
+            # A tagged list item or paragraph has no delimited headline:
+            # require the whole line.
+            whole = norm(body[:t.start()] + " " + body[t.end():]).lstrip(DELIMS).strip()
+            oid, _ = _strip_id(whole)
+            title, form = whole, "list"
         if title:
-            heads.append(Objection(t.group(1), oid, title, path, n,
-                                   "list" if whole else "heading"))
-    return heads, rows
+            heads.append(Objection(tier, oid, title, path, n, form))
+        else:
+            problems.append((n, "unextracted"))
+    return heads, rows, problems
+
+
+def cited_sources(report, sources, ctx, check):
+    """CTO review F2: every gate pack, dissent memo, review pack, decision
+    record, research brief or idea brief the report cites, and every dissent
+    memo in a cited proposals/<slug>/, must be among the sources."""
+    out, have = [], set()
+    for src in sources:
+        try:
+            have.add(Path(src).resolve())
+        except OSError:
+            pass
+    need = {}
+    for r in path_refs(norm(report)):
+        rel = in_repo(ctx, r.path)
+        if rel is None or rel.startswith("pipeline/templates/"):
+            continue
+        for kind, pat in SOURCE_KINDS:
+            target = rel if "/" in pat else rel.rsplit("/", 1)[-1]
+            if fnmatch.fnmatchcase(target, pat):
+                need.setdefault(rel, kind)
+                break
+        parts = rel.split("/")
+        if len(parts) >= 2 and parts[0] == "proposals":
+            for memo in sorted((ctx.repo / "proposals" / parts[1]).glob("*dissent*.md")):
+                need.setdefault("proposals/%s/%s" % (parts[1], memo.name),
+                                "dissent memo in a cited proposal")
+    for rel, kind in sorted(need.items()):
+        p = (ctx.repo / rel).resolve()
+        if not p.is_file():
+            out.append((GAP, check, "the report cites %s (%s), which is not in the "
+                        "repository; find it and check it by hand" % (rel, kind)))
+        elif p not in have:
+            out.append((FAIL, check, "the report cites %s (%s), but it is not among the "
+                        "sources, so its objections, blocks and dates were not checked; "
+                        "re-run with it" % (rel, kind)))
+    return out
 
 
 def check_sources(report, sources, ctx, check="M2(i)"):
@@ -625,7 +845,15 @@ def check_sources(report, sources, ctx, check="M2(i)"):
     if not sources:
         return [(FAIL, check, "no source artifacts given, so M2(i) cannot run; name "
                  "the artifacts this report covers")]
-    report_n = norm(report)
+    out.extend(cited_sources(report, sources, ctx, check))
+    # Rule 1's copies go under item 2 (Annex A). Text elsewhere, or in an HTML
+    # comment (already removed), is not copied there (CTO review F1).
+    secs = sections(report)
+    if "hear" not in secs:
+        out.append((FAIL, check, "item 2 (\"What you may not want to hear\") not found, "
+                    "so nothing counts as copied under rule 1"))
+    hear = section_text(secs, "hear")
+    report_n = norm(hear)
     heads, rows, texts = [], [], []
     for src in sources:
         p = Path(src)
@@ -635,17 +863,30 @@ def check_sources(report, sources, ctx, check="M2(i)"):
             out.append((FAIL, check, "source %s cannot be read (%s)" % (src, e.__class__.__name__)))
             continue
         texts.append((src, text))
-        h, r = objections_in(src, text)
+        h, r, problems = objections_in(src, text)
+        seen_here = set(o.oid for o in h if o.oid)
+        mine = h + [o for o in r if not (o.oid and o.oid in seen_here)]
+        out.append((INFO, check, "source %s: %d fatal, %d serious objections extracted; "
+                    "check against the memo's own count" % (
+                        src, sum(o.tier == "FATAL" for o in mine),
+                        sum(o.tier == "SERIOUS" for o in mine))))
+        for n, kind in problems:
+            if kind == "unextracted":
+                out.append((FAIL, check, "objection tag at %s:%d: tag found, headline not "
+                            "extracted; read it and copy its headline by hand" % (src, n)))
+            else:
+                out.append((GAP, check, "tier tag mid-sentence at %s:%d, read as prose, not "
+                            "an objection; check it by hand" % (src, n)))
         heads.extend(h)
         rows.extend(r)
-    seen = set(o.oid for o in heads if o.oid)
-    objs = heads + [o for o in rows if not (o.oid and o.oid in seen)]
+    seen = set((o.path, o.oid) for o in heads if o.oid)
+    objs = heads + [o for o in rows if not (o.oid and (o.path, o.oid) in seen)]
     for o in objs:
         where = "%s %s%s:%d" % (o.tier, (o.oid + " ") if o.oid else "", o.path, o.line)
         if norm(o.headline) in report_n:
-            out.append((PASS, check, "objection %s: headline copied verbatim" % where))
+            out.append((PASS, check, "objection %s: headline copied verbatim in item 2" % where))
         else:
-            out.append((FAIL, check, "objection %s: headline not in the report verbatim: \"%s\""
+            out.append((FAIL, check, "objection %s: headline not in item 2 verbatim: \"%s\""
                         % (where, one_line(o.headline, 1000))))
     marked = 0
     for src, text in texts:
@@ -671,11 +912,11 @@ def check_sources(report, sources, ctx, check="M2(i)"):
                 if days >= 7:
                     out.append((PASS, check, "5.2 date %s at %s:%d: %d days away, not under 7"
                                 % (iso, src, n, days)))
-                elif iso in report:
+                elif iso in hear:
                     out.append((PASS, check, "5.2 date %s at %s:%d (%d days): copied"
                                 % (iso, src, n, days)))
                 else:
-                    out.append((FAIL, check, "5.2 date %s at %s:%d is %s and not in the report"
+                    out.append((FAIL, check, "5.2 date %s at %s:%d is %s and not in item 2"
                                 % (iso, src, n, "%d days away" % days if days >= 0
                                    else "%d days past" % -days)))
                 break
@@ -713,13 +954,18 @@ def check_sources(report, sources, ctx, check="M2(i)"):
 def copied(check, where, text, report_n):
     if norm(text) in report_n:
         return (PASS, check, "%s copied verbatim" % where)
-    return (FAIL, check, "%s not in the report verbatim: \"%s\"" % (where, one_line(text, 1000)))
+    return (FAIL, check, "%s not in item 2 verbatim: \"%s\"" % (where, one_line(text, 1000)))
 
 
 # ------------------------------------------------------------------- integrity
 
 def check_integrity(ctx):
     check = "script"
+    if ctx.main.overridden:
+        return (FAIL, check, "--main-ref %s is not the default main (%s); a seat may not "
+                "choose its own main, so this run is not evidence" % (
+                    ctx.main.tried[0], "%s@%s" % (ctx.main.default_name, ctx.main.default_sha[:7])
+                    if ctx.main.default_sha else "none found"))
     if not ctx.main.sha:
         return (GAP, check, "no main ref, so the script cannot confirm it matches main's copy")
     on_main = ctx.main.blob(SCRIPT_PATH)
@@ -735,8 +981,12 @@ def check_integrity(ctx):
 
 # ---------------------------------------------------------------- transcripts
 
+# Inside a human turn, text the harness wrapped rather than he typed: shell
+# commands and their output ("!" mode), slash-command expansions, reminders.
 _STRIP_TAGS = re.compile(
-    r"<(system-reminder|local-command-stdout|local-command-stderr)>.*?</\1>", re.S)
+    r"<(system-reminder|local-command-stdout|local-command-stderr|local-command-caveat"
+    r"|bash-input|bash-stdout|bash-stderr|command-name|command-message"
+    r"|task-notification)>.*?</\1>", re.S)
 
 
 def jsonl_entries(path):
@@ -759,8 +1009,20 @@ def _content(e):
 
 
 def user_texts(e):
-    """The CEO's own words in a transcript entry: no tool results, no injections."""
+    """The CEO's own words in a transcript entry.
+
+    Claude Code marks each user-role entry with its origin. Only
+    origin.kind == "human" is a turn he typed; "task-notification" (a
+    background seat's result), "peer" (another agent's message) and entries
+    with no origin (interruptions, injected context) are not his words, and
+    neither are tool results (CTO review F4). An allowlist, not a blocklist.
+    """
     if e.get("type") != "user" or e.get("isMeta") or e.get("isSidechain"):
+        return []
+    origin = e.get("origin")
+    if not (isinstance(origin, dict) and origin.get("kind") == "human"):
+        return []
+    if e.get("isCompactSummary") or e.get("toolUseResult") is not None:
         return []
     c = _content(e)
     if isinstance(c, str):
@@ -788,16 +1050,49 @@ def assistant_texts(e):
     return []
 
 
-def ceo_record(paths):
-    texts = []
+_DR_QUOTE = re.compile(r'^>\s*\*"(?P<q>[^"*][^"]*)"\*')
+
+
+def ceo_record(paths, ctx):
+    """(the CEO's words, one text per turn or recorded quote; problems).
+
+    A .jsonl transcript gives his human-origin turns. A decision record
+    (decisions/*.md, read as merged to main) gives only its blockquoted italic
+    quotes, never its prose (CTO review F5). Nothing else is read."""
+    texts, problems = [], []
     for p in paths:
         p = Path(p)
+        if ctx.report_path is not None and p.resolve() == ctx.report_path:
+            problems.append("--ceo-words %s is the report itself; refused" % p)
+            continue
         if p.suffix == ".jsonl":
+            n = 0
             for e in jsonl_entries(p):
-                texts.extend(user_texts(e))
-        else:
-            texts.append(norm(p.read_text(encoding="utf-8")).casefold())
-    return texts
+                got = user_texts(e)
+                n += bool(got)
+                texts.extend(got)
+            if not n:
+                problems.append("--ceo-words %s has no turn marked origin.kind \"human\", so "
+                                "none of it is the CEO's words" % p)
+            continue
+        rel = None
+        try:
+            rel = p.resolve().relative_to(ctx.repo.resolve()).as_posix()
+        except ValueError:
+            pass
+        if rel is None or not fnmatch.fnmatchcase(rel, "decisions/*.md"):
+            problems.append("--ceo-words %s is neither a session transcript (.jsonl) nor a "
+                            "decision record (decisions/*.md); refused" % p)
+            continue
+        text = ctx.main.read(rel) if ctx.main and ctx.main.sha else None
+        if text is None:
+            problems.append("--ceo-words %s is not on %s; a decision record counts as "
+                            "merged" % (rel, ctx.main.name if ctx.main else "main"))
+            continue
+        quotes = [norm(m.group("q")).casefold() for m in
+                  (_DR_QUOTE.match(l.translate(_TR).strip()) for l in text.splitlines()) if m]
+        texts.extend(q for q in quotes if q)
+    return texts, problems
 
 
 def parse_when(value):
@@ -856,8 +1151,11 @@ PHRASE_RX = _phrase_rx()
 
 
 def screen(text):
-    """M8(b): view phrases outside a My view block, quotes, blockquotes and code."""
+    """M8(b): view phrases outside quotes, blockquotes, code, and a My view
+    block in item 3. A My view line anywhere else is itself a hit, and what
+    follows it is screened (CTO review F10)."""
     hits, in_fence, in_view = [], False, False
+    in3 = set(n for n, _ in sections(text).get("item3", []))
     for n, raw in enumerate(text.splitlines(), 1):
         if raw.strip().startswith("```"):
             in_fence = not in_fence
@@ -866,7 +1164,11 @@ def screen(text):
             continue
         s = raw.translate(_TR)
         if VIEW_RE.search(norm(s)):
-            in_view = True
+            if n in in3:
+                in_view = True
+                continue
+            hits.append((n, "My view (outside item 3)", one_line(s.strip(), 100)))
+            in_view = False
             continue
         if in_view:
             if label_of(s) or s.lstrip().startswith("#"):
@@ -904,8 +1206,9 @@ def run_transcript(paths, repo, since=None):
             units += 1
             if any(label_of(l) == "hear" for l in text.splitlines()):
                 reports += 1
-                ctx = Ctx(repo, None, ceo if ceo else None, None, form_only=True)
-                bad = [r for r in check_item3(text, ctx, "M8(a)") if r[0] == FAIL]
+                ctx = Ctx(repo, None, ceo or [], None, form_only=True)
+                bad = [r for r in check_item3(strip_comments(text), ctx, "M8(a)")
+                       if r[0] == FAIL]
                 if bad:
                     failing += 1
                     out.append((FAIL, "M8(a)", "%s: %s" % (label, bad[0][2])))
@@ -935,11 +1238,18 @@ def emit(header, results):
     for status, check, msg in results:
         print("%-4s %s %s" % (status, check, one_line(msg, 1200)))
     counts = {s: sum(1 for r in results if r[0] == s) for s in (FAIL, PASS, GAP, HIT)}
-    verdict = FAIL if counts[FAIL] else PASS
+    # The RESULT line is what gets attached to a decision request, and the exit
+    # status is what automation reads. Neither says PASS while a GAP stands.
+    if counts[FAIL]:
+        verdict, code = FAIL, 1
+    elif counts[GAP]:
+        verdict, code = "PASS-WITH-GAPS", 3
+    else:
+        verdict, code = PASS, 0
     tail = ", ".join("%d %s" % (counts[s], s.lower()) for s in (FAIL, PASS, GAP, HIT) if counts[s])
-    note = " (a gap is never a pass)" if counts[GAP] and verdict == PASS else ""
+    note = " (each gap is a check not made; read the GAP lines)" if code == 3 else ""
     print("RESULT: %s (%s)%s" % (verdict, tail or "no checks", note))
-    return 1 if counts[FAIL] else 0
+    return code
 
 
 def repo_root(arg):
@@ -985,24 +1295,31 @@ def main(argv=None):
     except ValueError:
         print("omission-check: --today must be YYYY-MM-DD", file=sys.stderr)
         return 2
+    main_ref = Main(repo, a.main_ref)
+    report_path = None if a.report == "-" else Path(a.report).resolve()
+    ctx = Ctx(repo, main_ref, None, today, report_path=report_path)
+    problems = []
     try:
         if a.report == "-":
             report, name = sys.stdin.read(), "stdin"
         else:
             report, name = Path(a.report).read_text(encoding="utf-8"), a.report
-        ceo = ceo_record(a.ceo_words) if a.ceo_words else None
+        if a.ceo_words:
+            ctx.ceo, problems = ceo_record(a.ceo_words, ctx)
     except (OSError, UnicodeDecodeError) as e:
         print("omission-check: cannot read input: %s" % e, file=sys.stderr)
         return 2
-    main_ref = Main(repo, a.main_ref)
-    ctx = Ctx(repo, main_ref, ceo, today)
+    # What the CEO cannot see does not count (CTO review F1).
+    report = strip_comments(report)
     results = [check_integrity(ctx)]
+    results += [(FAIL, "CEO words", p) for p in problems]
     results += check_item3(report, ctx)
     results += check_item4(report, ctx)
     results += check_sources(report, a.sources, ctx)
     header = "omission-check %s report · %s · sources: %d · main: %s · today: %s · CEO words: %s" % (
         VERSION, name, len(a.sources), main_ref.describe(), today.isoformat(),
-        "%d file(s)" % len(a.ceo_words) if a.ceo_words else "none given")
+        "%d text(s) from %d file(s)" % (len(ctx.ceo or []), len(a.ceo_words))
+        if a.ceo_words else "none given")
     return emit(header, results)
 
 
