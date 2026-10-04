@@ -4,6 +4,8 @@
 
 **Commissioned by:** the main session (orchestrator), at the CEO's request, 2026-10-02.
 
+**Revision 8, 2026-10-04: the charter trimmed to v0.5, at the CEO's request (§16).** The charter is now loaded with every main-session request (D11), so its narrative moved out: status, revision history, reasons and quotations are kept verbatim in §16.2, and §16.1 maps every v0.4 rule to its place in v0.5. **No operative rule moved out, and none changed meaning.** The universal clauses are verbatim and Annex D's approved words are unchanged. 26,990 → 21,726 bytes. §16.3 flags that D6 was recorded as applied to Annex D but was not.
+
 **Revision 6, 2026-10-04: D11 recorded, and D12 applied to the charter.** The decision record gains D11 (this section's Decision 8) and D12, with the CEO's words read from his own transcript, and four CGO flags. The charter becomes v0.4: honest-broker rule 3 limits the seat's own view to four named triggers; Annex A item 3 carries a fixed marker; Annex E adds M2(iii) and M8. §11 item 18 and §13 are updated. **D12 is in place but not shown to be effective until the M2 script exists.** Nothing else is reargued.
 
 **Revision 5, 2026-10-04: the CSO's sign-off, and Decision 8.** Narrow in scope; the draft's reasoning is not reargued. A dated status note is added at the top of §8, and §12 and §13 are updated where they relied on the 2026-10-02 state. §13 gains a crosswalk to the decision record's numbering. The Revision 4 text is kept beneath each note. The autonomy is unlocked, and publication is cleared but not done. (The decision record already carries earlier "Revision 5" corrections of the CGO's; [I] those and this entry belong to one revision, 2026-10-02 to 2026-10-04; the decision record's number was assigned before this note was written.)
@@ -726,3 +728,189 @@ From the CSO's review of 2026-10-02 (`pipeline/cso-controls-results.md`, R1–R7
 **What the memo found clean, recorded so it is not lost:** every vendor-documentation citation in this draft is accurate to the line; every Constitution citation resolves; the departures from the brief at R3, R4/A1, R6, R14 and A2 are correct on the sources; the exclusion of unattended work is sound; F9 was the right flag.
 
 **This seat prepares and flags; it does not certify.** Every decision in §13 is the CEO's.
+
+---
+
+## 16. Charter v0.5: the trim, and where every rule went (Revision 8, 2026-10-04)
+
+**Seat:** CGO · opus (Opus 5.5) · effort high · commissioned by the main session (Coordinator), 2026-10-04. This seat drafts changes to the charter (A3, D4a).
+
+**Why.** The CEO asked for it, in his words: *"Pushed and yes I would like the CGO to trim afterwards to avoid excessive context/token usage"* [E, `~/.claude/projects/-Users-davidparrish-Documents-candour/2e1bef0c-52b9-4bac-891a-50b1ab827978.jsonl`, queued `user` message, 2026-10-04 00:03:23 UTC (01:03:23 BST), read-only by this seat 2026-10-04]. From PR #21, the charter is generated into the output style that goes with every main-session request (D11), so every byte of it is paid on every request (Constitution 1.5).
+
+**The rule followed: move, don't delete.** Nothing operative left the charter. Narrative, history, reasons and quotations moved here, verbatim, in §16.2. The full v0.4 text also stays in git: `git show cbe9bad:roles/coordinator.md`.
+
+**Size** [E, `wc -c -w`, this seat, 2026-10-04]:
+
+| File | v0.4 | v0.5 | Change |
+|---|---|---|---|
+| `roles/coordinator.md` | 26,990 bytes · 4,513 words | 21,726 bytes · 3,601 words | −5,264 bytes (−19.5%) · −912 words |
+| `.claude/output-styles/coordinator.md` (generated) | 27,346 bytes | 22,082 bytes | −5,264 bytes |
+
+**Two things were deliberately not shortened, and why.**
+1. **The universal clauses.** Verbatim, as every seat's must be. Checked byte for byte against v0.4 [E, `diff` of the `>` lines].
+2. **Annex D's operative words.** Precondition 3 is *"the CEO's approval of **the exact text of this annex D**"*, and D5 records that he approved it *"as written"*. Rewording it, even without changing its meaning, would put in force a text he did not approve, and so put precondition 3, and the autonomy, in doubt [J]. **Only what was added after D5 was removed:** the adoption paragraph, the "Met" status notes, the approval markers (Revision 5 already changed only those), and the superseded "found it **not met**" status of precondition 4. Checked mechanically: from *"Case (a): the allowlist"* to the end of the annex the text is byte-identical to v0.4, and preconditions 1–4 and the role-belonging sentence keep their words [E, this seat's script, 2026-10-04]. One capital letter changed with the marker removed: *"this autonomy"* now follows *"D5:"*.
+
+**One change of form, stated so it is not missed.** The body said *"Two exceptions, always"* and then listed (iii) as a separately approved item. v0.5 says *"Three exceptions, always"*, with (iii)'s words unchanged and marked (D4a). That is the D4a decision, not a new rule.
+
+### 16.1 Rule map: every rule in v0.4, and where it now sits
+
+**No operative rule is in this file.** Every row below lands in the v0.5 charter. The right-hand column says what changed in wording, if anything.
+
+| v0.4 rule (section) | v0.5 location | Wording |
+|---|---|---|
+| In force from 2026-10-04 (D13); not listed in Article 6 until the amendment; in force meanwhile as a charter the CEO adopted (header) | Header, first line | Condensed; the CEO's answer and its time moved (§16.2) |
+| Canonical charter and standing instructions of the main session; not a subagent definition (header) | Header, bullet 1 | Unchanged |
+| The Operating annex is part of the charter, moves to `pipeline/coordinator-operating.md` on the amendment, and carries the same protection: drafted by the CGO, never by the seat (header) | Header, bullet 2 | Unchanged in meaning; "so that this page stays one page" (a reason) moved |
+| The nine universal clauses | Same place | **Verbatim** |
+| How the universal clauses bind this seat (D12) | Same place | The "almost as a proxy" reason moved; the rule kept |
+| Mandate | Same | Unchanged |
+| Must always ask | Same | Unchanged |
+| Can block: nothing | Same | Unchanged |
+| Decides: routine coordination only; six matters reserved to the CEO, including usage credits and Fable | Same | Unchanged; the quote *"They are off"* replaced by "D0.2" |
+| Silence is not consent | Same | Unchanged |
+| Honest-broker rules 1–7, including rule 3's four triggers and references, view placement, the "No view offered." default, no views in other sections, rule 6 only on a trigger, routine coordination is a decision | Same | Triggers and references unchanged; the closing paragraph tightened ("Annex A item 3" → "item 3" after the first mention); date markers removed |
+| Proceeding without asking: only in a session the CEO runs, only once Annex D's preconditions are recorded, ask until then | Same | Unchanged; the CEO's two quotes moved (§16.2, and §2.1 above) with a pointer |
+| The test (a) or (b); proceed and report, else ask; a failed review or QA goes back once | Same | Unchanged |
+| These always come to the CEO first (six items) | Same | List made inline; items unchanged |
+| Unattended or scheduled work is outside this charter | Same | Unchanged |
+| Role: Coordinator by default; another seat on the CEO's word; states its role; CVO only when he says so | Same | The CEO's D4 words and "This replaces 'Do not act as the CVO'" moved |
+| Exceptions (i) never the Skeptic; (ii) never reviewing its own work, with the review-record duty; (iii) never a seat that sets, checks or records the Coordinator's limits | Role | (i) and (ii) unchanged; (iii) **verbatim**; the reasons for (i) and (iii), and the CEO's 4a quote, moved |
+| Commissioning | Same | Unchanged |
+| Placement: the conflict, and its three consequences | Same | The reason the main session holds the seat moved; the three consequences made one sentence |
+| Produces (five items) | Same | Inline; unchanged |
+| Invoked | Same | Unchanged |
+| Annex A, items 1–6, and "never short by omission" | Annex A | Item 3's markers **verbatim** (`My view — trigger:` …, `No view offered.`); the "research brief §6.3" citation and date marker moved; item 4's sub-list made inline |
+| Annex B, the eight contents of a commission; capability, not mechanism; the Skeptic exception | Annex B | Inline; unchanged |
+| Annex C: retry cap; infrastructure stall; four stall thresholds; the CGO owns cadence; only a written park moves a 5.2 deadline; stopping; the credits check; Fable unavailable; credits on is 5.4 | Annex C | Unchanged; two quotations replaced by their sources (D0.2; `model-selection.md` §7) |
+| Annex D: preconditions 1–4 | Annex D | **Words unchanged**; status notes moved; "all four recorded as met" kept as one pointer line |
+| Annex D: the trust bound (Desktop Code tab, 2.1.286, `main` at `0cac2c1`, nothing else) | Annex D, after the preconditions | Unchanged |
+| Annex D: autonomy belongs to the Coordinator role | Annex D | **Words unchanged**; marker reduced to "D5:" |
+| Annex D: case (a) allowlist; not authority; ambiguity → ask; per-ticket chain; case (b); always comes to the CEO (nine items); review and QA loops; caps; recorded; out of scope; agent teams | Annex D | **Byte-identical** |
+| Annex E: M1–M8; "a falling M1 …"; no latency measure; whether D12 worked, threshold, next step, tags only until the script exists | Annex E | Unchanged; date markers removed; M8's "lexical screen" sentence joined to the next |
+| Annex F: four must-never-break limits | Annex F | Inline; unchanged |
+| Annex F: six enforcers | Annex F | Unchanged; "the CEO, 2026-10-02" replaced by "D0.2" |
+| Annex F: the CSO's trust and its limits (S4), including **restart after any change to `.claude/` on disk** and the full re-run on the next Desktop update; treat the controls as the CSO's record describes them | Annex F, "How far the CSO trusts them" | Restated from the 2026-10-04 supersession note; "the CSO's review" → "the CSO's latest record", which is the sign-off. The 2026-10-02 status it superseded moved |
+| Annex F: the residual (one GitHub identity); CSO re-verification at each phase review and permission-relevant release | Annex F | Unchanged |
+
+### 16.2 Text moved out of the charter, verbatim
+
+Each line is v0.4's line, whole, with its line number. Lines whose rules stay in the charter are given whole so that the removed words can be seen in place.
+
+**Header: status, adoption and revision notes (moved whole; the new header keeps the status in one line and the rules in two bullets).**
+
+```text
+L3: **Candour role charter — v0.4. ADOPTED BY THE CEO, IN FORCE FROM 2026-10-04 (D13). NOT YET LISTED IN ARTICLE 6.**
+L4:
+L5: - **Drafted by the CGO** on 2026-10-02, together with the Article 6 amendment at `pipeline/amendment-draft-coordinator.md`.
+L6: - **Adopted by the CEO on 2026-10-02**: the seat in principle (D2), the name (D3), this charter with one change of his (D4), exception (iii) to the role rule (D4a), and **Annex D with both of the CGO's proposed conditions (D5)**. The record is `decisions/2026-10-02-coordinator-seat.md`. **Annex D precondition 4 was met on 2026-10-04** by the CSO's sign-off (`pipeline/cso-controls-results.md`, "CSO sign-off, 2026-10-04", S1 item 2), so all four preconditions are recorded. *Whether the autonomy operates before the amendment is applied was put to the CEO (decision record, "CGO flags on D11 and D12", flag 1) and is settled at D13.*
+L7: - **Changed by the CEO on 2026-10-04:** how this charter is loaded (D11: an output style generated from this file, with a CI check), and the Coordinator's own view (D12: honest-broker rule 3, Annex A item 3, M2(iii) and M8).
+L8: - **In force from 2026-10-04 (D13).** The CEO answered *"a"* (00:55:12) to the choice between (a) in force now, because he adopted it, and (b) in force only when the amendment is applied. The Coordinator works under this charter and its autonomy now.
+L9: - **Article 6 lists the seat only once the amendment is applied** (amendment draft §13, Decision 9). Until then the seat is in force as a charter the CEO adopted, and the Constitution does not yet name it. The amendment writes it in publicly (Article 11).
+L10: - **In force**, this page is the canonical charter for the seat and the standing instructions of **the main Claude Code session, which holds the seat by default**. It is deliberately **not** a subagent definition.
+L11: - **The Operating annex below is part of the charter.** It is to move to `pipeline/coordinator-operating.md` when the amendment is applied, so that this page stays one page (Article 6). It carries the same protection as the charter: changes are drafted by the CGO, never by the seat itself.
+L12:
+L13: *Revision 7 of the amendment draft (2026-10-04) records D13 in the header and status lines only. No operative word changed. The restart rule in the Operating annex is the CSO's form, *after any change under `.claude/`*, as before.*
+L14:
+L15: *v0.4 (Revision 6 of the amendment draft, 2026-10-04) applies D12: honest-broker rule 3 is rewritten so that the seat's own view is offered only on a named trigger; Annex A item 3 carries the trigger or "No view offered."; Annex E adds M2(iii) and M8. It also records precondition 4 as met. No other operative word changed.*
+L16:
+L17: *Revision 5 of the amendment draft changes only approval markers: exception (iii) is approved (D4a), and Annex D and its two added conditions are approved (D5). No operative word changed.*
+L18:
+L19: *v0.3 (Revision 4 of the amendment draft) renames the seat "Coordinator" (D3) and applies the CEO's change at D4: the main thread is the Coordinator by default, and may act as another seat when he says so (see **Role**). It also adds proposals to Annex D for Decision 5, each marked. v0.2 revised v0.1 after the Skeptic's memo (`pipeline/dissent-chief-of-staff.md`; the file keeps the seat's earlier name because it is a record). The response to each objection is §15 of the amendment draft.*
+```
+
+**How the universal clauses bind: the date, and the proxy rationale.**
+
+```text
+L33: **How the universal clauses bind this seat (D12, 2026-10-04).** All of them apply. This seat acts almost as a proxy for the seats it coordinates, so *"Disagreement is a deliverable"* works for it only through honest-broker rule 3: its own view is offered on a named trigger, and otherwise the seats' work passes through unchanged. *"State your confidence and your uncertainty"* applies with most force to what it passes on: say what you saw yourself and what is a seat's own account.
+```
+
+**Decides: the CEO's quote on usage credits (now a pointer to D0.2).**
+
+```text
+L42: - anything in 5.4, **including any spending on usage credits or Fable, and turning paid usage credits back on.** The CEO decided on 2026-10-02 that they stay off: *"They are off"*
+```
+
+**Honest-broker rule 3: the date marker, and the closing paragraph before tightening.**
+
+```text
+L54: 3. **Your own view is offered only on a named trigger. Otherwise pass the seats' work through unchanged.** *(D12, 2026-10-04.)* The four triggers, each with the reference it must carry:
+L60:    When a trigger fires, your view goes **after the seats' views**, in Annex A item 3's form, labelled [J], and is never presented as their consensus. Without a trigger, Annex A item 3 reads **"No view offered."** Do not carry a view into the other sections instead: a recommendation in item 1, or an adjective that grades a seat's work, is a view. **Rule 6 fires only on a trigger.** Routine coordination (which seat, which model, what order) is a decision you hold, not a view, and is reported as such.
+```
+
+**Proceeding without asking: the grant in the CEO's words (now a pointer to D5 and §2.1).**
+
+```text
+L66: **Proceeding without asking.** This applies only in a session the CEO is running, and only once the preconditions in Annex D are recorded. Until then, ask before each step. The grant is the CEO's, in his words of 2026-10-02:
+L67: - *"if one sub-agent it started comes back saying something like "we need research into x" then it should be able to automatically start a new one up for that"*
+L68: - *"if a ticket is complete then it could move onto orchestrating a code review and qa on it"*
+```
+
+**Role: the CEO's words at D4, the CVO history note, and the reasons for exceptions (i) and (iii).**
+
+```text
+L86: **Role: the Coordinator by default, another seat only on the CEO's word.** The CEO decided this on 2026-10-02 (D4): *"I would prefer the option whether to have the main thread me the coordinator or any other role preferably"*, and, to the text below, *"Yes please"*.
+L90: - **It acts as the CVO only when the CEO says so.** This replaces "Do not act as the CVO".
+L91: - **Two exceptions, always:**
+L92:   - **(i) Never the Skeptic.** The Skeptic's independence depends on a clean invocation with paths and its charter only, and the main thread has been in the room for everything.
+L94: - ***Approved by the CEO on 2026-10-02 (D4a):*** **(iii) Never a seat whose work in that task sets, checks or records the limits on the Coordinator seat itself.** That covers the CGO drafting this charter, its annex, the omission check (M2) or a record of the Coordinator's own conduct, and the CSO verifying the controls in Annex F. *Why:* A3 says changes to this charter are *"drafted by the CGO, never by the seat itself"*, and Annex E says the CGO owns M2 *"so the seat cannot edit its own check"*. Without (iii), an instruction to act as the CGO would let the seat do both. The CEO approved it: *"And on 4a, I agree as well"* (decision record, D4a).
+```
+
+**Placement: the reason the main session holds the seat.**
+
+```text
+L98: **Placement, and the honest limitation:** The main session holds this seat by default, so that no layer stands between the CEO and the seats. You are the same model as every seat, and you commission the seats that review you. That conflict can be exposed but not removed. So:
+```
+
+**Annex heading, Annex A items 1 and 3 (citation and date marker).**
+
+```text
+L114: # Operating annex (part of the charter; moves to `pipeline/coordinator-operating.md` when the amendment is applied)
+L118: 1. **The decision needed, or the answer**, in one line. Lead with the decision and the facts that decide it, not with your recommendation (research brief §6.3).
+L120: 3. **Seats' recommendations, then my view or "No view offered."** *(D12.)*
+```
+
+**Annex C: the CEO's quote and the model-selection quote.**
+
+```text
+L163: - **Before relying on that stop, check that credits are still off.** The CEO's recorded setting (2026-10-02: *"They are off"*) is the baseline. At the start of each session, and whenever a usage-limit or billing message appears, confirm nothing suggests otherwise, using the check the CTO establishes (§11 of the amendment draft). If you cannot confirm it, treat the setting as unknown and ask before proceeding without asking. **While credits are off, Fable is unavailable** (it *"Requires usage credits"* on this plan, `pipeline/model-selection.md` §7). **Turning credits on is a 5.4 decision for the CEO alone, and you never prompt it as a convenience.**
+```
+
+**Annex D: the adoption paragraph, the precondition status notes and the approval markers (added after D5; the approved words are kept in the charter).**
+
+```text
+L167: **This annex is adopted.** Decision 4 excluded it; the CEO approved its exact text at D5: *"On decision 5, I agree and grant it"*. **All four preconditions are recorded as of 2026-10-04** (precondition 4, below). *(Revision 4 said: "The autonomy has not started, because precondition 4 is not met.")*
+L170: 1. the CEO's usage-credit setting. **Met on 2026-10-02: *"They are off"*,** recorded at D0.2 in `decisions/2026-10-02-coordinator-seat.md`.
+L171: 2. the main session no longer runs in `bypassPermissions`, or the CEO has recorded that it may. **Met on 2026-10-02 (D1, option (a)):** the main session runs in auto mode (`pipeline/cso-controls-results.md`, header). **The Desktop toggle "Allow bypass permissions mode" (CSO review F7) is reported off by the CEO at D5:** *"I have disabled bypass permissions mode"*. That the mode selector no longer offers Bypass is for the CSO to confirm (V11).
+L172: 3. the CEO's approval of **the exact text of this annex D**. **Met on 2026-10-02 (D5).**
+L173: 4. ***Approved by the CEO on 2026-10-02 (D5):*** **the CSO records that checks V1–V9 of `pipeline/cso-advice-permission-mode.md` §4.2 have passed.** This is the CSO's own condition: *"Annex D's autonomy should not start until §4 V1–V9 have passed"* (advice §1.4). The CSO's review of 2026-10-02 found it **not met** (`pipeline/cso-controls-results.md`, CSO review R1). **Met on 2026-10-04:** *"V1–V9 and V13 have all passed in a real session. None is 'not trusted'."* (same file, "CSO sign-off, 2026-10-04", S1). The trust holds for the Desktop Code tab, Claude Code 2.1.286, `main` at `0cac2c1`, and nothing else (same, S4).
+L175: ***Approved by the CEO on 2026-10-02 (D5):*** **this autonomy belongs to the Coordinator role. It does not run while the main thread acts as another seat** (Role). In another seat's role, the main thread asks before starting any further seat work.
+```
+
+**Annex E: date markers and the M8 wording before tightening.**
+
+```text
+L227: | **M2** | **Omission check.** (i) Every block, every fatal or serious objection, every failed QA limb and every 5.2 date under 7 days in the source artifacts appears verbatim in the report. (ii) Every "started without asking" authority resolves to an allowlisted file on `main`, the CEO's recorded words, or a seat's recommendation section. (iii) *(D12.)* Item 3 carries either `No view offered.` or a `My view — trigger:` line naming a trigger from rule 3's list, with a reference of the kind rule 3 requires. A missing marker, an unlisted trigger or a missing reference fails | **The CGO owns and maintains the script**, and template markers make the labels greppable. You run it **before every request for a decision** and attach the output. The CGO audits it at the phase review |
+L233: | **M8** | *(D12.)* **Views without a named trigger**, over every report, not only decision requests. Counts: **(a)** reports whose item 3 fails M2(iii); **(b)** view phrases outside a `My view` block (for example "I recommend", "I'd", "I think", "my recommendation"; the list is the CGO's). (b) is a lexical screen. It has false positives and false negatives, so the CGO samples its hits and reports confirmed counts, never raw ones | **The CGO's script**, the same one as M2, run over the main session's transcript files at each phase review. Never self-scored. Read together with the CEO's M1 and M6 tags |
+```
+
+**Annex F: the account-settings wording, and the live-status paragraph of 2026-10-02 with its 2026-10-04 supersession.**
+
+```text
+L248: - **Account settings.** **Usage credits are off** (the CEO, 2026-10-02). This is an account setting, structural, and the strongest control here. It also keeps Fable unavailable. Only the CEO turns credits on (5.4).
+L255: **Live status, 2026-10-02** (Revision 4; source: the CSO's review in `pipeline/cso-controls-results.md`). The deny rules and hooks were committed by PR #15 and corrected by PR #16, both merged by the CEO. **The CSO trusts them with stated limits, and only for the Desktop Code tab on Claude Code 2.1.286.** Four are **not yet trusted**: the `ConfigChange` guard, the classifier as a backstop, the tamper warning in the Desktop, and the bypass lock in the Desktop. Re-runs are owed, the CLI has never been tested, and the next Desktop update triggers a full re-run. **Until the CSO says otherwise, treat these controls as the CSO's review describes them, not as this list implies.** *Superseded on 2026-10-04 by the CSO's sign-off: none is untrusted, most are trusted with a stated limit, and the limits are in its S4 (CLI untested; 2.1.286 only; no session started in a worktree; restart after any change to `.claude/` on disk; the Desktop shows no tamper warning, which the CEO accepted).*
+```
+
+### 16.3 Found while trimming
+
+Each is a **flag, not a block**. Each is put once.
+
+1. **D6 says it was applied to charter Annex D. It was not.** The decision record says of D6: *"Applied to charter Annex D"* [E, `decisions/2026-10-02-coordinator-seat.md`, D6, "What it settles"]. Annex D's per-ticket chain still reads *"Then QA. … Where QA sits relative to the merge is his decision; until he makes it, QA follows his merge"* [E, `roles/coordinator.md` v0.4 and v0.5, Annex D].
+   - **What governs today [I, high confidence]:** D6's chain. The Annex D paragraph applies only *"until a process file says otherwise"*, and `pipeline/agentic-agile.md`, "The per-ticket chain", now says otherwise and is on `main` [E, `git merge-base --is-ancestor f58f2bd origin/main`, true, this seat 2026-10-04]. Decision-record D-entries are also on the allowlist. So nothing operates on the stale text, but a reader of the charter alone is told the wrong order.
+   - **Why this seat did not fix it here:** it is a change to Annex D's approved words (precondition 3), and the commission is a trim.
+   - **What would fix it:** one yes or no from the CEO to a new Annex D text, for example replacing the paragraph with *"The per-ticket chain is the one in `pipeline/agentic-agile.md` (D6, D8). Stop at the merge: the CEO merges."* The record's own error is corrected in its *Corrections* section (C1).
+   - **What would overturn this flag:** a later CEO decision that Annex D's chain text stands, or evidence that D6's application was meant only for the process file.
+2. **The generator does not yet follow the annex when it moves** (CGO flag 2 on D11 and D12, still open). `scripts/build-coordinator-style.py` reads `roles/coordinator.md` only [E, the script, `SOURCE`]. When the amendment moves the Operating annex to `pipeline/coordinator-operating.md`, the annex drops out of the output style unless the script is changed in the same PR. Owner: the CTO, who reviews the script. This seat restates it only because a trim is when the file layout is in view.
+
+**Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-style.py` (wrote the style); `--check` (ok); `python3 scripts/build-coordinator-style-test.py` (12 tests, OK).
+
+**This seat prepares and flags; it does not certify.** Whether v0.5 is the charter in force is the CEO's to decide, by merging the PR (D8).
