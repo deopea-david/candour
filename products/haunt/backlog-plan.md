@@ -417,7 +417,7 @@ GitHub Projects supports text, number, date, single-select and iteration fields,
 | **By seat** | table | grouped by Owner seat; Status ≠ Done | each seat, at standup |
 | **Review queue** | table | Status = In review | CTO, CSO |
 | **QA queue** | table | Status = QA | QA |
-| **Blocked** | table | label `blocked` or `needs:ceo` | PM/BA, orchestrator |
+| **Blocked** | table | label `blocked` or `needs:ceo` | PM/BA, main session |
 | **Planning and spikes** | table | Level = spike | CTO |
 | **Phases** | table | grouped by Phase | CTO, CGO at phase review |
 | **Current wave** | board | `Wave` = the wave in flight, all levels including `story`; columns by Status | CTO at the wave gate, Engineers |
