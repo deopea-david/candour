@@ -112,7 +112,8 @@ class Scratch(unittest.TestCase):
         self.write("products/x/note.md", SEAT_NOTE)
         self.write("products/x/STATUS.md", "# Status\n## Next steps\nBuild it.\n")
         self.write("proposals/x/dissent-memo.md", MEMO)
-        self.write("proposals/x/gate-pack.md", GATE)
+        # A gate pack with no dissent memo beside it (N4 requires any memo there).
+        self.write("proposals/g/gate-pack.md", GATE)
         self.git("add", "-A")
         self.git("commit", "-q", "-m", "fixture")
 
@@ -177,7 +178,7 @@ class Scratch(unittest.TestCase):
 
 class Item3(Scratch):
     def test_no_view_offered_passes(self):
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/gate-pack.md", today="2026-09-01")
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/g/gate-pack.md", today="2026-09-01")
         self.assertEqual(code, 3, out)
         self.assertTrue(self.lines(out, "PASS", "M2(iii)"), out)
 
@@ -227,7 +228,7 @@ class Item3(Scratch):
         code, out, _ = self.run_check(report_with(item3=one), "constitution.md")
         self.assertIn("both artifacts", self.lines(out, "FAIL", "M2(iii)")[0])
         two = ("   My view — trigger: seat conflict — reference: products/x/note.md "
-               "and proposals/x/gate-pack.md")
+               "and proposals/g/gate-pack.md")
         code, out, _ = self.run_check(report_with(item3=two), "constitution.md")
         self.assertTrue(self.lines(out, "PASS", "M2(iii)"), out)
 
@@ -428,18 +429,18 @@ class Sources(Scratch):
         self.assertEqual(heads[0].headline, "The whole line is the headline here")
 
     def test_date_under_seven_days_must_be_copied(self):
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/gate-pack.md")
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/g/gate-pack.md")
         self.assertIn("3 days away", self.lines(out, "FAIL", "M2(i)")[0])
         code, out, _ = self.run_check(report_with(hear="Decision due 2026-10-07."),
-                                      "proposals/x/gate-pack.md")
+                                      "proposals/g/gate-pack.md")
         self.assertEqual(code, 3, out)
         # Copied, but outside item 2: not copied under rule 1.
         code, out, _ = self.run_check(report_with(extra="\nDecision due 2026-10-07.\n"),
-                                      "proposals/x/gate-pack.md")
+                                      "proposals/g/gate-pack.md")
         self.assertIn("not in item 2", self.lines(out, "FAIL", "M2(i)")[0])
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/gate-pack.md", today="2026-09-30")
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/g/gate-pack.md", today="2026-09-30")
         self.assertIn("not under 7", self.lines(out, "PASS", "M2(i)")[0])
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/gate-pack.md", today="2026-10-09")
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/g/gate-pack.md", today="2026-10-09")
         self.assertIn("2 days past", self.lines(out, "FAIL", "M2(i)")[0])
 
     def test_research_brief_due_lines(self):
@@ -485,7 +486,7 @@ class Sources(Scratch):
         self.assertIn("no source artifacts", self.lines(out, "FAIL", "M2(i)")[0])
 
     def test_missing_source_fails(self):
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/ghost.md")
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/g/ghost.md")
         self.assertIn("cannot be read", self.lines(out, "FAIL", "M2(i)")[0])
 
 
@@ -693,8 +694,8 @@ class CTOReview(Scratch):
 
     def test_r3_a_tag_without_a_headline_fails_closed(self):
         memo = "### [FATAL] O9.\n### [SERIOUS] O10. Next one\nAs O3 [SERIOUS] showed, prose.\n"
-        self.write("proposals/x/odd-dissent.md", memo)
-        code, out, _ = self.run_check(GOOD_REPORT, "proposals/x/odd-dissent.md")
+        self.write("proposals/odd/odd-dissent.md", memo)
+        code, out, _ = self.run_check(GOOD_REPORT, "proposals/odd/odd-dissent.md")
         self.assertIn("headline not extracted", self.lines(out, "FAIL", "M2(i)")[0])
         self.assertTrue([l for l in self.lines(out, "GAP", "M2(i)") if "mid-sentence" in l], out)
         self.assertIn("0 fatal, 1 serious", out)  # O9 counted only by its FAIL line
@@ -725,7 +726,9 @@ class CTOReview(Scratch):
         dr = self.repo / "decisions/2026-10-03-words.md"
         for said, want in (("This seat does not recommend reopening D2", "FAIL"),
                            ("This is the seat's own text", "FAIL"),
-                           ("go ahead with the omission check", "PASS")):
+                           # N3: a decision record does not mark who is quoted, so
+                           # a match there is a GAP, never a PASS.
+                           ("go ahead with the omission check", "GAP")):
             code, out, _ = self.run_check(report_with(item4=self.item_with('"%s"' % said)),
                                           "constitution.md", ceo=[dr])
             self.assertTrue(self.lines(out, want, "M2(ii)"), said + "\n" + out)
@@ -831,6 +834,132 @@ class CTOReview(Scratch):
 
     def item_with(self, authority):
         return Item4.item(self, authority)
+
+
+class CTOReReview(Scratch):
+    """One test per reproduction in the CTO's re-review of PR #23 (head b0b6b06):
+    N1-N5, and the widget proposal in its section 5."""
+
+    haunt = CTOReview.haunt
+    objection_lines = CTOReview.objection_lines
+    item_with = CTOReview.item_with
+
+    def run_m8(self, path):
+        p = subprocess.run([sys.executable, str(SCRIPT), "transcript", str(path)],
+                           capture_output=True, text=True, cwd=str(self.repo))
+        return p.returncode, p.stdout
+
+    def test_n1_link_reference_definitions_do_not_count(self):
+        h = self.haunt()
+        hear = "\n".join([
+            "Nothing material.",
+            "[r0]: <#> (%s)" % h[0],
+            "   [r1]: <#> \"%s\"" % h[1],
+            "> [r2]: <#> '%s'" % h[2],
+            "- [r3]: <#>", "  (%s)" % h[3],      # title on the next line
+            "[r4]:", "<#>", "\"%s\"" % h[4],     # destination and title below
+            "[r5]: <#> (%s" % h[5], ")",         # title closed a line later
+            "[^6]: %s" % h[6],                   # a footnote renders away from item 2
+            "[r7]: <#> (%s)" % h[7],
+        ])
+        code, out, _ = self.run_check(report_with(hear=hear), HAUNT_MEMO)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(len(self.objection_lines(out, "FAIL")), 8, out)
+        self.assertFalse(self.objection_lines(out, "PASS"), out)
+        # A visible headline after a definition still counts.
+        code, out, _ = self.run_check(report_with(hear="[r0]: <#>\n\n- %s" % h[0]), HAUNT_MEMO)
+        self.assertEqual(len(self.objection_lines(out, "PASS")), 1, out)
+
+    def test_n2_a_report_without_item_2_is_still_a_report(self):
+        text = ("## 3. Seats' recommendations\n"
+                "My view — trigger: gut feeling — reference: none\n"
+                "I recommend we merge #23 now; the case is compelling.\n")
+        say = {"type": "assistant", "message": {"id": "m1", "role": "assistant",
+                                                "content": [{"type": "text", "text": text}]}}
+        p = self.tmp / "x4.jsonl"
+        p.write_text(json.dumps(say) + "\n", encoding="utf-8")
+        code, out = self.run_m8(p)
+        self.assertEqual(code, 1, out)
+        self.assertIn("1 of 1 reports fail", out)
+        self.assertIn("trigger not on rule 3's list", out)
+        hits = sorted(h[1] for h in oc.screen(text))
+        self.assertEqual(hits, ["I recommend", "My view (trigger not on rule 3's list)",
+                                "compelling"])
+
+    def real_record(self, rel):
+        self.write(rel, (REPO / rel).read_text(encoding="utf-8"))
+        self.git("add", "-A")
+        self.git("commit", "-q", "-m", "real record")
+        return self.repo / rel
+
+    def test_n3_a_decision_record_match_is_a_gap_not_a_pass(self):
+        coord = self.real_record("decisions/2026-10-02-coordinator-seat.md")
+        haunt = self.real_record("decisions/2026-09-16-haunt-gate.md")
+        # X3: the main session's own question, quoted in the record.
+        said = "it can't use that role to set or check the Coordinator's own limits"
+        code, out, _ = self.run_check(report_with(item4=self.item_with('the CEO: "%s"' % said)),
+                                      "constitution.md", ceo=[coord])
+        self.assertFalse(self.lines(out, "PASS", "M2(ii)"), out)
+        self.assertIn("only in a decision record", self.lines(out, "GAP", "M2(ii)")[0])
+        # X3b: the Skeptic's sentence as an "asked" reference.
+        skeptic = "If the CEO's decision is anything other than KILL, this pack is not fit"
+        code, out, _ = self.run_check(report_with(
+            item3="   My view — trigger: asked — reference: \"%s\"" % skeptic),
+            "constitution.md", ceo=[haunt])
+        self.assertFalse(self.lines(out, "PASS", "M2(iii)"), out)
+        self.assertIn("only in a decision record", self.lines(out, "GAP", "M2(iii)")[0])
+        # Transcripts remain the PASS route.
+        code, out, _ = self.run_check(report_with(item4=self.item_with('the CEO: "%s"' % said)),
+                                      "constitution.md", ceo=[self.ceo_transcript(said)])
+        self.assertTrue(self.lines(out, "PASS", "M2(ii)"), out)
+
+    def test_n4_a_source_brings_its_proposals_dissent_memos(self):
+        self.haunt()
+        c1 = "proposals/haunt/dissent-memo-c1.md"
+        self.write(c1, (REPO / c1).read_text(encoding="utf-8"))
+        code, out, _ = self.run_check(report_with(extra=""), "proposals/haunt/proposal.md")
+        self.assertEqual(code, 1, out)
+        fails = " ".join(self.lines(out, "FAIL", "M2(i)"))
+        for memo in (HAUNT_MEMO, c1):
+            self.assertIn("%s (dissent memo in the same proposal as a source)" % memo, fails)
+
+    def test_n5_a_struck_through_headline_is_not_copied(self):
+        h = self.haunt()
+        hear = "\n".join("- ~~%s~~ (resolved)" % x for x in h[:6])
+        hear += "\n- <del>%s</del>\n- ~%s~" % (h[6], h[7])
+        code, out, _ = self.run_check(report_with(hear=hear), HAUNT_MEMO)
+        self.assertEqual(len(self.objection_lines(out, "FAIL")), 8, out)
+
+    def widget_transcript(self, before, after):
+        human = {"kind": "human"}
+        rows = [{"type": "user", "origin": human, "message": {"role": "user", "content": before}},
+                {"type": "assistant", "message": {"id": "w1", "role": "assistant", "content": [
+                    {"type": "tool_use", "name": "mcp__visualize__show_widget",
+                     "input": {"widget_code": "<button>Approve</button>"}}]}},
+                {"type": "user", "origin": human, "message": {"role": "user", "content": after}}]
+        p = self.tmp / "widget.jsonl"
+        p.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
+        return p, rows
+
+    def test_widget_turns_after_a_widget_call_are_a_gap(self):
+        before, after = "Please merge the branch today", "Approve the release of the whole app"
+        p, rows = self.widget_transcript(before, after)
+        code, out, _ = self.run_check(report_with(item4=self.item_with('the CEO: "%s"' % before)),
+                                      "constitution.md", ceo=[p])
+        self.assertTrue(self.lines(out, "PASS", "M2(ii)"), out)
+        code, out, _ = self.run_check(report_with(item4=self.item_with('the CEO: "%s"' % after)),
+                                      "constitution.md", ceo=[p])
+        self.assertFalse(self.lines(out, "PASS", "M2(ii)"), out)
+        self.assertIn("after a widget call", self.lines(out, "GAP", "M2(ii)")[0])
+        self.assertEqual(code, 3, out)
+        # M8: an "asked" reference to a turn after the widget is shown, not passed.
+        rows.append({"type": "assistant", "message": {"id": "m2", "role": "assistant", "content": [
+            {"type": "text", "text": report_with(
+                item3="   My view — trigger: asked — reference: \"%s\"" % after)}]}})
+        p.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
+        code, out = self.run_m8(p)
+        self.assertIn("after a widget call", out)
+        self.assertEqual(code, 3, out)
 
 
 class RealArtifacts(unittest.TestCase):
