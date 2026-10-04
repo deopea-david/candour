@@ -77,13 +77,13 @@ These are changes to company templates and charters implied by the list above. E
 
 **Open:**
 
-- `roles/cto.md`: wave plans and file ownership among what the CTO produces (CTO)
-- `.claude/commands/build.md`: waves in step 3, the security baseline before step 3, and the D6 chain at lines 10 to 11: Engineer then QA, with no review step, no merge and no wave-gate check (main session, with the CTO; on branch `docs/build-command-current`)
 - `pipeline/templates/`: a ticket-format page, a product `CLAUDE.md` starter, a PR template and a delivery-log template (PM/BA)
 - `haunts` `.github/pull_request_template.md` lines 41 to 50 and `docs/conventions.md` line 102: merge follows the review record, with no QA step before it (CTO)
 
 **Done:**
 
+- `roles/cto.md`: wave plans, file ownership, the review record on every PR and `/coordinator` generator review among what the CTO produces (CTO)
+- `.claude/commands/build.md`: defers to "The per-ticket chain"; waves and file ownership; security baseline and agent controls before code (main session, CTO-reviewed)
 - `pipeline/templates/review-pack.md`: "Delivery measures and retrospective" section added (CGO)
 - `roles/qa.md` "Invoked": QA's place in the chain after D6 (QA seat, through the CGO)
 - `products/haunt/STATUS.md` line 127 and `products/haunt/standup-routine.md` §8: the D6 order (PM/BA)

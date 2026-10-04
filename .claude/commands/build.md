@@ -5,7 +5,7 @@ Build phase for: $ARGUMENTS
 
 Preconditions: a PROCEED decision record exists in `decisions/`. If not, stop and say so. Run this inside a `/coordinator` session if the CEO wants the Coordinator's autonomy; outside one, ask before each step (`roles/coordinator.md`, D14).
 
-**Before any code:** the product repository's security baseline and agent controls are in place and have been seen to block (`pipeline/agentic-agile.md` item 10).
+**Before any code:** the product repository's security baseline is in place and has been seen to block (`pipeline/agentic-agile.md` item 10), and so are its Claude Code agent controls (`pipeline/cso-advice-permission-mode.md` §5).
 
 1. pm-ba subagent: produce/refresh `products/[slug]/requirements.md` with QA-verifiable acceptance criteria. No build starts without them. Tickets are generated from it (item 1).
 2. cto subagent: architecture ADR, standards, and **wave plans with file ownership** (items 2–3); cso subagent: threat model alongside it.
