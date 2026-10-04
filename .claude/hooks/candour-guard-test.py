@@ -155,10 +155,12 @@ for h in hooks:
     if h.get("args", [None])[0] != "-I":
         fail += 1; print("HOOK WITHOUT -I:", h)
 # The committed settings deny the session's own output-style switch, the Desktop preference
-# tool, and file-tool edits to the Coordinator command (PR #21 review F2; D14).
+# tool, and file-tool edits to the Coordinator command (PR #21 review F2; D14), and the
+# Skill tool loading the Coordinator command, so a mid-sentence "/coordinator" is not
+# permission to run it (PR #22 review F3).
 DENY = S["permissions"]["deny"]
 SEAT_DENIES = ("mcp__ccd_session_mgmt__set_session_output_style", "mcp__ccd_settings__set_setting",
-               "Edit(/.claude/commands/coordinator.md)")
+               "Edit(/.claude/commands/coordinator.md)", "Skill(coordinator)")
 for rule in SEAT_DENIES:
     if rule not in DENY:
         fail += 1; print("MISSING DENY RULE:", rule)

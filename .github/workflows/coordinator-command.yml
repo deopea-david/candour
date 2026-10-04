@@ -25,3 +25,7 @@ jobs:
         run: python3 scripts/build-coordinator-command.py --check
       - name: Generator and command tests
         run: python3 scripts/build-coordinator-command-test.py
+      # The guard's own suite (PR #22 review F2). It hard-codes /usr/bin/python3, which
+      # Ubuntu runners have, and builds its own throwaway git repo in a temp dir.
+      - name: Guard tests
+        run: /usr/bin/python3 .claude/hooks/candour-guard-test.py

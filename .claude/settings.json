@@ -89,6 +89,7 @@
       "Edit(/.claude/settings.local.json)",
       "Edit(/.claude/hooks/**)",
       "Edit(/.claude/commands/coordinator.md)",
+      "Skill(coordinator)",
       "Edit(~/.claude/settings.json)",
       "Edit(~/.claude.json)",
       "mcp__ccd_session_mgmt__set_session_permission_mode",
