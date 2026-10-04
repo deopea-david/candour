@@ -64,6 +64,18 @@ MUST_BLOCK = [
     "git checkout other -- .claude/settings.json", "W=.claude; echo x > $W/settings.local.json",
     "cat /tmp/new > ~/.claude/settings.json",
     "python3 - <<'EOF'\nopen('.claude/settings.json','w').write('{}')\nEOF",
+    # the live Coordinator command (D14): a session must not rewrite the command that grants it the seat
+    "echo x > .claude/commands/coordinator.md", "cp /tmp/x .claude/commands/coordinator.md",
+    "rm .claude/commands/coordinator.md", "rm -rf .claude/commands",
+    "mv .claude/commands /tmp/gone", "mv /tmp/x .claude/commands/coordinator.md",
+    "sed -i '' 's/disable-model-invocation: true/x/' .claude/commands/coordinator.md",
+    "tee .claude/commands/coordinator.md < /tmp/x", "git checkout other -- .claude/commands/coordinator.md",
+    "D=.claude/commands; : > $D/coordinator.md", "cat /tmp/x >> .claude/commands/coordinator.md",
+    "ln -sf /tmp/x .claude/commands/coordinator.md",
+    "python3 - <<'EOF'\nopen('.claude/commands/coordinator.md','w').write('')\nEOF",
+    "python3 scripts/build-coordinator-command.py", "python3 ./scripts/build-coordinator-command.py",
+    "/usr/bin/python3 scripts/build-coordinator-command.py", "cd scripts && python3 build-coordinator-command.py",
+    "S=scripts; python3 $S/build-coordinator-command.py",
     # F1: running a live hook script is allowed only as `python3 <script>`; nothing else rides on it
     "python3 .claude/hooks/candour-guard-test.py .claude/settings.json",
     "python3 .claude/hooks/candour-guard-test.py .claude/hooks/candour-guard.py",
@@ -91,6 +103,12 @@ MUST_ALLOW = [
     "cat > notes.md <<'EOF'\nTo merge, run gh pr merge 3 --merge\nEOF", "cat .claude/settings.json",
     "ls .claude/hooks", "cp /tmp/x .claude/worktrees/w/.claude/settings.json",
     "cd .claude/worktrees/w && sed -i '' 's/a/b/' .claude/settings.json",
+    "cat .claude/commands/coordinator.md", "ls .claude/commands", "echo x > .claude/commands/notes.md",
+    "cp /tmp/x .claude/worktrees/w/.claude/commands/coordinator.md",
+    "cd .claude/worktrees/w && python3 scripts/build-coordinator-command.py",
+    "python3 .claude/worktrees/w/scripts/build-coordinator-command.py",
+    "python3 scripts/build-coordinator-command.py --check", "python3 scripts/build-coordinator-command-test.py",
+    "diff roles/coordinator.md .claude/commands/coordinator.md",
     "python3 - <<'EOF'\np='CLAUDE.md'\ns=open(p).read().replace('Merge: gh pr merge <PR>','Merge: gh pr merge <PR> --merge')\nopen(p,'w').write(s)\nEOF",
     "claude --version 2>/dev/null", "claude doctor", "crontab -l", "launchctl list",
     "curl -s https://api.github.com/repos/o/r", "npm test", "python3 scripts/check.py",
@@ -136,6 +154,14 @@ hooks = [h for groups in S["hooks"].values() for g in groups for h in g["hooks"]
 for h in hooks:
     if h.get("args", [None])[0] != "-I":
         fail += 1; print("HOOK WITHOUT -I:", h)
-print("%d must-block, %d must-allow, %d isolation checks, %d failures"
-      % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), 2 + len(hooks), fail))
+# The committed settings deny the session's own output-style switch, the Desktop preference
+# tool, and file-tool edits to the Coordinator command (PR #21 review F2; D14).
+DENY = S["permissions"]["deny"]
+SEAT_DENIES = ("mcp__ccd_session_mgmt__set_session_output_style", "mcp__ccd_settings__set_setting",
+               "Edit(/.claude/commands/coordinator.md)")
+for rule in SEAT_DENIES:
+    if rule not in DENY:
+        fail += 1; print("MISSING DENY RULE:", rule)
+print("%d must-block, %d must-allow, %d isolation checks, %d settings checks, %d failures"
+      % (len(MUST_BLOCK) + 4, len(MUST_ALLOW), 2 + len(hooks), len(SEAT_DENIES), fail))
 sys.exit(1 if fail else 0)
