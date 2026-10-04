@@ -1,8 +1,10 @@
 # Article 11 amendment draft: the Coordinator seat
 
-**Seat:** Chief Governance Officer · opus (Opus 5.5) · effort high (seat default) · **Date:** 2026-10-02 · **Status:** **DRAFT FOR THE CEO. Decisions 1–7 and 8 of §13 are taken (see the crosswalk at §13, Revision 5); the amendment is not applied.** Article 11 amendments are the CEO's decision (Article 11.1; Constitution 5.4). This seat prepares and flags. It does not certify, and it does not amend.
+**Seat:** Chief Governance Officer · opus (Opus 5.5) · effort high (seat default) · **Date:** 2026-10-02 · **Status:** **DRAFT FOR THE CEO. Decisions 1–7 and 8 of §13 are taken (see the crosswalk at §13, Revision 5); Decision 8 was reopened and replaced at D14 (Revision 9); the amendment is not applied.** Article 11 amendments are the CEO's decision (Article 11.1; Constitution 5.4). This seat prepares and flags. It does not certify, and it does not amend.
 
 **Commissioned by:** the main session (orchestrator), at the CEO's request, 2026-10-02.
+
+**Revision 9, 2026-10-04: D14, the seat only when the CEO invokes `/coordinator`.** The CEO reopened D11 and D4's "by default" (decision record D14). Charter v0.6 says the main thread is the Coordinator only in a session where he has run `/coordinator`; elsewhere it works under `CLAUDE.md` alone, with no autonomy. Annex D's per-ticket chain now opens the PR first, as the process file does (decision record C2, found by the CTO). Changed here: §10 item 3, §11 items 1 and 3, §13 and §16.4. **The Article 6 line (§9, Edit 2) is checked and unchanged**: it describes the seat, not who holds it or when (§16.4). *Where §16 below says the charter is loaded with every request, that was true under D11 and is not under D14.*
 
 **Revision 8, 2026-10-04: the charter trimmed to v0.5, at the CEO's request (§16).** The charter is now loaded with every main-session request (D11), so its narrative moved out: status, revision history, reasons and quotations are kept verbatim in §16.2, and §16.1 maps every v0.4 rule to its place in v0.5. **No operative rule moved out, and none changed meaning.** The universal clauses are verbatim and Annex D's approved words are unchanged, except the per-ticket chain, aligned with D6, D8 and D9 on the CEO's yes to §16.3 flag 1 (*"1. Yes"*, decision record C1). 26,990 → 22,291 bytes.
 
@@ -471,7 +473,7 @@ The amendment writes an intermediary into the Constitution, standing between the
 
 ### Charters
 
-3. **`roles/coordinator.md` added** (v0.3), with an operating annex. The main session holds the seat by default, not a subagent, so that no layer sits between the CEO and the seats. The CEO may tell the main session to act as another seat for a session or a task, under that seat's charter; it says which role it is in, and the record shows it. It never acts as the Skeptic, and never reviews its own work. Its one autonomy, granted by the CEO in his own words, is to start the next step a CEO-adopted process file defines, or supporting work a seat it commissioned has asked for — never anything reserved to the CEO, never past a block, never a merge, release or "done", and only after three preconditions are recorded. Paid usage credits are off (CEO, 2026-10-02); turning them on is his decision alone. **It runs no unattended or scheduled work.** Changes to its charter are drafted by the CGO, never by the seat. **Honest limitation, stated here as for the Skeptic:** this seat is the same model as every seat it coordinates, and it commissions the seats that review it. The conflict cannot be removed, only exposed; its measures are counts taken from the record and from the CEO, and the check on its reports is a script it does not own.
+3. **`roles/coordinator.md` added** (v0.3), with an operating annex. The main session holds the seat when the CEO invokes it with `/coordinator`, and is never a subagent, so that no layer sits between the CEO and the seats; in other sessions it works under `CLAUDE.md` alone, with no autonomy. The CEO may tell the main session to act as another seat for a session or a task, under that seat's charter; it says which role it is in, and the record shows it. It never acts as the Skeptic, and never reviews its own work. Its one autonomy, granted by the CEO in his own words, is to start the next step a CEO-adopted process file defines, or supporting work a seat it commissioned has asked for — never anything reserved to the CEO, never past a block, never a merge, release or "done", and only after three preconditions are recorded. Paid usage credits are off (CEO, 2026-10-02); turning them on is his decision alone. **It runs no unattended or scheduled work.** Changes to its charter are drafted by the CGO, never by the seat. **Honest limitation, stated here as for the Skeptic:** this seat is the same model as every seat it coordinates, and it commissions the seats that review it. The conflict cannot be removed, only exposed; its measures are counts taken from the record and from the CEO, and the check on its reports is a script it does not own.
 4. **`roles/dormant-seats.md`** — the boundary with the COO: the Coordinator coordinates agent seats; it does not run operations.
 
 ### **Not labelled WEAKENING, and the reason is set out rather than assumed**
@@ -493,9 +495,9 @@ None of these amends the Constitution. Each is made by its owning seat through a
 
 | # | File or setting | Edit | Owner → applies |
 |---|---|---|---|
-| 1 | `CLAUDE.md`, "Who's who" | *"Eleven agent seats are defined in `.claude/agents/`"* gains: *"…plus the Coordinator, which the main session holds by default and which has no agent file; its charter is `roles/coordinator.md`. The CEO may tell the main session to act as another seat (charter, Role)."* **Point to the charter; do not import it.** `CLAUDE.md` loads into every subagent | CGO → seat |
+| 1 | `CLAUDE.md`, "Who's who" | *"Eleven agent seats are defined in `.claude/agents/`"* gains: *"…plus the Coordinator, which the main session holds only when the CEO runs `/coordinator`, and which has no agent file; its charter is `roles/coordinator.md`. The CEO may tell the main session to act as another seat (charter, Role)."* *(Revision 9, D14: was "which the main session holds by default".)* **Point to the charter; do not import it.** `CLAUDE.md` loads into every subagent | CGO → seat |
 | 2 | `CLAUDE.md`, "Working style" | *"the main session overrides"* becomes *"the Coordinator overrides"* | CGO → seat |
-| 3 | Main-session delivery | An output style or the `agent` setting. A route that cannot load the charter is not used as the seat (A4) | CTO + CSO recommend → CEO (Decision 8) |
+| 3 | Main-session delivery | An output style or the `agent` setting. A route that cannot load the charter is not used as the seat (A4). *Revision 9: decided at D14, a `/coordinator` command generated from the charter, run only by the CEO* | CTO + CSO recommend → CEO (Decision 8) |
 | 4 | `.claude/settings.json` (new, committed): deny rules | At minimum: `Bash(gh pr merge *)`, `Bash(git push * main)`, `Bash(git push * HEAD:main)`, `Bash(git push * +main)`, `Bash(gh release *)`, `Bash(gh repo edit *)`, `Bash(gh api * rulesets*)`. **These are a sketch [J] and are untested.** The CSO owns the final list and tests it against the variants the docs say rules miss. **Revision 4: done by PR #15, merged by the CEO under D1.** The committed file holds 93 deny rules and 3 ask rules. **Status per the CSO's review:** trusted with a stated limit; V3(a) and V3(b) are owed, and not every rule has been seen to fire [E, `pipeline/cso-controls-results.md`, R3, V2–V3] | CSO → CEO |
 | 5 | `.claude/settings.json`: a `PreToolUse` hook | Parses any command for `git … push` to `main` (any spelling), `gh pr merge`, and ruleset or settings writes, and exits 2. **Test it in each permission mode** (F3). **Revision 4: done by PRs #15 and #16, merged by the CEO under D1.** **Status per the CSO's review:** the `PreToolUse` layer is trusted (V4); the `ConfigChange` guard is not yet trusted (V9(iv)); the `SessionStart` warning is trusted in the CLI only (V10, F6). Bypass mode itself is disabled, so the "test in each permission mode" limb is V12, optional under option (a) [E, same, R3] | CSO (spec), Engineer (script), CTO (review) → CEO |
 | 6 | GitHub ruleset "Main" | **It exists; nothing is to be created.** The CSO: (i) merges a trivial test PR under the live ruleset and reports the result; (ii) establishes what `require_extra_approval_for_unattributed_changes` does at 0 approvals; (iii) establishes whether `copilot_code_review` requires anything or costs anything (with the CFO). **Revision 4:** (i) **settled**: the CEO's merges of PRs #15 and #16 succeeded under the live ruleset [E, CSO review, V14]. (ii) and (iii) are open; (iii) is Decision 10 | CSO → CEO (Decision 10 for the Copilot rule) |
@@ -545,6 +547,8 @@ None of these amends the Constitution. Each is made by its owning seat through a
 
 Each decision below can be taken on its own. Each states what it needs to have happened first. The order runs from most urgent to most mechanical.
 
+**Revision 9 status, 2026-10-04: Decision 8 is reopened and replaced (D14).** The seat is held only in a session where the CEO has run `/coordinator`, and the output style (D11) is superseded. Decisions 9, 10 and 11 are still open. One new question is put below the table: whether `CLAUDE.md` should carry role exceptions (i) and (iii) for sessions where the seat is not invoked.
+
 **Revision 7 status, 2026-10-04: the charter is in force now (D13, below). Decisions 1–7 and Decision 8 are taken. Decisions 9, 10 and 11 are open, and Decision 9 is what lists the seat in Article 6.**
 
 **Revision 5 status, 2026-10-04 (kept): Decisions 1–7 and Decision 8 are taken. Decisions 9, 10 and 11 are open.** The decision record numbers some of its entries differently from this section, because the CEO's later decisions were recorded in the order he took them. **Do not read a record entry's number as this section's.** The crosswalk:
@@ -557,7 +561,8 @@ Each decision below can be taken on its own. Each states what it needs to have h
 | 5 | D5 | The autonomy (Annex D) granted, with both conditions | **Taken. The autonomy is unlocked** (CSO sign-off, 2026-10-04) |
 | 6 | D6 | QA both before and after the merge, as two checks | Taken |
 | 7 | D7 | Agent teams stay off | Taken |
-| **8** | **D11** | **How the charter reaches the main session: output style, full charter generated from the role file by a script, with a CI check** | **Taken, 2026-10-04. Not yet carried out** |
+| **8** | **D11** | **How the charter reaches the main session: output style, full charter generated from the role file by a script, with a CI check** | ~~Taken, 2026-10-04. Not yet carried out~~ **Carried out by PR #21, then superseded by D14** |
+| **8 (reopened)** | **D14** | **The seat only when the CEO runs `/coordinator`: a command generated from the role file (option 1). Replaces D11 and D4's "by default"** | **Taken, 2026-10-04, 01:23:50. Charter v0.6 drafted; the command, generator and check are the Engineer's, reviewed by the CTO** |
 | none | **D13** | **The charter is in force now (option (a)), not only when the amendment is applied** | **Taken, 2026-10-04: his answer was "a"** |
 | 9 | none | Apply the amendment: lists the seat in Article 6 | **Open**, conditional on M2 |
 | 10 | none | The Copilot code review rule | **Open** |
@@ -566,6 +571,8 @@ Each decision below can be taken on its own. Each states what it needs to have h
 | none | **D12** | The universal clauses stay; the Coordinator's own view only on a named trigger (charter v0.4: rule 3, Annex A item 3, M2(iii), M8) | **Taken, 2026-10-04, on his condition *"only if it will be effective"*. Charter text applied (Revision 6). Not shown effective until §11 item 18 is built** |
 
 *Revision 6: the record also carries four CGO flags on D11 and D12. The first needed one line from the CEO: whether D5's autonomy operates before Decision 9, given the charter's "not yet in force" header (record, "CGO flags on D11 and D12").* **Revision 7: answered at D13. His word was "a" (00:55:12): the charter is in force now. The header and status lines of `roles/coordinator.md` say so. Article 6 lists the seat only once Decision 9 is applied. Flag 4 (the restart rule) is also closed: the main session restored the CSO's form, restart after any change under `.claude/`.** The Decision 9 text at §9 is unchanged.
+
+**Revision 9: a new question for the CEO, one yes or no, not urgent.** Outside a `/coordinator` session nothing in the charter binds the main thread, including the role rule's exceptions. **Should `CLAUDE.md` say, for every main session: never act as the Skeptic, and never act as the CGO (or the CSO) on the Coordinator's own charter, annex, omission check or controls?** *For:* exception (i) protects the Skeptic's fresh start, and (iii) stops the seat writing its own limits; both reasons hold whether or not the seat is invoked. *Against:* it adds lines that every subagent reads (`CLAUDE.md` loads into every seat), and the main session already commissions those seats rather than acting as them. This seat's view [J]: yes, as two short lines. It is the CEO's, and it is a change to `CLAUDE.md` (§11 item 1).
 
 *(Revision 4 status, kept: Decisions 1–4 are taken (2026-10-02). Decision 5 is next.)* The record, with the CEO's words checked against his own transcript, is `decisions/2026-10-02-coordinator-seat.md`. Times are BST.
 
@@ -632,6 +639,7 @@ From the CSO's review of 2026-10-02 (`pipeline/cso-controls-results.md`, R1–R7
 - *This seat treats it as taken under D1* [I]. **Nothing is owed unless you want teams on**, which needs the CTO to name a use (CSO advice §2.4).
 
 **Decision 8: how the charter reaches the main session.**
+- **REOPENED AND REPLACED, 2026-10-04 (Revision 9): record D14.** His words: *"I just feel that the output style is overkill and I may not want it to run in coordinator by default and only at specific times, when I choose"*, then, to the main session's three options, *"Yes sorry to go back on what I said earlier, I do think a command would be best (option 1)"*. Option 1 was a `/coordinator` command loading the full charter into that session only. The D11 entry below is kept as it was.
 - **TAKEN, 2026-10-04 (Revision 5): record D11.** The CEO chose **output style (option 2)**, with the **full charter generated from `roles/coordinator.md` by a script** and a **GitHub Actions check that fails a PR when the two copies differ**. His words: *"I am fine with option 2"* and *"Yes, go ahead with it"*. He **declined** the CTO and CSO recommendation this section asked for: *"no I don't think I will need confirmation from CTO/CSO"*. The main session recommended the route and disclosed its conflict of interest (record D11). **Decided, not carried out:** nothing is built.
 - *The text below is Revision 3's and Revision 4's, kept as it was.*
 - Choose output style or the `agent` setting, on the CTO's and CSO's recommendation (with A4).
@@ -916,5 +924,32 @@ Each is a **flag, not a block**. Each is put once.
 2. **The generator does not yet follow the annex when it moves** (CGO flag 2 on D11 and D12, still open). `scripts/build-coordinator-style.py` reads `roles/coordinator.md` only [E, the script, `SOURCE`]. When the amendment moves the Operating annex to `pipeline/coordinator-operating.md`, the annex drops out of the output style unless the script is changed in the same PR. Owner: the CTO, who reviews the script. This seat restates it only because a trim is when the file layout is in view.
 
 **Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-style.py` (wrote the style); `--check` (ok); `python3 scripts/build-coordinator-style-test.py` (12 tests, OK).
+
+### 16.4 Charter v0.6: D14, and C2 (Revision 9, 2026-10-04)
+
+**Seat:** CGO · opus (Opus 5.5) · effort high · commissioned by the main session (Coordinator), 2026-10-04. Branched from PR #22 (v0.5), so these edits sit on the trimmed text.
+
+**What changed, and why** (CEO's words and the options: decision record D14):
+
+| Place in the charter | v0.5 | v0.6 |
+|---|---|---|
+| Header, line 1 | In force from 2026-10-04 (D13) | Same, *"in a session where the CEO has run `/coordinator` (D14)"* |
+| Header, bullet 1 | *"the main Claude Code session, which holds the seat by default"* | *"the main Claude Code session when the CEO invokes `/coordinator`"*; the command is generated from the charter, which is the file to edit |
+| *Proceeding without asking* | *"only in a session the CEO is running"* | adds *"and in which he has run `/coordinator` (D14)"* |
+| *Role* | *"The main thread is the Coordinator by default."* | Coordinator only after the CEO's `/coordinator`; otherwise `CLAUDE.md` alone, no charter duties, no autonomy. **Two lines added by this seat [J]:** only his own invocation confers the seat; after compaction, ask him to re-run it and ask before each step meanwhile (record D14) |
+| *Invoked* | every main session unless told otherwise | only when the CEO runs `/coordinator`, then for that session; never by default, never self-invoked |
+| Annex C, credit check | *"At the start of each session"* | *"When `/coordinator` is run"* |
+| Annex E, M8 | over *"the main session's transcript files"* | over the transcripts of main sessions in which `/coordinator` was run |
+| Annex E, D12 fallback | *"the `agent` setting (D11's option 3)"* | adds that it *"would also make the seat the default again and so reopen D14"* |
+| Annex D, per-ticket chain | *"…full QA on the branch…, then a PR"* | *"Ticket complete and its PR opened, then …, each recorded in the PR"*, matching `pipeline/agentic-agile.md` steps 1–3 (C2; the CTO's #22 flag 2) |
+
+**Not changed.** Every other rule, the universal clauses, and Annex D's other words. Annex D needs no change for D14: it already says the autonomy *"belongs to the Coordinator role"*.
+
+**The Article 6 line (§9, Edit 2), checked.** It says what the seat does (*"Coordinates the agent seats: commissions their work…"*), not who holds it or when. It does not imply the seat is always the main session, so **it needs no change** [J]. What did say "by default" was public text around it: the change-log entry (§10 item 3) and the `CLAUDE.md` edit (§11 item 1). Both are reworded above, and both go to the CEO with Decision 9 and Decision 11.
+
+**Flags, each put once.**
+1. **The model must not be able to run `/coordinator` itself** (record D14, Engineer requirements). Without that, *"when I choose"* is a rule of prose. Owner: the Engineer, with the CTO's review.
+2. **Outside an invoked session, the role exceptions do not bind** (record D14, "What D14 costs"). Put to the CEO in §13 as one yes or no.
+3. **Annex D's text changed again (C2).** Merging this PR is what approves it, as the CTO said of #22.
 
 **This seat prepares and flags; it does not certify.** Whether v0.5 is the charter in force is the CEO's to decide, by merging the PR (D8).
