@@ -92,6 +92,15 @@ MUST_BLOCK = [
     "gh pr -R o/r review 3 --approve", "gh pr --repo=o/r review 3 -a", "gh pr --approve=true review 3",
     "gh release -R o/r create v1", "gh secret --repo o/r set X", "gh ruleset -R o/r delete 1",
     "python3 -c \"import subprocess; subprocess.run(['gh','pr','-R','o/r','merge','1'])\"",
+    # round 2 (both guards): combined short approve flags; runner options before publish
+    "gh pr review 3 -ab x", "gh pr review -ab x 3", "gh pr -R o/r review 3 -ab 'ok'",
+    "python3 -c \"import subprocess; subprocess.run(['gh','pr','review','3','-ab','x'])\"",
+    "npm --tag x publish", "npm -w pkg publish", "npm --tag=beta publish", "pnpm --filter x publish",
+    # haunts MAINT-6 R3 ported: package runners that reach gh pr merge
+    "npx --call='gh pr merge 5'", "npm -y exec -- gh pr merge 5", "npm exec -- gh pr merge 5",
+    "npx -c 'true; gh pr merge 5'", "npx -c'gh pr merge 5'", "npm exec --call='gh pr merge 5'",
+    "npm --prefix . exec gh pr merge 5", "pnpm exec gh pr merge 5", "pnpm gh pr merge 5",
+    "corepack pnpm dlx gh pr merge 5", "npx -y gh pr review 3 --approve",
     # unparseable input fails closed
     "echo \"unbalanced",
 ]
@@ -119,6 +128,9 @@ MUST_ALLOW = [
     "claude --version 2>/dev/null", "claude doctor", "crontab -l", "launchctl list",
     "gh pr -R o/r view 3", "gh pr --repo=o/r -L1 list --state merged", "gh --repo o/r pr list",
     "gh pr -R o/r create --title 'merge docs' --body b", "gh pr -R o/r review 3 --comment -b ok",
+    "gh pr review 3 -c -b 'all good'", "gh pr review 3 -b 'has a nit'", "gh pr review 3 -r -b fix",
+    "npm --prefix . run build", "npm -w pkg install", "npm view x versions",
+    "npx tsc --version", "npm -y exec -- tsc --version", "npx --call='echo hi'", "corepack enable",
     "curl -s https://api.github.com/repos/o/r", "npm test", "python3 scripts/check.py",
 ]
 
