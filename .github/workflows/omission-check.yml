@@ -1,0 +1,25 @@
+name: Omission check
+
+# scripts/omission-check.py is the CGO's M2 and M8 check for the Coordinator
+# seat (roles/coordinator.md, Annex E). This runs its tests on every pull
+# request. Kept apart from coordinator-style.yml so the two can change
+# independently. Run locally with:
+#   python3 scripts/omission-check-test.py
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # actions/checkout v7.0.1, pinned to its commit (same pin as coordinator-style.yml)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Omission-check tests
+        run: python3 scripts/omission-check-test.py
