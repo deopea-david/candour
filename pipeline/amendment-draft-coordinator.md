@@ -4,7 +4,7 @@
 
 **Commissioned by:** the main session (orchestrator), at the CEO's request, 2026-10-02.
 
-**Revision 8, 2026-10-04: the charter trimmed to v0.5, at the CEO's request (§16).** The charter is now loaded with every main-session request (D11), so its narrative moved out: status, revision history, reasons and quotations are kept verbatim in §16.2, and §16.1 maps every v0.4 rule to its place in v0.5. **No operative rule moved out, and none changed meaning.** The universal clauses are verbatim and Annex D's approved words are unchanged. 26,990 → 21,726 bytes. §16.3 flags that D6 was recorded as applied to Annex D but was not.
+**Revision 8, 2026-10-04: the charter trimmed to v0.5, at the CEO's request (§16).** The charter is now loaded with every main-session request (D11), so its narrative moved out: status, revision history, reasons and quotations are kept verbatim in §16.2, and §16.1 maps every v0.4 rule to its place in v0.5. **No operative rule moved out, and none changed meaning.** The universal clauses are verbatim and Annex D's approved words are unchanged, except the per-ticket chain, aligned with D6, D8 and D9 on the CEO's yes to §16.3 flag 1 (*"1. Yes"*, decision record C1). 26,990 → 22,291 bytes.
 
 **Revision 6, 2026-10-04: D11 recorded, and D12 applied to the charter.** The decision record gains D11 (this section's Decision 8) and D12, with the CEO's words read from his own transcript, and four CGO flags. The charter becomes v0.4: honest-broker rule 3 limits the seat's own view to four named triggers; Annex A item 3 carries a fixed marker; Annex E adds M2(iii) and M8. §11 item 18 and §13 are updated. **D12 is in place but not shown to be effective until the M2 script exists.** Nothing else is reargued.
 
@@ -743,12 +743,14 @@ From the CSO's review of 2026-10-02 (`pipeline/cso-controls-results.md`, R1–R7
 
 | File | v0.4 | v0.5 | Change |
 |---|---|---|---|
-| `roles/coordinator.md` | 26,990 bytes · 4,513 words | 21,726 bytes · 3,601 words | −5,264 bytes (−19.5%) · −912 words |
-| `.claude/output-styles/coordinator.md` (generated) | 27,346 bytes | 22,082 bytes | −5,264 bytes |
+| `roles/coordinator.md` | 26,990 bytes · 4,513 words | 22,291 bytes · 3,695 words | −4,699 bytes (−17.4%) · −818 words |
+| `.claude/output-styles/coordinator.md` (generated) | 27,346 bytes | 22,647 bytes | −4,699 bytes |
+
+*The trim alone gave 21,726 bytes and 3,601 words (−19.5%). The per-ticket chain's alignment with D6, D8 and D9 (§16.3 flag 1, approved by the CEO) added 565 bytes.*
 
 **Two things were deliberately not shortened, and why.**
 1. **The universal clauses.** Verbatim, as every seat's must be. Checked byte for byte against v0.4 [E, `diff` of the `>` lines].
-2. **Annex D's operative words.** Precondition 3 is *"the CEO's approval of **the exact text of this annex D**"*, and D5 records that he approved it *"as written"*. Rewording it, even without changing its meaning, would put in force a text he did not approve, and so put precondition 3, and the autonomy, in doubt [J]. **Only what was added after D5 was removed:** the adoption paragraph, the "Met" status notes, the approval markers (Revision 5 already changed only those), and the superseded "found it **not met**" status of precondition 4. Checked mechanically: from *"Case (a): the allowlist"* to the end of the annex the text is byte-identical to v0.4, and preconditions 1–4 and the role-belonging sentence keep their words [E, this seat's script, 2026-10-04]. One capital letter changed with the marker removed: *"this autonomy"* now follows *"D5:"*.
+2. **Annex D's operative words.** Precondition 3 is *"the CEO's approval of **the exact text of this annex D**"*, and D5 records that he approved it *"as written"*. Rewording it, even without changing its meaning, would put in force a text he did not approve, and so put precondition 3, and the autonomy, in doubt [J]. **Only what was added after D5 was removed:** the adoption paragraph, the "Met" status notes, the approval markers (Revision 5 already changed only those), and the superseded "found it **not met**" status of precondition 4. Checked mechanically: from *"Case (a): the allowlist"* to the end of the annex the text was byte-identical to v0.4 in the trim, before the per-ticket chain was aligned with D6 at the CEO's yes (§16.3 flag 1), and preconditions 1–4 and the role-belonging sentence keep their words [E, this seat's script, 2026-10-04]. One capital letter changed with the marker removed: *"this autonomy"* now follows *"D5:"*.
 
 **One change of form, stated so it is not missed.** The body said *"Two exceptions, always"* and then listed (iii) as a separately approved item. v0.5 says *"Three exceptions, always"*, with (iii)'s words unchanged and marked (D4a). That is the D4a decision, not a new rule.
 
@@ -785,7 +787,8 @@ From the CSO's review of 2026-10-02 (`pipeline/cso-controls-results.md`, R1–R7
 | Annex D: preconditions 1–4 | Annex D | **Words unchanged**; status notes moved; "all four recorded as met" kept as one pointer line |
 | Annex D: the trust bound (Desktop Code tab, 2.1.286, `main` at `0cac2c1`, nothing else) | Annex D, after the preconditions | Unchanged |
 | Annex D: autonomy belongs to the Coordinator role | Annex D | **Words unchanged**; marker reduced to "D5:" |
-| Annex D: case (a) allowlist; not authority; ambiguity → ask; per-ticket chain; case (b); always comes to the CEO (nine items); review and QA loops; caps; recorded; out of scope; agent teams | Annex D | **Byte-identical** |
+| Annex D: case (a) allowlist; not authority; ambiguity → ask; case (b); always comes to the CEO (nine items); review and QA loops; caps; recorded; out of scope; agent teams | Annex D | **Byte-identical** |
+| Annex D: the per-ticket chain; the stop at the CEO's merge | Annex D | **Changed on the CEO's yes** (§16.3 flag 1; decision record C1): now D6's order, with D8 and D9. The stop at his merge, and the deference to a process file, are kept |
 | Annex E: M1–M8; "a falling M1 …"; no latency measure; whether D12 worked, threshold, next step, tags only until the script exists | Annex E | Unchanged; date markers removed; M8's "lexical screen" sentence joined to the next |
 | Annex F: four must-never-break limits | Annex F | Inline; unchanged |
 | Annex F: six enforcers | Annex F | Unchanged; "the CEO, 2026-10-02" replaced by "D0.2" |
@@ -909,6 +912,7 @@ Each is a **flag, not a block**. Each is put once.
    - **Why this seat did not fix it here:** it is a change to Annex D's approved words (precondition 3), and the commission is a trim.
    - **What would fix it:** one yes or no from the CEO to a new Annex D text, for example replacing the paragraph with *"The per-ticket chain is the one in `pipeline/agentic-agile.md` (D6, D8). Stop at the merge: the CEO merges."* The record's own error is corrected in its *Corrections* section (C1).
    - **What would overturn this flag:** a later CEO decision that Annex D's chain text stands, or evidence that D6's application was meant only for the process file.
+   - **Answered, 2026-10-04:** the CEO said yes (*"1. Yes"*, 01:14:57; decision record C1). Annex D's per-ticket chain now follows D6, D8 and D9. This is the one change to Annex D's approved words.
 2. **The generator does not yet follow the annex when it moves** (CGO flag 2 on D11 and D12, still open). `scripts/build-coordinator-style.py` reads `roles/coordinator.md` only [E, the script, `SOURCE`]. When the amendment moves the Operating annex to `pipeline/coordinator-operating.md`, the annex drops out of the output style unless the script is changed in the same PR. Owner: the CTO, who reviews the script. This seat restates it only because a trim is when the file layout is in view.
 
 **Checks run** [E, this seat, 2026-10-04]: `python3 scripts/build-coordinator-style.py` (wrote the style); `--check` (ok); `python3 scripts/build-coordinator-style-test.py` (12 tests, OK).
