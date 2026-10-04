@@ -1,6 +1,6 @@
 # Standup routine — Haunts build
 
-**Seat:** Product Manager / BA · **Date:** 2026-09-26 · **Version:** 0.2 (updated for D31, D33, D34 and D35 per `agentic-agile-adoption.md` §10)
+**Seat:** Product Manager / BA · **Date:** 2026-10-04 · **Version:** 0.3 (updated for D6, D8 and D9; earlier: D31, D33, D34 and D35 per `agentic-agile-adoption.md` §10)
 **Applies to:** the PM/BA, QA and Engineer seats, whenever any of them runs on Haunts work. **Board and columns:** `products/haunt/backlog-plan.md` §7.
 
 ---
@@ -116,8 +116,10 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 | Step | Who | What they do | What they write |
 |---|---|---|---|
 | **In progress → In review** | Engineer | Opens a PR with `Refs #n`; the PR lists, **by limb letter**, which test covers each acceptance-criterion limb of the requirement | Entry: *"#n KEY → In review (PR #p)"* |
-| **In review → QA** | CTO (and CSO for `needs:cso-review`) | Writes the **review record in the PR at its head commit** (PR template); a push after the record needs a new review. Merges to `main` **only at the reviewed head**, never on a red check. Closes any implementation story with the merge commit (a story never reaches Done, D34). Moves the requirement ticket to QA **when all its work is merged**. **Merging does not make anything Done** | Review record in the PR; the reviewer moves the ticket to QA |
-| **QA → Done (QA-verified)** | QA | Verifies **every limb** in `requirements.md` for that ID on a named build, both platforms where the ticket says `both`; tries to break it (QA charter: *"try honestly to break it"*); records `requirements.md@<sha>`, the build, and the evidence link in the "Verified against" field; closes the issue | Entry: *"#n KEY → Done (QA-verified @ <sha>)"* |
+| **In review → QA** | CTO (and CSO for `needs:cso-review`) | Writes the **review record in the PR at its head commit** (PR template); a push after the record needs a new review. **Does not merge: the CEO merges every PR (D8).** Moves the requirement ticket to QA once the PR is reviewed and green; **for a requirement split into stories, at the wave check after its last story's PR has merged** (D9). The reviewer closes a story issue with the merge commit after the CEO merges (a story never reaches Done, D34) | Review record in the PR; the reviewer moves the ticket to QA |
+| **QA (before merge)** | QA | **Full QA on the PR at the reviewed head commit** (D6): verifies **every limb** the PR covers, tries to break it (QA charter: *"try honestly to break it"*), and writes its result and the commit it verified in the PR. A push after QA's record needs QA again. **A requirement split across several PRs is checked limb by limb on each PR** (D9). QA does **not** move the ticket to Done here | QA record in the PR |
+| **Merge** | CEO | Merges the PR with "Create a merge commit", at the head commit that was reviewed and QA-verified (D8). **Merging does not make anything Done** | Merge commit |
+| **QA → Done (QA-verified)** | QA | **After the wave's light integration check on `main`** (D6): re-runs the tests and smoke-checks the areas the wave's merged tickets touched; not a second full QA. For a split requirement, **checks the requirement as a whole** here, every limb in `requirements.md` for that ID on a named build, both platforms where the ticket says `both` (D9). Records `requirements.md@<sha>`, the build, and the evidence link in the "Verified against" field; closes the issue. The ticket stays in **QA** until this passes | Entry: *"#n KEY → Done (QA-verified @ <sha>)"* |
 | **QA → In progress (fail)** | QA | Moves it back with a comment naming the failed limb(s) by letter and the build. For a `mixed-priority` ticket, says whether a BLOCKING limb failed | Entry: *"#n KEY back to In progress — (b) fails on build <x>"* |
 | **Untestable limb** | QA → PM/BA | If a limb cannot be executed as written, QA does **not** mark it passed or skipped. It writes a `Blocked` line *"needs PM/BA — KEY(c) not executable because …"* | Entry, as a blocker |
 
@@ -133,3 +135,4 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 |---|---|---|
 | 2026-09-26 | 0.1 | First proposal |
 | 2026-09-26 | 0.2 | Per `agentic-agile-adoption.md` §10, after D31, D33, D34: §3 item 5 updated for stamped ticket copies (the document wins), item 6 added (commission and file ownership); §4 header carries the wave; §5 adds CTO and CSO as writers, QA's `QA attempts`, Engineer links its commission; §6 line 1 may carry the wave result; §7 adds the `spec-defect` label and the escaped-defect row; §8 review recorded at the PR's head commit, stories closed on merge, column named "In review" as built |
+| 2026-10-04 | 0.3 | §8 aligned with D6, D8, D9: full QA before merge, the CEO merges, QA marks Done after the wave check; a split requirement is checked limb by limb per PR and as a whole at the wave check |
