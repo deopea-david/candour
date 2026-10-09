@@ -1,6 +1,6 @@
 # Standup routine — Haunts build
 
-**Seat:** Product Manager / BA · **Date:** 2026-10-04 · **Version:** 0.3 (updated for D6, D8 and D9; earlier: D31, D33, D34 and D35 per `agentic-agile-adoption.md` §10)
+**Seat:** Product Manager / BA · **Date:** 2026-10-04 · **Version:** 0.4 (updated for the keyed standup branch, MAINT-7; earlier: D6, D8 and D9; D31, D33, D34 and D35 per `agentic-agile-adoption.md` §10)
 **Applies to:** the PM/BA, QA and Engineer seats, whenever any of them runs on Haunts work. **Board and columns:** `products/haunt/backlog-plan.md` §7.
 
 ---
@@ -18,7 +18,7 @@ The file is the memory. If it is not written down, it did not happen.
 **`docs/standups/YYYY-MM-DD.md` in the `deopea-david/haunts` repository**, one file per calendar day (UK date), created by whichever seat writes first that day.
 
 - **Append only.** Never edit or delete another seat's entry. Corrections are a new entry that says what it corrects.
-- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry directly to a `standups` branch. **The notes are batched: the CEO merges that branch once, at each wave gate** (CEO decision D22, `decisions/2026-10-02-coordinator-seat.md`, 2026-10-04: *"b"*), not daily, because he merges every PR (D8). Until then the notes are readable on the branch.
+- Entries are committed on the branch the seat is working on and reach `main` with its PR. A seat that has no code change that session (QA verifying, PM/BA triaging) commits its entry to the **wave's standup branch**, `docs/MAINT-<n>-standups-m<M>-w<W>` (for M1.W1: `docs/MAINT-7-standups-m1-w1`). The branch must be keyed because the `haunts` `commit-msg` hook refuses any branch that is not `<type>/<KEY>-<slug>`, and CI requires the key to be a real ticket (`haunts` `docs/conventions.md` §2, §7); nobody bypasses the hook. **The PM/BA opens one `MAINT-n` ticket per wave for that wave's standup batch** (D43's series), at wave planning, and every standup commit carries its key and `Refs: #<issue>`, never a closing keyword. A branch can be checked out in one worktree at a time, so a seat that finds it in use waits or adds its entry in the next free turn; nobody force-pushes it. **The notes are batched: the CEO merges that branch once, at each wave gate** (CEO decision D22, `decisions/2026-10-02-coordinator-seat.md`, 2026-10-04: *"b"*), not daily, because he merges every PR (D8). Until then the notes are readable on the branch.
 - The PM/BA's summaries to the CEO (§6) are **not** kept here; they go to the CEO in chat. The file holds the working record only.
 
 ---
@@ -136,3 +136,4 @@ No ticket numbers unless the CEO needs to open one. No jargon the CEO would have
 | 2026-09-26 | 0.1 | First proposal |
 | 2026-09-26 | 0.2 | Per `agentic-agile-adoption.md` §10, after D31, D33, D34: §3 item 5 updated for stamped ticket copies (the document wins), item 6 added (commission and file ownership); §4 header carries the wave; §5 adds CTO and CSO as writers, QA's `QA attempts`, Engineer links its commission; §6 line 1 may carry the wave result; §7 adds the `spec-defect` label and the escaped-defect row; §8 review recorded at the PR's head commit, stories closed on merge, column named "In review" as built |
 | 2026-10-04 | 0.3 | §8 aligned with D6, D8, D9: full QA before merge, the CEO merges, QA marks Done after the wave check; a split requirement is checked limb by limb per PR and as a whole at the wave check |
+| 2026-10-09 | 0.4 | §2: the `standups` branch is replaced by a keyed branch per wave, `docs/MAINT-<n>-standups-m<M>-w<W>`, with one `MAINT-n` ticket per wave opened by the PM/BA. The old name was refused by the `haunts` `commit-msg` hook. D22's batching is unchanged |
