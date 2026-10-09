@@ -1,8 +1,9 @@
 # Haunts — status and hand-off
 
-**As of:** 2026-10-02 · **Phase:** planning complete; **build starts at M1** (M0's remaining spikes run alongside)
+**As of:** 2026-10-09 (`haunts` `origin/main` at `dc9a0a0`, 2026-10-04; no PR open since) · **Phase:** planning complete; **no M1 ticket has started** (SPK-21 and MAINT-4 are open with no branch or PR; every board item is Backlog or Done, none Ready). M0's 17 remaining spikes are open.
 
-**Note, 2026-10-04:** the `haunts` repo has moved on since this was written (PR #357 merged; MAINT-6 agent controls). This file is state, not authority, and is to be refreshed at the next build session.
+This file is state, not authority. Facts below come from `git log origin/main`, `gh pr list` / `gh issue list --repo deopea-david/haunts --state all`, and `gh project item-list 1 --owner deopea-david`, all run 2026-10-09 [E].
+
 **Product name:** Haunts (D9, still a working name until PLAT-6's checks pass) · **Slug in `candour`:** `haunt` · **Code repo:** `deopea-david/haunts` (private; local clone `~/Documents/haunts`) · **Board:** https://github.com/users/deopea-david/projects/1
 
 This note exists so a new session can pick up without the conversation that produced it. **It summarises; it does not decide.** Where it and the decision record disagree, the decision record wins.
@@ -106,6 +107,63 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ---
 
+## What has landed in `haunts` since the security baseline (D32)
+
+Merged PRs [E: `gh pr list --repo deopea-david/haunts --state all`, 2026-10-09]:
+
+| PR | Ticket | Merged | What |
+|---|---|---|---|
+| #299 | SPK-15 | 2026-09-27 | Traceability standard and enforcement |
+| #300 | SPK-16 | 2026-09-27 | Agent scaffolding, story and PR templates |
+| #309 | SPK-15 | 2026-09-27 | Prefer arrow functions in TypeScript tools |
+| #310 | MAINT-1 | 2026-09-27 | Deny force pushes by refspec |
+| #311 | MAINT-2 | 2026-09-27 | Dependabot npm updates, 7-day cooldown |
+| #349 | MAINT-3 | 2026-10-02 | Closing-keyword check scoped to this repository |
+| #351 | MAINT-5 | 2026-10-02 | Dependabot holds `@types/node` to our Node major (D62) |
+| #357 | MAINT-6 | 2026-10-04 | Agent controls: deny rules, guard hook, CEO merges |
+| #358 | MAINT-6 | 2026-10-04 | Close guard bypasses; QA step in the PR template |
+
+Closed PRs #304, #305, #306 were superseded by #309, #310, #311; Dependabot's #312 was closed unmerged (D62).
+
+**Closed tickets (8, all Done on the board):** SPK-15 (#297), SPK-16 (#298), MAINT-1 (#302), MAINT-2 (#303), MAINT-3 (#307), SPK-17 (#346), SPK-20 (#348), MAINT-5 (#350). SPK-17 (design costing) and SPK-20 (architecture, ADR-0001) closed with no code PR in `haunts`.
+
+**Not landed:**
+- **SPK-21 (#355) and MAINT-4 (#308) have not landed**: both open, no PR. Both are M1 — Foundations. SPK-21 is owned by the CTO (the Engineer builds); MAINT-4 by the Engineer (issue label `seat:engineer`).
+- **MAINT-6 (#356)** is merged but its issue is open (see findings).
+
+**M0 spikes still open (17)** [E: board, all Backlog; owner seat from the board]:
+
+| Issue | Spike | Owner seat |
+|---|---|---|
+| #279 | SPK-01 Block 4 limb (b) against 7.7.7 | CTO |
+| #280 | SPK-02 Android device matrix (Block 2) | CTO |
+| #282 | SPK-03 Android minimum version | CTO |
+| #288 | SPK-04 Heatmap render test | CTO |
+| #283 | SPK-05 RN reduce-motion on Android | Engineer |
+| #289 | SPK-06 Backup KDF | CSO |
+| #284 | SPK-07 Local notification authorisation | Engineer |
+| #294 | SPK-08 Size scope outside the 2,090 h | CTO |
+| #295 | SPK-09 Re-cost the build | CFO |
+| #285 | SPK-10 Store trial mechanism | CTO |
+| #290 | SPK-11 Photos C-1 durable reference | CTO |
+| #291 | SPK-12 Backup architecture branch | CTO |
+| #292 | SPK-13 Competitor export formats | CTO |
+| #286 | SPK-14 Relinquish location authorisation | Engineer |
+| #344 | SPK-18 Font licences | CGO |
+| #345 | SPK-19 Area name from Places alone | CTO |
+| #354 | SPK-22 Android build without INTERNET | CTO |
+
+## Findings for the owning seats (flagged, not fixed here)
+
+1. **MAINT-6 (#356), for the CTO and QA.** Merged in #357 and #358 (2026-10-04), but the issue is open, has **no milestone**, and is the **one board item with no Status** (no Level or Owner seat either). It is a hand-made `MAINT-n` ticket, the case the "always set a board Status" rule exists for. In the per-ticket chain it is past the CEO's merge: **QA's wave-gate integration check, and moving it to Done, are QA's** (D6). Setting its milestone and Status belongs to the CTO. Nothing records that either has happened [I].
+2. **`Wave` field, for the CTO.** The field **exists** on the board (`gh project field-list`, text) but **no item carries a value** [E: `item-list` JSON has no wave key]. The CTO sets it at wave planning (`backlog-plan.md`); no wave has been planned yet [I]. (This corrects the Coordinator's reading that the field was absent.)
+3. **SPK-01 (#279), for the CTO.** Block 4 is recorded as lifted (`block-4-lift.md`) but the ticket is open in Backlog with no comment. Close it, or say what remains [I].
+4. **Spikes the previous list omitted:** SPK-01, SPK-05, SPK-08 and SPK-09 are open but were not named. SPK-08 and SPK-09 gate the v4 launch cost sheet (CFO).
+5. **MAINT-4 (#308)** has no Owner seat or Level on the board; its issue label says `seat:engineer`. Board and issue disagree by omission.
+6. **Counts:** 344 board items = 344 issues. Status: Backlog 335, Done 8, none 1. Milestones: M0 32, M1 55, M2 90, M3 45, M4 76, M5 45, none 1. M1–M5 remain provisional until the CTO confirms them.
+
+---
+
 ## Still open
 
 **CEO decisions, to bring one at a time:**
@@ -121,11 +179,11 @@ A private, on-device journal of places visited. The phone detects visits; the us
 
 ## Next step: the build (M1)
 
-*Dated note, 2026-10-04: the `haunts` repo has moved on since this was written (PR #357 merged; MAINT-6 agent controls). This section is state, not authority, and is to be refreshed at the next build session.*
+*State at 2026-10-09: none of the steps below has started. SPK-21 (#355) and MAINT-4 (#308) are open with no PR [E: `gh pr list --state all`, 2026-10-09].*
 
 1. **CTO plans the first wave of M1.** Start with **SPK-21 (the B-strict scaffolding)** and **MAINT-4 (the arrow-function lint rule)** in the same set-up wave, then the two-file store (DATA-1/2, D63), the JS-free capture path (CAP-1), entitlement and sessions foundations. Fill each ticket's CTO-maintained files section, set the **Wave** field, and confirm or move the **provisional** milestones (M1–M5).
 2. **CSO writes the threat model** alongside the first wave, and approves the B-strict dev tools (`dependency-cruiser`, `eslint-plugin-eslint-comments`).
-3. **Remaining M0 spikes** run as desk research in the background, two or three at a time: SPK-02 (Block 2), SPK-03, SPK-04, SPK-06, SPK-07, SPK-10, SPK-11, SPK-12, SPK-13, SPK-14, SPK-18, SPK-19, SPK-22.
+3. **Remaining M0 spikes** (the 17 in the table under "What has landed") run as desk research in the background, two or three at a time.
 4. **Standups start** (`standup-routine.md`). The CEO logs his hours per phase (D35).
 
 **The PR flow in `haunts`:** the author seat opens a branch (`type/KEY-slug`) and writes commits with the key and `Refs: #n`. The main session pushes and opens the PR. **A seat other than the author reviews**, and the review is pinned to the head commit and posted on the PR. The CSO reviews anything labelled `needs:cso-review`. **QA verifies the PR in full before merge** (D6), checking a split requirement limb by limb on each PR (D9). The CEO merges every PR (D8) with **"Create a merge commit"**. If GitHub offers "Update branch", choose **merge, never rebase**. After merge, QA runs a light integration check once per wave, checks a split requirement as a whole (D9), and only then alone moves the ticket to Done (D6). Decisions D6, D8 and D9: `decisions/2026-10-02-coordinator-seat.md`; practice: `pipeline/agentic-agile.md`.
@@ -145,3 +203,41 @@ A private, on-device journal of places visited. The phone detects visits; the us
 - **Agents hit rate limits.** When one fails, check disk for its partial file, then start a fresh agent told to *continue* from it rather than restart — old agents cannot be resumed across sessions.
 - **Commission agents to write incrementally to disk** and to give a short summary back.
 - **The CEO has caught errors the seats missed**, repeatedly, by reading the source text himself. Take his challenges seriously; several changed the outcome.
+
+---
+
+## Commissions (Coordinator)
+
+### 2026-10-09 — PM/BA, STATUS refresh — sonnet, effort medium
+
+Commission from the Coordinator (CEO ran /coordinator; the CEO asked for this in his words: "have the PM/BA refresh STATUS.md").
+
+**Objective.** Refresh `products/haunt/STATUS.md` in the `candour` repo so a stranger can pick up the Haunts build from it today (2026-10-09). It was written 2026-10-02 and carries a dated note that the `haunts` repo has moved on. Establish where Haunts actually is from primary sources, and rewrite the stale parts. It is state, not authority: it summarises and never decides.
+
+**Sources (read them; do not rely on this brief for facts).**
+- `haunts` repo at `/Users/davidparrish/Documents/haunts` (read-only for you): `git log origin/main` (run `git -C /Users/davidparrish/Documents/haunts fetch -q` first), `gh pr list --repo deopea-david/haunts --state all`, `gh issue list --repo deopea-david/haunts --state all --limit 400`, and the board: `gh project item-list 1 --owner deopea-david --limit 500 --format json` and `gh project field-list 1 --owner deopea-david`.
+- `candour`: `products/haunt/STATUS.md`, `decisions/2026-09-16-haunt-gate.md`, `decisions/2026-10-02-coordinator-seat.md` (D6, D8, D9, D22), `products/haunt/backlog-plan.md` (§7 statuses, the field table including `Wave`), `products/haunt/standup-routine.md`, `pipeline/agentic-agile.md` ("The per-ticket chain").
+
+**What the Coordinator saw, to check rather than copy:** `haunts` main is at `dc9a0a0` (PR #358 merged 2026-10-04; #357 the same day; both MAINT-6). Closed issues: SPK-15, SPK-16, SPK-17, SPK-20, MAINT-1, MAINT-2, MAINT-3, MAINT-5. **SPK-21 (#355) and MAINT-4 (#308) are open with no PR.** MAINT-6 (#356) is open with no milestone, and one board item has no Status. The board has no `Wave` field, although backlog-plan.md defines one. All 344 board items are Backlog or Done; none is Ready.
+
+**Write.**
+1. Update the "As of" line, the phase, and every dated "has moved on" note (replace them with the current state).
+2. A short "What has landed" section: each merged PR / closed ticket since the security baseline, with PR number and merge date, and what remains open of M0 (list each open SPK with its issue number and owner seat from the board).
+3. Note, as findings for the owning seat (do not fix them yourself): MAINT-6's missing milestone and board Status, and where it sits in the per-ticket chain (merged; QA's wave-gate integration check and Done are QA's); the missing `Wave` field (the CTO sets it at wave planning); any other board/issue mismatch you find.
+4. Keep the decision table, blocks, reading order and "how this company works" sections; correct only what is now wrong. Keep the decision table's wording unless a decision record says otherwise.
+5. Add a section "Commissions (Coordinator)" at the end and paste this commission into it verbatim, under the heading "2026-10-09 — PM/BA, STATUS refresh — sonnet, effort medium".
+6. Provenance line: "PM/BA · sonnet (Sonnet 5.5) · effort medium · 2026-10-09".
+
+**Boundaries.** You own only `products/haunt/STATUS.md`. Do not edit any other file, any issue, the board, or the `haunts` repo. Work in your worktree; never switch branches in either main checkout. Stage the one file by name (never `git add -A`). Commit on a branch named `docs/haunt-status-refresh` with a Conventional Commit message like `docs(haunt): refresh STATUS.md for the M1 start`, ending with the line `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Do not push and do not open a PR; the main session does that.
+
+**Evidence.** Tag claims per `pipeline/evidence-standard.md`; for repo facts cite the command or commit.
+
+**Verify before you finish.** Re-run the issue and PR listings and check every issue number, PR number and date in your "What has landed" section against them. Grep the file for "moved on" and "2026-10-02" and confirm no stale state remains.
+
+**Model.** Sonnet, effort medium (step-down from your Opus default under `pipeline/model-selection.md` §5.1: an inventory whose errors can be caught by reading the output; the CEO also asked for one Opus seat at a time).
+
+**Write incrementally to disk.** Reply in under 12 lines: the branch and commit SHA, your worktree path, what has landed, whether SPK-21 and MAINT-4 have landed, and the findings for other seats.
+
+---
+
+*PM/BA · sonnet (Sonnet 5.5) · effort medium · 2026-10-09*
