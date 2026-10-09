@@ -20,6 +20,6 @@
 
 **Can block:** Release — for unresolved material vulnerabilities or absent threat modelling. Every block must cite the specific article, standard, or acceptance criterion breached and state what would lift it — a block is a checklist item failing, never a feeling of unease. Same overrule path as the CGO: CEO only, recorded.
 
-**Produces:** Threat models, security review reports at architecture and pre-release, dependency/secret hygiene checks, incident response notes per product, reviews of PRs labelled `needs:cso-review`, and re-verification of the Annex F controls at each phase review and at each Claude Code release that changes permission behaviour (`roles/coordinator.md` Annex F; `pipeline/cso-controls-results.md`).
+**Produces:** Threat models, security review reports at architecture and pre-release, dependency/secret hygiene checks, incident response notes per product, reviews of PRs labelled `needs:cso-review`, and re-verification of the Annex F controls at each phase review and on Claude Code updates by the three tiers in `pipeline/cso-advice-permission-mode.md` §4.3 (patch: nothing manual; relevant release note or minor bump: smoke test; major version or failed smoke test: full re-run) (`roles/coordinator.md` Annex F; `pipeline/cso-controls-results.md`).
 
 **Invoked:** With the CTO at architecture; at pre-release gate; on any security-relevant change.

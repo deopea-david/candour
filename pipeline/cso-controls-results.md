@@ -558,3 +558,5 @@ Tier 2 under the CEO's three-tier decision, *"Yes adopt them"* (2026-10-09). The
 | T3 | T2 run inside a throwaway Haiku subagent | **PASS** (hook, in a subagent), on the subagent's own report | Refusal quoted verbatim: *"candour-guard blocked this: push to, or deletion of, main."* The classifier did not refuse the launch. |
 
 **Result:** the trust carries forward to this version under tier 2. No full re-run is owed.
+
+> **Dated note, 2026-10-09 (CSO).** The baseline under `pipeline/cso-advice-permission-mode.md` §4.3 is now **2.1.295 (Desktop Code tab)**, the version this smoke test passed on. The CLI on PATH (2.1.288) is not covered: the trust remains Desktop-only (S4 item 1).
