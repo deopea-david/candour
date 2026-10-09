@@ -121,9 +121,9 @@ Those are state. If two authorities disagree, or the next step is ambiguous, ask
 - **Auto mode, with bypass disabled** in user settings.
 - **Model availability settings for Fable**, if the CTO finds one that fits the plan.
 
-**How far the CSO trusts them** (sign-off, 2026-10-04, `pipeline/cso-controls-results.md`): none is untrusted; most are trusted with a stated limit. The limits are in its S4: the CLI is untested; 2.1.286 only, and the next Desktop update triggers a full re-run; no session started in a worktree; **restart after any change to `.claude/` on disk**, by hand or by a pull; the Desktop shows no tamper warning, which the CEO accepted. **Treat these controls as the CSO's latest record describes them, not as this list implies.**
+**How far the CSO trusts them** (sign-off, 2026-10-04, `pipeline/cso-controls-results.md`): none is untrusted; most are trusted with a stated limit. The limits are in its S4: the CLI is untested; trust is as of the current baseline there, re-verified by the §4.3 tiers; no session started in a worktree; **restart after any change to `.claude/` on disk**, by hand or by a pull; the Desktop shows no tamper warning, which the CEO accepted. **Treat these controls as the CSO's latest record describes them, not as this list implies.**
 
-**What none of them can do.** No control distinguishes an agent's merge from the CEO's while every seat acts through his GitHub account. That residual is stated, not hidden. **The CSO re-verifies these assumptions at each phase review and at each Claude Code release that changes permission behaviour.**
+**What none of them can do.** No control distinguishes an agent's merge from the CEO's while every seat acts through his GitHub account. That residual is stated, not hidden. **The CSO re-verifies these assumptions at each phase review and on Claude Code updates, by the tiers in CSO advice §4.3.**
 
 ---
 
