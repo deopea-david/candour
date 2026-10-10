@@ -106,3 +106,33 @@ Any Android build given to anyone outside Candour before the lift says, **at fir
 - **CGO:** the data handling for a friend's phone or volunteers' phones (§3): consent, counts-only export, and no raw locations leaving their phones.
 - **CFO:** the 75-hour spike line in `android-and-stack-note.md` §0.3 becomes a measurement run plus a little in-app tooling (the *"Haunts missed this"* entry and the counts export). The hours are about the same [J]. The labour-at-risk is new, and it belongs in the cost sheet's risk note.
 - **CSO:** the Android capture stories now start without waiting for SPK-02, so condition C11 (*"Android capture not `directBootAware`"*) arrives with them, as `threat-model-m1.md` §6.1 already places it.
+
+---
+
+## 6. Proposed replacement text for `m1-wave-plan.md` §6 and §7
+
+`m1-wave-plan.md` is on candour branch `docs/haunt-m1-wave-plan` (PR #31, not merged), so it is not on this branch. The text below is for that branch. **I have not edited it.** The Coordinator decides how it lands.
+
+### 6.1 Replace §6 whole with
+
+> ## 6. Block 2 and Android
+>
+> **Block 2 was re-scoped on 2026-10-10** (`architecture/block-2-review.md`). It now blocks the **Android release build**, not Android code.
+>
+> - **What no longer waits:** the Kotlin half of `modules/capture/`, meaning the capture-file owner, the ledger, the recorder and foreground service (CAP-3), the gap rows (CAP-4), deletion and the native read tests. Each becomes an Android story in an **Android wave of M1 (M1.W8)**, after W3–W5 have fixed the shared schema and the typed face. CSO C11 travels with them.
+> - **What still waits:** the Android release build, the Play listing, and any Android build for people outside Candour that lacks the label in `block-2-review.md` §4.2. These wait until the measurement in `block-2-review.md` §4.1 is published against the thresholds in CAP-11 … CAP-14.
+> - **The consequence:** DATA-2, DATA-16, CAP-1, SESS-9 and PLAT-1 reach Done when their Android stories merge in M1.W8. **M1 no longer waits on SPK-02's two weeks.** SPK-02 (#280) becomes the field measurement, due before the Android release build.
+> - **Recommended, not required** [J]: start the measurement as soon as M1.W8's capture story is on a phone, so that a bad result arrives early. The emulator tests for Doze, App Standby, reboot and force-stop go into CI with that story.
+> - **What would change this:** the conditions in `block-2-review.md` §4.3.
+
+### 6.2 Changes to §7
+
+- **CAP-7 (#9) row:** replace *"checks the Android foreground service stops (CAP-3, M2; Block 2)"* with *"checks the Android foreground service stops (CAP-3, M2)"*. The move to M3 stands on ENT-3 and ENT-6 alone.
+- **Add a row:** **SPK-02** (#280) | M0 → **M5** | Its last limb is the published measurement that must exist before the Android release build begins (`block-2-review.md` §4.1). It may run, and should run, from M1.W8 onwards.
+- **"Confirmed in M1"** gains: the Android stories of M1.W8 (DATA-2 Android, DATA-16 Android, CAP-1 Android, SESS-9 Android, and the CAP-3 and CAP-4 native groundwork), to be written at that wave's planning.
+
+### 6.3 Tickets that would follow (not edited by this memo)
+
+- `haunts` #361 and #352 say Kotlin *"waits for CTO Block 2 (SPK-02)"* or *"is a story created when CTO Block 2 lifts"*. They would read *"is an M1.W8 story"*.
+- `haunts` #267 says the ticket *"stays in QA until the Android capture story (CTO Block 2, SPK-02)"*. It would read *"until the Android capture story (M1.W8)"*.
+- `haunts` #280 (SPK-02): its CTO region becomes the measurement protocol in §4.1, at M5.
