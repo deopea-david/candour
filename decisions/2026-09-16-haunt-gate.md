@@ -533,6 +533,19 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 *Recorded by the Coordinator as a clerical act; the record is the CGO's.*
 
+**D69 — Add an in-app "Haunts missed this" entry and a counts-only export, for the Android measurement and beyond.** *CEO, 2026-10-10.* His words: *"Yes that sounds okay then yeah."* He was answering the Coordinator's account of the CTO's proposal (`block-2-review.md` §3, PR #34):
+- a user can add a visit Haunts did not record and mark it *"Haunts missed this"*;
+- a counts-only summary (visits recorded, visits missed, misses covered by a gap) is exported by the user through the phone's share sheet, and the app sends nothing itself, so PRIV-8 holds.
+
+**This is a scope change.** The PM/BA writes both into `requirements.md` with a §24 row. **Owed:**
+- the CTO sizes them;
+- the CFO notes the hours and the labour-at-risk (`block-2-review.md` §5);
+- UX and the CGO check the counts against MEM-1 (a count only as a plain fact) and Article 4.
+
+*Whether "Haunts missed this" stays for all users after the measurement is a separate product question, not decided here.*
+
+*Recorded by the Coordinator as a clerical act; the record is the CGO's.*
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
