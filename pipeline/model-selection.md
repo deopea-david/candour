@@ -81,6 +81,7 @@ The seat default is the starting point. The orchestrator changes the **model** (
 
 **Mandatory, and impartial.** Every commission uses the model that fits the task: **no larger and no smaller than the task needs**, judged by §5.1 and §5.2. A larger model than needed wastes usage. A smaller one than needed risks the work. Neither direction is the default, and "bigger is safer" is not a reason. Effort follows the seat's default (§1); where that doesn't suit the task, the commission says so. **Usage and session limits never decide the model by themselves.** They don't push a task below what it needs, and they don't hold work back.
 
+- **The reviewer never sets the author's model** (CEO, 2026-10-10). Who reviews the work, on which model, and any review label such as `needs:cso-review`, says nothing about what the work itself needs. Choose the author's model from the task alone. §5.4 then adjusts the **reviewer's** model where it can, never the author's. If both end up on the same model, the review record says so (§5.4). The CEO's words: *"Just because the CSO is reviewing it, does not mean Opus should be used for producing the work it would review. It should choose the best model for the job, regardless of who is reviewing it."*
 - **Never queue or serialise work to save headroom.** Several Opus seats may run at once, within the Coordinator charter's concurrency caps (Annex D). Holding a run back so that only one Opus runs at a time is withdrawn. That was the main session's own practice after usage-limit stalls, and it was never a rule.
 - **A usage-limit hit is an infrastructure stall, not a failure** (Coordinator charter, Annex C). Resume after the reset; don't plan around it in advance.
 - **Effort cannot be set per call** (§1); it comes from the seat's frontmatter. If a task needs a different effort from the seat's default, the commission says so, and the CEO is told when it matters. Changing a default is a PR to §4 and the frontmatter (§8).
@@ -98,7 +99,7 @@ Use a smaller model for **mechanical work with a checkable output**: file and co
 ### 5.2 Step up: Sonnet → Opus, or Opus → Fable (Fable only with the CEO's per-use approval, §7)
 
 Step up when any of these holds:
-- **Stakes:** the output feeds a Constitution 5.4 decision, makes a claim about what a clause of the Constitution or of law requires, sets a published number, or touches a **promise-line**, **standing-condition** or `needs:cso-review` ticket.
+- **Stakes:** the output feeds a Constitution 5.4 decision, makes a claim about what a clause of the Constitution or of law requires, sets a published number, or touches a **promise-line** or **standing-condition** ticket. *(A `needs:cso-review` label was removed from this list on 2026-10-10. It says who will review the work, not how hard the work is; see §5.0.)*
 - **Irreversibility:** schema rules, capture architecture (CAP-1), crypto, anything that cannot be fixed after shipping (`requirements.md` §20.1).
 - **Novelty:** no precedent in the repository, or an unfamiliar platform API.
 - **A capability failure:** the seat had the context, clearly tried, and still got it wrong.
@@ -113,7 +114,7 @@ Step up when any of these holds:
 
 ### 5.4 Reviewer different from author
 
-Wherever possible, the seat that checks work runs on a different model from the seat that made it: Engineer (Sonnet) → CTO (Opus) → QA (Opus). **Where that is not possible**, for example Opus-written documents reviewed by an Opus Skeptic with Fable unavailable, the review record says so. The mechanical checks and the CEO carry the weight. **The limit is disclosed, not hidden.**
+Wherever possible, the seat that checks work runs on a different model from the seat that made it. **This adjusts the reviewer, never the author** (§5.0): Engineer (Sonnet) → CTO (Opus) → QA (Opus). **Where that is not possible**, for example Opus-written documents reviewed by an Opus Skeptic with Fable unavailable, the review record says so. The mechanical checks and the CEO carry the weight. **The limit is disclosed, not hidden.**
 
 ### 5.5 Record it
 
