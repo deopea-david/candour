@@ -79,7 +79,7 @@ The seat default is the starting point. The orchestrator changes the **model** (
 
 ### 5.0 The best for the job wins (CEO, 2026-10-10)
 
-**Mandatory.** Every commission uses the model best suited to the task, judged by §5.1 and §5.2. Effort follows the seat's default (§1); where that doesn't suit the task, the commission says so. Usage limits are a secondary consideration. They justify a smaller model only where §5.1 says the smaller model does the job as well. They are never a reason to step down a task that §5.2 says needs more.
+**Mandatory, and impartial.** Every commission uses the model that fits the task: **no larger and no smaller than the task needs**, judged by §5.1 and §5.2. A larger model than needed wastes usage. A smaller one than needed risks the work. Neither direction is the default, and "bigger is safer" is not a reason. Effort follows the seat's default (§1); where that doesn't suit the task, the commission says so. **Usage and session limits never decide the model by themselves.** They don't push a task below what it needs, and they don't hold work back.
 
 - **Never queue or serialise work to save headroom.** Several Opus seats may run at once, within the Coordinator charter's concurrency caps (Annex D). Holding a run back so that only one Opus runs at a time is withdrawn. That was the main session's own practice after usage-limit stalls, and it was never a rule.
 - **A usage-limit hit is an infrastructure stall, not a failure** (Coordinator charter, Annex C). Resume after the reset; don't plan around it in advance.
