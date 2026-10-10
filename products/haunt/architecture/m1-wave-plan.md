@@ -17,13 +17,13 @@ Provenance: CTO · opus (Opus 5.5) · effort high · 2026-10-09; revised 2026-10
 | **M1.W1 — set-up** | **SPK-21** (#355), then **MAINT-4** (#308); MAINT-7 (#359) carries the wave's standup entries | **1, in sequence** | Sonnet, xhigh | Every ADR-0001 check live, each seen to fail on a planted violation; the arrow-function rule live |
 | **M1.W2 — app shell** | **PLAT-1** (#267) | 1 | Sonnet | An Expo app that builds on iOS and Android; every M1 npm dependency installed once; app `tsconfig` strict |
 | **M1.W3 — the two store contracts (core-first)** | **DATA-2.1** (#360) journal side · **DATA-2.2** (#361) capture side, iOS | 2 | Sonnet · **Opus** (native + schema) | `journal.db` store and migrator; `capture.db` native owner; the capture module's whole typed face |
-| **M1.W4 — sessions and entitlement** | **SESS-1.1** (#362) derived sessions with durable overrides · **ENT-1.1** (#363) entitlement ledger, iOS · **DATA-1** (#195) legibility test | 2 | Sonnet · **Opus** | `deriveSessions`; the ledger's three-state answer; both schemas proved legible |
+| **M1.W4 — sessions and entitlement** | **SESS-1.1** (#362) derived sessions with durable overrides · **ENT-1.1** (#363) entitlement ledger, iOS (ENT-1 a–c) · **DATA-1** (#195) legibility test | 2 | Sonnet · **Opus** | `deriveSessions`; the ledger's three-state answer; both schemas proved legible |
 | **M1.W5 — the JS-free capture path** | **CAP-1** (#8) iOS · **DATA-16** (#352) iOS + JS · **SESS-9** (#52) tests | 2 | **Opus** · Sonnet | A visit recorded with no JavaScript; candidates deleted, never flagged; intervals and gaps proved durable |
 
 - **At most two Engineers at once** (`pipeline/agentic-agile.md` item 4), and **never more than one Opus seat at a time** (the CEO's instruction for this build). W3 to W5 pair one Opus Engineer on native code with one Sonnet Engineer on TypeScript. The Opus CTO review and the Opus QA run between those, not alongside a running Opus Engineer.
 - **No two tickets in the same wave list the same file.** There is no exception: MAINT-4's rules live in their own file, `tools/oxlint/maint-4.json`, which SPK-21 creates as `{}` and `.oxlintrc.json` extends (ADR-0002 §7).
-- **Android capture code waits for SPK-02.** CTO Block 2 is live. Every requirement above that names both platforms gets its Android half in a later M1 wave, as a story created when Block 2 lifts (§6). **M1 cannot close until SPK-02 has run** — at least two real weeks on three phones.
-- **Milestones:** M1's order is confirmed. **28 tickets move out of M1**, because their last acceptance limb needs a surface or a service that does not exist until a later phase. Their M1 groundwork, chiefly the build-time checks, stays in M1 as stories (§7).
+- **Android capture code no longer waits for SPK-02.** CTO Block 2 was re-scoped on 2026-10-10 (`architecture/block-2-review.md`): it now stops the **Android release build**, not Android code. Every requirement above that names both platforms gets its Android half in **M1.W8**, as a story written at that wave's planning (§6). **M1 does not wait on SPK-02's two weeks**; the measurement is due before the Android release build.
+- **Milestones:** M1's order is confirmed. **27 tickets move out of M1**, because their last acceptance limb needs a surface or a service that does not exist until a later phase. Their M1 groundwork, chiefly the build-time checks, stays in M1 as stories (§7).
 
 ---
 
@@ -33,7 +33,7 @@ Provenance: CTO · opus (Opus 5.5) · effort high · 2026-10-09; revised 2026-10
 2. **Stories only where D34 allows:** a requirement too big for one PR or whose limbs sit in different code, or one change serving several requirements. Story keys are the parent's key, a dot and a number (`docs/conventions.md` §2).
 3. **The spike rule.** No code that ships in the app reaches `main` under a spike ticket; repository tooling may (`docs/conventions.md` §8; SPK-21's own negative constraint). **So SPK-21 creates no app code.** The Expo app itself arrives under PLAT-1, a requirement ticket, in W2.
 4. **D63's guards** decide the store split: one owner per file, the capture module's typed face as the only bridge, adoption idempotent through `source_candidate_id`.
-5. **CTO Block 2** (Android capture on undocumented OEM behaviour) is live and lifts only with the SPK-02 device-matrix spike. Its condition reads: *"The spike runs before product code, on at least a Pixel, a Samsung and a Xiaomi, over ≥2 real weeks"* [E: `android-and-stack-note.md` §1.7]. I read "product code" there as Android capture code and apply it to all of it, storage included (§6).
+5. **CTO Block 2** (Android capture on undocumented OEM behaviour) **was re-scoped on 2026-10-10: it blocks the Android release build, not Android code** [E: `architecture/block-2-review.md`, candour PR #34; §6]. Its lifting condition is unchanged: *"The spike runs before product code, on at least a Pixel, a Samsung and a Xiaomi, over ≥2 real weeks"* [E: `android-and-stack-note.md` §1.7]. I first read "product code" there as Android capture code and applied it to all of it, storage included. The review narrowed it, and the measurement now gates the release build.
 6. **CTO Block 3** (JavaScript in the visit-recording path) is engaged on the record [E: `block-4-ruling.md` §2.4, line 118]. Its lift condition is *"a capture design in which the Swift and Kotlin modules write to SQLite directly and JavaScript reads later"* [E: `android-and-stack-note.md` §4]. ADR-0001 §2.3 and D63 are that design. CAP-1 in W5 is where the design is built and checked. `STATUS.md` does not list Block 3 (§9, F2).
 7. **Models** (`pipeline/model-selection.md` §4, §5.2): the Engineer defaults to Sonnet; the orchestrator steps it up to Opus for the native capture modules and the SQLite schema. The recommendation column in §0 follows that rule; the Coordinator states the model in each commission.
 
@@ -84,12 +84,12 @@ PLAT-1 creates the Expo project at the repository root (ADR-0001 §2.1; `docs/co
 
 - **The face is written in full here** so that ENT-1.1, CAP-1, SESS-1.1 and DATA-16 build on it without editing it. The first-version types are in DATA-2.2's issue; DATA-2.2 may refine names in its PR, and what merges is the contract the W4 and W5 tickets build on.
 - **`markAdopted` and `discard` delete rows from the start**, never flag them (DATA-16's rule, CSO C15). DATA-16 then adds the expiry and the reconcile.
-- **Android, until Block 2 lifts:** the module declares no Android implementation. An Android build must still build and start (PLAT-1); the face reports capture as unavailable there rather than crashing. The exact mechanism is DATA-2.2's to propose.
+- **Android, until M1.W8:** W3 builds iOS only, so the module declares no Android implementation in this wave. The Kotlin half is an M1.W8 story (§6), no longer held by Block 2. An Android build must still build and start (PLAT-1) in the meantime; the face reports capture as unavailable there rather than crashing. The exact mechanism is DATA-2.2's to propose.
 
 ### 3.4 M1.W4 — sessions and entitlement
 
 - **SESS-1.1 (#362), a story under SESS-1, implementing SESS-1(a)(b) and SESS-2(a)(b)(c):** `core/domain/sessions.ts` derives sessions from visits, overrides, entitlement intervals and gaps, with time and parameters passed in (check 5). `core/store/sessions.ts` keeps a deletable cache. `core/store/overrides.ts` stores overrides as rows anchored to **visit** identifiers, never to a session (SESS-2(c)). `core/store/capture.ts` is the wrapper over the face (ADR-0001 §2.1). One migration, `0002-sessions.sql`. Sessions carry their partiality as data (which gaps and entitlement boundaries they straddle), so that SESS-8 can render it in M2 and SESS-9(b) can compare it.
-- **ENT-1.1 (#363), a story under ENT-1, implementing ENT-1(a) on iOS:** `ios/Core/EntitlementLedger.swift` answers *"was capture entitled at t?"* natively with three answers — entitled, not entitled, unknown. The rule I set for M1 comes from my own earlier design: unknown is *"a first-class state, distinct from 'unentitled'"*, and the app must *"resolve in the customer's favour for capture while never taking money"* [E: `subscription-sizing-note.md` §3.1, line 111]. So capture records under *entitled* and *unknown*, never under *not entitled*. **ENT-2 (M3) owns how unknown is stated and how it resolves when a cached interval expires offline**; that is the sizing note's open question 4, and the M1 rule may tighten then.
+- **ENT-1.1 (#363), a story under ENT-1, implementing ENT-1(a)–(c) on iOS** ((b) and (c) added 2026-10-10, after the PM/BA's v1.5 ruling that (b) is an update in place, offline, needing no billing; a test double calling `recordEntitlement` suffices, and (c) is a test that no path infers an interval from a current-state query). How the install-over is automated on iOS is the Engineer's to propose in the PR [J]: `ios/Core/EntitlementLedger.swift` answers *"was capture entitled at t?"* natively with three answers — entitled, not entitled, unknown. The rule I set for M1 comes from my own earlier design: unknown is *"a first-class state, distinct from 'unentitled'"*, and the app must *"resolve in the customer's favour for capture while never taking money"* [E: `subscription-sizing-note.md` §3.1, line 111]. So capture records under *entitled* and *unknown*, never under *not entitled*. **ENT-2 (M3) owns how unknown is stated and how it resolves when a cached interval expires offline**; that is the sizing note's open question 4, and the M1 rule may tighten then.
 - **DATA-1 (#195), test-only:** both schemas applied to `node:sqlite`; no BLOB column; every timestamp column ISO-8601 with an explicit offset. It runs after W3 because it reads both W3 schemas.
 
 ### 3.5 M1.W5 — the JS-free capture path
@@ -119,7 +119,7 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 |---|---|---|
 | M1.W6 | Venue schema rules: VEN-8, VEN-10, VEN-11, VEN-12 (migration `0003`, `core/store/venues.ts`, the refresh path). **Alongside:** the theme token system as a story (typed tokens and Mono, so that M2's screens use tokens from the first line; THEME-10(c), THEME-2(a)'s contrast check) | I check VEN-8's trigger myself at that PR (`block-4-lift.md` §3.4). Opus for the schema (§5.2) |
 | M1.W7 | Venue index pipeline: VEN-17, VEN-2, VEN-3, VEN-4, VEN-5, VEN-6, VEN-23. **Alongside:** the MEM-1(a) string check and the DFLT-1(a) settings register, each as a story, before M2 adds strings and settings | **Open conflict, raised now:** VEN-17 requires the harness, a Python program, to live in the product repository with a `PYTHONHASHSEED` sweep, and D41 says all `haunts` scripts are TypeScript. Porting it, or an exception, is a decision to make before W7 (§9, F5) |
-| M1.W8 | **Android, blocked by SPK-02:** the Kotlin halves of DATA-2 (story), ENT-1 (story), CAP-1, DATA-16 and SESS-9 | Created as stories when Block 2 lifts |
+| M1.W8 | **Android** (Block 2 no longer blocks it, §6): the Kotlin halves of DATA-2 (story), ENT-1 (story), CAP-1, DATA-16 and SESS-9, with the CAP-3 and CAP-4 native groundwork (§7) | Written as stories at W8's planning, after W3–W5 have fixed the shared schema and the typed face. These tickets reach Done when their Android stories merge |
 | when SPK-22 lands | PRIV-8(e), Android release manifest without `INTERNET`; PRIV-8(d), the dependency check, as a story | |
 
 ## 6. Block 2 and Android
@@ -128,7 +128,7 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 
 - **What no longer waits:** the Kotlin half of `modules/capture/`, meaning the capture-file owner, the ledger, the recorder and foreground service (CAP-3), the gap rows (CAP-4), deletion and the native read tests. Each becomes an Android story in an **Android wave of M1 (M1.W8)**, after W3–W5 have fixed the shared schema and the typed face. CSO C11 travels with them.
 - **What still waits:** the Android release build, the Play listing, and any Android build for people outside Candour that lacks the label in `block-2-review.md` §4.2. These wait until the measurement in `block-2-review.md` §4.1 is published against the thresholds in CAP-11 … CAP-14.
-- **The consequence:** DATA-2, DATA-16, CAP-1, SESS-9 and PLAT-1 reach Done when their Android stories merge in M1.W8. **M1 no longer waits on SPK-02's two weeks.** SPK-02 (#280) becomes the field measurement, due before the Android release build.
+- **The consequence:** DATA-2, DATA-16, CAP-1, SESS-9, ENT-1 and PLAT-1 reach Done when their Android stories merge in M1.W8. **M1 no longer waits on SPK-02's two weeks.** SPK-02 (#280) becomes the field measurement, due before the Android release build.
 - **Recommended, not required** [J]: start the measurement as soon as M1.W8's capture story is on a phone, so that a bad result arrives early. The emulator tests for Doze, App Standby, reboot and force-stop go into CI with that story.
 - **What would change this:** the conditions in `block-2-review.md` §4.3.
 
@@ -138,10 +138,9 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 
 | Moved | From → to | Why |
 |---|---|---|
-| **ENT-1** (#146) | M1 → **M3** | ENT-1(b) (*"intervals survive reinstall-while-offline"*) needs the billing layer to restore intervals after a delete-and-reinstall [I]. ENT-1(a) is built in M1 as ENT-1.1. If the PM/BA reads "reinstall" as an update in place, ENT-1 can be verified at the M1.W4 gate and close early |
 | **ENT-2** (#147) | M1 → **M3** | Its six constructed states include refunded, revoked, billing retry and grace period, which exist only with StoreKit and Play Billing (M3; SPK-10) |
 | **CAP-7** (#9) | M1 → **M3** | (a) expires a trial (ENT-3, M3) and checks the Android foreground service stops (CAP-3, M2). It is the same behaviour as ENT-6 (M3) |
-| **FT-ENT-1** (#145) | M1 → **M3** | Both of its tasks moved |
+| **FT-ENT-1** (#145) | M1 → **M3** | Its two tasks are ENT-1 and ENT-2 [E: `gh issue view 145 --repo deopea-david/haunts`, 2026-10-10]. ENT-2 moves to M3, and a feature is Done only when every task is, so the feature sits where its last task does. ENT-1 itself stays in M1 (below) |
 | **VEN-1** (#64) | M1 → **M2** | (a) runs *"the full core loop in aeroplane mode"*; the loop is M2 |
 | **VEN-7** (#72) | M1 → **M2** | Its test deletes the index and renders the **venue page** (M2). Its copy-on-reference rule is built with the venue schema in M1.W6 |
 | **THEME-1, 2, 3, 4, 5, 6, 7, 10, 11, 12** (#328, #329, #326, #330, #323, #331, #332, #322, #324, #325) and **FT-THEME-1, FT-THEME-2** (#321, #327) | M1 → **M4** | Each needs the primary screens, the headlines, the entitlement fixtures (ENT-14) or the icon setting (PLAT-9) for its last limb. **The token system and the contrast check stay in M1** as a story (M1.W6), before screens multiply in M2, as backlog plan §10 intended |
@@ -151,7 +150,13 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 | **MAINT-6** (#356) | none → **M0** | Agent controls, done before any build work, like MAINT-1, 2, 3 and 5 (all M0) |
 | **SPK-02** (#280) | M0 → **M5** | Its last limb is the published measurement that must exist before the Android release build begins (`block-2-review.md` §4.1). It may run, and should run, from M1.W8 onwards |
 
-**30 moves** (28 out of M1, MAINT-6 into M0, and SPK-02 from M0 to M5). **Confirmed in M1:** SPK-21, MAINT-4, MAINT-7, PLAT-1, DATA-1, DATA-2, DATA-16, CAP-1, SESS-1, SESS-2, SESS-9, the venue tickets other than VEN-1 and VEN-7, and their features, and the Android stories of M1.W8 (DATA-2 Android, DATA-16 Android, CAP-1 Android, SESS-9 Android, and the CAP-3 and CAP-4 native groundwork), to be written at that wave's planning.
+**29 moves** (27 out of M1, MAINT-6 into M0, and SPK-02 from M0 to M5). **Confirmed in M1:** SPK-21, MAINT-4, MAINT-7, PLAT-1, DATA-1, DATA-2, ENT-1, DATA-16, CAP-1, SESS-1, SESS-2, SESS-9, the venue tickets other than VEN-1 and VEN-7, and their features, and the Android stories of M1.W8 (DATA-2 Android, DATA-16 Android, CAP-1 Android, SESS-9 Android, and the CAP-3 and CAP-4 native groundwork), to be written at that wave's planning.
+
+**ENT-1 (#146) stays in M1** (re-placed 2026-10-10; my first version moved it to M3). *Why, under the principle above:*
+- **The ruling.** The PM/BA ruled that ENT-1(b)'s "reinstall" means *update in place*: install a newer build over the existing app, offline, with the app container kept, and "a test double calling `recordEntitlement` suffices" [E: `requirements.md` v1.5, ENT-1 row, branch `docs/haunt-requirements-v1.5`, line 559]. Delete-and-reinstall is ENT-11 and ENT-14 (M3, with billing). My M3 placement rested on the other reading ("needs the billing layer" [I]), which the ruling removes.
+- **The last limb.** (a) the native answer to "was capture entitled at t?", (b) install-over offline, (c) intervals never inferred: none needs a screen, a billing service or a release review. The last limb QA can verify is the Android half of (a) and (b), in M1.W8.
+- **Where it closes.** ENT-1 is built in M1.W4 as ENT-1.1 (iOS) and in M1.W8 as its Android story, and **QA verifies it whole (D9) when that story merges**, like DATA-2, DATA-16, CAP-1 and SESS-9 (§6). It does not close at the W4 gate: my earlier note that it could do so assumed no Android half, which §6 now schedules.
+- **What it does not decide.** ENT-2 and FT-ENT-1 stay in M3. The delete-and-reinstall fixture is ENT-14's.
 
 **M2–M5:** I confirm the **phase order** (backlog plan §10). I have **not** checked every ticket inside M2–M5 against this principle today. Each phase gets that check at its own wave planning. The milestone descriptions are updated to say so, and each keeps its Constitution 5.5 sentence.
 
@@ -161,11 +166,11 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 - **Already labelled:** SPK-21, CAP-1, DATA-16.
 - **Added today:** MAINT-4 (it fills `tools/oxlint/maint-4.json` and adds a JavaScript plugin, both under check 10); PLAT-1 (the first production dependencies; the hook-installing `prepare` script, `docs/conventions.md` §11); DATA-2, together with its stories DATA-2.1 and DATA-2.2 (the generated body of DATA-2 already says *"Security-relevant"* but the label was missing; C8 parameterised SQL, C9 store location); ENT-1.1 (the only write path for entitlement; an import must never grant it, DATA-5(c)).
 
-**SPK-21's development dependencies, for approval before the Engineer installs them** (D40's rule, D64), all exact-pinned:
-- `oxlint` and `oxfmt` (D68, ADR-0002 §6)
-- `@swc/core`, as dependency-cruiser's parser under TypeScript 7 (D68, ADR-0002 §6)
-- `dependency-cruiser` (named in D64)
-- `jest`, plus one TypeScript transform for the plain-Node test projects. The Engineer proposes which, with its dependency count.
+**SPK-21's development dependencies: ruled by the CSO on 2026-10-10.** The D68 set was approved at these exact pins (`cso-m1-w1-rulings.md` §0.1, candour PR #33; #355 comment 6100395391); the Engineer installs only these, with `--ignore-scripts` (D40's rule, D64):
+- `oxlint` 1.86.0 and `oxfmt` 0.71.0 (D68, ADR-0002 §6), approved on G12 and G15 as re-ruled
+- `@swc/core` 1.16.13, as dependency-cruiser's parser under TypeScript 7 (D68, ADR-0002 §6), approved on conditions W1–W3 (`--ignore-scripts` always; a sentinel rule on `f1-type-only`; a preflight that fails closed when `swc` cannot parse)
+- `dependency-cruiser` 18.5.0 (named in D64), with C38 (it must be told where `tsconfig.json` is)
+- `jest` 30.5.2 and `@babel/preset-typescript` 7.29.7 (the CSO refused `ts-jest` and `@swc/jest`); `typescript` stays at 7.0.2, condition T having been reversed (rulings §0.4)
 
 Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`, React Native Testing Library (Expo's ESLint configuration is no longer wanted: D68, ADR-0002 §10). The Maestro CLI (C20) arrives with the first end-to-end flow, not in M1.W1. **The proofs run on Node's built-in test runner**, which adds no dependency [J].
 
@@ -183,10 +188,10 @@ Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`,
   - **CTO:** check VEN-8's trigger at the first venue-schema PR (M1.W6).
 - **F2. Block 3 is missing from `STATUS.md`** (PM/BA). It is engaged on the record (§1 item 6). I will write its lift confirmation when CAP-1's iOS half and DATA-2.2 merge, against its own condition, rather than lift it on a design alone.
 - **F3. Two ticket titles are stale against v1.4** (PM/BA, regeneration). The bodies were regenerated at `6e32e86`, but the titles still read *"One SQLite file"* (DATA-1, #195) and *"SQLite as a written contract for four consumers"* (DATA-2, #196). D63 changed both.
-- **F4. ENT-1(b)'s "reinstall"** (PM/BA). Is it delete-and-reinstall or update-in-place? The first needs billing (M3); the second is testable in M1. I placed ENT-1 on the first reading.
+- **F4. ENT-1(b)'s "reinstall": resolved.** The PM/BA ruled in requirements v1.5 (candour PR #40) that it means an update in place, offline, needing no billing [E: `requirements.md` ENT-1 row on branch `docs/haunt-requirements-v1.5`, line 559, read 2026-10-10]. My §7 had placed ENT-1 in M3 on the other reading. **ENT-1 is re-placed in M1** (§7).
 - **F5. VEN-17 against D41** (CEO decision, via PM/BA). VEN-17 needs a Python harness with a `PYTHONHASHSEED` sweep in the product repository; D41 makes every `haunts` script TypeScript. Before M1.W7, one must give way: port the harness, or record an exception. I lean towards an exception scoped to `tools/venue-index/` [J], because a port risks changing the outputs the Block 4 discharge rests on.
 - **F6. The optional check 17** (an agent `PostToolUse` lint hook) is not in SPK-21. It is a CSO-baseline file and needs the CEO's approval (ADR-0001 §3). If wanted, it is its own `MAINT-n` ticket.
-- **F7. M1's length is now set by SPK-02, not by W1–W5** (§6). This is the most consequential line in this plan for the calendar.
+- **F7. M1's length is no longer set by SPK-02** (§6). Block 2 now stops the Android release build, so SPK-02's two real weeks fall outside M1, and M1 closes when the W8 Android stories merge. **The calendar risk moves to the release:** if SPK-02 starts late, the Android release build waits on it. Starting it from M1.W8 is recommended (§6) [J].
 
 ## 10. Where I looked, and what would change this plan
 
@@ -194,7 +199,7 @@ Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`,
 **Not read:** the M2–M5 tickets beyond those moved into them (§7); the Expo SDK 58 release notes (§3.2).
 
 **What would change it:**
-- **SPK-02 starting, or Block 2 overruled:** W8 moves forward.
+- **The conditions in `block-2-review.md` §4.3 being met, or Block 2 re-scoped again:** §6 and the W8 row change. SPK-02 starting early changes the release date, not M1's contents.
 - **DATA-2.2's merged face differing from its issue:** W4 and W5 build on what merged, and the Engineer says so in the PR.
 - **The CSO rejecting JavaScript-driven expiry:** DATA-16 gains a native command, and the typed face changes by a new ADR, not quietly.
 - **A merge conflict, or an escaped defect, in any wave:** parallelism drops to one (`pipeline/agentic-agile.md` item 4).
@@ -205,3 +210,4 @@ Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`,
 |---|---|
 | 2026-10-09 | First version. Waves M1.W1–W5 placed; W6–W8 outlined; 29 milestone moves; SPK-01 closed; MAINT-6 placed in M0 and set to QA |
 | 2026-10-10 | Applied the CTO's own already-written text, adding nothing new. **(1) §6 and §7**, from `block-2-review.md` §6 (Block 2 re-scoped to the Android release build; Android stories become M1.W8; SPK-02 moves M0 → M5; the CAP-7 row loses "Block 2"; "Confirmed in M1" gains the W8 stories). The one consequential edit: the move count in §7 reads 30, because the SPK-02 row is a thirtieth move. **(2) ESLint → Ox**, from `ADR-0002-ox-lint-layer.md` §10 (§0 line 24, §3.1 lines 64, 66 and 67, §4's `eslint.config.js` row, §8's MAINT-4 line, its three ESLint bullets and its Expo-ESLint parenthesis). **Not applied, because the replacement text did not cover them, and still stale:** §0's third bullet, §1 item 5, §3.3's Android bullet, §5's M1.W8 row and §9 F7 still say Block 2 waits for SPK-02 and that M1 cannot close before it; §8 still says the dependencies are "for approval" though the CSO approved the D68 set on 2026-10-10 (`cso-m1-w1-rulings.md` §0). The Coordinator decides how they are brought into line |
+| 2026-10-10 | Brought into line with decisions already made, adding no new decision. **(1) Block 2** (`block-2-review.md` §6, PR #34): §0 third bullet, §1 item 5, §3.3's Android bullet, §5's M1.W8 row and §9 F7 no longer say Android code waits for SPK-02 or that M1 cannot close before it; §10's first "would change" bullet follows. **(2) §8** records the CSO's ruling on the D68 dependency set, at its exact pins and conditions (`cso-m1-w1-rulings.md` §0.1; #355 comment 6100395391). **(3) ENT-1** is re-placed from M3 to **M1** after the PM/BA's v1.5 ruling that ENT-1(b) means an update in place, offline, with no billing (PR #40): §7 loses its ENT-1 row and gains the reasoning, the move count reads 29 (27 out of M1), FT-ENT-1 stays in M3 because ENT-2 does, ENT-1.1 (§3.4) now covers ENT-1(a)–(c) on iOS, ENT-1 closes with its Android story in M1.W8 (§6), and F4 is marked resolved. The tickets #146 and #363 need their CTO regions to follow; that is not done here |
