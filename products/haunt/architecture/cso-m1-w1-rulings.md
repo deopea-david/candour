@@ -30,6 +30,8 @@ The "new" column counts in the order listed, so later rows exclude what earlier 
 
 **Jest is 282 of the 392.** I approve it because ADR-0001 §2.4 names Jest, which binds the CEO's D64, and because `jest-expo` needs it in W2 anyway. For the plain-Node domain and store projects alone, Node's built-in test runner would add nothing. That is an observation, not a disagreement: re-opening the test runner is the CTO's call, and the ADR settled it.
 
+**Verified at the end of the session, 2026-10-10:** `npm view <name>@<pin> version license` returned the pinned version and the licence shown above for all seven pinned packages: `eslint` 10.12.0 MIT; `typescript-eslint` 8.71.0 MIT; `@eslint-community/eslint-plugin-eslint-comments` 4.8.1 MIT; `dependency-cruiser` 18.5.0 MIT; `jest` 30.5.2 MIT; `@babel/preset-typescript` 7.29.7 MIT; `typescript` 6.0.3 Apache-2.0 [E, R1–R6, R9].
+
 ### 1.2 Condition T: TypeScript must move from 7.0.2 to 6.0.3 in the same PR
 
 **This is the finding that matters most in §1.** As specified, SPK-21 cannot install its own tools.
