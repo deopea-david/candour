@@ -1,5 +1,7 @@
 # ADR-0001 — Code architecture: feature folders on a small shared core, strictly enforced (B-strict)
 
+> **Pointer, 2026-10-10:** [ADR-0002](ADR-0002-ox-lint-layer.md) (CEO, **D68**) supersedes this record **only where the tooling changes**: §2.1's two ESLint lines; §3's tool column; check 9(a)–(c) and the basis of CSO condition C1; §3's dependency list; §4 (MAINT-4); and §6's follow-ups 2–4 where they name ESLint files. It also adds a formatter (Oxfmt) and closes a new bypass (G15). **Everything else here stands and stays binding.** Where the two differ, ADR-0002 wins.
+
 **Status:** **Adopted** — CEO, 2026-10-02, **D64** (`decisions/2026-09-16-haunt-gate.md`), deciding SPK-20 under D59.
 **Date:** 2026-10-02 · **Deciders:** CEO (decision); CTO (proposal and this record) · **Ticket:** SPK-20 (FT-PLAN-6, M0) · **Supersedes:** the draft at `architecture-proposals.md` §10.
 **Reviews behind it:** Engineer, as the non-author seat (`reviews/engineer-review.md`, agrees with B); CSO, security (`reviews/cso-review.md`, B preferred, conditions C1–C23); Engineer's SQLite investigation (`sqlite-two-copies-investigation.md`), adopted as **D63**.
@@ -236,3 +238,4 @@ Two further checks keep CAP-1 true:
 | Date | Change |
 |---|---|
 | 2026-10-02 | Adopted (D64). Replaces the draft at `architecture-proposals.md` §10. |
+| 2026-10-10 | Pointer added: superseded in part by ADR-0002 (D68), for the lint, format and dependency-graph tooling only. No other text changed. |
