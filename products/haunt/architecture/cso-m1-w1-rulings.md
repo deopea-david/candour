@@ -1,16 +1,167 @@
 # CSO rulings for M1.W1: SPK-21's dependencies, the CSO note, and DATA-16
 
-**Seat:** Chief Security Officer · **Date:** 2026-10-10 · **Status:** Three rulings. **They prepare and flag; they do not certify** (Constitution 6.1: *"Agent reviews **prepare and flag; they do not certify**"*). §2 is for the CEO to approve or refuse. Nothing here edits ADR-0001, the requirements, the wave plan, or any guard or config file in `haunts`.
-**Authority:** the CEO, 2026-10-09: *"CSO: write the threat model alongside, and approve the B-strict dev tools."* Also the CTO's requests to this seat in `architecture/m1-wave-plan.md` §8 (candour PR #31, branch `docs/haunt-m1-wave-plan`).
+**Seat:** Chief Security Officer · **Date:** 2026-10-10 · **Revision 2:** 2026-10-10, for D68 · **Status:** Three rulings, revised once. **They prepare and flag; they do not certify** (Constitution 6.1: *"Agent reviews **prepare and flag; they do not certify**"*). §2 is for the CEO to approve or refuse. Nothing here edits ADR-0001, ADR-0002, the requirements, the wave plan, or any guard or config file in `haunts`.
+**Revision 2 in one line:** the CEO's D68 replaced ESLint with Oxlint and Oxfmt, on TypeScript 7.0.2. **§0 is the new dependency decision and the re-rulings, and it wins wherever it conflicts with §1.** §2, the CSO note, is rewritten in place for the Ox files. §3 is unchanged.
+**Authority:** the CEO, 2026-10-09: *"CSO: write the threat model alongside, and approve the B-strict dev tools."* Also the CTO's requests to this seat in `architecture/m1-wave-plan.md` §8 (candour PR #31, branch `docs/haunt-m1-wave-plan`). **For revision 2:** D68, CEO, 2026-10-10: *"I would say Ox tools over Biome thanks to the company behind it and the benefits the CTO found (e.g. the almost one to one rules which biome couldn't do). It is also designed to be high throughput, fast and for large codebases, covering us for the future and possibly other projects."* Recorded in `decisions/2026-09-16-haunt-gate.md` on candour branch `docs/haunt-d67-biome` (PR #35). It adopts the CTO's `architecture/ADR-0002-ox-lint-layer.md` (branch `docs/haunt-adr-0002-ox`, `bf4729b`, PR #38).
 **Rules applied:** D40 (*"The CSO approves them as new dependencies"*), D41 (*"keeping dependencies minimal and exact-pinned, with the CSO approving any new ones"*) and D64 (*"The CSO approves the two new development tools"*). Also ADR-0001 §3 (*"No import plugin"*) and §6 item 2, and CSO conditions C16, C17 and C19 (`reviews/cso-review.md` §9.1).
 **Template note:** `pipeline/templates/` has no template for a dependency decision or a security ruling [E: listed from disk, 2026-10-10]. This follows `reviews/cso-review.md`.
 **Evidence tags** follow `pipeline/evidence-standard.md`. Registry facts were read from `https://registry.npmjs.org/<name>` on 2026-10-10. Transitive counts come from a lockfile I resolved on 2026-10-10 against `haunts` `main` at `dc9a0a0`. The register in §5 links every source. The npm registry is the single source for what a package declares about itself (licence, scripts, dependencies). I flag that once here rather than on every line.
 
-Provenance: CSO · opus (Opus 5.5) · effort high · 2026-10-10
+Provenance: CSO · opus (Opus 5.5) · effort high · 2026-10-10 (first version and revision 2)
+
+---
+
+## 0. Revision 2 (D68): the Ox toolchain
+
+**Read this first.** It rules on everything D68 changed: the new dependencies, condition T, and the controls ADR-0002 rebuilt around Oxlint. **Where it conflicts with §1, this section wins.** I tested every security claim it relies on myself, in a throwaway scratch directory, installing only with `--ignore-scripts` (§0.2). Three of the CTO's claims did not survive the test, and §0.7 states each once.
+
+**No block.** My block is *"Release — for unresolved material vulnerabilities or absent threat modelling"* (`roles/cso.md`). Nothing here is a release. Each item below is an approval, a condition for SPK-21, or a recommendation.
+
+### 0.1 The answer
+
+| Package | Decision | Exact pin | Licence | Published | Install script |
+|---|---|---|---|---|---|
+| `oxlint` | **Approved, on G12 and G15 as re-ruled** (§0.5) | **1.86.0** | MIT | 2026-09-28 | none |
+| `oxfmt` | **Approved, on G15 as re-ruled** (`-c` always; §0.5) | **0.71.0** | MIT | 2026-09-28 | none |
+| `@swc/core` | **Approved, on conditions W1–W3** (§0.3) | **1.16.13** | Apache-2.0 | 2026-09-30 | **`postinstall`**, inert under `--ignore-scripts` |
+| `eslint`, `typescript-eslint`, `@eslint-community/eslint-plugin-eslint-comments` | **Dropped. My approvals of them lapse** | — | — | — | — |
+| `dependency-cruiser` | **Approved, pin unchanged.** Its conditions are now F1 as re-ruled, and C38 | 18.5.0 | MIT | 2026-09-30 | none |
+| `jest` | **Approved, unchanged** (§1.3, §1.4) | 30.5.2 | MIT | 2026-09-18 | its two, as before |
+| `@babel/preset-typescript` | **Approved, unchanged** (§1.5). It needs no TypeScript, so criterion 6 holds on 7.0.2 | 7.29.7 | MIT | 2026-05-25 | none |
+| `typescript` | **Condition T reversed: stays at 7.0.2** (§0.4) | 7.0.2 | Apache-2.0 | 2026-07-08 | none |
+
+**The CTO's totals are correct. I reproduced them** [E, R19]. Resolved independently against `haunts` `main` at **`cffa5d6`**, the set adds **406 lockfile entries**. **327 install on one machine**, both on macOS arm64 and on Linux x64 with glibc, which is what CI runs. Licences across the 406: MIT 339, ISC 26, `Apache-2.0 AND MIT` 11, BSD-3-Clause 9, Apache-2.0 9, BlueOak-1.0.0 8, BSD-2-Clause 1, 0BSD 1, `(MIT OR CC0-1.0)` 1, CC-BY-4.0 1. **No copyleft.** **Every entry resolves to `registry.npmjs.org` and carries an integrity hash.** Exactly three entries carry install scripts: `@parcel/watcher` 2.6.0, `unrs-resolver` 1.12.2 (both Jest's, §1.4) and `@swc/core` 1.16.13. `package.json` and `package-lock.json` are unchanged between `dc9a0a0` and `cffa5d6` [E, `git diff`]. The only change on `main` since my first version is one line in `CLAUDE.md` about pushing.
+
+**A good sign about where these come from** [E, R18]: `oxlint`, `oxfmt`, `@swc/core` and the platform binaries I sampled (`@oxlint/binding-darwin-arm64`, `@oxlint/binding-linux-x64-gnu`, `@swc/core-darwin-arm64`, `@swc/core-linux-x64-gnu`) were each published by GitHub Actions with an SLSA provenance attestation. That ties each tarball to a build in its project's own repository. It does not prove the build was clean.
+
+**The dropped three.** If ESLint ever returns (ADR-0002 §8(3)), it comes back for a fresh approval. The pins will have aged, and the registry has to be read again. **§1.7 falls away with them:** there is no ESLint for `eslint-config-expo` or `eslint-plugin-react-hooks` to plug into. Oxlint's native `react/rules-of-hooks` and `react/exhaustive-deps` are checked at PLAT-1 (ADR-0002 §10).
+
+### 0.2 What I checked, and how
+
+- **Registry** for each new package: version and publish time, licence, scripts, dependencies, optional dependencies, peers, and provenance [E, R18]. The npm registry is the single source for what a package declares about itself.
+- **Lockfile:** `npm install --package-lock-only --ignore-scripts --save-dev --save-exact --before=2026-10-03` on copies of `haunts` `package.json` and `package-lock.json` at `cffa5d6`. Then I walked every added entry for licence, host, integrity and install script, and filtered by `os`, `cpu` and `libc` to count one machine [E, R19].
+- **Install:** `npm ci --ignore-scripts` from that lockfile in the scratch directory. **No install script ran.**
+- **Source read:** `@swc/core`'s `postinstall.js` [E, R20]; dependency-cruiser's `swc` loader [E, R21]. Each matched its public copy (the GitHub source differs from the tarball in whitespace only).
+- **Planted violations:** against Oxlint, Oxfmt and dependency-cruiser, on Node 24.21.0 with `typescript` 7.0.2 [E, R22–R24]. §0.5 and §0.7 give the results.
+
+### 0.3 `@swc/core`: why this use differs from my earlier refusal, and its conditions
+
+**My refusal in §1.5** was of `@swc/core` as Jest's transform: *"a third install script and a third native binary for a job the preferred option does with neither."* Babel did that job with neither.
+
+**Here, nothing does the job with neither.** The job is giving dependency-cruiser a real TypeScript parser under TypeScript 7. The alternatives are:
+- **TypeScript 6.0.3 (condition T).** The CEO chose TypeScript 7 in D68, and that is a toolchain decision, not a security one.
+- **`acorn`, dependency-cruiser's own fallback.** It is a loose parser, and §1.6 F1 exists because it can pass a boundary check quietly.
+- **ADR-0002 §8(1): a home-made script reading `tsc --explainFiles`.** That puts a parser of unversioned, human-readable output on the security path. I rate it weaker than a native binary with provenance [J].
+
+**So this use differs, and I approve it.**
+
+**What the `postinstall` would do if it ran** [E, R20]: it checks that the native binding loads. If the binding fails, and neither `SWC_BINARY_PATH` nor `@swc/wasm` is present, it runs `npm install --no-save … @swc/wasm@<version>`. **That fetches a package from the network that is not in our lockfile and has no integrity hash of ours.** Under `--ignore-scripts` it never runs, and dependency-cruiser still parsed through `swc` without it [E, R24].
+
+**Conditions:**
+- **W1.** `--ignore-scripts` on every install, on every machine and in CI. That is already C31 and `CLAUDE.md`. It now also keeps `@swc/core` from fetching outside the lockfile. C30's install-script allow-list, when it lands, is exactly `@parcel/watcher`, `unrs-resolver` and `@swc/core`.
+- **W2.** **Fixture F1 as re-ruled in §0.5**, with its sentinel rule. That is the proof that `swc` is the parser.
+- **W3.** **`tools/check-all.ts` fails closed when `@swc/core` cannot parse.** Before it runs dependency-cruiser, it calls `parseSync` on a one-line TypeScript snippet, and if that throws, it stops with a message naming `npm ci --ignore-scripts`. **Why:** I removed the platform binding and ran dependency-cruiser again. It did not fail. It fell back to another parser **and still printed `"parser": "swc"` in its own summary** [E, R24]. In my fixtures the fallback still found every boundary edge, so the risk is small. But the hook runs on machines I cannot see, and a quiet fallback is G12's failure class. One call closes it.
+
+**When it leaves:** once dependency-cruiser supports TypeScript 7.1's public API (ADR-0002 §12). Then `parser` goes back to `tsc`, `@swc/core` is dropped, and the sentinel fixture stays to prove the new parser.
+
+**The fallback I was asked about.** Had I refused `@swc/core`, I would have accepted ADR-0002 §8(1) only with the fixtures it already names: one that fails when the script parses zero edges from a non-empty project or meets a line it does not recognise, and one per edge kind. It is not needed now.
+
+### 0.4 Condition T: reversed
+
+**Condition T existed for two reasons** (§1.2): typescript-eslint's peer stopped below TypeScript 6.1, and dependency-cruiser could not use TypeScript 7 to parse. **Under D68, neither holds:**
+- No lint tool loads `typescript`. `oxlint` and `oxfmt` have no `typescript` dependency [E, R18].
+- dependency-cruiser parses through `swc`, and under 7.0.2 it caught every planted boundary violation I gave it [E, R24].
+- Jest loads `jest.config.ts` through Node's own type stripping (R13), and the Babel preset strips types without TypeScript.
+
+**So condition T is reversed. `typescript` stays at 7.0.2**, and SPK-21 does not change that line. Three consequences:
+- **dependency-cruiser cannot read `tsconfig.json` through TypeScript's API.** It still resolves `@/` aliases when told where the file is, but if it is not told, a boundary crossing written with `@/` is missed. That is **C38** (§0.5).
+- **commitlint's configuration loader** already runs on 7.0.2 at `cffa5d6`. H5's 38-case suite re-proves it in SPK-21.
+- **§1.2's Dependabot note no longer applies.** A Dependabot PR moving `typescript` within 7.x is ordinary, and F1 (with `f1-swc`) turns red if `swc` cannot parse something TypeScript adds.
+
+### 0.5 The re-rulings
+
+**C1 (no comment can silence the CI guard pass): met, re-ruled.** ESLint's `--no-inline-config` is gone; Oxlint has no equivalent (ADR-0002 §5.1). It is met by three things together, and **I accept them**:
+- (a) **`tools/check-suppressions.ts`**, in the hook and in CI, as C25(a) below sets it;
+- (b) **`tools/check-guard-pass.ts`**, in CI: strip the disable tokens from a copy, then run `oxlint -c oxlint.guard.json --no-ignore --deny-warnings`. **One added condition: the copy goes in a directory made with `fs.mkdtemp` under `os.tmpdir()`, outside the repository.** Why: Oxlint honours `.gitignore`, and **`--no-ignore` does not override it** [E, R22]. A copy inside the repository would inherit the repository's ignore rules. ADR-0002 §5.2(b) says `--no-ignore` *"covers ignore files"*; for `.gitignore` it does not;
+- (c) **`respectEslintDisableDirectives: false`**. Tested: an `eslint-disable-next-line` was then not honoured [E, R22].
+
+It is weaker than ESLint's flag, because the scan and the guard pass are our code, tested only by our fixtures (ADR-0002 §5.4(1)). **Residual risk, stated:** a disable directive with a prefix Oxlint adds in future would get past both. The CTO commits to reading each Oxlint release for directive changes (ADR-0002 §12), and I hold him to it in my review of each Oxlint bump.
+
+**C25(a) (only line-level disables, never a guard rule): re-ruled, with one change. The scan must use an allow-list, not a deny-list.**
+- **What I found** [E, R22]: Oxlint honours a disable that names a rule **by an alias**. `// oxlint-disable-next-line eslint/no-restricted-globals` silenced the network rule. `@typescript-eslint/no-explicit-any` and `typescript-eslint/no-explicit-any` each silenced `typescript/no-explicit-any`. ADR-0002 §5.2(a) builds the protected list by reading rule names from `oxlint.guard.json`, which holds `no-restricted-globals`. A literal comparison would pass the alias. In CI the guard pass would still catch a guard rule, but checks 12, 13 and 14 are not in the guard pass, so an alias would silence them everywhere.
+- **The condition:** a disable passes only if **every rule it names is on an allow-list held as a constant in `check-suppressions.ts`**. SPK-21 writes the list as **`func-style`, `prefer-arrow-callback`, and names beginning `maint-4/`**, which are MAINT-4's rules. Everything else fails, aliases included. The other parts of ADR-0002 §5.2(a) stand: next-line and line forms only; at least one rule named; a `-- <reason>`; every `eslint` comment fails, rule-configuration comments included.
+- **Adding a rule to the allow-list later is a Tier 1 change.** Making a rule possible to silence loosens policy.
+- **The scan matches `oxlint-` and `eslint` regardless of case.** Oxlint honours only lower case [E, R22: `OXLINT-DISABLE-NEXT-LINE` and `Oxlint-Disable-Next-Line` were not honoured], but the scan should not depend on that.
+- **It must see three shapes that Oxlint honours** [E, R22]: no space after `//`; a block comment carrying `oxlint-disable-next-line`; and a JSX comment, `{/* oxlint-disable-next-line … */}`.
+- **New fixtures, each must fail `check-suppressions`:** `9a-alias-eslint`, `9a-alias-ts`, `9a-nospace`, `9a-block-next-line`, `9a-jsx`.
+- **What would lift the allow-list requirement:** a deny-list that maps every alias Oxlint accepts to its rule and passes all five fixtures. I prefer the allow-list, because it does not need to know the aliases.
+- **C25(a)'s original concern**, rule-configuration comments, does not arise: Oxlint does not honour them in either spelling [E, ADR-0002 §5.1, the CTO's test; I did not repeat it]. `9a-config-comment` stays.
+
+**F1 (dependency-cruiser really parses TypeScript): re-ruled. `f1-swc` stands. `f1-type-only` needs a sentinel rule, because as written it does not prove the parser is `swc`.**
+- **What I found** [E, R24]: with `swc`'s platform binding removed, dependency-cruiser fell back, **still reported `"parser": "swc"`**, and **still failed `f1-type-only`**. It recorded the edge as `import`, not `type-only`. With `parser: "acorn"` set explicitly, it also caught that edge. The CTO's comparison (§4, row a′) saw `acorn` miss a type-only edge in a richer fixture. Both results are true. Whether the fallback sees a type-only edge depends on the file, so a fixture that only checks the path cannot tell which parser ran.
+- **The condition:** `f1-type-only`'s own configuration adds **a sentinel rule that matches only `dependencyTypes: ["type-only"]`**, and its `expect.json` requires **the sentinel rule's name** in the message. Tested: the sentinel fired with `swc` and stayed silent without it [E, R24]. W3's preflight in `check-all.ts` is its partner on every commit.
+
+**F2 (a tool degrades quietly on an unsupported TypeScript): retired as written, and `f2-parse` accepted.** typescript-eslint is gone, and no lint tool loads `typescript`. `f2-parse` (a `.ts` file Oxlint cannot parse must fail, exit 1 in the CTO's test) is the right replacement. The rest of F2's purpose now belongs to F1's sentinel.
+
+**G12 (a tool fails quietly), extended to Oxlint's JS plugins: I accept JS plugins as guard controls.** Oxlint's schema calls them *"alpha and not subject to semver"* (ADR-0002 §4). My reasons:
+- They are our own code, Tier 1, reviewed at every change. ESLint's `no-restricted-syntax` was the tool's code, but `eslint-plugin-eslint-comments` was third-party code run at commit, which I approved.
+- **Two of the three ways they can break fail closed** [E, R22, agreeing with ADR-0002 §3.2]: a plugin that will not load exits 1, and a rule that throws exits 1.
+- **The third, a rule that silently matches nothing, fails open.** Only a must-fail fixture catches it. So **every plugin rule gets one**, as the CTO lists: `5-new-date`, `c8-template`, `c8-concat`, `c26a-computed`, `c26a-cast`, `c26b-import`, `c26c-namespace`, `c29-opener`, `11-remote-source`, `8d-class-export`, plus `g12-plugin-load`. **Four of those rules have not been run yet** (`no-native-registry`, `db-opener`, `no-remote-source`, `core-exports`; ADR-0002 §4), so their fixtures are the first evidence they work.
+- **`guard-plugin.ts` imports nothing but `node:` built-ins.** Otherwise a file outside Tier 1 could change a guard rule. The guard pass already enforces this: I gave the plugin a helper file and copied it as the guard pass does, and the plugin failed to load, exit 1 [E, R22]. So a helper cannot reach `main` green.
+- **A Dependabot PR that bumps `oxlint`, `oxfmt` or `@swc/core` is merged only on a green `prove-checks`.** That is already the rule (D39). I state it because those PRs are where a plugin breaks.
+
+**G15 (nested configuration): accepted, and widened to Oxfmt and to JavaScript configuration files.**
+- **Confirmed** [E, R22]: a nested `.oxlintrc.json` turning `no-restricted-globals` off silenced it for a bare `oxlint`, and not under `-c`.
+- **Also found:**
+  - **Oxfmt executes a TypeScript configuration file.** With `.oxfmtrc.json` removed, a bare `oxfmt --check` found a root `oxfmt.config.ts` and **ran it**: my marker file was written. With `-c .oxfmtrc.json` it did not [E, R23].
+  - **A bare `oxlint` loads a root `oxlint.config.ts`.** In my run it used it to switch a guard rule off; under `-c .oxlintrc.json` it was ignored [E, R22].
+  - Both tools exit 1 when the file named by `-c` is missing [E, R22, R23], so naming it fails closed.
+- **The condition:**
+  - every Oxlint **and Oxfmt** invocation names its configuration with `-c`. The hook runs `oxfmt -c .oxfmtrc.json --check`, never a bare `oxfmt`;
+  - `tools/check-structure.ts` fails on any `.oxlintrc*` or `.oxfmtrc*` outside the repository root, **and on any `oxlint.config.*` or `oxfmt.config.*` anywhere, the root included.** ADR-0002 §3.1 says *"We use JSON only"*, so a JavaScript configuration file has no legitimate place.
+- **Fixtures:** `g15-nested-config` (as ADR-0002 §5.3 gives it) and **`g15-js-config`** (a root `oxfmt.config.ts` and a root `oxlint.config.ts`; each must fail `check-structure`).
+
+**New condition C37: ignore files cannot hide code from the linter.**
+- **What I found** [E, R22]: `.eslintignore` and `.gitignore` each silenced `oxlint -c .oxlintrc.json` for the paths they list. **`.gitignore` did so even for a file git still tracks**, and `--no-ignore` did not override it. (`.oxlintignore` is not read.)
+- **Why it matters:** the CI guard pass escapes this, because it lints a copy outside the repository. **But checks 2, 12, 13 and 14 run only from `.oxlintrc.json`**, in the hook and in CI, so one line in `.gitignore` would switch them off for a folder. Only `.gitignore`'s security block is protected.
+- **The condition, for SPK-21:**
+  - `check-structure.ts` fails on any `.eslintignore`;
+  - `check-all.ts` fails when `git ls-files -ci --exclude-standard` lists any file, meaning a tracked file that an ignore rule matches. There are none at `cffa5d6` [E];
+  - `check-all.ts` never passes `--ignore-path` or `--ignore-pattern`.
+- **Fixtures:** `c37-eslintignore` and `c37-tracked-ignored`.
+
+**New condition C38: dependency-cruiser must resolve `@/` aliases.**
+- **What I found** [E, R24]: under TypeScript 7.0.2, an `@/features/b/internal` import from feature `a` **did not trip the boundary rule** unless `.dependency-cruiser.cjs` set `options.tsConfig`. Without it, only a `couldNotResolve` rule caught the import. With `tsConfig: { fileName: "tsconfig.json" }`, the edge resolved to `src/features/b/internal.ts` and the boundary rule fired.
+- **The condition:** `.dependency-cruiser.cjs` sets `options.tsConfig`, **and** includes a `not-to-unresolvable` rule (`to: { couldNotResolve: true }`, severity `error`). **Fixture `f1-alias`:** an `@/` import across a feature boundary fails `depcruise` **with the boundary rule's name**, not only the unresolvable rule's.
+
+**A recommendation, not a condition: let the hook see guard-rule changes in `.oxlintrc.json`.** A Tier 2 edit to `.oxlintrc.json` turned two guard rules off for the main pass. Run alone, the guard configuration still caught them [E, R22]. CI's guard pass catches this before merge, so the control holds. But the hook is where agents learn of a problem first. About ten lines in `check-all.ts` could fail when `.oxlintrc.json` sets any rule that `oxlint.guard.json` configures, or any `guard/*` rule. That is the CTO's call [J].
+
+### 0.6 The protected list, renamed
+
+§2.3 carries the renamed tiers. **I agree with the CTO's proposal, with two notes.** First, `.oxfmtrc.json` stays off the list only on G15's conditions above. Second, the allow-list in `check-suppressions.ts` is Tier 1 by that file's name, and that is intended.
+
+### 0.7 Where the tests disagreed with ADR-0002, stated once
+
+None of these is a block. Each is a correction for the CTO to write into SPK-21 (#355).
+1. **ADR-0002 §5.3:** `f1-type-only` *"proves the parser is `swc`"*. It does not, because the fallback also fails it. **Fix:** the sentinel rule (F1, §0.5).
+2. **ADR-0002 §5.2(a):** the scan's protected list is read from `oxlint.guard.json` and compared literally, but Oxlint honours aliases. **Fix:** the allow-list (C25(a), §0.5).
+3. **ADR-0002 §5.2(b):** `--no-ignore` *"covers ignore files"*, but it does not cover `.gitignore`. That is harmless in the guard pass only if the copy is made outside the repository (C1(b), §0.5), and it is not harmless for the main pass (C37).
+
+Two smaller additions are not disagreements: G15 widened to Oxfmt and to JavaScript configuration names, and C38.
+
+### 0.8 What would overturn revision 2
+
+- **`@swc/core`:** evidence that its `postinstall` runs despite `--ignore-scripts`, or a compromised release. Or dependency-cruiser supporting TypeScript 7.1, which retires it anyway.
+- **JS plugins as guard controls:** an Oxlint release in which a broken plugin neither fails closed nor fails its fixture. I would then take ADR-0002 §8(2) to the CEO.
+- **Condition T's reversal:** TypeScript syntax we use that `swc` cannot parse, shown by `f1-swc` going red. Then dependency-cruiser needs a different parser, or condition T returns.
+- **C37 and C38:** an Oxlint release that ignores `.gitignore` under `--no-ignore`, or a dependency-cruiser that reads `tsconfig.json` without being told. Each would make its condition redundant, and I would withdraw it.
+- **The allow-list:** as stated under C25(a).
 
 ---
 
 ## 1. Dependency decision for SPK-21 (`haunts` #355)
+
+> **Superseded in part by §0 (revision 2, D68).** The ESLint packages are dropped, condition T is reversed, and F1 and F2 are re-ruled there. Jest, the Babel transform, dependency-cruiser's pin, the install-script findings in §1.4 and the transform criteria in §1.5 still stand. §1 is kept as written so the record shows what was decided first.
 
 ### 1.1 The answer
 
@@ -109,12 +260,21 @@ For every row I read, from the registry: the version and its publish time; the l
 
 ## 2. CSO note for SPK-21: one new hook, and the protected list (for the CEO)
 
+> **Revised for D68 (revision 2).** The hook line is unchanged. What it runs, the file names on the protected list, and the tests are now Oxlint's and Oxfmt's. **You have not yet approved the first version** [E: no decision entry approves it, `decisions/2026-09-16-haunt-gate.md` on `docs/haunt-d67-biome`, read 2026-10-10], so this is the version to decide on.
+
 ### 2.1 What you are approving, in plain words
 
-**Two things, both needed before SPK-21 merges.** `SECURITY.md` requires them: changes to the guard rails *"need a written note from the CSO seat and the CEO's approval, recorded in the decision record in the `candour` repository"* [E, `haunts` `SECURITY.md` at `dc9a0a0`].
+**Two things, both needed before SPK-21 merges.** `SECURITY.md` requires them: changes to the guard rails *"need a written note from the CSO seat and the CEO's approval, recorded in the decision record in the `candour` repository"* [E, `haunts` `SECURITY.md` at `cffa5d6`].
 
-1. **One new commit hook.** Every commit will run the architecture checks (ADR-0001, D64) on the committer's machine, and is refused if any check fails. The exact lines are in §2.2. Nothing else in `.pre-commit-config.yaml` changes.
-2. **More files join the protected list (C23; ADR-0001 §6 item 2).** These are the files that, once SPK-21 creates them, decide whether the architecture checks run at all. In future, changing them needs **a CSO note and your approval**, as the secret-scanning files already do. Two of them need only a CSO note (§2.3 explains the two tiers). SPK-21 also writes this list into `SECURITY.md` and `CLAUDE.md` security rule 3, because those two files are where agents and people read the rule.
+1. **One new commit hook.** Every commit runs the architecture checks (ADR-0001 and ADR-0002; D64 and D68) on the committer's machine, through one script, `tools/check-all.ts`. The commit is refused if any check fails. That script runs, in order:
+   - **Oxlint**, `oxlint -c .oxlintrc.json`;
+   - **the suppression scan**, `tools/check-suppressions.ts`, which refuses any comment that would silence a protected rule;
+   - **Oxfmt in check mode**, `oxfmt -c .oxfmtrc.json --check`, which **never rewrites a file**;
+   - **dependency-cruiser**, parsing through `swc`;
+   - **the other `tools/check-*.ts` scripts** marked "both".
+
+   The exact hook lines are in §2.2. Nothing else in `.pre-commit-config.yaml` changes.
+2. **More files join the protected list (C23; ADR-0001 §6 item 2; ADR-0002 §9).** These are the files that, once SPK-21 creates them, decide whether the architecture checks run at all. **Tier 1** files need **a CSO note and your approval** in future, as the secret-scanning files already do. **Tier 2** files need only a CSO note (§2.3 explains the two tiers). SPK-21 also writes this list into `SECURITY.md` and `CLAUDE.md` security rule 3, because those two files are where agents and people read the rule.
 
 **What you are not approving:** any dependency (that is §1, the CSO's own approval under D40, D41 and D64); any change to an existing hook; any spending. **It costs nothing to run** [J]. Each commit takes a few seconds longer while the code is small. If the hook becomes slow later, changing it comes back to you.
 
@@ -125,13 +285,16 @@ For every row I read, from the registry: the version and its publish time; the l
 Added to the `repo: local` hooks, after `forbid-signing-and-credential-files` and before the two `commit-msg` hooks:
 
 ```yaml
-      # D64, ADR-0001 §3: the B-strict checks marked "both" (SPK-21). Runs the
-      # tools `npm ci` installed from the lockfile; nothing is fetched at commit
-      # time, and it fails closed without `npm ci`. CI runs the same script with
-      # --ci, a superset (.github/workflows/checks.yml). CSO note: candour
+      # D64, D68; ADR-0001 §3 and ADR-0002 §3.2: the B-strict checks marked
+      # "both" (SPK-21): Oxlint, the suppression scan, Oxfmt --check (never
+      # rewrites), dependency-cruiser and the tools/check-*.ts scripts. Runs
+      # the tools `npm ci --ignore-scripts` installed from the lockfile;
+      # nothing is fetched at commit time, and it fails closed without them.
+      # CI runs the same script with --ci, a superset
+      # (.github/workflows/checks.yml). CSO note: candour
       # products/haunt/architecture/cso-m1-w1-rulings.md §2.
       - id: architecture-checks
-        name: Architecture checks (ADR-0001, D64)
+        name: Architecture checks (ADR-0001, ADR-0002; D64, D68)
         language: unsupported
         entry: node tools/check-all.ts
         pass_filenames: false
@@ -142,30 +305,39 @@ Added to the `repo: local` hooks, after `forbid-signing-and-credential-files` an
 - **`language: unsupported`** runs the command as written, with no environment that pre-commit builds itself. It is the same choice the file already makes for commitlint (`docs/conventions.md` §9.1), and it is what C19 asks: tools run from the lockfile, never a second unlocked copy.
 - **No `stages:`.** The file's `default_stages: [pre-commit]` applies, so the hook does not run again on the commit message.
 - **`pass_filenames: false` and `always_run: true`.** The checks read the whole tree. The dependency graph and the folder allow-list cannot be judged one file at a time, and a commit that only deletes a file or edits `tools/structure.json` must still run them. pre-commit stashes unstaged changes before running hooks, so the tree checked is the tree being committed.
-- **`entry: node tools/check-all.ts`, not `npm run check`. This is one disagreement with the CTO's interface for SPK-21, stated once.** #355 says *"The pre-commit hook and CI call only these two scripts"* (`npm run check`, `npm run check:ci`). With that design, **the `scripts` block of `package.json` becomes an off-switch for the hook and CI at once.** One edited line (`"check": "true"`) would silence both, in a file that changes with every dependency. Calling a file under `tools/check-*.ts` puts that switch inside a file that is already protected (§2.3) and that check 10 already watches. `npm run check` can stay as a convenience for people, defined as `node tools/check-all.ts`. **The CTO adds `tools/check-all.ts` to SPK-21's files.** If the CTO keeps `npm run check` as the entry, this note does not cover it: `package.json`'s `scripts` block would then have to join the Tier 1 list, and the note would come back to you.
+- **`entry: node tools/check-all.ts`, not `npm run check`.** With `npm run check`, **the `scripts` block of `package.json` would become an off-switch for the hook and CI at once.** One edited line (`"check": "true"`) would silence both, in a file that changes with every dependency. Calling a file under `tools/check-*.ts` puts that switch inside a file that is already protected (§2.3) and that check 10 already watches. **The CTO agreed and withdrew the `npm run` interface** [E, CTO ruling on #355, comment 6097413790, 2026-10-10]. `npm run check` stays as a convenience for people.
+- **Inside `check-all.ts`, every Oxlint and Oxfmt command names its configuration with `-c`, and none passes `--ignore-path`, `--ignore-pattern`, `-A`/`--allow` or `--quiet`** (ADR-0002 §3.2; G15, C37 in §0.5). Without `-c`, a nested or JavaScript configuration file could switch rules off, and Oxfmt would execute a TypeScript one [E, R22, R23].
 
-**Exposure, stated plainly** [I]: like the commitlint hook, this one runs code from the working tree at commit time. That means `tools/*.ts`, `eslint*.config.js` (an ESLint config is executable JavaScript), `.dependency-cruiser.cjs`, and `node_modules` as installed from the lockfile. A branch that changes those files changes what runs on the committer's machine. That is why they are on the list in §2.3.
+**Exposure, stated plainly** [I]: like the commitlint hook, this one runs code from the working tree at commit time. Under D68 that means:
+- **our own scripts:** `tools/*.ts`;
+- **our own Oxlint plugins:** `tools/oxlint/*-plugin.ts`, which Oxlint loads and runs in Node at every commit. Under ESLint the executable part was the configuration; under Oxlint it is the plugins;
+- **`.dependency-cruiser.cjs`**, which is still executable JavaScript;
+- **three native binaries** from the lockfile: Oxlint, Oxfmt and `swc`, through dependency-cruiser.
+
+**The Oxlint and Oxfmt configurations are JSON data, not code** (ADR-0002 §3.1), **as long as G15 holds.** A branch that changes any of these files changes what runs on the committer's machine. That is why they are on the list in §2.3.
 
 **What the Engineer shows in the PR before I record my review** (D32's rule: a control never seen to block is a belief):
 - **H1.** A commit carrying a planted violation (an import from one feature into another) is refused, and the message names the fix.
 - **H2.** A clean commit is accepted.
 - **H3.** In a clone without `npm ci`, a commit is refused, with a message saying to run `npm ci --ignore-scripts`.
 - **H4.** A commit that changes only `tools/structure.json`, in a way that breaks the allow-list, is refused (`always_run`).
-- **H5.** No regression elsewhere. The 38-case commit-message suite from `docs/conventions.md` §9.3 still gives 38 of 38, and a planted fake key is still refused by gitleaks.
+- **H5.** No regression elsewhere. The 38-case commit-message suite from `docs/conventions.md` §9.3 still gives 38 of 38 **on `typescript` 7.0.2**, and a planted fake key is still refused by gitleaks.
 - **H6.** The hook does not run at the `commit-msg` stage.
 - **H7.** In CI, `.github/workflows/checks.yml` runs `node tools/check-all.ts --ci`. It runs **`node tools/prove-checks.ts` as a separate step**, so the proof that every check fails on its planted violation runs even if `check-all.ts` is broken. It installs with `npm ci --ignore-scripts --no-audit --no-fund`, pins every action to a full SHA, and sets `permissions: contents: read`.
+- **H8 (new for D68).** A commit is refused when `swc` cannot load (move `@swc/core`'s platform binding aside and commit), with a message naming `npm ci --ignore-scripts` (W3, §0.3). A commit adding a root `oxfmt.config.ts` is refused by `check-structure` before Oxfmt runs (G15).
 
 ### 2.3 The protected list: what is added, in two tiers
 
-**Today's protected list** [E, `haunts` `SECURITY.md` and `CLAUDE.md` rule 3 at `dc9a0a0`]: `.pre-commit-config.yaml`, `.gitleaks.toml`, `.github/workflows/secret-scan.yml`, the security block of `.gitignore`, `SECURITY.md`, and `CLAUDE.md`'s security section. Also `.github/dependabot.yml` (D43, D62), `.claude/settings.json` and `.claude/hooks/` (MAINT-6).
+**Today's protected list** [E, `haunts` `SECURITY.md` and `CLAUDE.md` rule 3 at `cffa5d6`]: `.pre-commit-config.yaml`, `.gitleaks.toml`, `.github/workflows/secret-scan.yml`, the security block of `.gitignore`, `SECURITY.md`, and `CLAUDE.md`'s security section. Also `.github/dependabot.yml` (D43, D62), `.claude/settings.json` and `.claude/hooks/` (MAINT-6).
 
 **Tier 1: CSO note and your approval, recorded as a decision entry, exactly like today's list.** These files decide whether a security-bearing check runs, or what it accepts.
 
 | File | Why it is a control |
 |---|---|
-| `eslint.guard.config.js` | The CI pass for boundary, network and SQL rules, run with inline configuration disabled (check 9(b), C1). The one ESLint pass that a comment cannot silence |
-| `.dependency-cruiser.cjs` | Which code may reach storage, the capture module and each feature (checks 3–7) |
-| `tools/check-*.ts` (every file matching, including `check-all.ts`) | Capture isolation (CAP-1(b), D63 guard b), the native network ban (C3), the core manifest, the folder rules, and the runner the hook calls |
+| `oxlint.guard.json` | The guard configuration: the boundary, network and SQL rules and the guard plugin's rules, and nothing else. CI's guard pass runs it alone on a copy with every disable comment removed (check 9(b), C1). It is the one Oxlint pass that a comment cannot silence |
+| `tools/oxlint/guard-plugin.ts` | Seven guard rules as code, run at every commit and in CI: check 5's clock ban, check 11's remote-source ban, C8 (SQL from strings), C26(a)–(c) and C29 (one opener per file). Changing it changes what the guard pass can see |
+| `.dependency-cruiser.cjs` | Which code may reach storage, the capture module and each feature (checks 3–7). Now also its `parser: "swc"`, its `tsConfig` setting and its unresolvable rule (C38) |
+| `tools/check-*.ts` (every file matching) | The runner the hook calls (`check-all.ts`, with W3's `swc` preflight and C37's ignore check); the comment scan and its allow-list (`check-suppressions.ts`, C25(a)); the guard pass (`check-guard-pass.ts`, C1); capture isolation (CAP-1(b), D63 guard b); the native network ban (C3); the core manifest; the folder rules (`check-structure.ts`, including G15 and C37). **If ADR-0002 §8(1) is ever taken, `check-graph.ts` is Tier 1 by this row** |
 | `tools/prove-checks.ts`, and any change to or deletion of an existing folder under `tools/guard-fixtures/` | The proof that each check fails on its planted violation. Editing a fixture's `expect.json` to `"fails": false` would quietly retire a check. **Adding a new fixture folder is Tier 2**: it can only strengthen |
 | `.github/workflows/checks.yml` | Runs every check in CI, and the proofs |
 | `.github/workflows/traceability.yml`, `tools/traceability.ts`, `tools/conventions.ts` | Check 10 lives here, and so does the commit-message hook's code (`docs/conventions.md` §9.1). Switching check 10 off would switch off the tripwire for every other file in this table |
@@ -175,20 +347,25 @@ Added to the `repo: local` hooks, after `forbid-signing-and-credential-files` an
 
 | File | Why a lighter tier is safe |
 |---|---|
-| `eslint.config.js` | Its boundary, network and SQL rules are repeated in `eslint.guard.config.js`, which CI enforces regardless. Most edits here will be style and size tuning, such as MAINT-4's arrow-function block, and asking you to approve each one would cost your time for no security gain [J] |
+| `.oxlintrc.json` | The main configuration: size (checks 2 and 13), check 12's lint half, naming (check 14), and `extends` of the guard and MAINT-4's file. **An edit here can switch a guard rule off for the main pass** [E, R22], **but the CI guard pass runs `oxlint.guard.json` alone and still catches it**, and C25(a)'s allow-list is in a Tier 1 file. Most edits will be tuning, and asking you to approve each would cost your time for no security gain [J]. §0.5 recommends a cheap hook-side check |
+| `tools/oxlint/style-plugin.ts` | Check 8(d) (core exports only functions, types and constants). That is architecture, not security. It is executable code, so it needs my review at the head commit |
+| `tools/oxlint/maint-4.json`, `tools/oxlint/maint-4-plugin.ts` | MAINT-4's arrow-function rules. They are style rules, not guard rules (ADR-0002 §7). The plugin is executable code, so it needs my review. **MAINT-4 needs no change to a Tier 1 file**, because SPK-21 writes `maint-4/` into the scan's allow-list (C25(a)) |
 | `tools/structure.json` | The folder allow-list. A new folder is an architecture question (the CTO reviews it), and I check that it does not open a path round the guard. That is a review, not a policy change |
 | A **new** folder under `tools/guard-fixtures/` | It adds a proof and cannot remove one |
 
-**Not on either list:** `src/core/MANIFEST.md`, which needs a CTO note (check 10), and `package.json` and its lockfile. Any new dependency already needs a CSO approval under D40 and D41, and Dependabot's updates are governed by D43.
+**Not on either list:**
+- **`.oxfmtrc.json`**, as the CTO proposes, **on G15's conditions** (§0.5). It is JSON with no plugin key [E, R23], it affects only formatting, the runner always names it with `-c`, and `check-structure` bans the JavaScript configuration names that Oxfmt would otherwise execute;
+- `src/core/MANIFEST.md`, which needs a CTO note (check 10);
+- `package.json` and its lockfile. Any new dependency already needs a CSO approval under D40 and D41, and Dependabot's updates are governed by D43.
 
 **How the list is enforced, honestly** [I]:
 - **Check 10** fails a PR that touches any file above without a `## CSO note` heading. Its list of paths must match this table exactly, and a fixture proves it fails.
 - **But check 10 can only see that a heading exists, not who wrote it.** Any author, agent or human, can type `## CSO note`. **The real control is that you merge every PR (D8, D39), and you do not merge a Tier 1 change without my review at its head commit and your approval on the record.** Check 10 is a tripwire that makes a change visible; it is not authentication.
-- **SPK-21 writes the list** into `SECURITY.md` ("Changes to the guard rails") and into `CLAUDE.md` security rule 3. Both are already Tier 1 files, so your approval here covers those two edits. **The CTO adds `SECURITY.md` to SPK-21's file table**; `CLAUDE.md` is already in it, but only for one line outside the security section, so that entry widens to include rule 3.
+- **SPK-21 writes the list** into `SECURITY.md` ("Changes to the guard rails") and into `CLAUDE.md` security rule 3. Both are already Tier 1 files, so your approval here covers those two edits. **The CTO has added both to SPK-21's files** [E, #355 body, read 2026-10-10].
 
 ### 2.4 For the decision entry
 
-The Coordinator, or the CGO, records your answer as the next free D-number in `decisions/2026-09-16-haunt-gate.md`. Suggested wording, if you approve: *"The CSO's note for SPK-21 is approved (`architecture/cso-m1-w1-rulings.md` §2): one pre-commit hook running `node tools/check-all.ts`, and the protected list extended in two tiers as §2.3 sets out."*
+The Coordinator, or the CGO, records your answer as the next free D-number in `decisions/2026-09-16-haunt-gate.md`. Suggested wording, if you approve: *"The CSO's note for SPK-21 (revision 2, D68) is approved (`architecture/cso-m1-w1-rulings.md` §2): one pre-commit hook running `node tools/check-all.ts`, which runs Oxlint, the suppression scan, Oxfmt in check mode and dependency-cruiser, and the protected list extended in two tiers as §2.3 sets out. Tier 1 adds `oxlint.guard.json`, `tools/oxlint/guard-plugin.ts`, `.dependency-cruiser.cjs`, every `tools/check-*.ts`, `tools/prove-checks.ts` with the existing fixtures, `checks.yml`, and check 10's files. Tier 2 adds `.oxlintrc.json`, `tools/oxlint/style-plugin.ts`, `tools/oxlint/maint-4.json`, `tools/oxlint/maint-4-plugin.ts`, `tools/structure.json` and new fixture folders."*
 
 ---
 
@@ -245,6 +422,8 @@ The Coordinator, or the CGO, records your answer as the next free D-number in `d
 
 **Not done:** I installed nothing and ran no package code. The lockfile was resolved from metadata only. So **no tool in §1 has been run against `haunts`.** Fixtures F1 and F2 and the hook tests H1–H7 are how the Engineer proves they work.
 
+**Revision 2 (D68), additionally read:** ADR-0002 (`bf4729b`) and the CTO's comparison (`lint-layer-comparison.md`, `9f97afc`) in full; the D68 entry; the CTO's dependency list on #355 (comment 6100254984) and #355's revised body; `haunts` `main` at **`cffa5d6`**: `SECURITY.md`, `package.json`, `package-lock.json` and `.pre-commit-config.yaml`, plus `git diff dc9a0a0 cffa5d6` (one `CLAUDE.md` line). **Run, in a scratch directory outside any checkout:** the lockfile resolution and `npm ci --ignore-scripts` (§0.2), and planted violations against `oxlint` 1.86.0, `oxfmt` 0.71.0 and `dependency-cruiser` 18.5.0 with `@swc/core` 1.16.13, on `typescript` 7.0.2 (R22–R24). **Not run:** any test on Linux; the four untested plugin rules (§0.5 G12); Oxlint's rule-configuration comments (the CTO's test, not repeated); any timing. **Nothing was installed in, or committed to, `haunts`.**
+
 **What would overturn:**
 - **§1.2 (condition T):** a typescript-eslint and a dependency-cruiser release that support TypeScript 7, or a demonstrated `overrides` setup that runs both on TypeScript 6's API beside a TypeScript 7 `tsc`.
 - **§1.5 (the transform):** measured run times that make Babel unworkable, or a transform meeting all eight criteria with fewer packages.
@@ -278,6 +457,19 @@ All retrieved on 2026-10-10 by this seat.
 | R16 | `secure_delete` (on, fast, the FTS limitation); `wal_checkpoint(TRUNCATE)` | [SQLite, PRAGMA statements](https://www.sqlite.org/pragma.html) |
 | R17 | `VACUUM` needs up to twice the file's size, and is an alternative to `secure_delete` for removing traces | [SQLite, VACUUM](https://www.sqlite.org/lang_vacuum.html) |
 
+**Revision 2 (D68), retrieved or run 2026-10-10 by this seat:**
+
+| # | Claim | Source |
+|---|---|---|
+| R18 | `oxlint` 1.86.0 (2026-09-28; 1.87.0 on 2026-10-05, inside the cooldown) and `oxfmt` 0.71.0 (2026-09-28): MIT, no install scripts, 19 optional platform bindings each, optional peers only (`oxlint-tsgolint`, `vite-plus`; `svelte`, `vite-plus`), `oxfmt` depends on `tinypool` 2.2.0 (MIT). `@swc/core` 1.16.13 (2026-09-30): Apache-2.0, `postinstall: node postinstall.js`, 12 optional platform binaries (`Apache-2.0 AND MIT`), depends on `@swc/counter` 0.1.3 and `@swc/types` 0.1.28. Each of these and the sampled binaries published by GitHub Actions with an SLSA provenance attestation (`https://slsa.dev/provenance/v1`). No `typescript` dependency in any of them | [registry.npmjs.org/oxlint](https://registry.npmjs.org/oxlint); [/oxfmt](https://registry.npmjs.org/oxfmt); [/@swc/core](https://registry.npmjs.org/@swc%2fcore); [/@swc/core-darwin-arm64](https://registry.npmjs.org/@swc%2fcore-darwin-arm64); [/@swc/core-linux-x64-gnu](https://registry.npmjs.org/@swc%2fcore-linux-x64-gnu); [/@oxlint/binding-darwin-arm64](https://registry.npmjs.org/@oxlint%2fbinding-darwin-arm64); [/@oxlint/binding-linux-x64-gnu](https://registry.npmjs.org/@oxlint%2fbinding-linux-x64-gnu); [/tinypool](https://registry.npmjs.org/tinypool); [/@swc/counter](https://registry.npmjs.org/@swc%2fcounter); [/@swc/types](https://registry.npmjs.org/@swc%2ftypes) |
+| R19 | The D68 lockfile against `cffa5d6`: 406 added entries, none removed; 327 install on macOS arm64 and 327 on Linux x64 glibc; licence counts as §0.1; every `resolved` on `registry.npmjs.org`; integrity on every entry; `hasInstallScript` on exactly `@parcel/watcher` 2.6.0, `unrs-resolver` 1.12.2 and `@swc/core` 1.16.13; no tracked-but-ignored file in `haunts` at `cffa5d6` (`git ls-files -ci --exclude-standard` empty) | Local run, 2026-10-10: Node 24.21.0, npm 11.19.0, `npm install --package-lock-only --ignore-scripts --save-dev --save-exact --before=2026-10-03` on copies of `haunts` `package.json` and `package-lock.json` at `cffa5d6`, in the session scratchpad. **Reproducible, not published** |
+| R20 | `@swc/core`'s `postinstall.js`: validates the native binding; on failure, unless `SWC_BINARY_PATH` or `@swc/wasm` is present, runs `npm install --no-save … @swc/wasm@<version>` | [unpkg.com/@swc/core@1.16.13/postinstall.js](https://unpkg.com/@swc/core@1.16.13/postinstall.js), byte-identical to the installed tarball's copy |
+| R21 | dependency-cruiser uses `swc` only when `parser === "swc" && isAvailable()`; `isAvailable` is false when `@swc/core` fails to import, and extraction then falls through to the other parsers | [`src/extract/swc/extract.mjs` @v18.5.0](https://github.com/sverweij/dependency-cruiser/blob/v18.5.0/src/extract/swc/extract.mjs); [`src/extract/swc/parse.mjs` @v18.5.0](https://github.com/sverweij/dependency-cruiser/blob/v18.5.0/src/extract/swc/parse.mjs) (whitespace-only differences from the tarball) |
+| R22 | Oxlint 1.86.0, tested: a nested `.oxlintrc.json` silences a rule without `-c` and not with it; a root `oxlint.config.ts` is used by a bare run and ignored under `-c`; `.eslintignore` and `.gitignore` (even for a tracked file) silence `oxlint -c`, and `--no-ignore` does not override `.gitignore`; `.oxlintignore` is not read; disables honoured with no space, as a block `next-line`, in JSX, and by alias (`eslint/…`, `@typescript-eslint/…`, `typescript-eslint/…`); not honoured in upper or mixed case, or as `eslint(…)`; `eslint-disable` not honoured under `respectEslintDisableDirectives: false`; `.oxlintrc.json` can turn an extended guard rule off while `-c oxlint.guard.json` alone still reports it; a throwing plugin rule exits 1; a plugin whose helper import is missing exits 1 (*"Failed to load JS plugin"*); a missing `-c` file exits 1. `--help`: `.eslintignore` is the default ignore path, `--disable-nested-config` exists | Local run, 2026-10-10, scratchpad. **Reproducible, not published** |
+| R23 | Oxfmt 0.71.0: `-c` accepts `.json`, `.jsonc`, `.ts`, `.mts`, `.cts`, `.js`, `.mjs`, `.cjs`; `.gitignore` and `.prettierignore` used by default; its schema has no plugin key. Tested: with no `.oxfmtrc.json`, a bare `oxfmt --check` executed a root `oxfmt.config.ts` (marker file written); with `-c .oxfmtrc.json` it did not; a missing `-c` file exits 1 | `oxfmt --help` and `configuration_schema.json` from the installed 0.71.0; local run, 2026-10-10. **Reproducible, not published** |
+| R24 | dependency-cruiser 18.5.0 on `typescript` 7.0.2, tested: with `parser: "swc"`, `f1-swc` and `f1-type-only` fail (exit 1); a five-file fixture (type-only from `.tsx` with JSX, `export *`, `import()`, generics, abstract class) gives every edge, and a sentinel rule on `dependencyTypes: ["type-only"]` fires; **with the `swc` platform binding removed, the summary still says `"parser": "swc"`, every path edge is still found, the type-only edge is typed `import`, and the sentinel does not fire**; explicit `acorn` also catches `f1-type-only`; an `@/` alias crossing a boundary trips the boundary rule only with `options.tsConfig` set, and otherwise only a `couldNotResolve` rule | Local run, 2026-10-10, scratchpad. **Reproducible, not published** |
+| R25 | ADR-0002 and the CTO's comparison; D68 as recorded; the CTO's dependency list for this seat | `products/haunt/architecture/ADR-0002-ox-lint-layer.md` (`bf4729b`) and `lint-layer-comparison.md` (`9f97afc`), candour branch `docs/haunt-adr-0002-ox`; `decisions/2026-09-16-haunt-gate.md` D68 on `docs/haunt-d67-biome`; [`haunts` #355, comment 6100254984](https://github.com/deopea-david/haunts/issues/355#issuecomment-6100254984) |
+
 **[K] claims carried, each to be upgraded before it anchors a ticket:** pre-commit's stash of unstaged changes and the `language: unsupported` semantics (§2.2); npm's `prepare` running only for the root project and git dependencies (§1.3); Jest's ESM mode being experimental (§1.5); `secure_delete` being set per connection (§3.2); flash wear-levelling (§3.2); the CLI-only scope of the `glob` 10.x advisory (§1.3); `overrides` on peer dependencies (§1.2).
 
 ---
@@ -287,3 +479,4 @@ All retrieved on 2026-10-10 by this seat.
 | Date | Change |
 |---|---|
 | 2026-10-10 | First version (CSO): §1 dependency decision and §2 CSO note posted to `haunts` #355 (comments 6097283953 and 6097285838); §3 DATA-16 rulings |
+| 2026-10-10 | **Revision 2, for D68 (CSO):** new §0. `oxlint` 1.86.0, `oxfmt` 0.71.0 and `@swc/core` 1.16.13 approved on conditions; the three ESLint packages dropped; condition T reversed. C1, C25(a), F1, F2, G12 and G15 re-ruled; C37 and C38 added; W1–W3 for `@swc/core`. §2 rewritten in place for the Ox hook and files, with H8 added; §1 marked superseded in part. Posted to `haunts` #355 |
