@@ -479,4 +479,4 @@ All retrieved on 2026-10-10 by this seat.
 | Date | Change |
 |---|---|
 | 2026-10-10 | First version (CSO): §1 dependency decision and §2 CSO note posted to `haunts` #355 (comments 6097283953 and 6097285838); §3 DATA-16 rulings |
-| 2026-10-10 | **Revision 2, for D68 (CSO):** new §0. `oxlint` 1.86.0, `oxfmt` 0.71.0 and `@swc/core` 1.16.13 approved on conditions; the three ESLint packages dropped; condition T reversed. C1, C25(a), F1, F2, G12 and G15 re-ruled; C37 and C38 added; W1–W3 for `@swc/core`. §2 rewritten in place for the Ox hook and files, with H8 added; §1 marked superseded in part. Posted to `haunts` #355 |
+| 2026-10-10 | **Revision 2, for D68 (CSO):** new §0. `oxlint` 1.86.0, `oxfmt` 0.71.0 and `@swc/core` 1.16.13 approved on conditions; the three ESLint packages dropped; condition T reversed. C1, C25(a), F1, F2, G12 and G15 re-ruled; C37 and C38 added; W1–W3 for `@swc/core`. §2 rewritten in place for the Ox hook and files, with H8 added; §1 marked superseded in part. Posted to `haunts` #355 (comments 6100395391, the dependency decision, and 6100397684, the CSO note) |
