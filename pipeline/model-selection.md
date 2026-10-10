@@ -77,6 +77,20 @@
 
 The seat default is the starting point. The orchestrator changes the **model** (the only per-call lever) by these rules and **states the choice in the commission**.
 
+### 5.0 The best for the job wins (CEO, 2026-10-10)
+
+**Mandatory.** Every commission uses the model and effort best suited to the task, judged by §5.1 and §5.2. Usage limits are a secondary consideration. They justify a smaller model only where §5.1 says the smaller model does the job as well. They are never a reason to step down a task that §5.2 says needs more.
+
+- **Never queue or serialise work to save headroom.** Several Opus seats may run at once, within the Coordinator charter's concurrency caps (Annex D). Holding a run back so that only one Opus runs at a time is withdrawn. That was the main session's own practice after two usage-limit stalls on 2026-10-04, and it was never a rule.
+- **A usage-limit hit is an infrastructure stall, not a failure** (Coordinator charter, Annex C). Resume after the reset; don't plan around it in advance.
+- **Effort cannot be set per call** (§1); it comes from the seat's frontmatter. If a task needs a different effort from the seat's default, the commission says so, and the CEO is told when it matters. Changing a default is a PR to §4 and the frontmatter (§8).
+- **The commission states the reason** for its model, so the choice can be audited (§5.5).
+- **Fable still needs the CEO's yes for each use** (§7). Spending real money remains his alone (Constitution 5.4).
+
+The CEO's words: *"I do not mind if multiple run, no point holding off until the first is finished if another is then just going to run, but I want to make it mandatory that the model and effort is set to the best for the job at hand while taking into account session limits and usage, but the best for the job wins is more important."*
+
+*Fit with Constitution 1.5 [I].* On the subscription with paid credits off (D0.2), a stronger model costs usage headroom, not money. So "best for the job" adds no running cost that customers pay. This would need revisiting if credits were ever turned on.
+
 ### 5.1 Step down: Haiku or Sonnet
 
 Use a smaller model for **mechanical work with a checkable output**: file and code search, inventories, reformatting, running scripts, fetching and summarising documentation, ticket generation from a script, and standup roll-ups. **Test:** could a wrong answer be caught by looking at the output? If so, step down.
