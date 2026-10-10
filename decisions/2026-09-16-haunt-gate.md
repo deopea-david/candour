@@ -514,6 +514,25 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 **D66 — The revised privacy sentence (PRIV-1, v1.4) is approved.** *CEO, 2026-10-02.* It replaces the D14(c) wording, which D61 made untrue, as the canonical sentence for the store copy, onboarding and the backup flow. The text is in `requirements.md` PRIV-1. **The CGO must still confirm it as a contract term** under CRA 2015 s.36(3) before it ships, which is a launch bar.
 
+**D67 — Biome is the lint layer from the start, in place of ESLint and typescript-eslint.** *CEO, 2026-10-10.* His words: *"I think we may as well go with biome to begin with, it is quicker than eslint and reduces the number of packages and tool chains."* This was given after the CTO's option memo (`products/haunt/architecture/biome-option.md`, PR #34), which recommended **"not now"** for two reasons, quoted: Biome *"does not get us to TypeScript 7"*, because dependency-cruiser still needs TypeScript's compiler API; and *"Check 9 weakens"*, because Biome has no switch that ignores suppression comments, so CI's guard pass (check 9(b), CSO C1) becomes *"a home-made control where ESLint's is built in"*. **Owed:**
+- the CTO amends ADR-0001 by a superseding ADR, since ADR-0001 *"changes only by a new ADR that supersedes it, with the CEO's decision"*, and updates SPK-21 (#355) and MAINT-4 (#308);
+- the CSO approves the Biome dependency (D40, D41) and rules on the replacement for check 9(b) and C1;
+- dependency-cruiser stays for checks 7 and 8, so `typescript` stays at 6.0.3 for now.
+
+*Recorded by the Coordinator as a clerical act; the record is the CGO's.*
+
+**D68 — Oxlint with Oxfmt is the lint and format layer, with dependency-cruiser parsing through `swc` and TypeScript 7.0.2. This replaces D67's choice of Biome.** *CEO, 2026-10-10.* It was made after the CTO's tested comparison (`products/haunt/architecture/lint-layer-comparison.md`, PR #36), which recommended this combination [J, moderate confidence]. His words: *"I would say Ox tools over Biome thanks to the company behind it and the benefits the CTO found (e.g. the almost one to one rules which biome couldn't do). It is also designed to be high throughput, fast and for large codebases, covering us for the future and possibly other projects."* On staying on TypeScript 6 until tools catch up, he accepted the CTO's disagreement (*"Fair enough"*) and gave his concern: *"if the tool goes unmaintained or takes a long time to support TS 7."*
+
+**What the comparison said this weakens**, quoted:
+- Neither linter has a built-in way to ignore disable comments, so check 9(b) becomes a home-made scan plus a "strip the comments, then lint" pass.
+- About six guard rules need Oxlint JS plugins, which its schema calls *"alpha and not subject to semver"*.
+
+**Owed:**
+- the CTO writes ADR-0002, superseding ADR-0001 where the tooling changes, and updates SPK-21 (#355) and MAINT-4 (#308);
+- the CSO approves `oxlint`, `oxfmt` and `@swc/core` (which it refused once before, as Jest's transform), reverses condition T (TypeScript 6.0.3) if it agrees, and re-rules C1, C25(a), F1, F2 and G12, adds G15, and renames the protected-list tiers. If the CSO refuses `@swc/core`, the CTO's fallback is a graph script reading TypeScript 7's own output.
+
+*Recorded by the Coordinator as a clerical act; the record is the CGO's.*
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
