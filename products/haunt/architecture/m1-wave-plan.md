@@ -6,7 +6,7 @@
 **Template note:** `pipeline/templates/` has no wave-plan template [E: listed from disk, 2026-10-09]. This follows the method in `agentic-agile-adoption.md` §4.3: components, dependency graph, files per ticket, then waves.
 **Evidence tags** follow `pipeline/evidence-standard.md`. Repository facts carry the command or file they came from. Statements about Expo, SQLite or the platforms that I did not retrieve today are [K] and say so.
 
-Provenance: CTO · opus (Opus 5.5) · effort high · 2026-10-09
+Provenance: CTO · opus (Opus 5.5) · effort high · 2026-10-09; revised 2026-10-10 by CTO · sonnet (Sonnet 5.5) · effort high (see §11)
 
 ---
 
@@ -21,7 +21,7 @@ Provenance: CTO · opus (Opus 5.5) · effort high · 2026-10-09
 | **M1.W5 — the JS-free capture path** | **CAP-1** (#8) iOS · **DATA-16** (#352) iOS + JS · **SESS-9** (#52) tests | 2 | **Opus** · Sonnet | A visit recorded with no JavaScript; candidates deleted, never flagged; intervals and gaps proved durable |
 
 - **At most two Engineers at once** (`pipeline/agentic-agile.md` item 4), and **never more than one Opus seat at a time** (the CEO's instruction for this build). W3 to W5 pair one Opus Engineer on native code with one Sonnet Engineer on TypeScript. The Opus CTO review and the Opus QA run between those, not alongside a running Opus Engineer.
-- **No two tickets in the same wave list the same file**, with one declared exception: `eslint.config.js` passes from SPK-21 to MAINT-4 at SPK-21's merge, in W1, which runs in sequence (§3.1).
+- **No two tickets in the same wave list the same file.** There is no exception: MAINT-4's rules live in their own file, `tools/oxlint/maint-4.json`, which SPK-21 creates as `{}` and `.oxlintrc.json` extends (ADR-0002 §7).
 - **Android capture code waits for SPK-02.** CTO Block 2 is live. Every requirement above that names both platforms gets its Android half in a later M1 wave, as a story created when Block 2 lifts (§6). **M1 cannot close until SPK-02 has run** — at least two real weeks on three phones.
 - **Milestones:** M1's order is confirmed. **28 tickets move out of M1**, because their last acceptance limb needs a surface or a service that does not exist until a later phase. Their M1 groundwork, chiefly the build-time checks, stays in M1 as stories (§7).
 
@@ -61,10 +61,10 @@ SPK-21 checks ──► MAINT-4 rule ──► PLAT-1 app shell (package.json, t
 
 ### 3.1 M1.W1 — set-up: SPK-21, then MAINT-4
 
-- **The dependency cannot be split away.** MAINT-4's rule needs ESLint installed and wired into the hook and CI, and SPK-21 is what installs and wires it. ADR-0001 §4 (binding) also requires **one** ESLint configuration and one invocation, so MAINT-4 cannot carry a configuration of its own.
+- **The dependency cannot be split away.** MAINT-4's rules need Oxlint installed and wired into the hook and CI, and SPK-21 is what installs and wires it. ADR-0002 §7 gives MAINT-4 its own extended file, so there is still one Oxlint invocation and no second linter.
 - **The order:** SPK-21 is built, reviewed, QA'd and merged first. MAINT-4 then branches from that `main`.
-- **The split:** SPK-21 creates `eslint.config.js` with an **empty, marked block** at its end (`// MAINT-4: TypeScript style — arrow functions (ADR-0001 §4)`). MAINT-4 edits only that block. Its fixtures, its documentation change and nothing else are its own. **This is the one file two tickets in one wave list, and they list it in sequence, never at the same time.** If the CEO prefers the wave rule applied literally, MAINT-4 becomes wave M1.W2 on its own and everything else moves up one. The work and the order would be identical.
-- **Why SPK-21 does not install Expo's ESLint configuration, Jest-Expo or React Native Testing Library**, although ADR-0001 §3 lists them: they need `expo` and `react-native` installed as peers [K, medium], and those are product dependencies, which a spike may not land. They arrive with PLAT-1 in W2. **A flag for the CSO and the W2 Engineer:** Expo's ESLint configuration may bring in `eslint-plugin-import` [K, medium, not checked today]. If it does, it conflicts with the CSO's "no import plugin" preference (ADR-0001 §3), and the core rules plus dependency-cruiser should be used without it.
+- **The split:** SPK-21 creates `tools/oxlint/maint-4.json` as `{}` and makes `.oxlintrc.json` extend it. MAINT-4 fills that file, adds `tools/oxlint/maint-4-plugin.ts`, its fixtures and its documentation change. **No file is listed by both tickets.** MAINT-4 still starts after SPK-21 merges, because it needs Oxlint installed.
+- **Why SPK-21 does not install Jest-Expo or React Native Testing Library**, although ADR-0001 §3 lists them: they need `expo` and `react-native` installed as peers [K, medium], and those are product dependencies, which a spike may not land. They arrive with PLAT-1 in W2. Expo's ESLint configuration is no longer wanted (D68, ADR-0002 §10): PLAT-1 uses Oxlint's native `react/rules-of-hooks` and `react/exhaustive-deps`, verified there, so the import-plugin flag falls away.
 - **Planted violations become permanent.** SPK-21 commits one fixture per check under `tools/guard-fixtures/<id>/`, and `tools/prove-checks.ts` runs every fixture in CI and fails if a check passes on its planted violation. "Seen to fail" (D32) is then re-proved on every PR rather than once.
 
 ### 3.2 M1.W2 — app shell: PLAT-1
@@ -108,7 +108,7 @@ PLAT-1 creates the Expo project at the repository root (ADR-0001 §2.1; `docs/co
 | `modules/capture/index.ts`, `ios/Bridge/CaptureModule.swift` | The typed face and the module class | **Written whole by DATA-2.2 in W3.** Later tickets add Core files only |
 | `modules/capture/ios/Core/CaptureStore.swift` | The one connection | DATA-2.2 creates (W3); only DATA-16 modifies it in M1 (W5, to apply the CSO's deletion setting) |
 | `tools/structure.json` | Check 1: every folder | **SPK-21 registers every folder M1 needs in one go** (§2.1's tree, the ten features, the M1 sub-folders in this plan). A ticket needing a new folder stops and asks |
-| `eslint.config.js` | All lint rules | SPK-21, then MAINT-4's marked block only (§3.1). A guard file: any PR touching it carries a `## CSO note` (check 10) |
+| `.oxlintrc.json`, `oxlint.guard.json`, `.oxfmtrc.json`, `tools/oxlint/` | All lint rules; the guard; the formatter; plugins | SPK-21 creates all of them. MAINT-4 then owns `tools/oxlint/maint-4.json` and `tools/oxlint/maint-4-plugin.ts` only (§3.1). Guard files: any PR touching them carries a `## CSO note` (check 10) |
 | `docs/standups/YYYY-MM-DD.md` | Every seat's entry | **Exempt by design:** append-only and written by every seat (`standup-routine.md` §2). No ticket's ownership table lists it. A conflict there is resolved by keeping both entries and is counted in the delivery log separately from code conflicts |
 
 ## 5. The rest of M1, outlined and not yet placed
@@ -124,11 +124,13 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 
 ## 6. Block 2 and Android
 
-- **What waits:** every line of Kotlin in `modules/capture/`. That covers the capture-file owner, the ledger, the recorder, deletion and the native read tests.
-- **What does not wait:** the Android **app build** (PLAT-1), and all TypeScript, which is shared.
-- **The consequence, stated plainly:** DATA-2, DATA-16, CAP-1, SESS-9 and PLAT-1 can each be verified **limb by limb on iOS** in W3 to W5, but **none of them reaches Done** until its Android story merges, after SPK-02. So **M1 closes no earlier than SPK-02's two real weeks on three phones, plus the Android wave.** SPK-02 (#280) is open in Backlog today [E: `STATUS.md`, "M0 spikes still open"].
-- **What would change this:** the CEO overruling Block 2, or SPK-02 running now in parallel with W1–W5. The second is the cheap path [J]: it is calendar time, not effort, and it is the larger build risk (`block-4-ruling.md` §2.4).
-- **A narrower reading I am not adopting:** that Block 2 covers only background execution (CAP-3), so that Kotlin storage could proceed now. It is defensible, because SQLite on Android is documented behaviour. I am not adopting it, because the block's text says *"before product code"*, and narrowing my own block to suit the plan is the kind of move the block exists to prevent.
+**Block 2 was re-scoped on 2026-10-10** (`architecture/block-2-review.md`). It now blocks the **Android release build**, not Android code.
+
+- **What no longer waits:** the Kotlin half of `modules/capture/`, meaning the capture-file owner, the ledger, the recorder and foreground service (CAP-3), the gap rows (CAP-4), deletion and the native read tests. Each becomes an Android story in an **Android wave of M1 (M1.W8)**, after W3–W5 have fixed the shared schema and the typed face. CSO C11 travels with them.
+- **What still waits:** the Android release build, the Play listing, and any Android build for people outside Candour that lacks the label in `block-2-review.md` §4.2. These wait until the measurement in `block-2-review.md` §4.1 is published against the thresholds in CAP-11 … CAP-14.
+- **The consequence:** DATA-2, DATA-16, CAP-1, SESS-9 and PLAT-1 reach Done when their Android stories merge in M1.W8. **M1 no longer waits on SPK-02's two weeks.** SPK-02 (#280) becomes the field measurement, due before the Android release build.
+- **Recommended, not required** [J]: start the measurement as soon as M1.W8's capture story is on a phone, so that a bad result arrives early. The emulator tests for Doze, App Standby, reboot and force-stop go into CI with that story.
+- **What would change this:** the conditions in `block-2-review.md` §4.3.
 
 ## 7. Milestones: confirmed, and what moved
 
@@ -138,7 +140,7 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 |---|---|---|
 | **ENT-1** (#146) | M1 → **M3** | ENT-1(b) (*"intervals survive reinstall-while-offline"*) needs the billing layer to restore intervals after a delete-and-reinstall [I]. ENT-1(a) is built in M1 as ENT-1.1. If the PM/BA reads "reinstall" as an update in place, ENT-1 can be verified at the M1.W4 gate and close early |
 | **ENT-2** (#147) | M1 → **M3** | Its six constructed states include refunded, revoked, billing retry and grace period, which exist only with StoreKit and Play Billing (M3; SPK-10) |
-| **CAP-7** (#9) | M1 → **M3** | (a) expires a trial (ENT-3, M3) and checks the Android foreground service stops (CAP-3, M2; Block 2). It is the same behaviour as ENT-6 (M3) |
+| **CAP-7** (#9) | M1 → **M3** | (a) expires a trial (ENT-3, M3) and checks the Android foreground service stops (CAP-3, M2). It is the same behaviour as ENT-6 (M3) |
 | **FT-ENT-1** (#145) | M1 → **M3** | Both of its tasks moved |
 | **VEN-1** (#64) | M1 → **M2** | (a) runs *"the full core loop in aeroplane mode"*; the loop is M2 |
 | **VEN-7** (#72) | M1 → **M2** | Its test deletes the index and renders the **venue page** (M2). Its copy-on-reference rule is built with the venue schema in M1.W6 |
@@ -147,8 +149,9 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 | **PRIV-8** (#242), **PRIV-1** (#240), **PRIV-2** (#241), **FT-PRIV-1** (#239) | M1 → **M5** | PRIV-8(f) is checked on device at each release, and (e) waits on SPK-22. PRIV-1 diffs store copy, onboarding and backup screens; PRIV-2 needs every transmission path and the PRIV-9 note (M5). **PRIV-8(a)–(c) are built in M1.W1 by SPK-21** |
 | **PLAT-8** (#268) | M1 → **M5** | (b) needs the basemap asset pack (M4) and (c) the release device matrices (M5). (a) is set by PLAT-1 in M1.W2 |
 | **MAINT-6** (#356) | none → **M0** | Agent controls, done before any build work, like MAINT-1, 2, 3 and 5 (all M0) |
+| **SPK-02** (#280) | M0 → **M5** | Its last limb is the published measurement that must exist before the Android release build begins (`block-2-review.md` §4.1). It may run, and should run, from M1.W8 onwards |
 
-**29 moves** (28 out of M1, plus MAINT-6 into M0). **Confirmed in M1:** SPK-21, MAINT-4, MAINT-7, PLAT-1, DATA-1, DATA-2, DATA-16, CAP-1, SESS-1, SESS-2, SESS-9, the venue tickets other than VEN-1 and VEN-7, and their features.
+**30 moves** (28 out of M1, MAINT-6 into M0, and SPK-02 from M0 to M5). **Confirmed in M1:** SPK-21, MAINT-4, MAINT-7, PLAT-1, DATA-1, DATA-2, DATA-16, CAP-1, SESS-1, SESS-2, SESS-9, the venue tickets other than VEN-1 and VEN-7, and their features, and the Android stories of M1.W8 (DATA-2 Android, DATA-16 Android, CAP-1 Android, SESS-9 Android, and the CAP-3 and CAP-4 native groundwork), to be written at that wave's planning.
 
 **M2–M5:** I confirm the **phase order** (backlog plan §10). I have **not** checked every ticket inside M2–M5 against this principle today. Each phase gets that check at its own wave planning. The milestone descriptions are updated to say so, and each keeps its Constitution 5.5 sentence.
 
@@ -156,16 +159,15 @@ These are planned at the W5 gate, against the interfaces W3–W5 actually merge.
 
 **Tickets in W1–W5 that need CSO review** (`needs:cso-review`):
 - **Already labelled:** SPK-21, CAP-1, DATA-16.
-- **Added today:** MAINT-4 (it edits `eslint.config.js`, a guard file under check 10); PLAT-1 (the first production dependencies; the hook-installing `prepare` script, `docs/conventions.md` §11); DATA-2, together with its stories DATA-2.1 and DATA-2.2 (the generated body of DATA-2 already says *"Security-relevant"* but the label was missing; C8 parameterised SQL, C9 store location); ENT-1.1 (the only write path for entitlement; an import must never grant it, DATA-5(c)).
+- **Added today:** MAINT-4 (it fills `tools/oxlint/maint-4.json` and adds a JavaScript plugin, both under check 10); PLAT-1 (the first production dependencies; the hook-installing `prepare` script, `docs/conventions.md` §11); DATA-2, together with its stories DATA-2.1 and DATA-2.2 (the generated body of DATA-2 already says *"Security-relevant"* but the label was missing; C8 parameterised SQL, C9 store location); ENT-1.1 (the only write path for entitlement; an import must never grant it, DATA-5(c)).
 
 **SPK-21's development dependencies, for approval before the Engineer installs them** (D40's rule, D64), all exact-pinned:
-- `eslint`
-- `typescript-eslint`
-- `@eslint-community/eslint-plugin-eslint-comments` (named in D64)
+- `oxlint` and `oxfmt` (D68, ADR-0002 §6)
+- `@swc/core`, as dependency-cruiser's parser under TypeScript 7 (D68, ADR-0002 §6)
 - `dependency-cruiser` (named in D64)
 - `jest`, plus one TypeScript transform for the plain-Node test projects. The Engineer proposes which, with its dependency count.
 
-Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`, React Native Testing Library, and Expo's ESLint configuration (see the import-plugin flag in §3.1). The Maestro CLI (C20) arrives with the first end-to-end flow, not in M1.W1. **The proofs run on Node's built-in test runner**, which adds no dependency [J].
+Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`, React Native Testing Library (Expo's ESLint configuration is no longer wanted: D68, ADR-0002 §10). The Maestro CLI (C20) arrives with the first end-to-end flow, not in M1.W1. **The proofs run on Node's built-in test runner**, which adds no dependency [J].
 
 **Also for the CSO:**
 - **The pre-commit change needs the CEO's approval.** SPK-21 must add one hook to `.pre-commit-config.yaml`, and that file changes only *"with a CSO note and CEO approval"* [E: the file's own header; `SECURITY.md`]. ADR-0001 §6 item 2 and C23 (new guard files join the protected list) also need the CEO's approval. **Both are needed before SPK-21 can merge.**
@@ -202,3 +204,4 @@ Not in SPK-21 (they need Expo installed, so they come with PLAT-1): `jest-expo`,
 | Date | Change |
 |---|---|
 | 2026-10-09 | First version. Waves M1.W1–W5 placed; W6–W8 outlined; 29 milestone moves; SPK-01 closed; MAINT-6 placed in M0 and set to QA |
+| 2026-10-10 | Applied the CTO's own already-written text, adding nothing new. **(1) §6 and §7**, from `block-2-review.md` §6 (Block 2 re-scoped to the Android release build; Android stories become M1.W8; SPK-02 moves M0 → M5; the CAP-7 row loses "Block 2"; "Confirmed in M1" gains the W8 stories). The one consequential edit: the move count in §7 reads 30, because the SPK-02 row is a thirtieth move. **(2) ESLint → Ox**, from `ADR-0002-ox-lint-layer.md` §10 (§0 line 24, §3.1 lines 64, 66 and 67, §4's `eslint.config.js` row, §8's MAINT-4 line, its three ESLint bullets and its Expo-ESLint parenthesis). **Not applied, because the replacement text did not cover them, and still stale:** §0's third bullet, §1 item 5, §3.3's Android bullet, §5's M1.W8 row and §9 F7 still say Block 2 waits for SPK-02 and that M1 cannot close before it; §8 still says the dependencies are "for approval" though the CSO approved the D68 set on 2026-10-10 (`cso-m1-w1-rulings.md` §0). The Coordinator decides how they are brought into line |
