@@ -14,12 +14,12 @@ Provenance: CTO · sonnet (Sonnet 5.5) · effort high · 2026-10-10
 
 | Requirement | Low | Point | High | What drives the range |
 |---|---:|---:|---:|---|
-| **CAP-15** the "Haunts missed this" entry | 20 | 29 | 39 | The overlap sentence (limb e) and how many surfaces the "appears everywhere" test (limb a) must cover |
+| **CAP-15** the "Haunts missed this" entry | 19.5 | 29 | 39 | The overlap sentence (limb e) and how many surfaces the "appears everywhere" test (limb a) must cover |
 | **CAP-16** the counts-only summary | 25 | 36 | 51 | Whether a file-share mechanism already exists from DATA-3, and the two device-level network checks (limb a) |
 | **CAP-17** the in-app diary | 10.5 | 15 | 21 | The classification script that QA's computation needs (limb a); the app side is small |
-| **Total** | **56** | **80** | **111** | |
+| **Total** | **55** | **80** | **111** | |
 
-- **+2.7% to +5.3% on the 2,090 h (+3.8% at the point).** It is **outside the 2,090 h**: scope added after the estimate, joining §22 items 22, 25 and 30. The composer (ENT-4), the export and import (DATA-3 to DATA-5) and the gap surface (CAP-4) are already in the 2,090 h; only the increments are counted here [J].
+- **+2.6% to +5.3% on the 2,090 h (+3.8% at the point).** It is **outside the 2,090 h**: scope added after the estimate, joining §22 items 22, 25 and 30. The composer (ENT-4), the export and import (DATA-3 to DATA-5) and the gap surface (CAP-4) are already in the 2,090 h; only the increments are counted here [J].
 - **Ongoing: about 0.75 to 1.5 h per release** (the device-level network check for CAP-16 and the marker label in three themes), so **roughly 5 to 15 h a year** at 6 to 10 releases [J, the cadence is the one assumed in `design-feasibility-and-sizing.md` §6].
 - **Placement: not M1.W8.** CAP-15 and CAP-16 build in **M2**. Their only M1 piece is **two columns in migration `0001`** (DATA-2.1, M1.W3), which is free now and costs a migration later (§2). CAP-17's last limb is the published result, so by my own rule that ticket sits at **M5** with SPK-02.
 - **`block-2-review.md` §5, "the hours are about the same": it does not hold** (§3). The in-app tooling alone is about the size of the whole 75-hour line.
@@ -63,7 +63,7 @@ Each line is Low / Point / High. Lines marked * are the ones the others lean on.
 | 5 | The result template that names the diary kind per phone (limb c), and the copy check that nothing says adding a miss makes Haunts reliable (limb d) | 1.5 | 2 | 3 |
 | | **CAP-17** | **10.5** | **15.25** | **21** |
 
-**Sums:** 19.5 + 25 + 10.5 = 55.5 low; 29 + 36 + 15.25 = 80.25 point; 39 + 51 + 21 = 111 high. Rounded in §0.
+**Sums:** 19.5 + 25 + 10.5 = 55.0 low; 29 + 36 + 15.25 = 80.25 point; 39 + 51 + 21 = 111 high. Rounded in §0 (the Low total is 55.0; an earlier version of this memo read 55.5 and 56, corrected 2026-10-11 after QA's Condition 6 re-derivation in `cost-d69-rederivation.md`).
 
 **What would move the figures** [J]:
 - **A new migration instead of folding into `0001`:** +2 to 4 h for the three requirements together, and a migration slot, which the wave plan allows once per wave (§4 of `m1-wave-plan.md`).
@@ -101,7 +101,7 @@ Each line is Low / Point / High. Lines marked * are the ones the others lean on.
 **No. I wrote it without a calculation, and the calculation does not support it.**
 
 - **What it compared.** The 75-hour line (*"2 weeks / 75 h"*, `android-and-stack-note.md` §0.3 and the table at line 251) with *"a measurement run plus a little in-app tooling"*.
-- **The in-app tooling is not little.** It is **56 to 111 h, point 80**, which by itself equals the whole 75-hour line at the point and exceeds it at the high end [J].
+- **The in-app tooling is not little.** It is **55 to 111 h, point 80**, which by itself equals the whole 75-hour line at the point and exceeds it at the high end [J].
 - **What I cannot say.** `android-and-stack-note.md` does not break the 75 h into parts [E: the note read at lines 30, 114, 227 and 251, 2026-10-10], so I cannot say how much of it was a throwaway harness that the production Kotlin module (already inside the 5 to 7 week Android line) has now replaced. I **have not re-sized the run** (protocol, oversight, analysis, publication). A sensible reading is that the run is smaller than 75 h and the tooling is not [I, low confidence], which puts the new total **above** the old line, not equal to it.
 - **What the CFO should do.** Do not fold these hours into the 75-hour spike line. Carry them as **scope added after the estimate**, separately, with **the labour-at-risk marked on the CAP-15 and CAP-16 lines** (if item 40 goes the other way, or the measurement fails, that labour is written off as a cost in the year, Constitution Definitions). CAP-15 is not wasted by a failed measurement if the control stays (item 40, *"a repair tool for the user's own journal"*); CAP-16 and CAP-17 mostly are.
 - **This is a correction to my own earlier memo.** `block-2-review.md` is merged and I am not editing it here. The Coordinator decides whether a one-line erratum is wanted.
