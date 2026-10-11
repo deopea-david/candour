@@ -13,7 +13,7 @@
 
 ## 0. The answers
 
-**A. The D69 features add 80.25 h at the point (range 55.5 to 111), £2,624.98 one-off, to the capitalised build. Ongoing, about 9 h a year (range 4.5 to 15), £294.39.** They are carried as scope added after the estimate, outside the 2,090 h and outside the 75 h spike line, as the CTO asks. The CTO's sums re-derive exactly (§1).
+**A. The D69 features add 80.25 h at the point (range 55 to 111), £2,624.98 one-off, to the capitalised build. Ongoing, about 9 h a year (range 4.5 to 15), £294.39.** They are carried as scope added after the estimate, outside the 2,090 h and outside the 75 h spike line, as the CTO asks. The CTO's point and high totals re-add exactly; **his Low total does not (55.0 h, not 55.5 or 56), and an earlier draft of this note wrongly ticked it. Corrected 2026-10-11 after QA's re-derivation (§1).**
 
 **B. The capitalised build goes from 2,777 h (£90,854.37) to 2,857.25 h (£93,479.35). The annual cost base `A` goes from £51,017.93 to £52,187.31: +£1,169.38 a year, +2.3%.** Of that, amortisation is +£874.99 a year (£2,624.98 ÷ 3) and ongoing labour +£294.39. Three-year published cost: £153,053.79 to £156,561.93 (+£3,508.14). §3.
 
@@ -36,9 +36,9 @@ Source: `cap-15-17-sizing.md` §1.1 to §1.3, `c7904f1`. Each line is Low / Poin
 | **CAP-15** | L: 1.5+3+4+2+3+6 · P: 2+4.5+6+3+4.5+9 · H: 3+6+8+4+6+12 | 19.5 | 29 | 39 | 19.5 / 29 / 39 ✔ |
 | **CAP-16** | L: 3+2+5+3+4+8 · P: 4.5+3+7.5+5+6+10 · H: 6+4+10+8+8+15 | 25 | 36 | 51 | 25 / 36 / 51 ✔ |
 | **CAP-17** | L: 0.5+1+1.5+6+1.5 · P: 0.75+1.5+2+9+2 · H: 1+2+3+12+3 | 10.5 | 15.25 | 21 | 10.5 / 15.25 / 21 ✔ |
-| **Total** | 19.5+25+10.5 · 29+36+15.25 · 39+51+21 | **55.5** | **80.25** | **111** | 56 / 80 / 111 (rounded) ✔ |
+| **Total** | 19.5+25+10.5 · 29+36+15.25 · 39+51+21 | **55.0** | **80.25** | **111** | 56 / 80 / 111 (rounded). **Low ✘: 19.5+25+10.5 = 55.0; the CTO's §0 shows 56 and his Sums line 55.5.** Point and high ✔ |
 
-- **Against the 2,090 h:** 55.5 ÷ 2,090 = 2.66%; 80.25 ÷ 2,090 = 3.84%; 111 ÷ 2,090 = 5.31%. The CTO's *"+2.7% to +5.3% (+3.8% at the point)"* re-derives ✔.
+- **Against the 2,090 h:** 55 ÷ 2,090 = 2.63%; 80.25 ÷ 2,090 = 3.84%; 111 ÷ 2,090 = 5.31%. The CTO's *"+2.7% to +5.3% (+3.8% at the point)"* re-derives at the point and high; **the low is +2.6%, not +2.7%.** The CTO should correct `cap-15-17-sizing.md` §0 and its Sums line. I carry **55.0**.
 - **Against today's 2,777 h:** 2.0% / 2.9% / 4.0%.
 - **Rounding:** the CTO rounds the point to 80. I carry **80.25**, the sum of his lines, so the sheet re-adds. The 0.25 h is £8.18.
 - **Ongoing.** The CTO gives *"about 0.75 to 1.5 h per release"* and *"roughly 5 to 15 h a year at 6 to 10 releases"*. Re-derived: low 0.75 × 6 = **4.5**; high 1.5 × 10 = **15**. **He gives no point; mine is the midpoint, 1.125 × 8 releases = 9 h [J, mine].** The release range is the CTO's assumption from addendum D §1.5, where I found no real cadence; that is unchanged.
@@ -50,13 +50,13 @@ Source: `cap-15-17-sizing.md` §1.1 to §1.3, `c7904f1`. Each line is Low / Poin
 
 | | Low | **Point** | High | How |
 |---|---:|---:|---:|---|
-| One-off hours | 55.5 | **80.25** | 111 | §1 |
-| **One-off at £32.71** | £1,815.41 | **£2,624.98** | £3,630.81 | hours × 32.71 |
+| One-off hours | 55 | **80.25** | 111 | §1 |
+| **One-off at £32.71** | £1,799.05 | **£2,624.98** | £3,630.81 | hours × 32.71 |
 | Ongoing hours a year | 4.5 | **9** | 15 | §1 |
 | **Ongoing at £32.71 a year** | £147.20 | **£294.39** | £490.65 | hours × 32.71 |
 | Ongoing against the 360 h/yr fixed maintenance | +1.3% | **+2.5%** | +4.2% | h ÷ 360 |
-| Amortised, a year | £605.14 | **£874.99** | £1,210.27 | one-off ÷ 3 |
-| Amortised, a month | £50.43 | **£72.92** | £100.86 | one-off ÷ 36 |
+| Amortised, a year | £599.68 | **£874.99** | £1,210.27 | one-off ÷ 3 |
+| Amortised, a month | £49.97 | **£72.92** | £100.86 | one-off ÷ 36 |
 
 **Cash costs: none.** The CTO flags that CAP-16 may need a share-sheet library (`expo-sharing`) which the CSO must approve; the CTO reads its page as Included in Expo Go with no permissions mentioned [E, as retrieved by the CTO, `cap-15-17-sizing.md` §4; **not re-retrieved by this seat**]. I have found no price for it and no reason to expect one. If a paid dependency appeared it would be a new operating line. **Owner: CSO and CTO.**
 
@@ -83,13 +83,13 @@ Three-year cost    = 3 × A
 
 | | Addendum D (today) | **Low** | **Point** | **High** |
 |---|---:|---:|---:|---:|
-| Capitalised hours | 2,777 | 2,832.5 | **2,857.25** | 2,888 |
-| Capitalised total | £90,854.37 | £92,669.78 | **£93,479.35** | £94,485.18 |
-| `B` | £30,284.79 | £30,889.93 | **£31,159.78** | £31,495.06 |
+| Capitalised hours | 2,777 | 2,832 | **2,857.25** | 2,888 |
+| Capitalised total | £90,854.37 | £92,653.42 | **£93,479.35** | £94,485.18 |
+| `B` | £30,284.79 | £30,884.47 | **£31,159.78** | £31,495.06 |
 | `F` | £20,733.14 | £20,880.34 | **£21,027.53** | £21,223.79 |
-| **`A`** | **£51,017.93** | £51,770.27 | **£52,187.31** | £52,718.85 |
-| Change in `A` | — | +£752.34 (+1.5%) | **+£1,169.38 (+2.3%)** | +£1,700.92 (+3.3%) |
-| Three-year published cost | £153,053.79 | £155,310.81 | **£156,561.93** | £158,156.55 |
+| **`A`** | **£51,017.93** | £51,764.81 | **£52,187.31** | £52,718.85 |
+| Change in `A` | — | +£746.88 (+1.5%) | **+£1,169.38 (+2.3%)** | +£1,700.92 (+3.3%) |
+| Three-year published cost | £153,053.79 | £155,294.43 | **£156,561.93** | £158,156.55 |
 | Fixed labour a year | 602.25 h | 606.75 h | **611.25 h** | 617.25 h |
 
 *Worked, point: capitalised = 2,857.25 × 32.71 + 18.70 = 93,460.65 + 18.70 = £93,479.35 (2,857.25 × 32.71 = £93,460.6475, rounded). `B` = 93,479.35 ÷ 3 = £31,159.78. `F` = 20,733.14 + 9 × 32.71 (£294.39) = £21,027.53. `A` = 31,159.78 + 21,027.53 = £52,187.31. Check: 51,017.93 + 874.99 + 294.39 = £52,187.31 ✔. Low and high pair each column's low or high one-off hours with its low or high ongoing hours. Figures may differ by 1p from a spreadsheet, from rounding at each step.*
@@ -117,10 +117,10 @@ Three-year cost    = 3 × A
 
 | | Today (addendum D) | Low | **Point** | High |
 |---|---:|---:|---:|---:|
-| `N*` = A ÷ 3.3985 | 15,012 | 15,233 | **15,356** | 15,512 |
-| 99p covers its cost: A ÷ 4.801 | 10,627 | 10,783 | **10,870** | 10,981 |
-| Pay-once at £28.99 covers its cost: 3A ÷ 13.617 | 11,240 | 11,406 | **11,498** | 11,615 |
-| Monthly 99p reaches the 30% cap (scaled by A ÷ 51,017.93) | 20,274 | 20,573 | **20,739** | 20,950 |
+| `N*` = A ÷ 3.3985 | 15,012 | 15,232 | **15,356** | 15,512 |
+| 99p covers its cost: A ÷ 4.801 | 10,627 | 10,782 | **10,870** | 10,981 |
+| Pay-once at £28.99 covers its cost: 3A ÷ 13.617 | 11,240 | 11,404 | **11,498** | 11,615 |
+| Monthly 99p reaches the 30% cap (scaled by A ÷ 51,017.93) | 20,274 | 20,571 | **20,739** | 20,950 |
 | Pay-once buyers a month over 36 months | 312 | 317 | **319** | 323 |
 
 ### 4.3 Margin at 99p, Deviation 2, restated
@@ -145,12 +145,21 @@ D60: *"The D15 step-down figures are not frozen until the launch cost sheet (v4)
 | Launch | 28.992 → £28.99 | 28.992 | **£28.99** unchanged |
 | M1 (a third recovered) | 25.575 → £25.49 | **25.555** (25.553–25.557) | **£25.49**, unchanged |
 | M2 (two thirds recovered) | 22.157 → £22.00 | **22.117** (22.113–22.122) | **£22.00** (11.7p) against £21.99 (12.7p), unchanged |
-| Post-cliff pay-once | 18.739 → £18.90 | **18.679** (18.674–18.686) | **£18.49** (18.9p) against £18.90 (22.1p). **Moves, by 2p** |
+| Post-cliff pay-once | 18.739 → £18.90 | **18.679** (18.674–18.687) | **£18.49** (18.9p) against £18.90 (22.1p). **Moves, by 2p** |
 | Post-cliff monthly | 70.5p → 69p | 70.4p | **69p** (30.3% cut), unchanged |
 | Post-cliff yearly | 6.431 → £6.39 | 6.411 | **£6.39**, unchanged |
 | D15 recovery thresholds (B and 2B) | £30,284.79 / £60,569.58 | **£31,159.78 / £62,319.56** | rise with the build |
 
-*Worked, post-cliff pay-once, point: `N*` = 52,187.31 ÷ 3.3985 = 15,356.0; `F/N*` = 21,027.53 ÷ 15,356.0 = 1.3693; honest = 3 × (1.3693 + 2.306) × 1.694118 = 3 × 3.6753 × 1.694118 = £18.679. Midpoint between £18.49 and £18.90 is £18.695; all three cases sit 0.9p to 2.1p below it (point 1.6p).*
+*Worked, post-cliff pay-once, point: `N*` = 52,187.31 ÷ 3.3985 = 15,356.0; `F/N*` = 21,027.53 ÷ 15,356.0 = 1.3693; honest = 3 × (1.3693 + 2.306) × 1.694118 = 3 × 3.6753 × 1.694118 = £18.679. Midpoint between £18.49 and £18.90 is £18.695; all three cases sit 0.8p to 2.1p below it (point 1.6p).*
+
+**Sensitivity to the ongoing-hours assumption (added after QA's re-derivation; QA found the fragility and I had not stated it).** The 9 h a year is my own midpoint; the CTO gave no point (§1). Holding one-off hours at the point (80.25 h) and varying ongoing hours, with `F` = 20,733.14 + hours × 32.71:
+
+| Ongoing h/yr | 4.5 (CTO low) | **9 (mine)** | 11 | 12 | 15 (CTO high) |
+|---|---:|---:|---:|---:|---:|
+| Honest post-cliff pay-once | £18.650 | **£18.679** | £18.692 | £18.699 | £18.718 |
+| Nearest point | £18.49 | **£18.49** | £18.49 | £18.90 | £18.90 |
+
+**The switch to £18.49 holds only while ongoing hours stay below about 11.4 a year** (solved: honest = £18.695 at 11.42 h; QA rounds it to 11.5). That sits between my midpoint and the CTO's high of 15. **The crossover also depends on the one-off hours:** at the Low one-off (55 h) it is about 5.7 h a year, so Low one-off with my 9 h of ongoing gives £18.90 and not £18.49; at the High one-off (111 h) it is about 18.4. The low–high range in the table above pairs low with low and high with high, which is why it does not show this. **Read the £18.49 as one outcome of a coin the inputs have not yet tossed, not as a finding.**
 
 > **How much weight this carries: little, and I say so.** The switch rests on a 1p to 2p margin, on £18.49 existing in App Store Connect and Play Console (v3 §7.2's grid check is still owed, addendum D flag D-F8), and on a cost base that SPK-08 is about to move again (addendum D §6: still unsized, up to about 36% above v3). **I would not publish or freeze any step point on today's numbers.** That is addendum D §5.3's recommendation and D60 already adopts it. **It is the CEO's price, at v4.** I raise it because the commission said to stop and say so if the figures would move a price. **They do not move a launch price. They would move one future step, if frozen today.**
 
@@ -242,6 +251,7 @@ D60: *"The D15 step-down figures are not frozen until the launch cost sheet (v4)
 
 | Date | Change |
 |---|---|
-| 2026-10-11 | **Created (D69 "Owed").** Re-adds the CTO's sizing exactly: **80.25 h at the point (55.5 to 111), £2,624.98 one-off, plus about 9 h a year (4.5 to 15), £294.39**, carried as post-estimate scope outside the 2,090 h and the 75 h spike line. Capitalised build 2,777 → **2,857.25 h**; `A` £51,017.93 → **£52,187.31 (+2.3%)**; `N*` 15,012 → **15,356**; margin at 99p and 4,000 subscribers −44.5% → **−45.4%**. **Labour at risk from the Block 2 re-scope: up to 276.25 h, £9,036.14 (223 to 334.5 h)**, a ceiling and not an expectation, plus the 75 h spike already carried. **No launch price changes (D60).** One unfrozen future step point, the post-cliff pay-once price, sits within 2p of a switch from £18.90 to £18.49; not set, for the CEO at v4. **Not a price: Constitution 5.4 reserves pricing to the CEO.** |
+| 2026-10-11 | **Corrected after QA's Condition 6 re-derivation (PR #45):** the Low one-off total is 55.0 h, not 55.5 (the CTO's own Sums line carried the same slip). Low column restated: one-off £1,799.05; `A` £51,764.81; `N*` 15,232. Point and high unchanged. Added the ongoing-hours sensitivity of the D15 post-cliff point (§4.4): the switch holds only below about 11.4 h a year. |
+| 2026-10-11 | **Created (D69 "Owed").** Re-adds the CTO's sizing (Low corrected in the row above): **80.25 h at the point (55 to 111), £2,624.98 one-off, plus about 9 h a year (4.5 to 15), £294.39**, carried as post-estimate scope outside the 2,090 h and the 75 h spike line. Capitalised build 2,777 → **2,857.25 h**; `A` £51,017.93 → **£52,187.31 (+2.3%)**; `N*` 15,012 → **15,356**; margin at 99p and 4,000 subscribers −44.5% → **−45.4%**. **Labour at risk from the Block 2 re-scope: up to 276.25 h, £9,036.14 (223 to 334.5 h)**, a ceiling and not an expectation, plus the 75 h spike already carried. **No launch price changes (D60).** One unfrozen future step point, the post-cliff pay-once price, sits within 2p of a switch from £18.90 to £18.49; not set, for the CEO at v4. **Not a price: Constitution 5.4 reserves pricing to the CEO.** |
 
 *Prepared by the Chief Financial Officer under `roles/cfo.md`. It prepares and flags; it does not certify (Constitution 6.1).*
