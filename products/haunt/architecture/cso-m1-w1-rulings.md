@@ -2,12 +2,13 @@
 
 **Seat:** Chief Security Officer · **Date:** 2026-10-10 · **Revision 2:** 2026-10-10, for D68 · **Status:** Three rulings, revised once. **They prepare and flag; they do not certify** (Constitution 6.1: *"Agent reviews **prepare and flag; they do not certify**"*). §2 is for the CEO to approve or refuse. Nothing here edits ADR-0001, ADR-0002, the requirements, the wave plan, or any guard or config file in `haunts`.
 **Revision 2 in one line:** the CEO's D68 replaced ESLint with Oxlint and Oxfmt, on TypeScript 7.0.2. **§0 is the new dependency decision and the re-rulings, and it wins wherever it conflicts with §1.** §2, the CSO note, is rewritten in place for the Ox files. §3 is unchanged.
+**Addendum, 2026-10-11 (§0.9):** my position on whether a `CLAUDE.md` rule can replace `check-suppressions.ts` and `check-guard-pass.ts`. Keep the guard pass. The scan may go, on conditions S1–S3.
 **Authority:** the CEO, 2026-10-09: *"CSO: write the threat model alongside, and approve the B-strict dev tools."* Also the CTO's requests to this seat in `architecture/m1-wave-plan.md` §8 (candour PR #31, branch `docs/haunt-m1-wave-plan`). **For revision 2:** D68, CEO, 2026-10-10: *"I would say Ox tools over Biome thanks to the company behind it and the benefits the CTO found (e.g. the almost one to one rules which biome couldn't do). It is also designed to be high throughput, fast and for large codebases, covering us for the future and possibly other projects."* Recorded in `decisions/2026-09-16-haunt-gate.md` on candour branch `docs/haunt-d67-biome` (PR #35). It adopts the CTO's `architecture/ADR-0002-ox-lint-layer.md` (branch `docs/haunt-adr-0002-ox`, `bf4729b`, PR #38).
 **Rules applied:** D40 (*"The CSO approves them as new dependencies"*), D41 (*"keeping dependencies minimal and exact-pinned, with the CSO approving any new ones"*) and D64 (*"The CSO approves the two new development tools"*). Also ADR-0001 §3 (*"No import plugin"*) and §6 item 2, and CSO conditions C16, C17 and C19 (`reviews/cso-review.md` §9.1).
 **Template note:** `pipeline/templates/` has no template for a dependency decision or a security ruling [E: listed from disk, 2026-10-10]. This follows `reviews/cso-review.md`.
 **Evidence tags** follow `pipeline/evidence-standard.md`. Registry facts were read from `https://registry.npmjs.org/<name>` on 2026-10-10. Transitive counts come from a lockfile I resolved on 2026-10-10 against `haunts` `main` at `dc9a0a0`. The register in §5 links every source. The npm registry is the single source for what a package declares about itself (licence, scripts, dependencies). I flag that once here rather than on every line.
 
-Provenance: CSO · opus (Opus 5.5) · effort high · 2026-10-10 (first version and revision 2)
+Provenance: CSO · opus (Opus 5.5) · effort high · 2026-10-10 (first version and revision 2); 2026-10-11 (addendum §0.9)
 
 ---
 
@@ -156,6 +157,124 @@ Two smaller additions are not disagreements: G15 widened to Oxfmt and to JavaScr
 - **Condition T's reversal:** TypeScript syntax we use that `swc` cannot parse, shown by `f1-swc` going red. Then dependency-cruiser needs a different parser, or condition T returns.
 - **C37 and C38:** an Oxlint release that ignores `.gitignore` under `--no-ignore`, or a dependency-cruiser that reads `tsconfig.json` without being told. Each would make its condition redundant, and I would withdraw it.
 - **The allow-list:** as stated under C25(a).
+
+### 0.9 Addendum, 2026-10-11: can a CLAUDE.md rule replace the suppression scan and the CI guard pass?
+
+Provenance: CSO · opus (Opus 5.5) · effort high · 2026-10-11
+
+**Authority:** the Coordinator's commission, under the CEO's "Yes" of 2026-10-11 to *"shall I commission … The CSO: state its position on point 3 before you decide."* **The question, in the CEO's words:** *"check-suppressions.ts and check-guard-pass.ts — I am fine with this, we can encourage it via rules in claude.md rather than a separate guard."* I read it as the Coordinator does: could both scripts go, with a `CLAUDE.md` rule in their place?
+
+**Numbering:** the commission asked for a new §0.8. §0.8 already exists, and ADR-0002 cites it (*"the CSO would withdraw it (rulings §0.8)"*). Renumbering would break that reference in another seat's file, so this is §0.9.
+
+**Not waited for:** the CTO's `guard-tooling-options.md`, which is not yet written. Where my answer depends on Oxlint, I say so.
+
+**My position: keep the CI guard pass. The suppression scan may give way to the `CLAUDE.md` rule, on three conditions (S1–S3). The guard pass may go too on the day Oxlint ships a switch that ignores disable comments.**
+
+#### 0.9.1 What the two scripts protect today
+
+At PR #367's head, `252f838` [E, R26]:
+
+- **`tools/check-guard-pass.ts` (75 lines, CI only).** It is the only step, in the hook or in CI, that runs the guard rules with every disable comment removed. It copies the code to a directory outside the repository, replaces each `oxlint-disable` and `eslint-disable` token, and runs `oxlint -c oxlint.guard.json --no-ignore --deny-warnings`.
+  - **The guard rules** are those in `oxlint.guard.json`. They are PRIV-8's no-network rules (`fetch`, `XMLHttpRequest`, `WebSocket` and `EventSource` as globals and as properties, and `http`, `https`, `net`, `tls` and similar imports), the `eval` family, and the `guard/` plugin rules (`no-sql-strings`, `db-opener`, `no-native-registry`, `no-remote-source`, `no-clock`, `no-computed-global`, `literal-import`).
+  - **Its fixtures:**
+    - `9b-guard-pass`: `// oxlint-disable-next-line no-restricted-globals -- x` above `fetch(u)` must fail.
+    - `9b-ignore-file`: a `.gitignore` and an `.eslintignore` listing the folder must not hide a `fetch`.
+- **`tools/check-suppressions.ts` (123 lines, hook and CI).** Every disable comment must:
+  - be the lower-case line-level form;
+  - name its rules;
+  - name only allow-listed rules (`func-style`, `prefer-arrow-callback`, `maint-4/*`);
+  - end with `-- <reason>`.
+  - **Its fixtures:** sixteen must fail and one positive control must pass. The sixteen are `9a-rule`, `9a-alias-eslint`, `9a-alias-ts`, `9a-nospace`, `9a-block-next-line`, `9a-jsx`, `9a-line`, `9a-plugin`, `9a-native-name`, `9a-size`, `9a-bare`, `9a-case`, `9a-file`, `9a-range`, `9a-eslint`, `9a-config-comment` and `9c-no-reason`. The positive control is `9a-allowlisted`.
+  - **It covers rules the guard pass never sees.** `9a-size` silences `max-lines-per-function` (check 13). Checks 2, 12, 13 and 14 run only from `.oxlintrc.json` (§0.5, C37).
+- **Oxlint has no built-in equivalent.**
+  - Version 1.86.0, our pin, has no switch that ignores disable comments. Its "Inline Configuration Comments" options only report unused ones [E, R28].
+  - Two upstream requests for one are open: oxc #15173 and #13872 [E, R29].
+  - The latest release is 1.87.0, of 2026-10-05 [E, R28]. I infer that it does not have the switch, because both requests are still open [I].
+
+**CSO-1 measured the state the `CLAUDE.md`-only option would produce** [E, R27]. In my review of #367 today, one line in `tools/structure.json` hid a folder from both scripts' walk. A `fetch` under a disable comment then passed every check in the hook and in CI. In my words there: *"Nothing in the hook or in CI reported the `fetch`."*
+
+- The main Oxlint pass honoured the comment.
+- `check-network.ts` scans only native code.
+- dependency-cruiser does not judge globals.
+
+**CSO-1 was a hole in the scripts' coverage, not an argument against them.** It was found because the scripts have a contract proved by fixtures. Its fix (`NEVER_WALKED` as a Tier 1 constant, fixture `c1-never-walked`) assumes they stay.
+
+#### 0.9.2 What a `CLAUDE.md` rule alone would leave
+
+- **The rule already exists.** `haunts` `CLAUDE.md`, "Secrets and security", rule 3 [E, R30]: *"No `oxlint-disable` comment may name a rule outside `check-suppressions.ts`'s allow-list."* So the proposal keeps the rule and removes what enforces it.
+- **The rule is addressed to the actor it is meant to stop.** Threat model T4 is *"An AI agent writing code, not malicious but optimising to make a check pass"*, and the first move listed for it is *"Suppressing a rule"* [E, R31].
+  - A rule lowers how often that happens. It puts no limit on it [J].
+  - It binds nothing that does not read `CLAUDE.md`: a human contributor, another tool, or a session that never loaded the file [I].
+- **Who would catch a breach:**
+  - **My review: in general, no.** I review only where *"the ticket is labelled `needs:cso-review`"* [E, R32]. A disable comment in feature code touches no Tier 1 or Tier 2 file, so check 10 does not send the PR to me. I would first meet it at Haunt's pre-release review, possibly weeks after it reached `main`.
+  - **The CTO's review: only if he reads that line.** He reviews every PR [E, R32]. But a review is not a check that runs on every commit. CSO-1 shows that a bypass can sit inside material its own authors wrote and reviewed. I missed it in §2.3, and my record says *"That is partly my own miss"* [E, R27].
+  - **QA: no independent cover.** PRIV-8's evidence is these checks. CAP-16(a), for example, asserts that *"PRIV-8's five-layer checks pass unchanged"* [E, R33]. So QA's evidence inherits the gap [I].
+  - **`reportUnusedDisableDirectives`: no.** It catches only a comment that silences nothing (`9c-unused`).
+  - **Net:** the CTO's review if it reads the line; otherwise nobody until my pre-release review.
+- **The blast radius is uneven:**
+  - **A silenced network rule** breaks PRIV-8, the product's central promise. If it shipped, it would fall under Article 3's *"Security or data incidents affecting users"* row: *"Prompt disclosure to affected users; public summary after resolution"*.
+  - **A silenced size, naming or `any` rule** is a maintainability cost, not a security one [J].
+
+#### 0.9.3 The cost of keeping them
+
+- **Size:** 123 + 75 = **198 lines** [E, R26], plus 19 fixtures (17 for the scan, 2 for the guard pass).
+- **Running cost:** CI seconds, and no money [J].
+- **The real cost is maintenance.** Each Oxlint bump means re-testing directive handling (ADR-0002 §12). The two scripts differ here:
+  - **The scan has to know every comment shape Oxlint honours:** no space after `//`, block comments, JSX comments, case. Each new shape is new scan code.
+  - **The guard pass needs no shape knowledge.** It removes the token wherever it appears. An alias, a block comment, a JSX comment and a missing space are all made inert the same way [I, from the code in R26; the scan's shape fixtures do not yet run against the guard pass, see S1].
+- **The 75 lines of the guard pass carry the security property.** The scan's 123 lines carry two things:
+  - **earlier feedback on guard rules:** at commit rather than in CI. That is earlier, not stronger;
+  - **protection of the non-guard rules** and of the `-- <reason>` hard ban. Those are the CTO's grounds and the CEO's aim, not mine.
+
+#### 0.9.4 Position, conditions and block
+
+**Keep one: the CI guard pass.**
+
+- **It meets C1 on its own.** C1 is *"no comment can silence the CI guard pass"*, and `9b-guard-pass` proves it. The scan adds earlier feedback. **If the scan goes, I re-rule C1 as met by §0.5's (b) and (c) alone.**
+- **It is the simpler and more robust control.** It is blind to comment shapes, as §0.9.3 explains.
+- **Nothing replaces it today** (§0.9.1).
+
+**The scan may give way to the `CLAUDE.md` rule, on three conditions:**
+
+- **S1. The guard pass's fixtures are widened in the same PR that removes the scan.** These fixtures' `expect.json` must target `check-guard-pass.ts` and fail with *"a guard rule fires"*: `9a-rule`, `9a-line`, `9a-alias-eslint`, `9a-nospace`, `9a-block-next-line`, `9a-jsx` and `9a-plugin`. Each silences a guard rule (`no-restricted-globals`, or `guard/no-clock` in `9a-plugin`), and together they are the shape and alias proofs that today ride on the scan.
+  - **Why:** without them, the guard pass's robustness to those shapes is my inference from its code, not a tested fact.
+  - **Tier:** these are changes to existing fixture folders, so Tier 1. This addendum is the CSO note for them; the CEO's approval is still needed.
+  - **The other scan fixtures** (`9a-alias-ts`, `9a-native-name`, `9a-size`, `9a-bare`, `9a-case`, `9a-file`, `9a-range`, `9a-eslint`, `9a-config-comment`, `9c-no-reason`, `9a-allowlisted`) go with the scan, unless the CTO keeps a replacement for them.
+- **S2. CSO-1 lands first,** as written in my review of #367. The guard pass still reads the walk.
+- **S3. The `CLAUDE.md` sentence is rewritten so it no longer names a file that would not exist.** I propose: *"No `oxlint-disable` or `eslint-disable` comment may name a rule in `oxlint.guard.json` or a `guard/` rule. CI removes every such comment and runs the guard rules anyway."* It stays in "Secrets and security", which is itself protected. Rule 3's tier lists and `SECURITY.md` drop `check-suppressions.ts` by name; "every `tools/check-*.ts`" already covers the rest.
+
+**Recommendation, not a condition:** run the guard pass in the hook as well, so an agent learns at commit. That costs about one Oxlint run per commit, and it is the CTO's call [J].
+
+**Flag, not a block, for the CTO (his ground):** without the scan, nothing stops a comment from silencing checks 2, 12, 13 and 14, or the `-- <reason>` hard ban. That is his to accept or replace, and the CEO's to decide against the aim of fewer scripts.
+
+**My follow-up once the CEO decides:** if the scan goes, I amend threat model row G1 and §6.1 row C1. I do not touch them before the decision.
+
+**If the guard pass is dropped too: my disagreement, stated once.**
+
+- **The gap:** between commit and release, nothing would stop a disable comment from silencing PRIV-8's network rule, except the CTO happening to read the line. C1, accepted under D68, would be unmet. That is the CEO's to decide, recorded.
+- **No block now.** My block is *"Release — for unresolved material vulnerabilities or absent threat modelling"* (`roles/cso.md`), and this is not a release.
+- **At Haunt's pre-release review**, I will run strip-and-lint by hand against the release commit. If any guard rule fires, that is an unresolved material vulnerability against PRIV-8, and **I block release** on that checklist item.
+  - **What lifts it:** the comment and the code it hid are removed, or the CEO overrules me on the record (Constitution 5.6: *"Only the CEO may overrule a block, and every overrule is recorded, with reasons, in the public decision record."*).
+- **The cost moves; it does not disappear.** A 75-line script that runs on every PR is replaced by a manual check at each release, plus a window in which `main` can carry a silenced network rule that nobody has seen.
+
+#### 0.9.5 What would change my mind
+
+- **Towards dropping the guard pass: Oxlint shipping a switch that ignores disable comments** (#15173 or #13872). **My answer on the guard pass depends on this; my answer on the scan does not.** The guard pass then becomes one command line in `check-all.ts`, with no script: `oxlint -c oxlint.guard.json <the switch> --deny-warnings src modules`. I would withdraw the script if that line:
+  - fails S1's fixtures and `9b-guard-pass`;
+  - is backed by C37's tracked-but-ignored check for what `9b-ignore-file` covers today. Run inside the repository, Oxlint honours `.gitignore`, so a committed file under an ignored path must still fail `check-all.ts`.
+- **Towards keeping the scan:**
+  - a security-bearing rule moving from `oxlint.guard.json` into `.oxlintrc.json`. The scan would then be its only protection against a comment;
+  - `checks.yml` not being required green before the CEO merges;
+  - first-wave evidence that agents add disable comments to guard rules often enough that feedback at commit matters.
+- **Towards dropping both without that switch:** a check outside the walk that catches a silenced guard rule. For CSO-1 I looked and found none (R27).
+
+**Where I looked for this addendum:**
+
+- in `haunts` at `252f838`: both scripts in full, `oxlint.guard.json`, `CLAUDE.md` rule 3, `tools/check-all.ts`'s wiring, and every `9*` fixture's `expect.json`;
+- in candour: my #367 review record, threat model rows T4, G1 and C1, `pipeline/agentic-agile.md` item 2, requirement CAP-16, and Constitution Articles 3 and 5.6;
+- for Oxlint: its `--help` at 1.86.0, the npm registry and the oxc issue tracker.
+
+**Not done:** I did not re-run the fixtures. The 145-of-145 run in my #367 review is the most recent [E, R27]. I did not test the guard pass against the seven S1 fixtures; S1 exists so that the test is run.
 
 ---
 
@@ -470,6 +589,19 @@ All retrieved on 2026-10-10 by this seat.
 | R24 | dependency-cruiser 18.5.0 on `typescript` 7.0.2, tested: with `parser: "swc"`, `f1-swc` and `f1-type-only` fail (exit 1); a five-file fixture (type-only from `.tsx` with JSX, `export *`, `import()`, generics, abstract class) gives every edge, and a sentinel rule on `dependencyTypes: ["type-only"]` fires; **with the `swc` platform binding removed, the summary still says `"parser": "swc"`, every path edge is still found, the type-only edge is typed `import`, and the sentinel does not fire**; explicit `acorn` also catches `f1-type-only`; an `@/` alias crossing a boundary trips the boundary rule only with `options.tsConfig` set, and otherwise only a `couldNotResolve` rule | Local run, 2026-10-10, scratchpad. **Reproducible, not published** |
 | R25 | ADR-0002 and the CTO's comparison; D68 as recorded; the CTO's dependency list for this seat | `products/haunt/architecture/ADR-0002-ox-lint-layer.md` (`bf4729b`) and `lint-layer-comparison.md` (`9f97afc`), candour branch `docs/haunt-adr-0002-ox`; `decisions/2026-09-16-haunt-gate.md` D68 on `docs/haunt-d67-biome`; [`haunts` #355, comment 6100254984](https://github.com/deopea-david/haunts/issues/355#issuecomment-6100254984) |
 
+**Addendum §0.9, retrieved or run 2026-10-11 by this seat:**
+
+| # | Claim | Source |
+|---|---|---|
+| R26 | `tools/check-suppressions.ts` (123 lines) and `tools/check-guard-pass.ts` (75 lines): what each reads, strips and runs; `oxlint.guard.json`'s rules; `check-all.ts` runs `guard-pass` with `ciOnly: true`; every `9*` fixture's command, `fails` and message | `haunts` at `252f838` (PR #367 head), read with `git show`; line counts with `wc -l`. [PR #367](https://github.com/deopea-david/haunts/pull/367) |
+| R27 | CSO-1: with a folder added to `neverWalked`, a disabled `fetch` passed every check in the hook and in CI; *"Nothing in the hook or in CI reported the `fetch`"*; *"That is partly my own miss"*; `prove-checks` 145 of 145 | [My review record on #367, comment 6114670858](https://github.com/deopea-david/haunts/pull/367#issuecomment-6114670858) |
+| R28 | Oxlint 1.86.0 `--help`: under "Inline Configuration Comments", only `--report-unused-disable-directives` and its severity form; no switch that ignores directives. Registry `latest` is 1.87.0, published 2026-10-05 | Local `oxlint --help` from an installed 1.86.0, 2026-10-11 (**reproducible, not published**); [registry.npmjs.org/oxlint](https://registry.npmjs.org/oxlint) |
+| R29 | Two open feature requests for an ESLint-style `--no-inline-config` / `noInlineConfig` | [oxc #15173](https://github.com/oxc-project/oxc/issues/15173); [oxc #13872](https://github.com/oxc-project/oxc/issues/13872) (GitHub search API, state `open`). **Single source** (the oxc tracker) |
+| R30 | `haunts` `CLAUDE.md`, "Secrets and security", rule 3: *"No `oxlint-disable` comment may name a rule outside `check-suppressions.ts`'s allow-list."* | `haunts` `CLAUDE.md` at `252f838` |
+| R31 | Threat actor T4, *"An AI agent writing code, not malicious but optimising to make a check pass"*, whose listed moves begin *"Suppressing a rule"*; rows G1 and C1 | `products/haunt/architecture/threat-model-m1.md` (candour `main`, `119f786`) |
+| R32 | *"The CTO reviews; **the CSO also reviews where the ticket is labelled `needs:cso-review`**."* | `pipeline/agentic-agile.md`, "The per-ticket chain", item 2 (candour `main`, `119f786`) |
+| R33 | CAP-16(a): *"PRIV-8's five-layer checks pass unchanged"* | `products/haunt/requirements.md` (candour `main`, `119f786`) |
+
 **[K] claims carried, each to be upgraded before it anchors a ticket:** pre-commit's stash of unstaged changes and the `language: unsupported` semantics (§2.2); npm's `prepare` running only for the root project and git dependencies (§1.3); Jest's ESM mode being experimental (§1.5); `secure_delete` being set per connection (§3.2); flash wear-levelling (§3.2); the CLI-only scope of the `glob` 10.x advisory (§1.3); `overrides` on peer dependencies (§1.2).
 
 ---
@@ -480,3 +612,4 @@ All retrieved on 2026-10-10 by this seat.
 |---|---|
 | 2026-10-10 | First version (CSO): §1 dependency decision and §2 CSO note posted to `haunts` #355 (comments 6097283953 and 6097285838); §3 DATA-16 rulings |
 | 2026-10-10 | **Revision 2, for D68 (CSO):** new §0. `oxlint` 1.86.0, `oxfmt` 0.71.0 and `@swc/core` 1.16.13 approved on conditions; the three ESLint packages dropped; condition T reversed. C1, C25(a), F1, F2, G12 and G15 re-ruled; C37 and C38 added; W1–W3 for `@swc/core`. §2 rewritten in place for the Ox hook and files, with H8 added; §1 marked superseded in part. Posted to `haunts` #355 (comments 6100395391, the dependency decision, and 6100397684, the CSO note) |
+| 2026-10-11 | **Addendum §0.9 (CSO), at the Coordinator's commission under the CEO's "Yes" of 2026-10-11:** position on the CEO's point 3. Keep `check-guard-pass.ts`. `check-suppressions.ts` may give way to a `CLAUDE.md` rule on S1 (seven shape and alias fixtures retargeted to the guard pass), S2 (CSO-1 first) and S3 (the rule reworded). No block now. A pre-release check is stated in case the guard pass is also dropped. Numbered §0.9 because ADR-0002 cites §0.8. R26–R33 added |
