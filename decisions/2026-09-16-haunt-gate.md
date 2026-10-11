@@ -546,6 +546,12 @@ The CFO's case for 180 stands on the record in `cost-sheet-v3.md` §10 and is no
 
 *Recorded by the Coordinator as a clerical act; the record is the CGO's.*
 
+**D70 — Requirements v1.5 are signed off.** *CEO, 2026-10-11.* His words: *"Yes I sign off."* He was answering the Coordinator's question *"is requirements v1.5 signed off?"*, after a summary of what v1.5 changed from v1.4 and a note that the UX and CGO wording for CAP-15 to CAP-17 would follow as a later revision.
+
+The sign-off covers **`products/haunt/requirements.md` v1.5 as merged on `main`** (PR #40), the whole document. Later changes go through §24 rows as usual. **Gate Conditions 1–3,** which gate this sign-off: Condition 1 was the CFO's re-derivation (`cost-sheet-v3.md`; D60); Condition 2 was the venue-index spike (SPK-01; Block 4 lifted, `block-4-lift.md`); Condition 3 was waived (C4). **Owed:** the PM/BA changes the document's "draft for sign-off" status line at its next revision.
+
+*Recorded by the Coordinator as a clerical act; the record is the CGO's.*
+
 ---
 
 # Correction C3 — 2026-09-19, before first publication
