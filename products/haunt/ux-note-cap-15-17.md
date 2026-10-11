@@ -8,6 +8,7 @@
 **Template note:** `pipeline/templates/` has no UX-note template (listed this session: cost-sheet, decision-record, dissent-memo, gate-pack, idea-brief, proposal, requirements, research-brief, review-pack). This note follows the charter's named outputs: a usability review note, an Article 4 conformance check and an accessibility note.
 **Evidence:** every claim here is about Candour's own rules, and each one quotes the clause it relies on. No external source was retrieved or is cited. My own judgments are tagged [J]. WCAG success-criterion numbers are those already cited in `requirements.md` §15; where I name one it does not cite, I tag it [K].
 **Honesty statement:** I have run no usability test and watched no user. Whether a volunteer reads three numbers as a score is an empirical question, and I am answering it with judgment. §6 says what would overturn each answer.
+**Revision r2, 2026-10-11:** §3.1 answers the CGO's G2 (`cgo-note-cap-15-17.md` §2, PR #46). I accept its whole-word rule with one amendment, and I accept its helper line. §4, §9 and §10 are updated to match. Nothing else changes.
 **Status:** this note prepares and flags. It does not certify (Constitution 5.4 and 6.1). Nothing in it is a decision.
 
 ---
@@ -20,7 +21,7 @@
 |---|---|---|
 | F1 | Whether the three counts are plain facts under MEM-1, D21 and the beat-or-break test | **Pass, if two changes are made:** Haunts is the subject of every label, and the date range offers no week or month presets. The fallback in caution 2, which drops "visits recorded", is not needed. |
 | F2 | "Misses covered by a gap" as a label | **Change needed.** "Gap" is internal vocabulary. Use the timeline's own words from CAP-4. |
-| F3 | The build-wide string search in MEM-1(a) would fail on CAP-15 and CAP-16's own strings | **Change needed.** HEAD-6(a)'s list contains *"miss"* and *"this week"*, and MEM-1(a) applies that list to every string in the build. A narrow allow-list entry is needed. |
+| F3 | The build-wide string search in MEM-1(a) would fail on CAP-15 and CAP-16's own strings | **Change needed. Revised in r2 (§3.1):** the CGO's whole-word rule is accepted, with stems for *"miss"* and *"streak"*, and the CGO's helper line replaces mine. HEAD-6(a)'s list contains *"miss"* and *"this week"*, and MEM-1(a) applies that list to every string in the build. A narrow allow-list entry is needed. |
 | F4 | The wording and placement of the "Haunts missed this" control | **Pass on placement. Change needed:** the control must start off in every entry route (Article 4: *"no pre-ticked boxes"*). Exact wording is proposed below. |
 | F5 | Whether the share-sheet export is started by the user, with no nudging | **Pass, with one addition:** Haunts says nothing after the share sheet closes. No thank-you message and no toast. |
 | F6 | Accessibility (§15) | **Change needed.** The marker must be part of the row's single accessible label (A11Y-6). The preview must be real text with each number on the same line as its label, and must survive the largest text size (A11Y-4). |
@@ -84,7 +85,7 @@ This file holds only these numbers and dates. It has no places, times, notes or 
 
 - Haunts is the subject of every count line. The second line names the user only as the person who *added* the visit, which is an act of editing, not a measure of going out.
 - The last line is the consent sentence. It tells the user what they are about to share, in words a first-time user can check against the three numbers above it. It is not a reassurance flourish, and it is true by CAP-16(e).
-- *"capture summary"* is not on CAP-16(c)'s banned list (*rate, score, accuracy, caught, streak, best, record, improve*). I checked each banned word against the text above and found none.
+- *"capture summary"* is not on CAP-16(c)'s banned list (*rate, score, accuracy, caught, streak, best, record, improve*). I checked each banned word against the text above and found none. *(r2: that check holds only under whole-word matching, which no requirement stated until the CGO's G2. Under substring matching, "recorded" contains "record". §3.1 adopts the whole-word rule and applies it to CAP-16(c)'s list too.)*
 - The machine-readable keys in the file can stay as the PM/BA wrote them. This wording is for what a person reads.
 
 ---
@@ -107,6 +108,22 @@ MEM-1(a) requires a *"Build-wide string-table and store-metadata search… for t
 
 Without this change, either the build fails or someone loosens the check under deadline pressure. The second outcome is worse. [J]
 
+### 3.1 Revision r2 (2026-10-11): the CGO's G2, accepted with one amendment
+
+**What the CGO found** (`cgo-note-cap-15-17.md` §2, read this session from its worktree): *"record"* is on HEAD-6(a)'s list as well as *"miss"*. My helper line, *"…Haunts didn't record it"*, contains it as a whole word. My claim in §1.4 that no banned word appears was true only under whole-word matching, and no requirement says the search matches whole words. **The CGO is right on all three points.** I missed *"record"*, and my own helper line would have failed the check I was writing an exception for.
+
+**Helper line: accepted as the CGO drafted it.** *"Turn this on if you were here and Haunts has no visit for it."* It uses no listed term, and a first-time user can still tell what the switch does. It replaces my line in §4.
+
+**Match rule: accepted, with one amendment.** The CGO's text: *"Matching is whole-word and case-insensitive. "recorded" does not match "record", and "missed" does not match "miss"; a term with a space ("in a row") matches as a phrase."* Whole-word matching is right for *"record"*. *"Visits recorded"* is the house phrasing that `ux-home-headlines.md` §5.3 asks for, and it must not fail.
+
+**The amendment.** Whole-word matching on its own weakens the search across the whole build, not only for these features. Under it, *"You missed Sundays at The Eagle"*, which is absence framing HEAD-6 exists to catch, would pass, and so would *"3 streaks"*. Two terms on the list do their harm in every form, so they should match as stems [J]. Proposed text, replacing the CGO's first sentence:
+
+> **Matching is case-insensitive and whole-word, except that "miss" and "streak" match as stems** (*miss, missed, misses, missing; streak, streaks*). *"recorded"* does not match *"record"*. A term with a space (*"in a row"*) matches as a phrase. The same rule applies to CAP-16(c)'s banned-word list. **The CAP-15 and CAP-16 strings, and the CAP-14(c) label, may contain a form of "miss" only where Haunts is the subject.** Each such string is listed by key in check 15's allow-list, with this row as the reason. Any other occurrence still fails.
+
+The rest of the CGO's text, including the extension to the CAP-14(c) label, stands as drafted. Without the stem rule, the allow-list would have nothing to allow, because none of these features' strings contains the bare word *"miss"*. The stem rule is what gives the allow-list a purpose.
+
+**If the CGO disagrees with the amendment**, I would rather have its rule as drafted than nothing. The cost is that HEAD-6(d)'s per-template read and MEM-1(b)'s per-string read become the only guard against *"missed"* used for absence. That is a human read and not a check that fails a build. [J]
+
 ---
 
 ## 4. F4: the "Haunts missed this" control
@@ -121,7 +138,7 @@ Proposed AC: *"Open the composer from each route that reaches it; assert the con
 
 **Wording: change needed, small.** Proposed:
 
-- **Control** (a switch, with the label as text): **"Haunts missed this visit"**. Helper line under it: *"Turn on if you were here and Haunts didn't record it."*
+- **Control** (a switch, with the label as text): **"Haunts missed this visit"**. Helper line under it: *"Turn this on if you were here and Haunts has no visit for it."* *(r2: the CGO's wording, §3.1. My first draft contained "record", which is on HEAD-6(a)'s list.)*
 - **On the visit's row and page** (CAP-15's own example, kept): *"You added this. Haunts missed it."*
 - **CAP-15(d)'s refusal sentence:** *"Haunts recorded this visit, so it can't be marked as missed."*
 - **CAP-15(e)'s overlap sentence:** *"This overlaps a visit Haunts recorded at The Eagle, 19:10 to 21:40. Open it?"* The user can still save.
@@ -184,7 +201,7 @@ Under Article 5, UX may block *"release, on Article 4 or accessibility grounds."
 ## 9. What would overturn these answers, and where I looked
 
 - **F1** would be overturned if volunteers in the beta treated the summary as something to beat: for example, by trying to push "visits recorded" up between exports, or by mentioning the number as an achievement in what they send. The beta's own messages are the place to look. If that happens, the caution-2 fallback (share only missed and covered) becomes the right answer, and I would say so.
-- **F3** would be overturned if check 15 turned out to scope the HEAD-6(a) list to headline strings only. I read MEM-1(a)'s text, which says *"build-wide"*. I did not read `tools/check-strings.ts`, which does not exist on `main` yet.
+- **F3** would be overturned if check 15 turned out to scope the HEAD-6(a) list to headline strings only. **The r2 stem amendment** would be overturned if the CGO or QA shows that whole-word matching plus the MEM-1(b) per-string read already catches inflected absence framing reliably. I read MEM-1(a)'s text, which says *"build-wide"*. I did not read `tools/check-strings.ts`, which does not exist on `main` yet.
 - **Where I looked:** the files listed under "Input artifacts", all read on `119f786`. I ran no prototype and no test.
 
 ---
@@ -193,8 +210,8 @@ Under Article 5, UX may block *"release, on Article 4 or accessibility grounds."
 
 1. **CAP-16:** add the span-not-period rule and its AC (§1.3).
 2. **CAP-16:** replace the working labels with the §1.4 preview text, and use CAP-4's wording for a gap (§2).
-3. **MEM-1(a):** add the scoped *"miss"* allow-list entry (§3).
-4. **CAP-15:** the control is off by every route, with its AC; adopt the control, refusal and overlap wording (§4).
+3. **MEM-1(a):** the CGO's whole-word match rule and scoped *"miss"* allow-list, with UX's stem amendment for *"miss"* and *"streak"*, and applied to CAP-16(c)'s list too (§3.1). This replaces my §3 text.
+4. **CAP-15:** the control is off by every route, with its AC; adopt the control, refusal and overlap wording, with the CGO's helper line (§4, §3.1).
 5. **CAP-16(b):** nothing is shown after the share sheet; the Settings row wording and placement (§5).
 6. **A11Y-6, A11Y-4, A11Y-10:** the marker in the row label; preview reading order; largest-text screenshots (§6).
 7. **CAP-16:** hidden with CAP-15 if CAP-15 is hidden; name both in item 40 (§7).
